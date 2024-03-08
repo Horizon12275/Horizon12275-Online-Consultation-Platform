@@ -1,17 +1,30 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Navbar from "./components/navbar";
-import Footer from "./components/footer";
+import { BasicLayout } from "./layouts";
 import HomePage from "./pages/home";
+import ExpertProfilePage from "./pages/expertprofile";
 
 export default function App() {
   return (
     <Router>
-      <Navbar />
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route
+          path="/"
+          element={
+            <BasicLayout>
+              <HomePage />
+            </BasicLayout>
+          }
+        ></Route>
+        <Route
+          path="/expert/:id"
+          element={
+            <BasicLayout>
+              <ExpertProfilePage  />
+            </BasicLayout>
+          }
+        ></Route>
       </Routes>
-      <Footer />
     </Router>
   );
 }
