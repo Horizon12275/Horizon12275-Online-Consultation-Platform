@@ -1,5 +1,3 @@
-<<<<<<< Updated upstream
-=======
 import React from 'react'
 
 import Histogram from '../components/histogram'
@@ -16,4 +14,3 @@ export default function Homepage() {
         </div>
     )
 }
->>>>>>> Stashed changes
