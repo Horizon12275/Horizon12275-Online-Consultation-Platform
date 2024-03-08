@@ -1,21 +1,21 @@
-//首页的走马灯 展示推荐文章
 import React, { useState, useEffect } from "react";
 import { Carousel, Card, Button, Typography } from "antd";
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
-import { getRecommendedBooks } from "../services/bookService"; // 导入书籍相关的服务函数
+import { getRecommendedArticles } from "../services/articleServices"; // 导入书籍相关的服务函数
+import CarouselCard from "./carousel_card";
 
 const { Paragraph } = Typography;
 
-const Carousel = () => {
-  const [recommendedBooks, setRecommendedBooks] = useState([]);
+const MyCarousel = () => {
+  const [recommended, setRecommended] = useState([]);
   const carouselRef = React.createRef();
 
   useEffect(() => {
-    const fetchRecommendedBooks = async () => {
-      const recommended = await getRecommendedBooks();
-      setRecommendedBooks(recommended);
+    const fetchRecommended = async () => {
+      const recommended = await getRecommendedArticles();
+      setRecommended(recommended);
     };
-    fetchRecommendedBooks();
+    fetchRecommended();
   }, []);
 
   const handlePrev = () => {
@@ -29,10 +29,9 @@ const Carousel = () => {
   return (
     <div
       style={{
-        width: "40vw",
-        minWidth: "400px",
-        aspectRatio: "4/3",
-        marginBottom: "20px",
+        width:"300px",
+        height: "100%",
+        marginBottom: "0px",
         padding: "0px",
         position: "relative",
       }}
@@ -42,48 +41,17 @@ const Carousel = () => {
         effect="fade"
         ref={carouselRef}
         autoplay
-        style={{
-          width: "100%",
-          aspectRatio: "4/3",
-          display: "grid",
-          alignItems: "center",
-        }}
+        dotPosition="right"
+        style={{ height: "100%" }}
       >
-        {recommendedBooks.map((book) => (
-          <div key={book.id}>
-            <a href={`/details/${book.id}`}>
-              <Card
-                hoverable
-                bodyStyle={{
-                  width: "100%",
-                  aspectRatio: "4/3",
-                  padding: "0px",
-                  display: "flex",
-                  alignItems: "center",
-                  border: "none",
-                }}
-                style={{
-                  width: "98%",
-                  aspectRatio: "4/3",
-                  margin: "0 auto",
-                  backgroundColor: "grey",
-                }}
-              >
-                <img
-                  src={book.image}
-                  alt={book.title}
-                  style={{
-                    width: "100%",
-                    aspectRatio: "4/3",
-                    objectFit: "cover",
-                    margin: "0 auto",
-                    borderRadius: "7px",
-                  }}
-                />
-              </Card>
-            </a>
-          </div>
-        ))}
+        {recommended.map((book, index) =>
+          index % 2 === 0 ? (
+            <div key={book.id} style={{display:"flex",height:"100%"}}>
+              <CarouselCard article={book} />
+              <CarouselCard article={recommended[index + 1]} />
+            </div>
+          ) : null
+        )}
       </Carousel>
       <div style={{ position: "absolute", bottom: "2%", right: "2%" }}>
         <Button
@@ -111,4 +79,4 @@ const Carousel = () => {
   );
 };
 
-export default Carousel;
+export default MyCarousel;

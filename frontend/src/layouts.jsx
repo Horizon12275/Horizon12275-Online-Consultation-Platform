@@ -6,10 +6,9 @@ const { Sider, Content } = Layout;
 
 export function BasicLayout({ children }) {
   return (
-    <Layout >
-      <Sider collapsible>
-        <Sidebar />
-      </Sider>
+    <Layout>
+      <Sidebar />
+
       <Layout className="site-layout">
         <Content style={{ margin: "0 16px" }}>{children}</Content>
         <Footer />

@@ -10,6 +10,7 @@ import {
 } from "@ant-design/icons";
 import { Layout, Menu, Avatar } from "antd";
 import { flex } from "@antv/component";
+const { Sider } = Layout;
 
 const Sidebar = () => {
   const [collapsed, setCollapsed] = useState(false);
@@ -17,19 +18,17 @@ const Sidebar = () => {
     setCollapsed(!collapsed);
   };
   return (
-    <Layout>
+    <Sider collapsible >
       <div className="logo" />
       <Menu
         theme="dark"
         mode="inline"
-        inlineCollapsed={collapsed}
         style={{
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
         }}
       >
-
           <Menu.Item key="home" icon={<HomeOutlined />}>
             首页
           </Menu.Item>
@@ -59,7 +58,7 @@ const Sidebar = () => {
           </Menu.Item>
 
       </Menu>
-    </Layout>
+    </Sider>
   );
 };
 export default Sidebar;
