@@ -1,16 +1,18 @@
 import React from 'react'
-
 import Histogram from '../components/histogram'
 import HomeArticle from '../components/homearticle'
-import HomeContent from '../components/homecontent'
+import TagBar from '../components/tagbar'
+import { TagProvider } from '../context/tagcontext'
+import { BasicLayout } from '../layouts'
 
 export default function Homepage() {
     return (
-        <div>
-            <HomeContent />
-            <HomeArticle />
-
-            <Histogram />
-        </div>
+        <TagProvider>
+            <BasicLayout>
+                <TagBar />
+                <HomeArticle />
+                <Histogram />
+            </BasicLayout>
+        </TagProvider>
     )
 }

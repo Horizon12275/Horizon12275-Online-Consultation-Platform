@@ -2,18 +2,41 @@ import React from 'react'
 import { Avatar, List, Space, Button } from 'antd';
 import { LikeOutlined, MessageOutlined, StarOutlined } from '@ant-design/icons';
 import Link from 'antd/es/typography/Link';
+import TagContext from '../context/tagcontext';
 
-const data = Array.from({
-    length: 5,
-}).map((_, i) => ({
-    href: 'https://ant.design',
-    title: `ant design part ${i}`,
-    avatar: `https://api.dicebear.com/7.x/miniavs/svg?seed=${i}`,
-    description:
-        'Ant Design, a design language for background applications, is refined by Ant UED Team.',
-    content:
-        'We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.',
-}));
+const data = [
+    {
+        tag: 'Variety shows',
+        href: '/',
+        title: `Variety shows`,
+        avatar: `https://api.dicebear.com/7.x/miniavs/svg?seed=1`,
+        description:
+            'Ant Design, a design language for background applications, is refined by Ant UED Team.',
+        content:
+            'We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.',
+    },
+    {
+        tag: 'Music',
+        href: '/',
+        title: `Music`,
+        avatar: `https://api.dicebear.com/7.x/miniavs/svg?seed=1`,
+        description:
+            'Ant Design, a design language for background applications, is refined by Ant UED Team.',
+        content:
+            'We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.',
+    },
+    {
+        tag: 'Chinese television dramas',
+        href: '/',
+        title: `Chinese television dramas`,
+        avatar: `https://api.dicebear.com/7.x/miniavs/svg?seed=1`,
+        description:
+            'Ant Design, a design language for background applications, is refined by Ant UED Team.',
+        content:
+            'We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.',
+    },
+]
+
 const IconText = ({ icon, text }) => (
     <Space>
         {React.createElement(icon)}
@@ -22,12 +45,16 @@ const IconText = ({ icon, text }) => (
 );
 
 export default function HomeArticle() {
+    const { selectedTags } = React.useContext(TagContext);
+
+    const filteredData = selectedTags === 'All' ? data : data.filter(item => item.tag === selectedTags);
+
     return (
         <>
             <List
                 itemLayout="vertical"
                 size="large"
-                dataSource={data}
+                dataSource={filteredData}
                 style={{ width: "60%" }}
                 renderItem={(item) => (
                     <List.Item
