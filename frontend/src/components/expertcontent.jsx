@@ -7,7 +7,7 @@ const ExpertContent = () => {
     return (
         <Row justify="center" style={{ width: '60%' }}>
             <Avatar
-                size={{ xxl: 200 }}
+                size={200}
                 icon={<UserOutlined />}
                 style={{ marginRight: "40px" }}
             />
