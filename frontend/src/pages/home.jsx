@@ -7,6 +7,7 @@ import MyCarousel from "../components/carousel";
 import { BasicLayout } from "../layouts";
 import { TagProvider } from "../context/tagcontext";
 import TagBar from "../components/tagbar";
+import SearchBar from "../components/searchbox";
 
 export default function Homepage() {
   return (
@@ -14,6 +15,7 @@ export default function Homepage() {
       <BasicLayout>
         <Layout>
           <Layout>
+            <SearchBar />
             <Content style={{ minHeight: "100vh" }}>
               {/* 中间内容 */}
               <TagBar />

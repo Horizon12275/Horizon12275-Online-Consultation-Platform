@@ -9,7 +9,7 @@ export function BasicLayout({ children }) {
     <Layout hasSider style={{minWidth:"1200px"}}>
       <Sidebar />
       <Layout className="site-layout">
-        <Content style={{ margin: "0 16px" }}>{children}</Content>
+        <Content style={{  }}>{children}</Content>
         <Footer />
       </Layout>
     </Layout>
