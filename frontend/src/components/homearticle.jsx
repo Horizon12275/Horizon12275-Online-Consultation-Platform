@@ -1,19 +1,11 @@
-import React from 'react'
-import { Avatar, List, Space, Button } from 'antd';
+import React, { useState, useEffect } from 'react'
+import { Avatar, List, Space, Button, Row } from 'antd';
 import { LikeOutlined, MessageOutlined, StarOutlined } from '@ant-design/icons';
-import Link from 'antd/es/typography/Link';
+import Link from 'antd/es/typography/Link'; 
+import TagContext from '../context/tagcontext'; // 导入标签的上下文
+import { getRecommendedArticles } from "../services/articleServices"; // 导入书籍相关的服务函数
 
-const data = Array.from({
-    length: 5,
-}).map((_, i) => ({
-    href: 'https://ant.design',
-    title: `ant design part ${i}`,
-    avatar: `https://api.dicebear.com/7.x/miniavs/svg?seed=${i}`,
-    description:
-        'Ant Design, a design language for background applications, is refined by Ant UED Team.',
-    content:
-        'We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.',
-}));
+// 用于渲染文章列表的组件
 const IconText = ({ icon, text }) => (
     <Space>
         {React.createElement(icon)}
@@ -22,13 +14,32 @@ const IconText = ({ icon, text }) => (
 );
 
 export default function HomeArticle() {
+    // 获取全局的标签状态
+    const { selectedTags } = React.useContext(TagContext);
+
+    // 定义推荐的文章数据
+    const [recommended, setRecommended] = useState([]);
+
+    // 获取推荐的文章数据
+    useEffect(() => {
+        const fetchRecommended = async () => {
+            const recommended = await getRecommendedArticles();
+            setRecommended(recommended);
+        };
+        fetchRecommended();
+    }, []);
+
+    // 根据标签筛选文章数据
+    const filteredData = selectedTags === 'All' ? recommended : recommended.filter(item => item.tag.some(tag => selectedTags.includes(tag)));
+
+    // 渲染文章列表
     return (
         <>
             <List
                 itemLayout="vertical"
                 size="large"
-                dataSource={data}
-                style={{ width: "60%" }}
+                dataSource={filteredData}
+                style={{ width: "100%" ,marginTop: "40px"}}
                 renderItem={(item) => (
                     <List.Item
                         key={item.title}
@@ -39,26 +50,27 @@ export default function HomeArticle() {
                         ]}
                         extra={
                             <img
-                                width={272}
+                                width={450}
                                 alt="logo"
-                                src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
+                                src={item.image} // Replace the image source with item.image from filteredData
                             />
                         }
                     >
                         <List.Item.Meta
-                            avatar={<Avatar src={item.avatar} />}
-                            title={<a href={item.href}>{item.title}</a>}
-                            description={item.description}
+                            title={<div style={{fontSize : '30px'}}>{item.title}</div>}
+                            description={item.author}
                         />
-                        {item.content}
+                        <p style={{ fontSize: "20px" }}>{item.description}</p>
                     </List.Item>
                 )}
             />
-            <Link href={`/list`}>
-                <Button type="primary" size="large" style={{ fontSize: '18px' }}>
-                    探索更多
-                </Button>
-            </Link>
+            <Row justify={'center'}>
+                <Link href={`/`}>
+                    <Button type="primary" size="large" style={{ fontSize: '18px' }}>
+                        探索更多
+                    </Button>
+                </Link>
+            </Row>
         </>
     )
 }

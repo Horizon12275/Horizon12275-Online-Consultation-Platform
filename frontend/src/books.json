@@ -8,7 +8,7 @@
       "rating": 10.0,
       "price": 19.99,
       "image": "1.jpg",
-      "tag": "Variety shows"
+      "tag": ["Variety shows", "Music"]
     },
     {
       "id": 2,
@@ -18,7 +18,7 @@
       "rating": 9,
       "price": 29.99,
       "image": "2.jpg",
-      "tag": "Music"
+      "tag": ["Music", "Chinese television dramas"]
     },
     {
       "id": 3,
@@ -28,7 +28,7 @@
       "rating": 8,
       "price": 24.99,
       "image": "3.jpg",
-      "tag": "Chinese television dramas"
+      "tag": ["Chinese television dramas", "Variety shows"]
     },
     {
       "id": 4,
@@ -38,7 +38,7 @@
       "rating": 9,
       "price": 34.99,
       "image": "4.jpg",
-      "tag": "Variety shows"
+      "tag": ["Variety shows", "Chinese television dramas"]
     },
     {
       "id": 5,
@@ -48,7 +48,7 @@
       "rating": 10,
       "price": 27.99,
       "image": "5.jpg",
-      "tag": "Music"
+      "tag": ["Music", "Chinese television dramas"]
     },
     {
       "id": 6,
@@ -58,7 +58,7 @@
       "rating": 9,
       "price": 39.99,
       "image": "6.jpg",
-      "tag": "Chinese television dramas"
+      "tag": ["Chinese television dramas", "Variety shows"]
     },
     {
       "id": 7,
@@ -68,7 +68,7 @@
       "rating": 8,
       "price": 32.99,
       "image": "7.jpg",
-      "tag": "Variety shows"
+      "tag": ["Variety shows", "Music"]
     },
     {
       "id": 8,
@@ -78,7 +78,7 @@
       "rating": 9,
       "price": 21.99,
       "image": "8.jpg",
-      "tag": "Music"
+      "tag": ["Music", "Chinese television dramas"]
     },
     {
       "id": 9,
@@ -88,7 +88,7 @@
       "rating": 10,
       "price": 29.99,
       "image": "9.jpg",
-      "tag": "Chinese television dramas"
+      "tag": ["Chinese television dramas", "Music"]
     },
     {
       "id": 10,
@@ -98,149 +98,7 @@
       "rating": 0,
       "price": 0,
       "image": "10.jpg",
-      "tag": "Variety shows"
-    }
-  ],
-  "comments": [
-    {
-      "id": 1,
-      "bookId": 1,
-      "user": "Alice",
-      "content": "这本书写得真好！",
-      "time": "2024-03-06 14:00",
-      "likes": 10,
-      "replies": [
-        {
-          "user": "Bob",
-          "content": "我也觉得是！"
-        }
-      ]
-    },
-    {
-      "id": 2,
-      "bookId": 1,
-      "user": "Charlie",
-      "content": "推荐给大家阅读。",
-      "time": "2024-03-06 15:30",
-      "likes": 8,
-      "replies": [
-        {
-          "user": "David",
-          "content": "同意你的推荐！"
-        }
-      ]
-    },
-    {
-      "id": 3,
-      "bookId": 1,
-      "user": "Eve",
-      "content": "这本书很有启发性。",
-      "time": "2024-03-06 16:45",
-      "likes": 5,
-      "replies": [
-        {
-          "user": "Frank",
-          "content": "我也有同样的感受！"
-        }
-      ]
-    },
-    {
-      "id": 4,
-      "bookId": 1,
-      "user": "Grace",
-      "content": "非常喜欢这本书。",
-      "time": "2024-03-06 18:20",
-      "likes": 12,
-      "replies": [
-        {
-          "user": "Henry",
-          "content": "我也是！"
-        }
-      ]
-    },
-    {
-      "id": 5,
-      "bookId": 1,
-      "user": "Ivy",
-      "content": "这本书改变了我的编程方式。",
-      "time": "2024-03-06 20:10",
-      "likes": 15,
-      "replies": [
-        {
-          "user": "Jack",
-          "content": "我也有同样的体验！"
-        }
-      ]
-    },
-    {
-      "id": 6,
-      "bookId": 1,
-      "user": "Kate",
-      "content": "这本书对我的项目管理有很大帮助。",
-      "time": "2024-03-06 22:05",
-      "likes": 7,
-      "replies": [
-        {
-          "user": "Liam",
-          "content": "我也是这么觉得！"
-        }
-      ]
-    },
-    {
-      "id": 7,
-      "bookId": 1,
-      "user": "Mike",
-      "content": "这本书解决了我面试中的难题。",
-      "time": "2024-03-07 09:30",
-      "likes": 9,
-      "replies": [
-        {
-          "user": "Nancy",
-          "content": "我也有同样的经历！"
-        }
-      ]
-    },
-    {
-      "id": 8,
-      "bookId": 1,
-      "user": "Oliver",
-      "content": "这本书是软件工程的经典之作。",
-      "time": "2024-03-07 11:15",
-      "likes": 11,
-      "replies": [
-        {
-          "user": "Peter",
-          "content": "同意你的评价！"
-        }
-      ]
-    },
-    {
-      "id": 9,
-      "bookId": 1,
-      "user": "Quinn",
-      "content": "这本书对我理解领域驱动设计很有帮助。",
-      "time": "2024-03-07 13:40",
-      "likes": 6,
-      "replies": [
-        {
-          "user": "Rachel",
-          "content": "我也是这么认为！"
-        }
-      ]
-    },
-    {
-      "id": 10,
-      "bookId": 2,
-      "user": "Sam",
-      "content": "这本书教会了我如何使用测试驱动开发。",
-      "time": "2024-03-07 16:00",
-      "likes": 3,
-      "replies": [
-        {
-          "user": "Tom",
-          "content": "我也有同样的学习经历！"
-        }
-      ]
+      "tag": ["Variety shows", "Music"]
     }
   ]
 

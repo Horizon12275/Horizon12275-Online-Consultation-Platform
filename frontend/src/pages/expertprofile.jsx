@@ -6,15 +6,14 @@ import { TagProvider } from "../context/tagcontext";
 import ExpertInfoCard from "../components/expert_infocard";
 import Rating from "../components/ratings";
 import CommentList from "../components/comment_list";
-import ExpertContent from "../components/expertcontent";
 import Data from "../books.json";
 
 const { Header, Footer, Sider, Content } = Layout;
 
 const ExpertProfilePage = () => {
-  let { id } = useParams();
+  //let { id } = useParams();
+  let id = 1;
 
-  const book = Data.books.find((book) => book.id === parseInt(id, 10));
   const comments = Data.comments.filter(
     (comment) => comment.bookId === parseInt(id, 10)
   );
@@ -25,8 +24,7 @@ const ExpertProfilePage = () => {
         <Layout>
           <Layout>
             <Content style={{ minHeight: "100vh" }}>
-              {/* <ExpertInfoCard />
-              <ExpertContent /> */}
+              <ExpertInfoCard />
             </Content>
           </Layout>
           <Sider width={"30%"} style={{ background: "#fff"}}>
