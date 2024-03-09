@@ -64,13 +64,6 @@ export default function HomeArticle() {
                     </List.Item>
                 )}
             />
-            <Row justify={'center'}>
-                <Link href={`/`}>
-                    <Button type="primary" size="large" style={{ fontSize: '18px' }}>
-                        探索更多
-                    </Button>
-                </Link>
-            </Row>
         </>
     )
 }

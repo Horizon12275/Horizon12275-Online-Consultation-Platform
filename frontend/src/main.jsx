@@ -11,6 +11,7 @@ import HistoryPage from './pages/history'
 import SquarePage from './pages/square'
 import BecomeExpertPage from './pages/become-expert'
 import UserPage from './pages/user'
+import './css/global.css'
 
 const router = createBrowserRouter([
   {
