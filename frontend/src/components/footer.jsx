@@ -7,17 +7,12 @@ const CustomFooter = () => {
   return (
     <Footer
       style={{
-        backgroundColor: "white",
         textAlign: "center",
-        padding: "0",
-        margin: "0 auto",
-        marginBottom: "40px",
-        height: "20px",
-        minWidth: "1000px",
       }}
     >
-      <p>© 2024 Online Consultation Platform</p>
-      <a href="/about">关于作者 </a>
+      © 2024 Online Consultation Platform
+      <br />
+      <a href="/about"> 关于作者 </a>
     </Footer>
   );
 };

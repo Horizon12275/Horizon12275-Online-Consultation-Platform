@@ -1,21 +1,23 @@
-import { useParams } from "react-router-dom";
 import React from "react";
-import { Col, Layout, Row, Typography } from "antd";
-import Histogram from "../components/histogram";
-import HomeArticle from "../components/homearticle";
-import MyCarousel from "../components/carousel";
+import { useParams } from "react-router-dom";
+import { Layout } from "antd";
 import { BasicLayout } from "../layouts";
 import { TagProvider } from "../context/tagcontext";
-import TagBar from "../components/tagbar";
 import ExpertInfoCard from "../components/expert_infocard";
 import Rating from "../components/ratings";
 import CommentList from "../components/comment_list";
+import ExpertContent from "../components/expertcontent";
+import Data from "../books.json";
 
 const { Header, Footer, Sider, Content } = Layout;
 
 const ExpertProfilePage = () => {
-  // 从url中获取专家id
   let { id } = useParams();
+
+  const book = Data.books.find((book) => book.id === parseInt(id, 10));
+  const comments = Data.comments.filter(
+    (comment) => comment.bookId === parseInt(id, 10)
+  );
 
   return (
     <TagProvider>
@@ -23,15 +25,13 @@ const ExpertProfilePage = () => {
         <Layout>
           <Layout>
             <Content style={{ minHeight: "100vh" }}>
-              {/* 中间内容 */}
-              <ExpertInfoCard />
+              {/* <ExpertInfoCard />
+              <ExpertContent /> */}
             </Content>
           </Layout>
-          <Sider width={300} style={{ background: "#fff" }}>
-            {/* 右侧内容 */}
-            <h2 style={{marginLeft : '20px'}}>用户评价：</h2>
-            <Histogram />
-            <h2 style={{ marginLeft: '20px' }}>精选评论：</h2>
+          <Sider width={"30%"} style={{ background: "#fff"}}>
+            <Rating />
+            <CommentList comments={comments} />
           </Sider>
         </Layout>
       </BasicLayout>

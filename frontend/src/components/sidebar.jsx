@@ -21,37 +21,72 @@ const Sidebar = () => {
     setCollapsed(!collapsed);
   };
 
-  // 导航栏的数据
-  const navItems = [
+  const navItems1 = [
     { label: "首页", value: "/", icon: <HomeOutlined /> },
     { label: "咨询历史", value: "/history", icon: <FileTextOutlined /> },
     { label: "专家咨询", value: "/expert/:id", icon: <UsergroupAddOutlined /> },
     { label: "广场", value: "/square", icon: <TeamOutlined /> },
     { label: "成为专家", value: "/become-expert", icon: <SolutionOutlined /> },
+  ];
+
+  const navItems2 = [
     { label: "用户主页", value: "/user", icon: <UserOutlined /> },
     { label: "登录/注册", value: "/login", icon: <LoginOutlined /> },
   ];
 
-  // 导航栏的数据转换
-  const navMenuItems = navItems.map(item => ({
+  const navMenuItems1 = navItems1.map((item) => ({
+    key: item.value,
+    label: <Link to={item.value}>{item.label}</Link>,
+    icon: item.icon,
+  }));
+
+  const navMenuItems2 = navItems2.map((item) => ({
     key: item.value,
     label: <Link to={item.value}>{item.label}</Link>,
     icon: item.icon,
   }));
 
   return (
-    <Sider collapsible >
+    <Sider
+      collapsible
+      style={{
+        height: "100vh",
+        position: "sticky",
+        top: 0,
+        bottom: 0,
+      }}
+    >
       <div className="logo" />
-      <Menu
-        theme="dark"
-        mode="inline"
+      <div
         style={{
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
+          height: "100%",
+          padding: "10px 0",
         }}
-        items={navMenuItems}
-      />
+      >
+        <Menu
+          theme="dark"
+          mode="inline"
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
+          }}
+          items={navMenuItems1}
+        />
+        <Menu
+          theme="dark"
+          mode="inline"
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
+          }}
+          items={navMenuItems2}
+        />
+      </div>
     </Sider>
   );
 };

@@ -30,7 +30,7 @@ const MyCarousel = () => {
     <div
       style={{
         width:"300px",
-        height: "100%",
+        height: "100vh",
         marginBottom: "0px",
         padding: "0px",
         position: "relative",
@@ -42,11 +42,11 @@ const MyCarousel = () => {
         ref={carouselRef}
         autoplay
         dotPosition="right"
-        style={{ height: "100%" }}
+        style={{ height: "100vh" }}
       >
         {recommended.map((book, index) =>
           index % 2 === 0 ? (
-            <div key={book.id} style={{display:"flex",height:"100%"}}>
+            <div key={book.id} style={{display:"flex",height:"100vh",}}>
               <CarouselCard article={book} />
               <CarouselCard article={recommended[index + 1]} />
             </div>
