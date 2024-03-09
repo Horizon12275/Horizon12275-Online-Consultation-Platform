@@ -8,9 +8,9 @@ import {
   UserOutlined,
   LoginOutlined,
 } from "@ant-design/icons";
-import { Layout, Menu } from "antd";
-import { Link } from "react-router-dom";
-
+import { Layout, Menu, Avatar } from "antd";
+import { flex } from "@antv/component";
+const { Sider } = Layout;
 
 const Sidebar = () => {
   const [collapsed, setCollapsed] = useState(false);
@@ -35,12 +35,11 @@ const Sidebar = () => {
   }));
 
   return (
-    <Layout >
+    <Sider collapsible >
       <div className="logo" />
       <Menu
         theme="dark"
         mode="inline"
-        inlinecollapsed={collapsed}
         style={{
           display: "flex",
           flexDirection: "column",
