@@ -47,7 +47,7 @@ const Sidebar = () => {
         }}
         items={navMenuItems}
       />
-    </Layout>
+    </Sider>
   );
 };
 export default Sidebar;
