@@ -17,47 +17,73 @@ const Sidebar = () => {
   const toggleCollapsed = () => {
     setCollapsed(!collapsed);
   };
+
+  const navItems1 = [
+    { label: "首页", value: "/", icon: <HomeOutlined /> },
+    { label: "咨询历史", value: "/history", icon: <FileTextOutlined /> },
+    { label: "专家咨询", value: "/expert/:id", icon: <UsergroupAddOutlined /> },
+    { label: "广场", value: "/square", icon: <TeamOutlined /> },
+    { label: "成为专家", value: "/become-expert", icon: <SolutionOutlined /> },
+  ];
+
+  const navItems2 = [
+    { label: "用户主页", value: "/user", icon: <UserOutlined /> },
+    { label: "登录/注册", value: "/login", icon: <LoginOutlined /> },
+  ];
+
+  const navMenuItems1 = navItems1.map((item) => ({
+    key: item.value,
+    label: <Link to={item.value}>{item.label}</Link>,
+    icon: item.icon,
+  }));
+
+  const navMenuItems2 = navItems2.map((item) => ({
+    key: item.value,
+    label: <Link to={item.value}>{item.label}</Link>,
+    icon: item.icon,
+  }));
+
   return (
-    <Sider collapsible >
+    <Sider
+      collapsible
+      style={{
+        height: "100vh",
+        position: "sticky",
+        top: 0,
+        bottom: 0,
+      }}
+    >
       <div className="logo" />
-      <Menu
-        theme="dark"
-        mode="inline"
+      <div
         style={{
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
+          height: "100%",
+          padding: "10px 0",
         }}
       >
-          <Menu.Item key="home" icon={<HomeOutlined />}>
-            首页
-          </Menu.Item>
-          <Menu.Item key="history" icon={<FileTextOutlined />}>
-            咨询历史
-          </Menu.Item>
-          <Menu.Item key="expert" icon={<UsergroupAddOutlined />}>
-            专家咨询
-          </Menu.Item>
-          <Menu.Item key="square" icon={<TeamOutlined />}>
-            广场
-          </Menu.Item>
-          <Menu.Item key="become-expert" icon={<SolutionOutlined />}>
-            成为专家
-          </Menu.Item>
-
-          <Menu.Item key="user">
-            <Avatar
-              size="small"
-              src="https://via.placeholder.com/150"
-              style={{ marginRight: 0 }}
-            />
-            用户主页
-          </Menu.Item>
-          <Menu.Item key="login" icon={<LoginOutlined />}>
-            登录/注册
-          </Menu.Item>
-
-      </Menu>
+        <Menu
+          theme="dark"
+          mode="inline"
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
+          }}
+          items={navMenuItems1}
+        />
+        <Menu
+          theme="dark"
+          mode="inline"
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
+          }}
+          items={navMenuItems2}
+        />
+      </div>
     </Sider>
   );
 };
