@@ -1,49 +1,45 @@
-import React, { useState, useEffect } from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react';
 import { Column } from '@ant-design/plots';
 
 export default function Histogram() {
     const data = [
         {
             type: '1星',
-            value: 10,
+            "评分数": 10,
         },
         {
             type: '2星',
-            value: 20,
+            "评分数": 20,
         },
         {
             type: '3星',
-            value: 30,
+            "评分数": 30,
         },
         {
             type: '4星',
-            value: 40,
+            "评分数": 40,
         },
         {
             type: '5星',
-            value: 50,
+            "评分数": 50,
         },
     ];
     const config = {
         data,
         xField: 'type',
-        yField: 'value',
-        style: { fill:'#acafaf'},
+        yField: '评分数',
+        style: { fill: '#acafaf' },
         xAxis: {
             label: {
                 autoHide: true,
                 autoRotate: false,
             },
         },
-        meta: {
-            type: {
-                alias: '评分',
-            },
-            value: {
-                alias: '个数',
-            },
-        },
+        height: 300, // 设置柱状图的高度
     };
-    return <Column {...config} />;
+    return (
+        <div style={{ width: '100%', aspectRatio: 1 / 1 }}>
+            <Column {...config} />
+        </div>
+    );
 }

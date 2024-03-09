@@ -15,11 +15,13 @@ import { Link } from "react-router-dom";
 const { Sider } = Layout;
 
 const Sidebar = () => {
+  // 控制导航栏的展开和收起
   const [collapsed, setCollapsed] = useState(false);
   const toggleCollapsed = () => {
     setCollapsed(!collapsed);
   };
 
+  // 导航栏的数据
   const navItems = [
     { label: "首页", value: "/", icon: <HomeOutlined /> },
     { label: "咨询历史", value: "/history", icon: <FileTextOutlined /> },
@@ -30,6 +32,7 @@ const Sidebar = () => {
     { label: "登录/注册", value: "/login", icon: <LoginOutlined /> },
   ];
 
+  // 导航栏的数据转换
   const navMenuItems = navItems.map(item => ({
     key: item.value,
     label: <Link to={item.value}>{item.label}</Link>,

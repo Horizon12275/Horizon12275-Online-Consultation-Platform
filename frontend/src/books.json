@@ -8,7 +8,7 @@
       "rating": 10.0,
       "price": 19.99,
       "image": "1.jpg",
-      "tag": "Variety shows"
+      "tag": ["Variety shows", "Music"]
     },
     {
       "id": 2,
@@ -18,7 +18,7 @@
       "rating": 9,
       "price": 29.99,
       "image": "2.jpg",
-      "tag": "Music"
+      "tag": ["Music", "Chinese television dramas"]
     },
     {
       "id": 3,
@@ -28,7 +28,7 @@
       "rating": 8,
       "price": 24.99,
       "image": "3.jpg",
-      "tag": "Chinese television dramas"
+      "tag": ["Chinese television dramas", "Variety shows"]
     },
     {
       "id": 4,
@@ -38,7 +38,7 @@
       "rating": 9,
       "price": 34.99,
       "image": "4.jpg",
-      "tag": "Variety shows"
+      "tag": ["Variety shows", "Chinese television dramas"]
     },
     {
       "id": 5,
@@ -48,7 +48,7 @@
       "rating": 10,
       "price": 27.99,
       "image": "5.jpg",
-      "tag": "Music"
+      "tag": ["Music", "Chinese television dramas"]
     },
     {
       "id": 6,
@@ -58,7 +58,7 @@
       "rating": 9,
       "price": 39.99,
       "image": "6.jpg",
-      "tag": "Chinese television dramas"
+      "tag": ["Chinese television dramas", "Variety shows"]
     },
     {
       "id": 7,
@@ -68,7 +68,7 @@
       "rating": 8,
       "price": 32.99,
       "image": "7.jpg",
-      "tag": "Variety shows"
+      "tag": ["Variety shows", "Music"]
     },
     {
       "id": 8,
@@ -78,7 +78,7 @@
       "rating": 9,
       "price": 21.99,
       "image": "8.jpg",
-      "tag": "Music"
+      "tag": ["Music", "Chinese television dramas"]
     },
     {
       "id": 9,
@@ -88,7 +88,7 @@
       "rating": 10,
       "price": 29.99,
       "image": "9.jpg",
-      "tag": "Chinese television dramas"
+      "tag": ["Chinese television dramas", "Music"]
     },
     {
       "id": 10,
@@ -98,7 +98,7 @@
       "rating": 0,
       "price": 0,
       "image": "10.jpg",
-      "tag": "Variety shows"
+      "tag": ["Variety shows", "Music"]
     }
   ],
   "comments": [

@@ -15,12 +15,13 @@ export default function Homepage() {
         <Layout>
           <Layout>
             <Content style={{ minHeight: "100vh" }}>
-              {/* 右侧内容 */}
+              {/* 中间内容 */}
               <TagBar />
               <HomeArticle />
             </Content>
           </Layout>
           <Sider width={300} style={{ background: "#fff" }}>
+            {/* 右侧内容 */}
             <MyCarousel />
           </Sider>
         </Layout>
