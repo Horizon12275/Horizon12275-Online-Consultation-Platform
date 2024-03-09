@@ -10,6 +10,8 @@ import {
 } from "@ant-design/icons";
 import { Layout, Menu, Avatar } from "antd";
 import { flex } from "@antv/component";
+import { Link } from "react-router-dom";
+
 const { Sider } = Layout;
 
 const Sidebar = () => {
@@ -21,7 +23,7 @@ const Sidebar = () => {
   const navItems = [
     { label: "首页", value: "/", icon: <HomeOutlined /> },
     { label: "咨询历史", value: "/history", icon: <FileTextOutlined /> },
-    { label: "专家咨询", value: "/expert", icon: <UsergroupAddOutlined /> },
+    { label: "专家咨询", value: "/expert/:id", icon: <UsergroupAddOutlined /> },
     { label: "广场", value: "/square", icon: <TeamOutlined /> },
     { label: "成为专家", value: "/become-expert", icon: <SolutionOutlined /> },
     { label: "用户主页", value: "/user", icon: <UserOutlined /> },
