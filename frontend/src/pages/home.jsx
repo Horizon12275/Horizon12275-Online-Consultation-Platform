@@ -16,6 +16,7 @@ export default function Homepage() {
           <Layout>
             <Content style={{ minHeight: "100vh" }}>
               {/* 中间内容 */}
+              <h1 style={{ fontSize: '40px', margin: '30px' }}>热门话题</h1>
               <TagBar />
               <HomeArticle />
             </Content>
