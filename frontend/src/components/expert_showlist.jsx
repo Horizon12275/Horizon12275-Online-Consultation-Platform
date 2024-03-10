@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { List, Space } from 'antd';
+import { List, Space, Flex } from 'antd';
 import ExpertShowCard from './expert_showcard';
 //import SearchContext from '../context/SearchContext';
 
@@ -7,16 +7,12 @@ export default function ExpertShowList() {
     //const { searchValue } = useContext(SearchContext);
     //console.log('searchValue:', searchValue);
     //const filteredExperts = experts.filter(expert => expert.title.toLowerCase().includes(searchValue.toLowerCase()));
+    const data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
 
-    
 
     return (
-        <div style={{
-            width: "60%",
-            margin: "0 auto",
-            marginTop: '16px'
-        }}>
-            <Space direction="vertical" style={{ width: "100%" }}>
+        <Flex gap="middle" justify='space-around' align='center' style={{marginTop:'30px'}}>
+            <Space direction="vertical" style={{ width: "80%" }}>
                 <List
                     grid={{
                         gutter: 16, column: 3
@@ -30,14 +26,14 @@ export default function ExpertShowList() {
                         showSizeChanger: false,
                         showQuickJumper: true,
                     }}
-                    dataSource={filteredExperts}
+                    dataSource={data}
                     renderItem={(item) => (
-                        <List.Item style={{ display: 'flex', justifyContent: 'center' }}>
-                            <ExpertShowCard expert={item} />
+                        <List.Item>
+                            <ExpertShowCard />
                         </List.Item>
                     )}
                 />
             </Space>
-        </div>
+        </Flex>
     )
 }

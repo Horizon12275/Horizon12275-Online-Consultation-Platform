@@ -53,7 +53,7 @@ const Sidebar = () => {
         height: "100vh",
         position: "sticky",
         top: 0,
-        bottom: 0,
+        bottom: 0
       }}
     >
       <div className="logo" />
