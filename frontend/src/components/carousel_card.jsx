@@ -1,6 +1,6 @@
 import React from "react";
 import { Card, Typography } from "antd";
-import Data from "../books.json";
+
 
 const { Title, Paragraph } = Typography;
 

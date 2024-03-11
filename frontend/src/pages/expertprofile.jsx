@@ -6,7 +6,7 @@ import { TagProvider } from "../context/tagcontext";
 import ExpertInfoCard from "../components/expert_infocard";
 import Rating from "../components/ratings";
 import CommentList from "../components/comment_list";
-import Data from "../books.json";
+import Data from "../articles.json";
 
 const { Header, Footer, Sider, Content } = Layout;
 

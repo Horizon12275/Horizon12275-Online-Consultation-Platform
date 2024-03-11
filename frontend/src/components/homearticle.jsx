@@ -3,9 +3,9 @@ import { Avatar, List, Space, Button, Row, Typography, Card } from "antd";
 import { LikeOutlined, MessageOutlined, StarOutlined } from "@ant-design/icons";
 import Link from "antd/es/typography/Link";
 import TagContext from "../context/tagcontext"; // 导入标签的上下文
-import { getRecommendedArticles } from "../services/articleServices"; // 导入书籍相关的服务函数
+import { getRecommendedArticles } from "../services/articleService"; // 导入书籍相关的服务函数
 
-const { Paragraph } = Typography;
+const { Title,Paragraph } = Typography;
 
 // 用于渲染文章列表的组件
 const IconText = ({ icon, text }) => (
@@ -76,11 +76,11 @@ export default function HomeArticle() {
             }
           >
             <List.Item.Meta
-              title={<div style={{ fontSize: "30px" }}>{item.title}</div>}
+              title={<Title ellipsis>{item.title}</Title>}
               description={item.author}
             />
             <Paragraph
-              ellipsis={{ rows: 6 }}
+              ellipsis={{ rows: 5 }}
             >
               {item.description}
             </Paragraph>

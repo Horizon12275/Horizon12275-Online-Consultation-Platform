@@ -2,16 +2,16 @@
 import React from 'react';
 import { Col, Flex, Tag } from 'antd';
 import TagContext from '../context/tagcontext';
-import { getAllBooks } from '../services/articleServices';
+import { getAllArticles } from '../services/articleService';
 
 const TagBar = () => {
   // 首页显示的标签数据
   const tagsData = ['All'];
-  const books = getAllBooks();
+  const all = getAllArticles();
   
   // 获取所有书籍的标签
-  books.forEach((book) => {
-    book.tag.forEach((tag) => {
+  all.forEach((item) => {
+    item.tags.forEach((tag) => {
       if (!tagsData.includes(tag)) {
         tagsData.push(tag);
       }

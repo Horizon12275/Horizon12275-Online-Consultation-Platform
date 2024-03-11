@@ -2,13 +2,14 @@ import React, { useContext } from "react";
 import { List, Space, Flex } from "antd";
 import ExpertShowCard from "./expert_showcard";
 //import SearchContext from '../context/SearchContext';
-import { getAllBooks } from "../services/articleServices";
+import { getAllExperts } from "../services/expertService";
+import { getAllArticles } from "../services/articleService";
 
 export default function ExpertShowList() {
   //const { searchValue } = useContext(SearchContext);
   //console.log('searchValue:', searchValue);
   //const filteredExperts = experts.filter(expert => expert.title.toLowerCase().includes(searchValue.toLowerCase()));
-  const data = getAllBooks();
+  const data = getAllExperts();
 
   return (
     <Flex

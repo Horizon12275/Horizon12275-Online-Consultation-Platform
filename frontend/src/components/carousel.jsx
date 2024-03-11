@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Carousel, Card, Button, Typography } from "antd";
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
-import { getRecommendedArticles } from "../services/articleServices"; // 导入书籍相关的服务函数
+import { getRecommendedArticles } from "../services/articleService"; // 导入书籍相关的服务函数
 import CarouselCard from "./carousel_card";
 
 const { Paragraph } = Typography;
