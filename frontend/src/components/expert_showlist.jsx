@@ -3,13 +3,12 @@ import { List, Space, Flex } from "antd";
 import ExpertShowCard from "./expert_showcard";
 //import SearchContext from '../context/SearchContext';
 import { getAllExperts } from "../services/expertService";
-import { getAllArticles } from "../services/articleService";
 
 export default function ExpertShowList() {
   //const { searchValue } = useContext(SearchContext);
   //console.log('searchValue:', searchValue);
   //const filteredExperts = experts.filter(expert => expert.title.toLowerCase().includes(searchValue.toLowerCase()));
-  const data = getAllExperts();
+  const datas = getAllExperts();
 
   return (
     <Flex
@@ -34,7 +33,7 @@ export default function ExpertShowList() {
             showSizeChanger: false,
             showQuickJumper: true,
           }}
-          dataSource={data}
+          dataSource={datas}
           renderItem={(item) => (
             <List.Item>
               <ExpertShowCard data={item} />

@@ -9,6 +9,11 @@ const { Meta } = Card;
 const { Title, Paragraph } = Typography;
 
 export default function ExpertShowCard(data) {
+  const tags = data.data.tags.map((tag) => (
+    <Tag color="blue" key={tag}>
+      {tag}
+    </Tag>
+  ));
   return (
     <div>
       <Link href={`/expert/${data.data.id}`}>
@@ -32,12 +37,11 @@ export default function ExpertShowCard(data) {
               }}
             >
               <Title level={4}>
-                价格：30/h
+                价格：{data.data.price}/h
                 <br />
                 评分：{data.data.rating}
                 <br />
-                <Tag color="blue">{"法律"}</Tag>
-                <Tag color="blue">{"婚姻"}</Tag>
+                {tags}
               </Title>
             </Flex>
           </Flex>

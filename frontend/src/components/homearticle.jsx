@@ -3,9 +3,9 @@ import { Avatar, List, Space, Button, Row, Typography, Card } from "antd";
 import { LikeOutlined, MessageOutlined, StarOutlined } from "@ant-design/icons";
 import Link from "antd/es/typography/Link";
 import TagContext from "../context/tagcontext"; // 导入标签的上下文
-import { getRecommendedArticles } from "../services/articleService"; // 导入书籍相关的服务函数
+import { getAllArticles,getRecommendedArticles } from "../services/articleService"; // 导入书籍相关的服务函数
 
-const { Title,Paragraph } = Typography;
+const { Title, Paragraph } = Typography;
 
 // 用于渲染文章列表的组件
 const IconText = ({ icon, text }) => (
@@ -16,6 +16,7 @@ const IconText = ({ icon, text }) => (
 );
 
 export default function HomeArticle() {
+  const all = getAllArticles();
   // 获取全局的标签状态
   const { selectedTags } = React.useContext(TagContext);
 
@@ -35,8 +36,8 @@ export default function HomeArticle() {
   const filteredData =
     selectedTags === "All"
       ? recommended
-      : recommended.filter((item) =>
-          item.tag.some((tag) => selectedTags.includes(tag))
+      : all.filter((item) =>
+          item.tags.some((tag) => selectedTags.includes(tag))
         );
 
   // 渲染文章列表
@@ -69,9 +70,10 @@ export default function HomeArticle() {
             ]}
             extra={
               <img
+                style={{ borderRadius: "20px" }}
                 width={450}
                 alt="logo"
-                src={item.image} // Replace the image source with item.image from filteredData
+                src={item.cover} // Replace the image source with item.image from filteredData
               />
             }
           >
@@ -79,11 +81,7 @@ export default function HomeArticle() {
               title={<Title ellipsis>{item.title}</Title>}
               description={item.author}
             />
-            <Paragraph
-              ellipsis={{ rows: 5 }}
-            >
-              {item.description}
-            </Paragraph>
+            <Paragraph ellipsis={{ rows: 5 }}>{item.content}</Paragraph>
           </List.Item>
         )}
       />

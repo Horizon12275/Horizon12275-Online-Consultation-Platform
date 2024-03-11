@@ -7,29 +7,19 @@ import { useEffect, useState } from 'react';
 
 const { Title, Paragraph, Text, Link } = Typography;
 
-const ExpertInfoCard = () => {
-    // 定义专家的状态
-    const [expert, setExpert] = useState({});
-    const id = 1;
-
-    // 获取专家的数据
-    useEffect(() => {
-        getExpertById(id).then((res) => {
-            setExpert(res);
-        });
-    }, []);
-
+const ExpertInfoCard = ({expert}) => {
+   
     // 渲染专家信息卡片
     return (
         <Row justify="center" style={{ width: '100%', margin: '20px' }}>
             <Avatar
                 size={200}
-                icon={<UserOutlined />}
+                src={"/"+expert.image}
                 style={{ marginRight: "40px" }}
             />
             <Col style={{ width: '60%' }}>
                 <Title>{expert.name}</Title>
-                <Paragraph>{"Detail: " + expert.detail}</Paragraph>
+                <Paragraph>{"Detail: " + expert.description}</Paragraph>
                 <Row>
                     <span style={{ marginRight: "20px" }}>Categories:</span>
                     {expert.categories?.map((category) => (

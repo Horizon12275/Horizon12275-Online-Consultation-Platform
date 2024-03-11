@@ -29,7 +29,7 @@ const TagBar = () => {
             key={tag}
             checked={selectedTags.includes(tag)}
             onChange={() => handleChange(tag)}
-            style={{ fontSize: '30px', margin: '5px', padding: '15px', borderRadius: '10px'}}
+            style={{ fontSize: '20px', margin: '5px', padding: '15px', borderRadius: '10px'}}
           >
             {tag}
           </Tag.CheckableTag>
