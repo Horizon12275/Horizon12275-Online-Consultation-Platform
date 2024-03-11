@@ -13,12 +13,26 @@ export default function Homepage() {
   return (
     <TagProvider>
       <BasicLayout>
+        <Header
+          style={{
+            background: "rgba(255, 255, 255, 0)",
+            width: "80%",
+            height: "30px",
+            position: "sticky",
+            top: 0,
+            right: 0,
+            zIndex: 999,
+            padding: "0 20px",
+            margin: "0 auto",
+          }}
+        >
+          <SearchBar />
+        </Header>
         <Layout>
           <Layout>
-            <SearchBar />
             <Content style={{ minHeight: "100vh" }}>
               {/* 中间内容 */}
-              <h1 style={{ fontSize: '40px', margin: '30px' }}>热门话题</h1>
+              <h1 style={{ fontSize: "40px", margin: "30px" }}>热门话题</h1>
               <TagBar />
               <HomeArticle />
             </Content>

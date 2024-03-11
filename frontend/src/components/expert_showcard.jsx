@@ -1,36 +1,63 @@
-import React from 'react';
-import { Card, Badge } from 'antd';
-import Link from 'antd/es/typography/Link';
-import { ProCard } from '@ant-design/pro-components';
-import { Avatar, Typography, Tag, Row, Col, Flex } from 'antd';
-import { UserOutlined } from '@ant-design/icons';
+import React from "react";
+import { Card, Badge } from "antd";
+import Link from "antd/es/typography/Link";
+import { ProCard } from "@ant-design/pro-components";
+import { Avatar, Typography, Tag, Row, Col, Flex } from "antd";
+import { UserOutlined } from "@ant-design/icons";
 
 const { Meta } = Card;
+const { Title, Paragraph } = Typography;
 
-
-export default function ExpertShowCard() {
-    return (
-        <ProCard split="horizontal" style={{ aspectRatio:3/2}}>
-            <ProCard >
-                <Flex gap="middle" justify='space-around' align='center'>
-                    <Avatar
-                        size={{ xs: 124, sm: 132, md: 140, lg: 164, xl: 180, xxl: 200 }}
-                        icon={<UserOutlined />}
-                    />
-                    <Col style={{ width: '40%',fontSize:'30px'}}>
-                        <p>价格：30/h</p>
-                        <p>标签：法律</p>
-                        <p>评分：4.5</p>
-                    </Col>
-                </Flex>
-            </ProCard>
-            <ProCard style={{ fontSize: '30px' }}>
-                <p>简介：G市著名律师</p>
-                <p>被咨询次数</p>
-            </ProCard>
+export default function ExpertShowCard(data) {
+  return (
+    <div>
+      <Link href={`/expert/${data.data.id}`}>
+      <ProCard split="horizontal" style={{ width: "100%" }} hoverable>
+        <ProCard style={{ width: "100%", minHeight: "100px" }}>
+          <Flex justify="center" align="center" style={{ width: "100%" }}>
+            <img
+              src={data.data.image}
+              style={{
+                width: "35%",
+                aspectRatio: "1/1",
+                borderRadius: "2000px",
+                objectFit: "cover",
+              }}
+            />
+            <Flex
+              style={{
+                width: "60%",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <Title level={4}>
+                价格：30/h
+                <br />
+                评分：{data.data.rating}
+                <br />
+                <Tag color="blue">{"法律"}</Tag>
+                <Tag color="blue">{"婚姻"}</Tag>
+              </Title>
+            </Flex>
+          </Flex>
         </ProCard>
-    )
+        <ProCard style={{ width: "100%" }}>
+          <Meta
+            description={
+              <Paragraph ellipsis={{ rows: 3 }}>
+                {data.data.description}
+              </Paragraph>
+            }
+          />
+
+          <Paragraph>咨询次数：203</Paragraph>
+        </ProCard>
+      </ProCard>
+      </Link>
+    </div>
+  );
 }
 
-//<Link href={`/detail/${expert.id}`}>
+//
 //</Link >
