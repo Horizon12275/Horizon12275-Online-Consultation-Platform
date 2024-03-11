@@ -11,8 +11,7 @@ import Data from "../books.json";
 const { Header, Footer, Sider, Content } = Layout;
 
 const ExpertProfilePage = () => {
-  //let { id } = useParams();
-  let id = 1;
+  let { id } = useParams();
 
   const comments = Data.comments.filter(
     (comment) => comment.bookId === parseInt(id, 10)

@@ -22,8 +22,7 @@ const TagBar = () => {
   const { selectedTags, handleChange } = React.useContext(TagContext);
 
   return (
-    <Col justify="left" style={{marginLeft:'30px'}}>
-      <h1 style={{ fontSize: '40px', marginTop:'40px',marginBottom:'40px' }}>热门话题</h1>
+    <Col justify="left" style={{marginLeft:'30px',marginTop : '30px'}}>
       <Flex gap="4px 0" wrap="wrap" align="center">
         {tagsData.map((tag) => (
           <Tag.CheckableTag
