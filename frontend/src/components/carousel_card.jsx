@@ -1,6 +1,6 @@
 import React from "react";
 import { Card, Typography } from "antd";
-import Data from "../books.json";
+
 
 const { Title, Paragraph } = Typography;
 
@@ -12,7 +12,7 @@ const CarouselCard = ({ article }) => {
       <div style={{ display: "flex", flexDirection: "column", width: "100%" }}>
         <div style={{ height: "30%", display: "flex" }}>
           <img
-            src={book.image}
+            src={book.cover}
             alt="image"
             style={{
               objectFit: "cover",
@@ -27,7 +27,7 @@ const CarouselCard = ({ article }) => {
         </div>
       </div>
       <div style={{ padding: "16px" }}>
-        <Paragraph ellipsis={{ rows: 5 }}>{book.description}</Paragraph>
+        <Paragraph ellipsis={{ rows: 5 }}>{book.content}</Paragraph>
       </div>
     </Card>
   );

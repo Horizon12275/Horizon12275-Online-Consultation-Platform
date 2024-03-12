@@ -17,7 +17,7 @@ export default function Homepage() {
           style={{
             background: "rgba(255, 255, 255, 0)",
             width: "80%",
-            height: "30px",
+            height: "50px",
             position: "sticky",
             top: 0,
             right: 0,
@@ -37,7 +37,7 @@ export default function Homepage() {
               <HomeArticle />
             </Content>
           </Layout>
-          <Sider width={300} style={{ background: "#fff" }}>
+          <Sider width={300} style={{ background: "#f5f5f5" }}>
             {/* 右侧内容 */}
             <MyCarousel />
           </Sider>
