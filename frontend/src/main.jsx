@@ -7,13 +7,13 @@ import {
 import HomePage from './pages/home'
 import ErrorPage from './pages/errorpage'
 import ExpertProfilePage from './pages/expertprofile'
+import  ConsultPage  from './pages/consultation';
 import HistoryPage from './pages/history'
 import SquarePage from './pages/square'
 import BecomeExpertPage from './pages/become-expert'
 import UserPage from './pages/user'
 import './css/global.css'
 import ExpertChoosePage from './pages/expertchoose';
-import ConsultationPage from './pages/consultation';
 
 const router = createBrowserRouter([
   {
@@ -32,8 +32,8 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
   {
-    path: "/consultation/:id",
-    element: <ConsultationPage />,
+    path: "/expert/:id/consultation",
+    element: <ConsultPage />,
     errorElement: <ErrorPage />,
   },
   {
