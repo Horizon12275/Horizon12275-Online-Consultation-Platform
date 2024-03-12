@@ -13,6 +13,7 @@ import BecomeExpertPage from './pages/become-expert'
 import UserPage from './pages/user'
 import './css/global.css'
 import ExpertChoosePage from './pages/expertchoose';
+import ConsultationPage from './pages/consultation';
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,11 @@ const router = createBrowserRouter([
   {
     path: "/expert/:id",
     element: <ExpertProfilePage />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/consultation/:id",
+    element: <ConsultationPage />,
     errorElement: <ErrorPage />,
   },
   {

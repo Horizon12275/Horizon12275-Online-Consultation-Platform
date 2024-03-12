@@ -30,8 +30,9 @@ const MyCarousel = () => {
     <div
       style={{
         width:"300px",
-        height: "100vh",
+        height: "80vh",
         marginBottom: "0px",
+        marginTop: "40px",
         padding: "0px",
         position: "relative",
       }}
