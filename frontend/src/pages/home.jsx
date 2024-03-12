@@ -19,7 +19,7 @@ export default function Homepage() {
             width: "80%",
             height: "50px",
             position: "sticky",
-            top: 20,
+            top: 0,
             right: 0,
             zIndex: 999,
             padding: "0 20px",
