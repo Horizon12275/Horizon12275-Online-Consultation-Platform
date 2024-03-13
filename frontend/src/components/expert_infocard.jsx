@@ -27,7 +27,7 @@ const ExpertInfoCard = ({ expert }) => {
                     ))}
                 </Row>
             </Col>
-            <Link href={`/consultation/${expert.id}`}>
+            <Link href={`/expert/${expert.id}/consultation`}>
                 <Button
                     style={{
                         minHeight: "100px",
