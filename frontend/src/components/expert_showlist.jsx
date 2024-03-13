@@ -6,11 +6,17 @@ import { getAllExperts } from "../services/expertService";
 import SearchContext from "../context/searchcontext";
 import { set } from "@ant-design/plots/es/core/utils";
 import TagContext from "../context/tagcontext";
+import { findExpertArticleTags } from "../services/articleService";
 
 const ExpertShowList = () => {
   const { searchValue, handleSearch } = useContext(SearchContext);
   const { selectedTags, setSelectedTags } = React.useContext(TagContext);
-  const experts = getAllExperts();
+  const [experts, setExperts] = React.useState([]);
+  React.useEffect(() => {
+    getAllExperts().then((res) => {
+      setExperts(res);
+    });
+  }, []);
   const sv = new URLSearchParams(window.location.search).get("search");
   if (sv) {
     handleSearch(sv);
@@ -32,7 +38,9 @@ const ExpertShowList = () => {
   filteredExperts =
     selectedTags === "All"
       ? filteredExperts
-      : filteredExperts.filter((expert) => expert.tags.includes(selectedTags));
+      : filteredExperts.filter((expert) =>
+          findExpertArticleTags(expert).includes(selectedTags)
+        );
 
   return (
     <Flex
