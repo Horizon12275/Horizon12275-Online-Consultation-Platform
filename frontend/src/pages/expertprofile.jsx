@@ -11,6 +11,7 @@ import { getExpertById } from "../services/expertService";
 import { getComments } from "../services/commentService";
 import { ArticleList } from "../components/expert_";
 import { findExpertArticlesById } from "../services/articleService";
+import { SearchProvider } from "../context/searchcontext";
 // 导入专家相关的服务函数
 
 const { Header, Footer, Sider, Content } = Layout;
@@ -44,22 +45,24 @@ const ExpertProfilePage = () => {
   }, [id]);
 
   return (
-    <TagProvider>
-      <BasicLayout>
-        <Layout>
+    <SearchProvider>
+      <TagProvider>
+        <BasicLayout>
           <Layout>
-            <Content style={{ minHeight: "100vh" }}>
-              <ExpertInfoCard expert={expert} />
-              <ArticleList articles={articles} />
-            </Content>
+            <Layout>
+              <Content style={{ minHeight: "100vh" }}>
+                <ExpertInfoCard expert={expert} />
+                <ArticleList articles={articles} />
+              </Content>
+            </Layout>
+            <Sider width={"25%"} style={{ background: "#f5f5f5" }}>
+              <Rating />
+              <CommentList comments={comments} />
+            </Sider>
           </Layout>
-          <Sider width={"25%"} style={{ background: "#f5f5f5" }}>
-            <Rating />
-            <CommentList comments={comments} />
-          </Sider>
-        </Layout>
-      </BasicLayout>
-    </TagProvider>
+        </BasicLayout>
+      </TagProvider>
+    </SearchProvider>
   );
 };
 export default ExpertProfilePage;

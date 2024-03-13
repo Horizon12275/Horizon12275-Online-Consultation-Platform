@@ -6,36 +6,31 @@ import ExpertShowList from "../components/expert_showlist";
 import SearchBar from "../components/searchbox";
 import RadioSort from "../components/radio_sort";
 import { Col, Flex } from "antd";
-import { getAllExperts } from "../services/expertService";
 import { SearchProvider } from "../context/searchcontext";
 
 const ExpertChoosePage = () => {
-  const [experts, setExperts] = React.useState([]);
-  useEffect(() => {
-    getAllExperts().then((res) => {
-      setExperts(res);
-    });
-  }, []);
   return (
-    <TagProvider>
-      <BasicLayout>
-        <TagBar />
-        <Flex
-          gap="middle"
-          justify="space-evenly"
-          align="center"
-          style={{ margin: "20px" }}
-        >
-          <Col style={{ width: "60%" }}>
-            <SearchBar />
-          </Col>
-          <Col>
-            <RadioSort />
-          </Col>
-        </Flex>
-        <ExpertShowList experts={experts} />
-      </BasicLayout>
-    </TagProvider>
+    <SearchProvider>
+      <TagProvider>
+        <BasicLayout>
+          <TagBar />
+          <Flex
+            gap="middle"
+            justify="space-evenly"
+            align="center"
+            style={{ margin: "20px" }}
+          >
+            <Col style={{ width: "60%" }}>
+              <SearchBar />
+            </Col>
+            <Col>
+              <RadioSort />
+            </Col>
+          </Flex>
+          <ExpertShowList />
+        </BasicLayout>
+      </TagProvider>
+    </SearchProvider>
   );
 };
 

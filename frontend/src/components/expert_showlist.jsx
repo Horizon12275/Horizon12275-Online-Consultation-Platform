@@ -7,7 +7,7 @@ import SearchContext from "../context/searchcontext";
 import { set } from "@ant-design/plots/es/core/utils";
 import TagContext from "../context/tagcontext";
 
-const ExpertShowList= () => {
+const ExpertShowList = () => {
   const { searchValue, handleSearch } = useContext(SearchContext);
   const { selectedTags, setSelectedTags } = React.useContext(TagContext);
   const experts = getAllExperts();
@@ -15,20 +15,24 @@ const ExpertShowList= () => {
   if (sv) {
     handleSearch(sv);
   }
-  console.log('searchValue:', searchValue); 
+  console.log("searchValue:", searchValue);
   // 过滤专家数据，优化了搜索逻辑
-  let filteredExperts = experts.filter(expert => {
+  let filteredExperts = experts.filter((expert) => {
     for (let key in expert) {
-      if (typeof expert[key] === 'string' && expert[key].toLowerCase().includes(searchValue.toLowerCase())) {
+      if (
+        typeof expert[key] === "string" &&
+        expert[key].toLowerCase().includes(searchValue.toLowerCase())
+      ) {
         return true;
       }
     }
     return false;
   });
 
-  filteredExperts = selectedTags === "All" ? filteredExperts : filteredExperts.filter(expert => expert.tags.includes(selectedTags));
-
- 
+  filteredExperts =
+    selectedTags === "All"
+      ? filteredExperts
+      : filteredExperts.filter((expert) => expert.tags.includes(selectedTags));
 
   return (
     <Flex
