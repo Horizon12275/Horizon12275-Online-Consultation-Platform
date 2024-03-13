@@ -1,31 +1,35 @@
-import React, { useState } from "react";
-import { Card, Collapse, Input, Layout } from "antd";
+import React, { useState, useContext } from "react";
+import { Collapse, Input, Layout } from "antd";
+import { useLocation, useNavigate } from "react-router-dom";
+import SearchContext from "../context/searchcontext";
 
-const { Panel } = Collapse;
-const { Header } = Layout;
+const { Search } = Input;
 
 const SearchBar = () => {
-  const [searchValue, setSearchValue] = useState("");
+  const { handleSearch: contextHandleSearch } = useContext(SearchContext);
+  const navigate = useNavigate();
+  const location = useLocation();
 
+  // 修改 handleSearch 函数，加入页面跳转逻辑
   const handleSearch = (value) => {
-    // 处理搜索逻辑，例如发起搜索请求等
-    console.log("Perform search with value:", value);
+    contextHandleSearch(value); // 可选：如果你还需要在上下文中保存搜索值
+    if (location.pathname !== '/expert') {
+      navigate(`/expert?search=${encodeURIComponent(value)}`);
+    } else {
+      // 如果已经在 /list 页面，也可以选择重新加载/刷新页面或直接更新页面内容
+      // 这里只是简单地使用 navigate 进行演示
+      navigate(`/expert?search=${encodeURIComponent(value)}`, { replace: true });
+    }
   };
 
   return (
-    <Card
-      hoverable
-      bodyStyle={{ width: "100%", height: "40px", padding: "0", margin: "0" }}
-    >
-      <Input.Search
-        size="large"
-        placeholder="请输入搜索内容"
-        enterButton="搜索"
-        value={searchValue}
-        onChange={(e) => setSearchValue(e.target.value)}
-        onSearch={handleSearch}
-      />
-    </Card>
+    <Search
+      size="large"
+      placeholder="请输入搜索内容"
+      enterButton="搜索"
+      allowClear
+      onSearch={value => handleSearch(value)}
+    />
   );
 };
 

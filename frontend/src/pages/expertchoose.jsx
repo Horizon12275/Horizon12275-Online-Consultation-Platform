@@ -7,6 +7,7 @@ import SearchBar from "../components/searchbox";
 import RadioSort from "../components/radio_sort";
 import { Col, Flex } from "antd";
 import { getAllExperts } from "../services/expertService";
+import { SearchProvider } from "../context/searchcontext";
 
 const ExpertChoosePage = () => {
   const [experts, setExperts] = React.useState([]);
