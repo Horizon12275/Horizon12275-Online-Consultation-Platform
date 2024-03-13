@@ -4,24 +4,26 @@ import Link from "antd/es/typography/Link";
 import { ProCard } from "@ant-design/pro-components";
 import { Avatar, Typography, Tag, Row, Col, Flex } from "antd";
 import { UserOutlined } from "@ant-design/icons";
+import { findExpertArticleTags } from "../services/articleService";
 
 const { Meta } = Card;
 const { Title, Paragraph } = Typography;
 
-export default function ExpertShowCard(data) {
-  const tags = data.data.tags.map((tag) => (
-    <Tag color="blue" key={tag}>
+export default function ExpertShowCard({item}) {
+  const allTags = findExpertArticleTags(item);
+  const tags = allTags.map((tag) => (
+    <Tag key={tag} color="blue">
       {tag}
     </Tag>
   ));
   return (
     <div>
-      <Link href={`/expert/${data.data.id}`}>
-      <ProCard split="horizontal" style={{ width: "100%" }} hoverable>
+      <Link href={`/expert/${item.id}`}>
+      <ProCard split="horizontal" style={{ width: "100%",height:"350px" }} hoverable>
         <ProCard style={{ width: "100%", minHeight: "100px" }}>
           <Flex justify="center" align="center" style={{ width: "100%" }}>
             <img
-              src={data.data.image}
+              src={item.image}
               style={{
                 width: "35%",
                 aspectRatio: "1/1",
@@ -34,12 +36,13 @@ export default function ExpertShowCard(data) {
                 width: "60%",
                 flexDirection: "column",
                 alignItems: "center",
+                padding: "0 20px",
               }}
             >
               <Title level={4}>
-                价格：{data.data.price}/h
+                价格：{item.price}/h
                 <br />
-                评分：{data.data.rating}
+                评分：{item.rating}
                 <br />
                 {tags}
               </Title>
@@ -50,7 +53,7 @@ export default function ExpertShowCard(data) {
           <Meta
             description={
               <Paragraph ellipsis={{ rows: 3 }}>
-                {data.data.description}
+                {item.description}
               </Paragraph>
             }
           />

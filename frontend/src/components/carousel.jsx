@@ -42,6 +42,7 @@ const MyCarousel = () => {
         effect="fade"
         ref={carouselRef}
         autoplay
+        speed={300}
         dotPosition="right"
         style={{ height: "100vh" }}
       >

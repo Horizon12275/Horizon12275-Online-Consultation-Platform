@@ -1,15 +1,14 @@
 import React, { useContext } from "react";
-import { List, Space, Flex } from "antd";
+import { List, Space, Flex, Typography } from "antd";
+import { ProCard } from "@ant-design/pro-components";
 import ExpertShowCard from "./expert_showcard";
 //import SearchContext from '../context/SearchContext';
 import { getAllExperts } from "../services/expertService";
-
-export default function ExpertShowList() {
-  //const { searchValue } = useContext(SearchContext);
-  //console.log('searchValue:', searchValue);
-  //const filteredExperts = experts.filter(expert => expert.title.toLowerCase().includes(searchValue.toLowerCase()));
-  const datas = getAllExperts();
-
+const { Title, Paragraph } = Typography;
+const { Meta } = ProCard;
+const ExpertShowList = ({experts}) => {
+  
+  
   return (
     <Flex
       gap="middle"
@@ -33,14 +32,16 @@ export default function ExpertShowList() {
             showSizeChanger: false,
             showQuickJumper: true,
           }}
-          dataSource={datas}
-          renderItem={(item) => (
+          dataSource={experts}
+          renderItem={(expert) => (
             <List.Item>
-              <ExpertShowCard data={item} />
+              <ExpertShowCard item={expert} />
             </List.Item>
           )}
         />
       </Space>
     </Flex>
   );
-}
+};
+
+export default ExpertShowList;

@@ -49,6 +49,7 @@ const Sidebar = () => {
   return (
     <Sider
       collapsible
+      defaultCollapsed
       style={{
         height: "100vh",
         position: "sticky",

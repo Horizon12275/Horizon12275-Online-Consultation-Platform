@@ -19,3 +19,34 @@ export const getRecommendedArticles = async () => {
 export const getAllArticles = () => {
   return Data.articles; // 假设 allBooks.json 中的顶层属性名称为 books
 };
+
+export const findExpertArticleTags = (expert) => {// 筛选出属于该专家的所有文章的标签
+
+  // 筛选出属于该专家的所有文章
+  const expertArticles = Data.articles.filter((article) =>
+    expert.articles.includes(article.id)
+  );
+
+  // 提取所有标签并去重
+  const allTagsSet = new Set();
+  expertArticles.forEach((article) => {
+    article.tags.forEach((tag) => {
+      allTagsSet.add(tag);
+    });
+  });
+
+  // 将 Set 转换为数组
+  const allTags = Array.from(allTagsSet);
+
+  return allTags;
+};
+
+export const findExpertArticlesById = async (expertId) => {
+  // 筛选出属于该专家的所有文章
+  const expertArticles = Data.articles.filter((article) =>
+    article.author_id === parseInt(expertId)
+  );
+
+  return expertArticles;
+}
+

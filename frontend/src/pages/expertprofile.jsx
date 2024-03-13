@@ -7,8 +7,10 @@ import { TagProvider } from "../context/tagcontext";
 import ExpertInfoCard from "../components/expert_infocard";
 import Rating from "../components/ratings";
 import CommentList from "../components/comment_list";
-import { getExpertById} from "../services/expertService";
+import { getExpertById } from "../services/expertService";
 import { getComments } from "../services/commentService";
+import { ArticleList } from "../components/expert_";
+import { findExpertArticlesById } from "../services/articleService";
 // 导入专家相关的服务函数
 
 const { Header, Footer, Sider, Content } = Layout;
@@ -32,6 +34,14 @@ const ExpertProfilePage = () => {
       setComments(res);
     });
   }, [id]);
+  // 获取专家的文章
+  const [articles, setArticles] = useState([]);
+
+  useEffect(() => {
+    findExpertArticlesById(id).then((res) => {
+      setArticles(res);
+    });
+  }, [id]);
 
   return (
     <TagProvider>
@@ -40,9 +50,10 @@ const ExpertProfilePage = () => {
           <Layout>
             <Content style={{ minHeight: "100vh" }}>
               <ExpertInfoCard expert={expert} />
+              <ArticleList articles={articles} />
             </Content>
           </Layout>
-          <Sider width={"30%"} style={{ background: "#fff" }}>
+          <Sider width={"25%"} style={{ background: "#f5f5f5" }}>
             <Rating />
             <CommentList comments={comments} />
           </Sider>

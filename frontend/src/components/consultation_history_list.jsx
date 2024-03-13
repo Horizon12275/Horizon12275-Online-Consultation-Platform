@@ -4,34 +4,36 @@ import { Button, Divider, Row } from 'antd'
 import { CommentOutlined } from '@ant-design/icons'
 
 export default function ConsultationHistoryList() {
-    const [n, setN] = useState(3);
+    const [n, setN] = useState(2);
+    const [expanded, setExpanded] = useState(false);
 
     const handleClick = () => {
-        if (n === 3) {
+        setExpanded(!expanded);
+        if (n === 2) {
             setN(6);
         } else {
-            setN(3);
+            setN(2);
         }
     }
 
     return (
         <div style={{ width: '100%' }}>
-            <Row justify="center" style={{ marginTop: '30px' }}>
+            <Row justify="center" style={{ marginTop: '10px' }}>
                 <h1>历史记录</h1>
             </Row>
-            <Divider />
+            
             {Array(n).fill().map((_, index) => (
                 <React.Fragment key={index}>
                     <ConsultationHistoryCard />
-                    {index !== n - 1 && <Divider />}
+                    
                 </React.Fragment>
             ))}
-            <Divider />
-            <Row justify="center" style={{ marginTop: '30px' }}>
-                <Button type="primary" onClick={handleClick} hoverable>
+            
+            <Row justify="left" style={{ marginTop: '0px' }}>
+                <Button  onClick={handleClick} hoverable>
                     <Row align="middle">
-                        <CommentOutlined style={{ marginRight: '20px' }} />
-                        <h3>所有聊天</h3>
+                        <CommentOutlined style={{ marginRight: '10px' }} />
+                        <h3>{expanded? "收起聊天":"全部聊天"}</h3>
                     </Row>
                 </Button>
             </Row>

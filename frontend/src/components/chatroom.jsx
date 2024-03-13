@@ -52,8 +52,7 @@ const ChatRoom = ({ id }) => {
           type: "text",
           content: { text: "您好 很高兴为您提供咨询！" },
           user: {
-            avatar:
-              "/"+expert.image
+            avatar: "/" + expert.image,
           },
         });
       }, 100);
@@ -84,15 +83,17 @@ const ChatRoom = ({ id }) => {
   }
 
   return (
-    <Chat
-      locale="zh-CN"
-      navbar={{ title: expert.name }}
-      messages={messages}
-      renderMessageContent={renderMessageContent}
-      quickReplies={defaultQuickReplies}
-      onQuickReplyClick={handleQuickReplyClick}
-      onSend={handleSend}
-    />
+    <div style={{ height: "100vh" }}>
+      <Chat
+        locale="zh-CN"
+        navbar={{ title: expert.name }}
+        messages={messages}
+        renderMessageContent={renderMessageContent}
+        quickReplies={defaultQuickReplies}
+        onQuickReplyClick={handleQuickReplyClick}
+        onSend={handleSend}
+      />
+    </div>
   );
 };
 
