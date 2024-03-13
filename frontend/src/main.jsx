@@ -14,7 +14,6 @@ import BecomeExpertPage from './pages/become-expert'
 import UserPage from './pages/user'
 import './css/global.css'
 import ExpertChoosePage from './pages/expertchoose';
-import ConsultationPage from './pages/consultation';
 
 const router = createBrowserRouter([
   {

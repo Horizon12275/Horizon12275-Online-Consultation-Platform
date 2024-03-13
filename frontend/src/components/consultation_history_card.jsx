@@ -3,7 +3,7 @@ import React from 'react'
 
 export default function ConsultationHistoryCard() {
     return (
-        <Row justify="space-between" align="middle" style={{ width: '100%' }}>
+        <Row justify="space-between" align="middle" style={{ width: '100%',minWidth:'300px',margin:'5px' }}>
             <Avatar
                 shape="square"
                 size={50}
