@@ -7,22 +7,14 @@ import { TagProvider } from "../context/tagcontext";
 import ExpertInfoCard from "../components/expert_infocard";
 import Rating from "../components/ratings";
 import CommentList from "../components/comment_list";
-import { getComments } from "../services/expertService";
-import { getExpertById } from "../services/expertService"; // 导入专家相关的服务函数
+import { getExpertById} from "../services/expertService";
+import { getComments } from "../services/commentService";
+// 导入专家相关的服务函数
 
 const { Header, Footer, Sider, Content } = Layout;
 
 const ExpertProfilePage = () => {
   let { id } = useParams();
-
-  const [comments, setComments] = React.useState([]);
-  React.useEffect(() => {
-    const fetchComments = async () => {
-      const comments = await getComments(id);
-      setComments(comments);
-    };
-    fetchComments();
-  }, [id]);
 
   const [expert, setExpert] = useState({});
 
@@ -31,7 +23,15 @@ const ExpertProfilePage = () => {
     getExpertById(id).then((res) => {
       setExpert(res);
     });
-  }, []);
+  }, [id]);
+  const [comments, setComments] = useState([]);
+
+  // 获取专家的评论
+  useEffect(() => {
+    getComments(id).then((res) => {
+      setComments(res);
+    });
+  }, [id]);
 
   return (
     <TagProvider>

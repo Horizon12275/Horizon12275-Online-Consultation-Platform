@@ -4,6 +4,7 @@ import { getExpertById } from "../services/expertService"; // 导入专家相关
 import "@chatui/core/es/styles/index.less";
 import Chat, { Bubble, useMessages } from "@chatui/core";
 import "@chatui/core/dist/index.css";
+import data from "../json/messages.json";
 
 const ChatRoom = ({ id }) => {
   const [expert, setExpert] = useState({});
@@ -14,15 +15,7 @@ const ChatRoom = ({ id }) => {
       setExpert(res);
     });
   }, []);
-  const initialMessages = [
-    {
-      type: "text",
-      content: { text: `这里是专家${expert.name}，有什么需要咨询的吗？` },
-      user: {
-        avatar: "/"+expert.image,
-      },
-    },
-  ];
+  const initialMessages = data.messages;
 
   const defaultQuickReplies = [
     {

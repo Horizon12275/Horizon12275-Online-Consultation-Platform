@@ -1,0 +1,22 @@
+{
+  "messages": [
+    {
+      "type": "text",
+      "content": { "text": "这是一条文本消息" },
+      "position": "left",
+      "user": {
+        "id": 1,
+        "avatar": "/1.jpg"
+      }
+    },
+    {
+      "type": "image",
+      "content": { "picUrl": "/1.jpg" },
+      "position": "right",
+      "user": {
+        "id": 2,
+        "avatar": "/2.jpg"
+      }
+    }
+  ]
+}

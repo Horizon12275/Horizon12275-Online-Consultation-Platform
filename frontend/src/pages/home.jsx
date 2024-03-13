@@ -17,7 +17,7 @@ export default function Homepage() {
           style={{
             background: "rgba(255, 255, 255, 0)",
             width: "80%",
-            height: "50px",
+            height: "40px",
             position: "sticky",
             top: 20,
             right: 0,

@@ -1,4 +1,4 @@
-import Data from "../articles.json"; // 导入本地的书籍数据
+import Data from "../json/articles.json"; // 导入本地的书籍数据
 
 export const search = async (keyword, pageIndex, pageSize) => {
   // 模拟从本地 JSON 文件获取书籍数据

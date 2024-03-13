@@ -1,6 +1,5 @@
 // 获取专家数据的服务
-import Data from '../experts.json'
-import comments from '../comments.json'
+import Data from '../json/experts.json'
 
 // 模拟从本地 JSON 文件获取专家数据
 export const getAllExperts =  () => {
@@ -13,7 +12,7 @@ export const getExpertById = async (id) => {
     return expert;
 }
 
-export const getComments = async (id) => {
-    const comments = comments;
+export const getCommentsByExpertId = async (id) => {
+    const comments = getExpertById(id).comments;
     return comments;
 }

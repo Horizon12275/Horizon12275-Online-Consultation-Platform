@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Collapse, Input, Layout } from "antd";
+import { Card, Collapse, Input, Layout } from "antd";
 
 const { Panel } = Collapse;
 const { Header } = Layout;
@@ -13,14 +13,19 @@ const SearchBar = () => {
   };
 
   return (
-    <Input.Search
-      size="large"
-      placeholder="请输入搜索内容"
-      enterButton="搜索"
-      value={searchValue}
-      onChange={(e) => setSearchValue(e.target.value)}
-      onSearch={handleSearch}
-    />
+    <Card
+      hoverable
+      bodyStyle={{ width: "100%", height: "40px", padding: "0", margin: "0" }}
+    >
+      <Input.Search
+        size="large"
+        placeholder="请输入搜索内容"
+        enterButton="搜索"
+        value={searchValue}
+        onChange={(e) => setSearchValue(e.target.value)}
+        onSearch={handleSearch}
+      />
+    </Card>
   );
 };
 
