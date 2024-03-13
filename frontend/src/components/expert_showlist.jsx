@@ -3,9 +3,12 @@ import { List, Space, Flex } from "antd";
 import ExpertShowCard from "./expert_showcard";
 import { getAllExperts } from "../services/expertService";
 import SearchContext from "../context/searchcontext";
+import { set } from "@ant-design/plots/es/core/utils";
+import TagContext from "../context/tagcontext";
 
 export default function ExpertShowList() {
   const { searchValue, handleSearch } = useContext(SearchContext);
+  const { selectedTags, setSelectedTags } = React.useContext(TagContext);
   const experts = getAllExperts();
   const sv = new URLSearchParams(window.location.search).get("search");
   if (sv) {
@@ -13,7 +16,7 @@ export default function ExpertShowList() {
   }
   console.log('searchValue:', searchValue); 
   // 过滤专家数据，优化了搜索逻辑
-  const filteredExperts = experts.filter(expert => {
+  let filteredExperts = experts.filter(expert => {
     for (let key in expert) {
       if (typeof expert[key] === 'string' && expert[key].toLowerCase().includes(searchValue.toLowerCase())) {
         return true;
@@ -21,6 +24,9 @@ export default function ExpertShowList() {
     }
     return false;
   });
+
+  filteredExperts = selectedTags === "All" ? filteredExperts : filteredExperts.filter(expert => expert.tags.includes(selectedTags));
+
  
 
   return (

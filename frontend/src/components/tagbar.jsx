@@ -3,8 +3,11 @@ import React from 'react';
 import { Col, Flex, Tag } from 'antd';
 import TagContext from '../context/tagcontext';
 import { getAllArticles } from '../services/articleService';
+import SearchContext from '../context/searchcontext';
 
 const TagBar = () => {
+  const { handleSearch } = React.useContext(SearchContext);
+
   // 首页显示的标签数据
   const tagsData = ['All'];
   const all = getAllArticles();
@@ -28,7 +31,7 @@ const TagBar = () => {
           <Tag.CheckableTag
             key={tag}
             checked={(selectedTags === tag)}
-            onChange={() => handleChange(tag)}
+            onChange={() => { handleChange(tag); handleSearch(''); }}
             style={{ fontSize: '20px', margin: '5px', padding: '15px', borderRadius: '10px'}}
           >
             {tag}
