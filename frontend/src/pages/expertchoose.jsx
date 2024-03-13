@@ -7,27 +7,30 @@ import ExpertShowList from "../components/expert_showlist";
 import SearchBar from "../components/searchbox";
 import RadioSort from "../components/radio_sort";
 import { Col, Flex } from "antd";
+import { SearchProvider } from "../context/searchcontext";
 
 export default function ExpertChoosePage() {
   return (
-    <TagProvider>
-      <BasicLayout>
-        <TagBar />
-        <Flex
-          gap="middle"
-          justify="space-evenly"
-          align="center"
-          style={{ margin: "20px" }}
-        >
-          <Col style={{ width: "60%" }}>
-            <SearchBar />
-          </Col>
-          <Col>
-            <RadioSort />
-          </Col>
-        </Flex>
-        <ExpertShowList />
-      </BasicLayout>
-    </TagProvider>
+    <SearchProvider>
+      <TagProvider>
+        <BasicLayout>
+          <TagBar />
+          <Flex
+            gap="middle"
+            justify="space-evenly"
+            align="center"
+            style={{ margin: "20px" }}
+          >
+            <Col style={{ width: "60%" }}>
+              <SearchBar />
+            </Col>
+            <Col>
+              <RadioSort />
+            </Col>
+          </Flex>
+          <ExpertShowList />
+        </BasicLayout>
+      </TagProvider>
+    </SearchProvider>
   );
 }

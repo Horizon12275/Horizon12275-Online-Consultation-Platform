@@ -27,7 +27,7 @@ const TagBar = () => {
         {tagsData.map((tag) => (
           <Tag.CheckableTag
             key={tag}
-            checked={selectedTags.includes(tag)}
+            checked={(selectedTags === tag)}
             onChange={() => handleChange(tag)}
             style={{ fontSize: '20px', margin: '5px', padding: '15px', borderRadius: '10px'}}
           >

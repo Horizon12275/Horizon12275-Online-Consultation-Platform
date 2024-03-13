@@ -1,14 +1,27 @@
 import React, { useContext } from "react";
 import { List, Space, Flex } from "antd";
 import ExpertShowCard from "./expert_showcard";
-//import SearchContext from '../context/SearchContext';
 import { getAllExperts } from "../services/expertService";
+import SearchContext from "../context/searchcontext";
 
 export default function ExpertShowList() {
-  //const { searchValue } = useContext(SearchContext);
-  //console.log('searchValue:', searchValue);
-  //const filteredExperts = experts.filter(expert => expert.title.toLowerCase().includes(searchValue.toLowerCase()));
-  const datas = getAllExperts();
+  const { searchValue, handleSearch } = useContext(SearchContext);
+  const experts = getAllExperts();
+  const sv = new URLSearchParams(window.location.search).get("search");
+  if (sv) {
+    handleSearch(sv);
+  }
+  console.log('searchValue:', searchValue); 
+  // 过滤专家数据，优化了搜索逻辑
+  const filteredExperts = experts.filter(expert => {
+    for (let key in expert) {
+      if (typeof expert[key] === 'string' && expert[key].toLowerCase().includes(searchValue.toLowerCase())) {
+        return true;
+      }
+    }
+    return false;
+  });
+ 
 
   return (
     <Flex
@@ -33,7 +46,7 @@ export default function ExpertShowList() {
             showSizeChanger: false,
             showQuickJumper: true,
           }}
-          dataSource={datas}
+          dataSource={filteredExperts}
           renderItem={(item) => (
             <List.Item>
               <ExpertShowCard data={item} />
