@@ -38,7 +38,7 @@ export const findExpertArticleTags = (expert) => {// 筛选出属于该专家的
   // 将 Set 转换为数组
   const allTags = Array.from(allTagsSet);
 
-  return allTags;
+  return allTags.slice(0, 3);
 };
 
 export const findExpertArticlesById = async (expertId) => {

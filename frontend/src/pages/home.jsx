@@ -1,7 +1,6 @@
 import React from "react";
 import { Layout } from "antd";
-const { Header, Footer, Sider, Content } = Layout;
-import Histogram from "../components/histogram";
+const { Header, Sider, Content } = Layout;
 import HomeArticle from "../components/homearticle";
 import MyCarousel from "../components/carousel";
 import { BasicLayout } from "../layouts";

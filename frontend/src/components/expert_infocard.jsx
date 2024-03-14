@@ -1,11 +1,7 @@
 //专家个人主页的信息卡片
-
 import { Row, Col, Avatar, Typography, Tag, Button } from "antd";
-import { UserOutlined } from "@ant-design/icons";
-import { getExpertById } from "../services/expertService"; // 导入专家相关的服务函数
-import { useEffect, useState } from "react";
 
-const { Title, Paragraph, Text, Link } = Typography;
+const { Title, Paragraph,  Link } = Typography;
 
 const ExpertInfoCard = ({ expert }) => {
   // 渲染专家信息卡片

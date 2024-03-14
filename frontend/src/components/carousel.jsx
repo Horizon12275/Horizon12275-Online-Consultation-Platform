@@ -1,21 +1,17 @@
-import React, { useState, useEffect } from "react";
-import { Carousel, Card, Button, Typography } from "antd";
+import React, { useState, useEffect, useRef } from "react";
+import { Carousel, Button } from "antd";
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 import { getRecommendedArticles } from "../services/articleService"; // 导入书籍相关的服务函数
 import CarouselCard from "./carousel_card";
 
-const { Paragraph } = Typography;
-
 const MyCarousel = () => {
   const [recommended, setRecommended] = useState([]);
-  const carouselRef = React.createRef();
+  const carouselRef = useRef();
 
   useEffect(() => {
-    const fetchRecommended = async () => {
-      const recommended = await getRecommendedArticles();
-      setRecommended(recommended);
-    };
-    fetchRecommended();
+    getRecommendedArticles().then((res) => {
+      setRecommended(res);
+    });
   }, []);
 
   const handlePrev = () => {
@@ -29,8 +25,9 @@ const MyCarousel = () => {
   return (
     <div
       style={{
-        width:"300px",
-        height: "80vh",
+        width: "300px",
+        height: "100vh",
+        minHeight: "600px",
         marginBottom: "0px",
         marginTop: "40px",
         padding: "0px",
@@ -48,7 +45,7 @@ const MyCarousel = () => {
       >
         {recommended.map((book, index) =>
           index % 2 === 0 ? (
-            <div key={book.id} style={{display:"flex",height:"100vh",}}>
+            <div key={book.id} style={{ display: "flex", height: "100vh" }}>
               <CarouselCard article={book} />
               <CarouselCard article={recommended[index + 1]} />
             </div>

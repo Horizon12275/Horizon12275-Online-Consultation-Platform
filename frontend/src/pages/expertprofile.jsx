@@ -14,33 +14,24 @@ import { findExpertArticlesById } from "../services/articleService";
 import { SearchProvider } from "../context/searchcontext";
 // 导入专家相关的服务函数
 
-const { Header, Footer, Sider, Content } = Layout;
+const { Sider, Content } = Layout;
 
 const ExpertProfilePage = () => {
   let { id } = useParams();
 
   const [expert, setExpert] = useState({});
-
-  // 获取专家的数据
-  useEffect(() => {
-    getExpertById(id).then((res) => {
-      setExpert(res);
-    });
-  }, [id]);
   const [comments, setComments] = useState([]);
-
-  // 获取专家的评论
-  useEffect(() => {
-    getComments(id).then((res) => {
-      setComments(res);
-    });
-  }, [id]);
-  // 获取专家的文章
   const [articles, setArticles] = useState([]);
-
+  // 一次性获取专家的所有信息
   useEffect(() => {
-    findExpertArticlesById(id).then((res) => {
-      setArticles(res);
+    Promise.all([
+      getExpertById(id),
+      getComments(id),
+      findExpertArticlesById(id),
+    ]).then(([expert, comments, articles]) => {
+      setExpert(expert);
+      setComments(comments);
+      setArticles(articles);
     });
   }, [id]);
 
@@ -65,4 +56,5 @@ const ExpertProfilePage = () => {
     </SearchProvider>
   );
 };
+
 export default ExpertProfilePage;

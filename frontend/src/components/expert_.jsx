@@ -1,21 +1,25 @@
-import React, { useState, useEffect } from "react";
-import { List, Card, Button, Typography, Image, Divider, Space} from "antd";
-import { ShoppingCartOutlined, LikeOutlined, MessageOutlined } from '@ant-design/icons';
+import React from "react";
+import { List, Card, Typography, Space } from "antd";
+import {
+  ShoppingCartOutlined,
+  LikeOutlined,
+  MessageOutlined,
+} from "@ant-design/icons";
 import Link from "antd/es/typography/Link";
-import { getExpertById } from "../services/expertService";
+
 const { Title, Paragraph } = Typography;
 
 const IconText = ({ icon, text }) => (
-    <Space>
-      {React.createElement(icon)}
-      {text}
-    </Space>
-  );
+  <Space>
+    {React.createElement(icon)}
+    {text}
+  </Space>
+);
 
 export const ArticleList = ({ articles }) => {
   return (
     <List
-    style={{width: "80%",margin: "0 auto"}}
+      style={{ width: "80%", margin: "0 auto" }}
       itemLayout="vertical"
       dataSource={articles}
       renderItem={(article) => (

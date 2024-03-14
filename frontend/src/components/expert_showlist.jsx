@@ -1,18 +1,16 @@
-import React, { useContext } from "react";
-import { List, Space, Flex, Typography } from "antd";
-import { ProCard } from "@ant-design/pro-components";
+import React, { useContext, useEffect, useState } from "react";
+import { List, Space, Flex } from "antd";
 import ExpertShowCard from "./expert_showcard";
 import { getAllExperts } from "../services/expertService";
 import SearchContext from "../context/searchcontext";
-import { set } from "@ant-design/plots/es/core/utils";
 import TagContext from "../context/tagcontext";
 import { findExpertArticleTags } from "../services/articleService";
 
 const ExpertShowList = ({ sortBy }) => {
   const { searchValue, handleSearch } = useContext(SearchContext);
-  const { selectedTags, setSelectedTags } = React.useContext(TagContext);
-  const [experts, setExperts] = React.useState([]);
-  React.useEffect(() => {
+  const { selectedTags, setSelectedTags } = useContext(TagContext);
+  const [experts, setExperts] = useState([]);
+  useEffect(() => {
     getAllExperts().then((res) => {
       setExperts(res);
     });

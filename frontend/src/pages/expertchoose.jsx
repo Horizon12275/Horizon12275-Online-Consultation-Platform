@@ -1,4 +1,4 @@
-import React, { useEffect,useState} from "react";
+import React, {useState} from "react";
 import { TagProvider } from "../context/tagcontext";
 import { BasicLayout } from "../layouts";
 import TagBar from "../components/tagbar";

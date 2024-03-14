@@ -1,5 +1,5 @@
-import React, { useState, useContext } from "react";
-import { Collapse, Input, Layout } from "antd";
+import React, { useContext } from "react";
+import { Input } from "antd";
 import { useLocation, useNavigate } from "react-router-dom";
 import SearchContext from "../context/searchcontext";
 
@@ -13,12 +13,14 @@ const SearchBar = () => {
   // 修改 handleSearch 函数，加入页面跳转逻辑
   const handleSearch = (value) => {
     contextHandleSearch(value); // 可选：如果你还需要在上下文中保存搜索值
-    if (location.pathname !== '/expert') {
+    if (location.pathname !== "/expert") {
       navigate(`/expert?search=${encodeURIComponent(value)}`);
     } else {
       // 如果已经在 /list 页面，也可以选择重新加载/刷新页面或直接更新页面内容
       // 这里只是简单地使用 navigate 进行演示
-      navigate(`/expert?search=${encodeURIComponent(value)}`, { replace: true });
+      navigate(`/expert?search=${encodeURIComponent(value)}`, {
+        replace: true,
+      });
     }
   };
 
@@ -28,7 +30,7 @@ const SearchBar = () => {
       placeholder="请输入搜索内容"
       enterButton="搜索"
       allowClear
-      onSearch={value => handleSearch(value)}
+      onSearch={(value) => handleSearch(value)}
     />
   );
 };

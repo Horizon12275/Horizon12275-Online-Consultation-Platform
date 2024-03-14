@@ -1,9 +1,8 @@
 import React from "react";
-import { Card, Badge } from "antd";
+import { Card } from "antd";
 import Link from "antd/es/typography/Link";
 import { ProCard } from "@ant-design/pro-components";
-import { Avatar, Typography, Tag, Row, Col, Flex } from "antd";
-import { UserOutlined } from "@ant-design/icons";
+import { Typography, Tag, Flex } from "antd";
 import { findExpertArticleTags } from "../services/articleService";
 
 const { Meta } = Card;

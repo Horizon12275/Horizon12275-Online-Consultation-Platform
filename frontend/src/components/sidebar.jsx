@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   HomeOutlined,
   FileTextOutlined,
@@ -8,18 +8,13 @@ import {
   UserOutlined,
   LoginOutlined,
 } from "@ant-design/icons";
-import { Layout, Menu, Avatar } from "antd";
-import { flex } from "@antv/component";
+import { Layout, Menu } from "antd";
 import { Link } from "react-router-dom";
 
 const { Sider } = Layout;
 
 const Sidebar = () => {
   // 控制导航栏的展开和收起
-  const [collapsed, setCollapsed] = useState(false);
-  const toggleCollapsed = () => {
-    setCollapsed(!collapsed);
-  };
 
   const navItems1 = [
     { label: "首页", value: "/", icon: <HomeOutlined /> },

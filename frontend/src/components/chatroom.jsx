@@ -1,20 +1,10 @@
 import React from "react";
-import { useEffect, useState } from "react";
-import { getExpertById } from "../services/expertService"; // 导入专家相关的服务函数
 import "@chatui/core/es/styles/index.less";
 import Chat, { Bubble, useMessages } from "@chatui/core";
 import "@chatui/core/dist/index.css";
 import data from "../json/messages.json";
 
-const ChatRoom = ({ id }) => {
-  const [expert, setExpert] = useState({});
-
-  // 获取专家的数据
-  useEffect(() => {
-    getExpertById(id).then((res) => {
-      setExpert(res);
-    });
-  }, []);
+const ChatRoom = ({ expert }) => {
   const initialMessages = data.messages;
 
   const defaultQuickReplies = [
@@ -83,7 +73,7 @@ const ChatRoom = ({ id }) => {
   }
 
   return (
-    <div style={{  minHeight: "550px", flex: 1,height:"100vh"  }}>
+    <div style={{ minHeight: "550px", flex: 1, height: "100vh" }}>
       <Chat
         locale="zh-CN"
         navbar={{ title: expert.name }}

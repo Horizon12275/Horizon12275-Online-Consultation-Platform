@@ -8,7 +8,7 @@ const CarouselCard = ({ article }) => {
   const book = article;
 
   return (
-    <Card style={{height:"50vh"}}>
+    <Card style={{height:"50vh",minHeight: "300px",}}>
       <div style={{ display: "flex", flexDirection: "column", width: "100%" }}>
         <div style={{ height: "30%", display: "flex" }}>
           <img
