@@ -1,4 +1,4 @@
-import React, { useEffect,useState} from "react";
+import React, { useEffect } from "react";
 import { TagProvider } from "../context/tagcontext";
 import { BasicLayout } from "../layouts";
 import TagBar from "../components/tagbar";
@@ -9,12 +9,6 @@ import { Col, Flex } from "antd";
 import { SearchProvider } from "../context/searchcontext";
 
 const ExpertChoosePage = () => {
-  const [sortBy, setSortBy] = useState("price");
-
-  const handleSortChange = (value) => {
-    setSortBy(value);
-  };
-  
   return (
     <SearchProvider>
       <TagProvider>
@@ -30,10 +24,10 @@ const ExpertChoosePage = () => {
               <SearchBar />
             </Col>
             <Col>
-              <RadioSort onSortChange={handleSortChange} />
+              <RadioSort />
             </Col>
           </Flex>
-          <ExpertShowList sortBy={sortBy} />
+          <ExpertShowList />
         </BasicLayout>
       </TagProvider>
     </SearchProvider>
