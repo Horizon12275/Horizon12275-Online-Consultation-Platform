@@ -8,7 +8,7 @@ import { set } from "@ant-design/plots/es/core/utils";
 import TagContext from "../context/tagcontext";
 import { findExpertArticleTags } from "../services/articleService";
 
-const ExpertShowList = () => {
+const ExpertShowList = ({ sortBy }) => {
   const { searchValue, handleSearch } = useContext(SearchContext);
   const { selectedTags, setSelectedTags } = React.useContext(TagContext);
   const [experts, setExperts] = React.useState([]);
@@ -41,6 +41,12 @@ const ExpertShowList = () => {
       : filteredExperts.filter((expert) =>
           findExpertArticleTags(expert).includes(selectedTags)
         );
+
+  if (sortBy === "price") {
+    filteredExperts.sort((a, b) => a.price - b.price);
+  } else if (sortBy === "rating") {
+    filteredExperts.sort((a, b) => b.rating - a.rating);
+  }
 
   return (
     <Flex
