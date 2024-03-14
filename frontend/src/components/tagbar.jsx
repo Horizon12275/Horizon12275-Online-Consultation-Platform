@@ -34,31 +34,38 @@ const TagBar = () => {
   return (
     <Col justify="left" style={{ marginLeft: "30px", marginTop: "30px" }}>
       <Flex gap="4px 0" wrap="wrap" align="center">
-        <Col justify={"right"} style={{margin:"30px"}}>
+        <Col justify={"right"} style={{ margin: "30px" }}>
           <Button onClick={handleClick} hoverable>
             <Row align="middle">
               <h3>{expanded ? "收起" : "全部"}</h3>
             </Row>
           </Button>
         </Col>
-        {tagsData.map((tag) => (
-          <Tag.CheckableTag
-            key={tag}
-            checked={selectedTags === tag}
-            onChange={() => {
-              handleChange(tag);
-              handleSearch("");
-            }}
-            style={{
-              fontSize: "20px",
-              margin: "5px",
-              padding: "15px",
-              borderRadius: "10px",
-            }}
-          >
-            {tag}
-          </Tag.CheckableTag>
-        ))}
+        <div
+          style={{
+            overflow: "hidden",
+            transition: "height 0.5s",
+          }}
+        >
+          {tagsData.map((tag) => (
+            <Tag.CheckableTag
+              key={tag}
+              checked={selectedTags === tag}
+              onChange={() => {
+                handleChange(tag);
+                handleSearch("");
+              }}
+              style={{
+                fontSize: "20px",
+                margin: "5px",
+                padding: "15px",
+                borderRadius: "10px",
+              }}
+            >
+              {tag}
+            </Tag.CheckableTag>
+          ))}
+        </div>
       </Flex>
     </Col>
   );

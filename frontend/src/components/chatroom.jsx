@@ -83,7 +83,7 @@ const ChatRoom = ({ id }) => {
   }
 
   return (
-    <div style={{ height: "100vh" }}>
+    <div style={{  minHeight: "550px", flex: 1,height:"100vh"  }}>
       <Chat
         locale="zh-CN"
         navbar={{ title: expert.name }}
