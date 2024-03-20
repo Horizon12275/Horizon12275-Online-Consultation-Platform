@@ -8,6 +8,7 @@ import { TagProvider } from "../context/tagcontext";
 import TagBar from "../components/tagbar";
 import SearchBar from "../components/searchbox";
 import { SearchProvider } from "../context/searchcontext";
+import BuildYourOwnTeamLibrary from "./test";
 
 export default function Homepage() {
   return (
@@ -43,6 +44,7 @@ export default function Homepage() {
               <MyCarousel />
             </Sider>
           </Layout>
+          <BuildYourOwnTeamLibrary />
         </BasicLayout>
       </TagProvider>
     </SearchProvider>
