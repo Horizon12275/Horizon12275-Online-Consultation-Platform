@@ -20,7 +20,7 @@ const Sidebar = () => {
     { label: "首页", value: "/", icon: <HomeOutlined /> },
     { label: "咨询历史", value: "/history", icon: <FileTextOutlined /> },
     { label: "专家咨询", value: "/expert", icon: <UsergroupAddOutlined /> },
-    { label: "广场", value: "/square", icon: <TeamOutlined /> },
+    { label: "广场", value: "/plaza", icon: <TeamOutlined /> },
     { label: "成为专家", value: "/become-expert", icon: <SolutionOutlined /> },
   ];
 

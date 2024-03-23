@@ -14,6 +14,7 @@ import BecomeExpertPage from './pages/become-expert'
 import UserPage from './pages/user'
 import './css/global.css'
 import ExpertChoosePage from './pages/expertchoose';
+import PlazaPage from './pages/plaza';
 
 const router = createBrowserRouter([
   {
@@ -42,8 +43,8 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
   {
-    path: "/square",
-    element: <SquarePage />,
+    path: "/plaza",
+    element: <PlazaPage />,
     errorElement: <ErrorPage />,
   },
   {

@@ -9,7 +9,7 @@ import TagBar from "../components/tagbar";
 import SearchBar from "../components/searchbox";
 import { SearchProvider } from "../context/searchcontext";
 
-export default function Homepage() {
+export default function HomePage() {
   return (
     <SearchProvider>
       <TagProvider>
