@@ -26,7 +26,7 @@ const MyCarousel = () => {
     <div
       style={{
         width: "300px",
-        height: "100vh",
+        height: "80vh",
         minHeight: "600px",
         marginBottom: "0px",
         marginTop: "40px",

@@ -73,7 +73,7 @@ export default function HomeArticle() {
             extra={
               <img
                 style={{ borderRadius: "20px" }}
-                width={450}
+                height={200}
                 alt="logo"
                 src={item.cover} // Replace the image source with item.image from filteredData
               />
