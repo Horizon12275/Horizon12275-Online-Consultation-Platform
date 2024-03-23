@@ -14,7 +14,8 @@ import BecomeExpertPage from './pages/become-expert'
 import UserPage from './pages/user'
 import './css/global.css'
 import ExpertChoosePage from './pages/expertchoose';
-import PlazaPage from './pages/plaza';
+import BuildYourOwnTeamLibrary from './pages/test';
+
 
 const router = createBrowserRouter([
   {
