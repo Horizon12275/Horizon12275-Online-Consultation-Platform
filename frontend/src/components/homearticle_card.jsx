@@ -29,17 +29,19 @@ function AuthorInfo({ article }) {
 }
 const HomeArticleCard = ({ article }) => {
   return (
-    <main className="flex flex-col text-base leading-6 shadow-lg w-[320px] m-4">
+    <main className="flex flex-col text-base leading-6 shadow-lg w-[300px] h-[460px]  m-4">
       <img src={article.cover} className=" h-40 object-cover" />
-      <article className="flex flex-col justify-center w-full">
-        <div className="flex flex-col pb-4 w-full bg-white rounded-none">
+      <article className="flex flex-col justify-center w-full h-full">
+        <div className="flex flex-col pb-4 w-full bg-white rounded-none h-full">
           <div className="w-full bg-white border border-white border-solid min-h-[1px]" />
           <div className="flex flex-col px-6 mt-3.5 w-full">
             <MembersOnlyBadge />
-            <h2 className="mt-2 text-xl font-bold leading-8 text-zinc-900">
+            <h2 className="mt-2 text-xl font-bold leading-8 text-zinc-900 h-8 truncate">
               {article.title}
             </h2>
-            <p className="mt-3.5 leading-5 text-zinc-700">{article.content}</p>
+            <p className="mt-3.5 leading-5 text-zinc-700 h-[100px]">
+              {article.content}
+            </p>
             <AuthorInfo article={article} />
           </div>
         </div>

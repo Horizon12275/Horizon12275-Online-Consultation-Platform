@@ -19,7 +19,7 @@ const ExpertChoosePage = () => {
     <SearchProvider>
       <TagProvider>
         <BasicLayout>
-          <Flex vertical gap="middle" className="mx-20">
+          <Flex vertical gap="middle" className="mx-auto w-[1300px]" >
             <h1 className="text-5xl tracking-tight text-black self-start mt-8">
               Find Your Expert!
             </h1>
@@ -28,8 +28,8 @@ const ExpertChoosePage = () => {
               <SearchBar />
               <RadioSort onSortChange={handleSortChange} />
             </Row>
+            <ExpertShowList sortBy={sortBy} />
           </Flex>
-          <ExpertShowList sortBy={sortBy} />
         </BasicLayout>
       </TagProvider>
     </SearchProvider>

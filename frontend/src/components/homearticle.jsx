@@ -7,7 +7,7 @@ import {
   getRecommendedArticles,
 } from "../services/articleService"; // 导入书籍相关的服务函数
 import HomeArticleCard from "./homearticle_card";
-
+import { Link } from "react-router-dom";
 
 export default function HomeArticle() {
   const all = getAllArticles();
@@ -36,11 +36,22 @@ export default function HomeArticle() {
 
   // 渲染文章列表
   return (
-    <Row justify="center">
-      {/* Row 里面的元素会从左向右排列 */}
-      {filteredData.map((item) => (
-        <HomeArticleCard key={item.id} article={item} />
-      ))}
-    </Row>
+    <List
+    
+      dataSource={filteredData}
+      grid={{
+        column: 3,
+      }}
+      pagination={{
+        pageSize: 6,
+      }}
+      renderItem={(item) => (
+        <List.Item>
+          <Link to={`/article/${item.id}`}>
+            <HomeArticleCard article={item} />
+          </Link>
+        </List.Item>
+      )}
+    ></List>
   );
 }

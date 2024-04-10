@@ -32,30 +32,28 @@ const TagBar = () => {
   const { selectedTags, handleChange } = React.useContext(TagContext);
 
   return (
-    <Col justify="left" style={{ marginTop: "30px" }}>
-      <Flex gap="10px 3px" wrap="wrap" align="center">
-        {/* <Col justify={"right"} style={{ margin: "30px" }}>
+    <Flex gap="10px 3px" wrap="wrap" align="center" className="mt-10">
+      {/* <Col justify={"right"} style={{ margin: "30px" }}>
           <Button onClick={handleClick} hoverable>
             <Row align="middle">
               <h3>{expanded ? "收起" : "全部"}</h3>
             </Row>
           </Button>
         </Col> */}
-        {tagsData.map((tag, index) => (
-          <Tag.CheckableTag
-            key={index}
-            checked={selectedTags === tag}
-            onChange={() => {
-              handleChange(tag);
-              handleSearch("");
-            }}
-            className="px-3 py-1 rounded border-zinc-500 text-center "
-          >
-            {tag}
-          </Tag.CheckableTag>
-        ))}
-      </Flex>
-    </Col>
+      {tagsData.map((tag, index) => (
+        <Tag.CheckableTag
+          key={index}
+          checked={selectedTags === tag}
+          onChange={() => {
+            handleChange(tag);
+            handleSearch("");
+          }}
+          className="px-3 py-1 rounded border-zinc-500 text-center "
+        >
+          {tag}
+        </Tag.CheckableTag>
+      ))}
+    </Flex>
   );
 };
 export default TagBar;

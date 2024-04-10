@@ -9,7 +9,7 @@ const CommentList = ({ comments }) => {
           author={comment.user}
           avatar={comment.avatar}
           content={comment.content}
-          timestamp={comment.timestamp}
+          timestamp={comment.time}
           likes={comment.likes}
           onReply={() => console.log(`Reply to comment ${comment.id}`)}
         />

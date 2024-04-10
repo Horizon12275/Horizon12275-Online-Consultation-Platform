@@ -47,36 +47,27 @@ const ExpertShowList = ({ sortBy }) => {
   }
 
   return (
-    <Flex
-      gap="middle"
-      justify="space-around"
-      align="center"
-      style={{ marginTop: "30px" }}
-    >
-      <Space direction="vertical" style={{ width: "80%" }}>
-        <List
-          style={{ width: "100%" }}
-          grid={{
-            gutter: 16,
-            column: 3,
-          }}
-          pagination={{
-            onChange: (page) => {
-              console.log(page);
-            },
-            pageSize: 9,
-            style: { textAlign: "center" },
-            showSizeChanger: false,
-            showQuickJumper: true,
-          }}
-          dataSource={filteredExperts}
-          renderItem={(expert) => (
-            <List.Item>
-              <ExpertShowCard item={expert} />
-            </List.Item>
-          )}
-        />
-      </Space>
+    <Flex gap="middle" justify="space-around" align="center">
+      <List
+        grid={{
+          column: 3,
+        }}
+        pagination={{
+          onChange: (page) => {
+            console.log(page);
+          },
+          pageSize: 9,
+          style: { textAlign: "center" },
+          showSizeChanger: false,
+          showQuickJumper: true,
+        }}
+        dataSource={filteredExperts}
+        renderItem={(expert) => (
+          <List.Item>
+            <ExpertShowCard item={expert} />
+          </List.Item>
+        )}
+      />
     </Flex>
   );
 };

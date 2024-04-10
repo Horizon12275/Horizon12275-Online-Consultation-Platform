@@ -8,43 +8,78 @@ import {
   UserOutlined,
   LoginOutlined,
 } from "@ant-design/icons";
-import { Layout, Menu } from "antd";
+import { Flex, Layout, Menu } from "antd";
 import { Link } from "react-router-dom";
+import UserOrLogin from "./login_status";
 
 const { Sider } = Layout;
 
 const Sidebar = () => {
   // 控制导航栏的展开和收起
 
-  const navItems1 = [
-    { label: "首页", value: "/", icon: <HomeOutlined /> },
-    { label: "咨询历史", value: "/history", icon: <FileTextOutlined /> },
-    { label: "专家咨询", value: "/expert", icon: <UsergroupAddOutlined /> },
-    { label: "广场", value: "/plaza", icon: <TeamOutlined /> },
-    { label: "成为专家", value: "/become-expert", icon: <SolutionOutlined /> },
+  const menuItems = [
+    {
+      label: "首页",
+      value: "/",
+      icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/7578b42594aaecbb15294edfbb20e8d5b8238fa9789278c9437c13b583981681?apiKey=9e661a5e0ad74c878ca984d592b3752c&",
+    },
+    {
+      label: "咨询历史",
+      value: "/expert",
+      icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/fe1f7d779e1cb4aa26a49439af034934f03aa9024f8a3a83885b322d66ac46a2?apiKey=9e661a5e0ad74c878ca984d592b3752c&",
+    },
+    {
+      label: "专家咨询",
+      value: "/expert/1/consultation",
+      icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/07d261bcd92e5b651bbf3ee474dd7d3fd577dd2a898811375f3cf1b699518c71?apiKey=9e661a5e0ad74c878ca984d592b3752c&",
+    },
+    {
+      label: "广场",
+      value: "/plaza",
+      icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/2b7c55e1879373d855dc8c7b241dfcb63ac54bddbf3dee01f1c40e58e55618ba?apiKey=9e661a5e0ad74c878ca984d592b3752c&",
+    },
+    {
+      label: "Ranking",
+      value: "/ranking",
+      icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/2b356933ff52616cf2e605de5fb15a396a201736ac278c2ea2ee081e20823df6?apiKey=9e661a5e0ad74c878ca984d592b3752c&",
+    },
+    {
+      label: "成为专家",
+      value: "/become-expert",
+      icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/84841d85ef1193d6b8bee18151161336ed1a0282dff45b9e832ec2a3ccf9e6f9?apiKey=9e661a5e0ad74c878ca984d592b3752c&",
+    },
+    {
+      label: "用户主页",
+      value: "/user",
+      icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/5889a1cc004cbe2696521a1d1a3fd9466e393044d2b77f1f0be3b2966c617977?apiKey=9e661a5e0ad74c878ca984d592b3752c&",
+    },
   ];
 
-  const navItems2 = [
-    { label: "用户主页", value: "/user", icon: <UserOutlined /> },
-    { label: "登录/注册", value: "/login", icon: <LoginOutlined /> },
-  ];
+  function Icon({ src, alt }) {
+    return (
+      <img
+        loading="lazy"
+        src={src}
+        alt={alt}
+        className="shrink-0 aspect-square w-[30px]"
+      />
+    );
+  }
 
-  const navMenuItems1 = navItems1.map((item) => ({
-    key: item.value,
-    label: <Link to={item.value}>{item.label}</Link>,
-    icon: item.icon,
-  }));
-
-  const navMenuItems2 = navItems2.map((item) => ({
-    key: item.value,
-    label: <Link to={item.value}>{item.label}</Link>,
-    icon: item.icon,
-  }));
-
+  function MenuItem({ icon, label, value }) {
+    return (
+      <Link to={value}>
+        <div className="flex gap-5 px-5 whitespace-nowrap">
+          <Icon src={icon} alt="" />
+          <div className="flex-auto text-black">{label}</div>
+        </div>
+      </Link>
+    );
+  }
   return (
     <Sider
-      collapsible
-      defaultCollapsed
+      theme="light"
+      width={250}
       style={{
         height: "100vh",
         position: "sticky",
@@ -54,37 +89,29 @@ const Sidebar = () => {
         zIndex: 1000,
       }}
     >
-      <div className="logo" />
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-between",
-          height: "100%",
-          padding: "10px 0",
-        }}
-      >
-        <Menu
-          theme="dark"
-          mode="inline"
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "space-between",
-          }}
-          items={navMenuItems1}
-        />
-        <Menu
-          theme="dark"
-          mode="inline"
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "space-between",
-          }}
-          items={navMenuItems2}
-        />
-      </div>
+      <Flex vertical justify="space-between" className="h-full">
+        <div className="flex flex-col justify-center pt-3 pb-5">
+          <nav className="flex flex-col justify-center w-full text-2xl">
+            <ul className="flex flex-col w-full">
+              {menuItems.map((item, index) => (
+                <li
+                  key={index}
+                  className={` flex gap-5 px-2.5 ${
+                    index === 0 ? "py-4 leading-[117%]" : "py-3.5"
+                  } ${index === 3 || index === 5 ? "items-start" : ""}`}
+                >
+                  <MenuItem
+                    icon={item.icon}
+                    label={item.label}
+                    value={item.value}
+                  />
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </div>
+        <UserOrLogin />
+      </Flex>
     </Sider>
   );
 };

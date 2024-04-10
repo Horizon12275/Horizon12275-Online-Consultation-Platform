@@ -26,6 +26,7 @@ const Rating = () => {
   ];
   const config = {
     data,
+    width: 300,
     height: 300,
     xField: 'rate',
     yField: 'count',

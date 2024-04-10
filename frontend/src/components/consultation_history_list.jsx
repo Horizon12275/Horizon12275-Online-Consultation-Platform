@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import ConsultationHistoryCard from "./consultation_history_card";
-import { Button, Row } from "antd";
-import { CommentOutlined } from "@ant-design/icons";
+
 
 export default function ConsultationHistoryList() {
   const [n, setN] = useState(3);

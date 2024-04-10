@@ -13,14 +13,15 @@ export const search = async (keyword, pageIndex, pageSize) => {
 
 export const getRecommendedArticles = async () => {
   // 模拟从本地 JSON 文件获取推荐书籍数据
-  return Data.articles.slice(0, 10); // 假设前三本书为推荐书籍
+  return Data.articles.slice(0, 6); // 假设前三本书为推荐书籍
 };
 
 export const getAllArticles = () => {
   return Data.articles; // 假设 allBooks.json 中的顶层属性名称为 books
 };
 
-export const findExpertArticleTags = (expert) => {// 筛选出属于该专家的所有文章的标签
+export const findExpertArticleTags = (expert) => {
+  // 筛选出属于该专家的所有文章的标签
 
   // 筛选出属于该专家的所有文章
   const expertArticles = Data.articles.filter((article) =>
@@ -43,10 +44,14 @@ export const findExpertArticleTags = (expert) => {// 筛选出属于该专家的
 
 export const findExpertArticlesById = async (expertId) => {
   // 筛选出属于该专家的所有文章
-  const expertArticles = Data.articles.filter((article) =>
-    article.author_id === parseInt(expertId)
+  const expertArticles = Data.articles.filter(
+    (article) => article.author_id === parseInt(expertId)
   );
 
   return expertArticles;
-}
+};
 
+export const getArticleById = async (id) => {
+  // 模拟从本地 JSON 文件获取书籍数据
+  return Data.articles.find((article) => article.id === parseInt(id));
+};

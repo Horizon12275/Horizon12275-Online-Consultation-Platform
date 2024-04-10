@@ -28,13 +28,15 @@ export default function HomePage() {
           >
             <SearchBar />
           </Header>
-          <Row className="mx-10">
+          <Row>
             <Col flex={"1"}>
-              <h2 className="text-6xl tracking-tight text-black mt-8">
-                Topics
-              </h2>
-              <TagBar />
-              <HomeArticle />
+              <Flex vertical className="w-[1000px] m-auto" justify="center">
+                <h2 className="text-6xl tracking-tight text-black mt-10">
+                  Topics
+                </h2>
+                <TagBar />
+                <HomeArticle />
+              </Flex>
             </Col>
             <Col width={300} style={{ background: "#f5f5f5" }}>
               {/* 右侧内容 */}
