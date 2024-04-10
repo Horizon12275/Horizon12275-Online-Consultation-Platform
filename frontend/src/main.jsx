@@ -1,19 +1,18 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
-import HomePage from './pages/home'
-import ErrorPage from './pages/errorpage'
-import ExpertProfilePage from './pages/expertprofile'
-import  ConsultPage  from './pages/consultation';
-import HistoryPage from './pages/history'
-import SquarePage from './pages/square'
-import BecomeExpertPage from './pages/become-expert'
-import UserPage from './pages/user'
-import './css/global.css'
-import ExpertChoosePage from './pages/expertchoose';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import HomePage from "./pages/home";
+import ErrorPage from "./pages/errorpage";
+import ExpertProfilePage from "./pages/expertprofile";
+import ConsultPage from "./pages/consultation";
+import HistoryPage from "./pages/history";
+import BecomeExpertPage from "./pages/become-expert";
+import UserPage from "./pages/user";
+import "./css/global.css";
+import ExpertChoosePage from "./pages/expertchoose";
+import BuildYourOwnTeamLibrary from "./pages/test";
+import PlazaPage from "./pages/plaza";
+import ArticlePage from "./pages/article";
 
 const router = createBrowserRouter([
   {
@@ -37,13 +36,18 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
   {
+    path: "/article/:id",
+    element: <ArticlePage />,
+    errorElement: <ErrorPage />,
+  },
+  {
     path: "/history",
     element: <HistoryPage />,
     errorElement: <ErrorPage />,
   },
   {
-    path: "/square",
-    element: <SquarePage />,
+    path: "/plaza",
+    element: <PlazaPage />,
     errorElement: <ErrorPage />,
   },
   {
@@ -62,8 +66,8 @@ const router = createBrowserRouter([
   },
 ]);
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <RouterProvider router={router} />
-  </React.StrictMode>,
-)
+  </React.StrictMode>
+);

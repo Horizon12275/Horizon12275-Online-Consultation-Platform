@@ -1,15 +1,14 @@
-import React from "react";
-import { Layout } from "antd";
+import { Col, Flex, Layout, Row } from "antd";
 const { Header, Sider, Content } = Layout;
 import HomeArticle from "../components/homearticle";
-import MyCarousel from "../components/carousel";
 import { BasicLayout } from "../layouts";
 import { TagProvider } from "../context/tagcontext";
 import TagBar from "../components/tagbar";
 import SearchBar from "../components/searchbox";
 import { SearchProvider } from "../context/searchcontext";
+import RecommendSidebar from "../components/recommend_sidebar";
 
-export default function Homepage() {
+export default function HomePage() {
   return (
     <SearchProvider>
       <TagProvider>
@@ -20,7 +19,7 @@ export default function Homepage() {
               width: "80%",
               height: "50px",
               position: "sticky",
-              top: 20,
+              top: 10,
               right: 0,
               zIndex: 999,
               padding: "0 20px",
@@ -29,20 +28,24 @@ export default function Homepage() {
           >
             <SearchBar />
           </Header>
-          <Layout>
-            <Layout>
-              <Content style={{ minHeight: "100vh" }}>
-                {/* 中间内容 */}
-                <h1 style={{ fontSize: "40px", margin: "30px" }}>热门话题</h1>
+          <Row>
+            <Col flex={"1"}>
+              <Flex vertical className="w-[1000px] m-auto" justify="center">
+                <h2 className="text-6xl tracking-tight text-black mt-10">
+                  Topics
+                </h2>
                 <TagBar />
                 <HomeArticle />
-              </Content>
-            </Layout>
-            <Sider width={300} style={{ background: "#f5f5f5" }}>
+              </Flex>
+            </Col>
+            <Col width={300} style={{ background: "#f5f5f5" }}>
               {/* 右侧内容 */}
-              <MyCarousel />
-            </Sider>
-          </Layout>
+              <h2 className="text-2xl leading-7 text-black max-w-[152px]">
+                热门专家
+              </h2>
+              <RecommendSidebar />
+            </Col>
+          </Row>
         </BasicLayout>
       </TagProvider>
     </SearchProvider>

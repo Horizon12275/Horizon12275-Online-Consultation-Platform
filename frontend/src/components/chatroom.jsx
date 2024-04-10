@@ -42,7 +42,7 @@ const ChatRoom = ({ expert }) => {
           type: "text",
           content: { text: "您好 很高兴为您提供咨询！" },
           user: {
-            avatar: "/" + expert.image,
+            avatar: expert.image,
           },
         });
       }, 100);
