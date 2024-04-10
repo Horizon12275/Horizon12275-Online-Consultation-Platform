@@ -6,7 +6,7 @@ const { Sider, Content } = Layout;
 
 export function BasicLayout({ children }) {
   return (
-    <Layout hasSider style={{ minWidth: "1200px" }}>
+    <Layout hasSider style={{ minWidth: "1600px" }}>
       <Sidebar />
       <Layout className="site-layout">
         <Content style={{}}>{children}</Content>
@@ -18,7 +18,7 @@ export function BasicLayout({ children }) {
 
 export function ChatLayout({ children }) {
   return (
-    <Layout hasSider style={{ minWidth: "1200px", minHeight: "550px" }}>
+    <Layout hasSider style={{ minWidth: "1600px", minHeight: "550px" }}>
       <Sidebar />
       <Layout className="site-layout">
         <Content style={{}}>{children}</Content>

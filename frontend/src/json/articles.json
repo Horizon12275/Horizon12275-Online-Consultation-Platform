@@ -7,7 +7,7 @@
       "author": "张三",
       "tags": ["经济", "研究", "进展"],
       "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      "cover": "1.jpg"
+      "cover": "/1.jpg"
     },
     {
       "id": 2,
@@ -16,7 +16,7 @@
       "author": "张三",
       "tags": ["区块链", "金融", "应用"],
       "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      "cover": "2.jpg"
+      "cover": "/2.jpg"
     },
     {
       "id": 3,
@@ -25,7 +25,7 @@
       "author": "李四",
       "tags": ["深度学习", "人工智能", "研究"],
       "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      "cover": "3.jpg"
+      "cover": "/3.jpg"
     },
     {
       "id": 4,
@@ -34,7 +34,7 @@
       "author": "王五",
       "tags": ["医疗", "技术", "应用"],
       "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      "cover": "4.jpg"
+      "cover": "/4.jpg"
     },
     {
       "id": 5,
@@ -43,7 +43,7 @@
       "author": "赵六",
       "tags": ["云计算", "发展", "趋势"],
       "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      "cover": "5.jpg"
+      "cover": "/5.jpg"
     },
     {
       "id": 6,
@@ -52,7 +52,7 @@
       "author": "孙七",
       "tags": ["人工智能", "交通", "应用"],
       "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      "cover": "6.jpg"
+      "cover": "/6.jpg"
     },
     {
       "id": 7,
@@ -61,7 +61,7 @@
       "author": "周八",
       "tags": ["大数据", "分析", "挑战", "机遇"],
       "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      "cover": "7.jpg"
+      "cover": "/7.jpg"
     },
     {
       "id": 8,
@@ -70,7 +70,7 @@
       "author": "吴九",
       "tags": ["物联网", "技术", "应用", "前景"],
       "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      "cover": "8.jpg"
+      "cover": "/8.jpg"
     },
     {
       "id": 9,
@@ -79,7 +79,7 @@
       "author": "郑十",
       "tags": ["软件工程", "最佳实践"],
       "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      "cover": "9.jpg"
+      "cover": "/9.jpg"
     },
     {
       "id": 10,
@@ -88,7 +88,7 @@
       "author": "钱十一",
       "tags": ["前端开发", "新趋势"],
       "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      "cover": "10.jpg"
+      "cover": "/10.jpg"
     },
     {
       "id": 11,

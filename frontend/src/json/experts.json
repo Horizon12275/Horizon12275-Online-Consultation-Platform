@@ -7,7 +7,7 @@
       "rating": 5.0,
       "price": 100,
       "description": "张三教授，经济学博士，拥有20年金融行业经验。",
-      "image": "1.jpg",
+      "image": "/1.jpg",
       "consultation_times": 150,
       "comments": [
         {
@@ -31,7 +31,7 @@
       "rating": 4.7,
       "price": 250,
       "description": "李四博士，人工智能领域的顶尖专家，具有丰富的实战经验。",
-      "image": "2.jpg",
+      "image": "/2.jpg",
       "consultation_times": 200,
       "comments": [
         {
@@ -55,7 +55,7 @@
       "rating": 4.2,
       "price": 180,
       "description": "王五教授，计算机科学博士，专注于软件工程和数据结构。",
-      "image": "3.jpg",
+      "image": "/3.jpg",
       "consultation_times": 120,
       "comments": [
         {
@@ -79,7 +79,7 @@
       "rating": 4.8,
       "price": 300,
       "description": "赵六博士，人力资源管理专家，擅长组织行为学和员工培训。",
-      "image": "4.jpg",
+      "image": "/4.jpg",
       "consultation_times": 180,
       "comments": [
         {
@@ -104,7 +104,7 @@
       "price": 220,
       "tags": ["市场营销", "品牌管理", "消费者行为"],
       "description": "钱七教授，市场营销专家，研究领域包括品牌管理和消费者行为。",
-      "image": "5.jpg",
+      "image": "/5.jpg",
       "consultation_times": 140,
       "comments": [
         {
@@ -129,7 +129,7 @@
       "price": 260,
       "tags": ["人际关系", "沟通技巧", "领导力"],
       "description": "孙八博士，人际关系专家，擅长沟通技巧和领导力发展。",
-      "image": "6.jpg",
+      "image": "/6.jpg",
       "consultation_times": 160,
       "comments": [
         {
@@ -154,7 +154,7 @@
       "price": 190,
       "tags": ["法律", "合同法", "知识产权"],
       "description": "周九教授，法学博士，专注于合同法和知识产权领域。",
-      "image": "7.jpg",
+      "image": "/7.jpg",
       "consultation_times": 130,
       "comments": [
         {
@@ -179,7 +179,7 @@
       "price": 320,
       "tags": ["创业", "商业计划", "风险管理"],
       "description": "吴十博士，创业导师，擅长商业计划和风险管理。",
-      "image": "8.jpg",
+      "image": "/8.jpg",
       "consultation_times": 170,
       "comments": [
         {

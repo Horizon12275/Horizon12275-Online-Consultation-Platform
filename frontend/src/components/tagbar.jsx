@@ -32,7 +32,7 @@ const TagBar = () => {
   const { selectedTags, handleChange } = React.useContext(TagContext);
 
   return (
-    <Col justify="left" style={{ marginLeft: "30px", marginTop: "30px" }}>
+    <Col justify="left" style={{ marginTop: "30px" }}>
       <Flex gap="10px 3px" wrap="wrap" align="center">
         {/* <Col justify={"right"} style={{ margin: "30px" }}>
           <Button onClick={handleClick} hoverable>

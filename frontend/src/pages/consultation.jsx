@@ -1,22 +1,25 @@
-import React from "react";
 import { useEffect, useState } from "react";
 import ChatRoom from "../components/chatroom";
 import { useParams } from "react-router-dom";
 import { getExpertById } from "../services/expertService"; // 导入专家相关的服务函数
-import { Flex,  Divider } from "antd";
+import { Flex, Divider } from "antd";
 import ConsultationHistoryList from "../components/consultation_history_list";
 import RateButton from "../components/rate";
 import { ChatLayout } from "../layouts";
-import CommentBox from "../components/comment_box";
-
+import CommentList from "../components/comment_list";
+import { getComments } from "../services/commentService";
 
 const ConsultPage = () => {
   let { id } = useParams();
   const [expert, setExpert] = useState({});
+  const [comments, setComments] = useState([]);
   useEffect(() => {
-    getExpertById(id).then((res) => {
-      setExpert(res);
-    });
+    Promise.all([getExpertById(id), getComments(id)]).then(
+      ([expert, comments]) => {
+        setExpert(expert);
+        setComments(comments);
+      }
+    );
   }, [id]);
 
   return (
@@ -35,7 +38,7 @@ const ConsultPage = () => {
           <ConsultationHistoryList />
           <Divider style={{ margin: "10px 0" }} />
           <RateButton />
-          <CommentBox />
+          <CommentList comments={comments} />
         </div>
         <ChatRoom expert={expert} />
       </Flex>

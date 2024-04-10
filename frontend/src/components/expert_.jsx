@@ -7,93 +7,81 @@ import {
 } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 
-const { Title, Paragraph } = Typography;
-
-const IconText = ({ icon, text }) => (
-  <Space>
-    {React.createElement(icon)}
-    {text}
-  </Space>
-);
+function ArticleCard({ article }) {
+  return (
+    <article className="flex flex-col justify-between grow self-stretch p-3 w-full bg-white max-md:max-w-full">
+      <div className="flex flex-col items-start pr-20 max-md:pr-5 max-md:max-w-full">
+        <div className="justify-center py-0.5 text-xs text-stone-300">
+          {article.publishedAt}
+        </div>
+        <h2 className="justify-center mt-2 text-2xl font-extrabold leading-8 text-black max-md:max-w-full">
+          {article.title}
+        </h2>
+      </div>
+      <div className="flex flex-col justify-center mt-3 text-base font-medium text-stone-500 max-md:max-w-full">
+        <p className="pb-7 max-md:max-w-full min-h-40">{article.content}</p>
+      </div>
+      <div className="flex gap-2.5 justify-between mt-3 w-full max-md:flex-wrap max-md:max-w-full">
+        <div className="flex flex-col justify-center">
+          <div className="flex gap-1">
+            <div className="flex justify-center items-center ">
+              <img
+                loading="lazy"
+                src={article.cover}
+                alt={article.author}
+                className="w-5 aspect-square fill-black rounded-full"
+              />
+            </div>
+            <div className="text-xs text-stone-500">{article.author}</div>
+          </div>
+        </div>
+        <div className="flex gap-2.5">
+          <div className="flex gap-1">
+            <div className="text-xs text-stone-300">{11}</div>
+            <div className="flex justify-center items-center self-start">
+              <img
+                loading="lazy"
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/d25c133c0c74b93b2b6995b77d44a792af9ff40a549d6487476e845af507fdbe?apiKey=9e661a5e0ad74c878ca984d592b3752c&"
+                alt="Like icon"
+                className="w-3 aspect-square"
+              />
+            </div>
+          </div>
+          <div className="flex gap-1">
+            <div className="text-xs text-stone-300">{11}</div>
+            <div className="flex justify-center items-center self-start">
+              <img
+                loading="lazy"
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/a7348c3c78521eb92cc8694c94f5a4e0541727f53e29d5d7189703cfcce73b92?apiKey=9e661a5e0ad74c878ca984d592b3752c&"
+                alt="Comment icon"
+                className="w-3 aspect-square"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+  );
+}
 
 export const ArticleList = ({ articles }) => {
   return (
-    <List
-      style={{ width: "80%", margin: "0 auto" }}
-      itemLayout="vertical"
-      dataSource={articles}
-      renderItem={(article) => (
-        <List.Item>
-          <List.Item
-            actions={[
-              <IconText
-                icon={ShoppingCartOutlined}
-                text="156"
-                key="list-vertical-star-o"
-              />,
-              <IconText
-                icon={LikeOutlined}
-                text="156"
-                key="list-vertical-like-o"
-              />,
-              <IconText
-                icon={MessageOutlined}
-                text="2"
-                key="list-vertical-message"
-              />,
-            ]}
-          >
-            <Link style={{ display: "flex", justifyContent: "space-between" }}>
-              <div
-                className="book-info"
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  marginRight: "10px",
-                }}
-              >
-                <Title
-                  level={4}
-                  style={{ margin: "0 0 3px 0px" }}
-                  ellipsis={{ rows: 2 }}
-                  title={article.title}
-                >
-                  {article.title}
-                </Title>
-                <Title
-                  type="secondary"
-                  style={{ margin: "0 0 3px 0px", fontSize: "14px" }}
-                >
-                  {article.author}
-                </Title>
-                <Paragraph
-                  ellipsis={{ rows: 6, expandable: true, symbol: "展开" }}
-                  style={{
-                    margin: "0 0 10px 0px",
-                    fontSize: "16px",
-                    textIndent: "1em",
-                  }}
-                >
-                  {article.content}
-                </Paragraph>
-              </div>
-              <img
-                src={"/" + article.cover}
-                alt="Book Cover"
-                style={{
-                  alignSelf: "center",
-                  width: "12%",
-                  minWidth: 120,
-                  aspectRatio: "0.75/1",
-                  borderRadius: "10px",
-                  objectFit: "cover",
-                  flex: "none",
-                }}
-              />
-            </Link>
-          </List.Item>
-        </List.Item>
-      )}
-    />
+    <Link style={{ display: "flex", justifyContent: "space-between" }}>
+      <div className="rounded shadow-sm w-[100%]">
+        {articles.map((article, index) => (
+          <div key={index} className="flex max-md:flex-col max-md:gap-0 mt-4">
+            <div className="flex flex-col flex-1 ">
+              <ArticleCard article={article} />
+            </div>
+            <img
+              loading="lazy"
+              src={article.cover}
+              alt={article.title}
+              className="w-60  flex flex-col object-cover"
+            />
+          </div>
+        ))}
+      </div>
+    </Link>
   );
 };

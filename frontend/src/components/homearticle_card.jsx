@@ -29,7 +29,7 @@ function AuthorInfo({ article }) {
 }
 const HomeArticleCard = ({ article }) => {
   return (
-    <main className="flex flex-col text-base leading-6 shadow-lg w-[382px] m-4">
+    <main className="flex flex-col text-base leading-6 shadow-lg w-[320px] m-4">
       <img src={article.cover} className=" h-40 object-cover" />
       <article className="flex flex-col justify-center w-full">
         <div className="flex flex-col pb-4 w-full bg-white rounded-none">

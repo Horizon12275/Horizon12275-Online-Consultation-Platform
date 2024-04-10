@@ -23,7 +23,7 @@ const CarouselCard = ({ expert }) => {
       />
       <div className="flex flex-col self-start px-5">
         <div>{expert.name}</div>
-        <div >
+        <div>
           Specialties
           <br />
         </div>

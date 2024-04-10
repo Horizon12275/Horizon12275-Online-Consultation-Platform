@@ -1,4 +1,4 @@
-import { Col, Layout } from "antd";
+import { Col, Flex, Layout, Row } from "antd";
 const { Header, Sider, Content } = Layout;
 import HomeArticle from "../components/homearticle";
 import { BasicLayout } from "../layouts";
@@ -6,7 +6,7 @@ import { TagProvider } from "../context/tagcontext";
 import TagBar from "../components/tagbar";
 import SearchBar from "../components/searchbox";
 import { SearchProvider } from "../context/searchcontext";
-import RecommendSidebar from "../components/carousel";
+import RecommendSidebar from "../components/recommend_sidebar";
 
 export default function HomePage() {
   return (
@@ -28,22 +28,22 @@ export default function HomePage() {
           >
             <SearchBar />
           </Header>
-          <Layout>
-            <Col>
-              <h2 className="text-6xl tracking-tight text-black leading-[63.84px] max-w-[163px]">
+          <Row className="mx-10">
+            <Col flex={"1"}>
+              <h2 className="text-6xl tracking-tight text-black mt-8">
                 Topics
               </h2>
               <TagBar />
               <HomeArticle />
             </Col>
-            <Sider width={300} style={{ background: "#f5f5f5" }}>
+            <Col width={300} style={{ background: "#f5f5f5" }}>
               {/* 右侧内容 */}
               <h2 className="text-2xl leading-7 text-black max-w-[152px]">
                 热门专家
               </h2>
               <RecommendSidebar />
-            </Sider>
-          </Layout>
+            </Col>
+          </Row>
         </BasicLayout>
       </TagProvider>
     </SearchProvider>

@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Layout } from "antd";
+import { Col, Layout, Row } from "antd";
 import { BasicLayout } from "../layouts";
 import { TagProvider } from "../context/tagcontext";
 import ExpertInfoCard from "../components/expert_infocard";
@@ -14,7 +14,6 @@ import { findExpertArticlesById } from "../services/articleService";
 import { SearchProvider } from "../context/searchcontext";
 // 导入专家相关的服务函数
 
-const { Sider, Content } = Layout;
 
 const ExpertProfilePage = () => {
   let { id } = useParams();
@@ -39,18 +38,22 @@ const ExpertProfilePage = () => {
     <SearchProvider>
       <TagProvider>
         <BasicLayout>
-          <Layout>
-            <Layout>
-              <Content style={{ minHeight: "100vh" }}>
-                <ExpertInfoCard expert={expert} />
-                <ArticleList articles={articles} />
-              </Content>
-            </Layout>
-            <Sider width={"25%"} style={{ background: "#f5f5f5" }}>
+          <Row>
+            <Col className=" min-h-[100%] mx-10 flex-1 ">
+              <ExpertInfoCard expert={expert} />
+              <h1 className="text-xl font-extrabold leading-7 text-black max-w-[109px]">
+                All Articles
+              </h1>
+              <ArticleList articles={articles} />
+            </Col>
+            <Col span={5}>
               <Rating />
+              <h2 className="text-xl font-extrabold leading-7 text-black max-w-[107px] mt-3">
+                Comments
+              </h2>
               <CommentList comments={comments} />
-            </Sider>
-          </Layout>
+            </Col>
+          </Row>
         </BasicLayout>
       </TagProvider>
     </SearchProvider>
