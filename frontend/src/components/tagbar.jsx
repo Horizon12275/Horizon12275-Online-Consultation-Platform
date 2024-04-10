@@ -27,45 +27,33 @@ const TagBar = () => {
       }
     });
   });
-  tagsData = expanded ? tagsData : tagsData.slice(0, n);
+  tagsData = true ? tagsData : tagsData.slice(0, n);
   // 获取全局的标签状态和修改标签状态的方法
   const { selectedTags, handleChange } = React.useContext(TagContext);
 
   return (
     <Col justify="left" style={{ marginLeft: "30px", marginTop: "30px" }}>
-      <Flex gap="4px 0" wrap="wrap" align="center">
-        <Col justify={"right"} style={{ margin: "30px" }}>
+      <Flex gap="10px 3px" wrap="wrap" align="center">
+        {/* <Col justify={"right"} style={{ margin: "30px" }}>
           <Button onClick={handleClick} hoverable>
             <Row align="middle">
               <h3>{expanded ? "收起" : "全部"}</h3>
             </Row>
           </Button>
-        </Col>
-        <div
-          style={{
-            overflow: "hidden",
-            transition: "height 0.5s",
-          }}
-        >
-          {tagsData.map((tag) => (
-            <Tag.CheckableTag
-              key={tag}
-              checked={selectedTags === tag}
-              onChange={() => {
-                handleChange(tag);
-                handleSearch("");
-              }}
-              style={{
-                fontSize: "20px",
-                margin: "5px",
-                padding: "15px",
-                borderRadius: "10px",
-              }}
-            >
-              {tag}
-            </Tag.CheckableTag>
-          ))}
-        </div>
+        </Col> */}
+        {tagsData.map((tag, index) => (
+          <Tag.CheckableTag
+            key={index}
+            checked={selectedTags === tag}
+            onChange={() => {
+              handleChange(tag);
+              handleSearch("");
+            }}
+            className="px-3 py-1 rounded border-zinc-500 text-center "
+          >
+            {tag}
+          </Tag.CheckableTag>
+        ))}
       </Flex>
     </Col>
   );

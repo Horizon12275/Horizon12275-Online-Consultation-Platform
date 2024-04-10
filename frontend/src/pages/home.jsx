@@ -1,14 +1,12 @@
-import React from "react";
-import { Layout } from "antd";
+import { Col, Layout } from "antd";
 const { Header, Sider, Content } = Layout;
 import HomeArticle from "../components/homearticle";
-import MyCarousel from "../components/carousel";
 import { BasicLayout } from "../layouts";
 import { TagProvider } from "../context/tagcontext";
 import TagBar from "../components/tagbar";
 import SearchBar from "../components/searchbox";
 import { SearchProvider } from "../context/searchcontext";
-import BuildYourOwnTeamLibrary from "./test";
+import RecommendSidebar from "../components/carousel";
 
 export default function HomePage() {
   return (
@@ -21,7 +19,7 @@ export default function HomePage() {
               width: "80%",
               height: "50px",
               position: "sticky",
-              top: 20,
+              top: 10,
               right: 0,
               zIndex: 999,
               padding: "0 20px",
@@ -31,20 +29,21 @@ export default function HomePage() {
             <SearchBar />
           </Header>
           <Layout>
-            <Layout>
-              <Content style={{ minHeight: "100vh" }}>
-                {/* 中间内容 */}
-                <h1 style={{ fontSize: "40px", margin: "30px" }}>热门话题</h1>
-                <TagBar />
-                <HomeArticle />
-              </Content>
-            </Layout>
+            <Col>
+              <h2 className="text-6xl tracking-tight text-black leading-[63.84px] max-w-[163px]">
+                Topics
+              </h2>
+              <TagBar />
+              <HomeArticle />
+            </Col>
             <Sider width={300} style={{ background: "#f5f5f5" }}>
               {/* 右侧内容 */}
-              <MyCarousel />
+              <h2 className="text-2xl leading-7 text-black max-w-[152px]">
+                热门专家
+              </h2>
+              <RecommendSidebar />
             </Sider>
           </Layout>
-          <BuildYourOwnTeamLibrary />
         </BasicLayout>
       </TagProvider>
     </SearchProvider>
