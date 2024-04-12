@@ -13,6 +13,7 @@ import ExpertChoosePage from "./pages/expertchoose";
 import BuildYourOwnTeamLibrary from "./pages/test";
 import PlazaPage from "./pages/plaza";
 import ArticlePage from "./pages/article";
+import RankingPage from "./pages/ranking";
 
 const router = createBrowserRouter([
   {
@@ -58,6 +59,11 @@ const router = createBrowserRouter([
   {
     path: "/user",
     element: <UserPage />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/ranking",
+    element: <RankingPage />,
     errorElement: <ErrorPage />,
   },
   {
