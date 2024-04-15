@@ -13,11 +13,19 @@
     "@ant-design/icons": "^5.3.1",
     "@ant-design/plots": "^2.1.14",
     "@ant-design/pro-components": "^2.6.49",
+    "@chakra-ui/react": "^2.8.2",
     "@chatui/core": "^2.4.2",
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
     "antd": "^5.15.1",
+    "framer-motion": "^11.0.28",
     "react": "^18.2.0",
+    "react-copy-to-clipboard": "^5.1.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.22.2"
+    "react-icons": "^5.1.0",
+    "react-router-dom": "^6.22.2",
+    "simple-peer": "^9.11.1",
+    "socket.io-client": "^4.7.5"
   },
   "devDependencies": {
     "@types/react": "^18.2.56",
@@ -28,6 +36,7 @@
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
+    "less": "^4.2.0",
     "vite": "^5.1.4"
   }
 }

@@ -7,13 +7,16 @@ import {
 import HomePage from './pages/home'
 import ErrorPage from './pages/errorpage'
 import ExpertProfilePage from './pages/expertprofile'
-import  ConsultPage  from './pages/consultation';
+import ConsultPage from './pages/consultation';
 import HistoryPage from './pages/history'
 import SquarePage from './pages/square'
 import BecomeExpertPage from './pages/become-expert'
 import UserPage from './pages/user'
 import './css/global.css'
 import ExpertChoosePage from './pages/expertchoose';
+import { ChakraProvider } from '@chakra-ui/react';
+import VideoChatPage from './pages/videoChat';
+import { ContextProvider } from './context/videoContext';
 
 const router = createBrowserRouter([
   {
@@ -57,6 +60,11 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
   {
+    path: "/video-chat",
+    element: <VideoChatPage />,
+    errorElement: <ErrorPage />,
+  },
+  {
     path: "*",
     element: <ErrorPage />,
   },
@@ -64,6 +72,10 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>,
+    <ContextProvider>
+      <ChakraProvider>
+        <RouterProvider router={router} />
+      </ChakraProvider>
+    </ContextProvider>
+  </React.StrictMode>
 )
