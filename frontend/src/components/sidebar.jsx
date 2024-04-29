@@ -79,13 +79,13 @@ const Sidebar = () => {
   return (
     <Sider
       theme="light"
-      width={250}
+      width={220}
       style={{
         height: "100vh",
         position: "sticky",
         top: 0,
         bottom: 0,
-        left: 0,
+
         zIndex: 1000,
       }}
     >
