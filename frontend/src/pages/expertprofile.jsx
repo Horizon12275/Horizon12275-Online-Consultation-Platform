@@ -13,6 +13,8 @@ import { ArticleList } from "../components/expert_articles";
 import { findExpertArticlesById } from "../services/articleService";
 import { SearchProvider } from "../context/searchcontext";
 // 导入专家相关的服务函数
+import ExpertRecommend from "../components/expert-recommend";
+import ExpertShowList from "../components/expert_showlist";
 
 const ExpertProfilePage = () => {
   let { id } = useParams();
@@ -20,6 +22,7 @@ const ExpertProfilePage = () => {
   const [expert, setExpert] = useState({});
   const [comments, setComments] = useState([]);
   const [articles, setArticles] = useState([]);
+  const [expertTag, setExpertTag] = useState(""); // 添加专家标签状态
   // 一次性获取专家的所有信息
   useEffect(() => {
     Promise.all([
@@ -30,6 +33,7 @@ const ExpertProfilePage = () => {
       setExpert(expert);
       setComments(comments);
       setArticles(articles);
+      setExpertTag(expert.tags); // 设置专家标签
     });
   }, [id]);
 
@@ -55,6 +59,8 @@ const ExpertProfilePage = () => {
               <CommentList comments={comments} />
             </Col>
           </Row>
+          <ExpertRecommend tag={expertTag} />
+
         </BasicLayout>
       </TagProvider>
     </SearchProvider>
