@@ -14,6 +14,7 @@ import BuildYourOwnTeamLibrary from "./pages/test";
 import PlazaPage from "./pages/plaza";
 import ArticlePage from "./pages/article";
 import RankingPage from "./pages/ranking";
+import WStest from "./pages/test";
 
 const router = createBrowserRouter([
   {
@@ -64,6 +65,11 @@ const router = createBrowserRouter([
   {
     path: "/ranking",
     element: <RankingPage />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/test",
+    element: <WStest />,
     errorElement: <ErrorPage />,
   },
   {

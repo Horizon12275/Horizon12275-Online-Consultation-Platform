@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Web Service</title>
+  </head>
+  <body>
+    <p id="talk"></p>
+    <input type="text" id="message" />
+    <button onclick="ws.send(document.getElementById('message').value)">
+      Send
+    </button>
+  </body>
+  <script>
+    console.log("Hello, World!");
+    let ws = new WebSocket("ws://localhost:8080/ws");
+    ws.onopen = function () {
+      ws.send("Hello, Server");
+      console.log("Connected to the server");
+    };
+    ws.onmessage = function (event) {
+      document.getElementById("talk").textContent = event.data;
+    };
+    ws.onclose = function () {
+      ws.send("Goodbye, Server");
+      console.log("Connection closed");
+    };
+  </script>
+</html>
