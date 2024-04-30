@@ -1,12 +1,15 @@
 import React from 'react'
 import { BasicLayout } from '../layouts'
-
+import Commentcard from "../components/commentcard.jsx";
+import FillForm from "../components/fillinform.jsx";
+import Profile from "../components/profile.jsx";
 export default function UserPage() {
     return (
         <BasicLayout>
-            <div>
-                <h1>User</h1>
-            </div>
+
+           <Commentcard/>
+            <FillForm/>
+           <Profile/>
         </BasicLayout>
     )
 }

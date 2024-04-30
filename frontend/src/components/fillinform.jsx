@@ -176,13 +176,13 @@ function FillForm() {
           border: 2px solid rgba(229, 229, 229, 1);
           border-radius: 7px;
           height: 52px;
-          margin-top: 20px;
+          margin-top: 15px;
           padding: 0 10px;
           font: 16px Cardo, sans-serif;
         }
 
         .form-input {
-          margin-top: 30px;
+          margin-top: 20px;
         }
 
         @media (max-width: 991px) {
@@ -195,13 +195,13 @@ function FillForm() {
         .textarea-container {
           display: flex;
           flex-direction: column;
-          margin-top: 40px;
+          margin-top: 35px;
         }
 
         @media (max-width: 991px) {
           .textarea-container {
             max-width: 100%;
-            margin-top: 40px;
+            margin-top: 35px;
           }
         }
 
