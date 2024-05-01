@@ -13,10 +13,28 @@ import ExpertChoosePage from "./pages/expertchoose";
 import BuildYourOwnTeamLibrary from "./pages/test";
 import PlazaPage from "./pages/plaza";
 import ArticlePage from "./pages/article";
+import LandingPage from "./pages/landing.jsx";
+import LoginPage from "./pages/login_page.jsx";
+import RegisterPage from "./pages/register_page.jsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
+    element: <LandingPage />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/register",
+    element: <RegisterPage />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/login",
+    element: <LoginPage />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/home",
     element: <HomePage />,
     errorElement: <ErrorPage />,
   },
