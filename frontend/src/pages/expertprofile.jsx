@@ -49,6 +49,7 @@ const ExpertProfilePage = () => {
                   All Articles
                 </h1>
                 <ArticleList articles={articles} />
+                <ExpertRecommend tag={expertTag} />
               </Flex>
             </Col>
             <Col className="w-[350px]">
@@ -59,7 +60,6 @@ const ExpertProfilePage = () => {
               <CommentList comments={comments} />
             </Col>
           </Row>
-          <ExpertRecommend tag={expertTag} />
 
         </BasicLayout>
       </TagProvider>

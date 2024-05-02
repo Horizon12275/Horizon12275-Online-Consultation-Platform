@@ -13,7 +13,6 @@ import ShowArticle from "../components/home_article";
 import ShowConsultation from "../components/home_experts";
 
 
-
 export default function HomePage() {
   return (
     <SearchProvider>
