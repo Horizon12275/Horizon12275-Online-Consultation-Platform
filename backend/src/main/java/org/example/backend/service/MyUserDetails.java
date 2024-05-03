@@ -52,10 +52,21 @@ public class MyUserDetails implements UserDetailsService {
             return Result.error(404, "用户不存在！");
         }
     }
-    public User getUserByUsername(String username) {
-        return userRepository.findUserByUsername(username);
+    public Result<User> getUserByUsername(String username) {
+        User user = userRepository.findUserByUsername(username);
+        if (user == null) {
+            return Result.error(404, "用户不存在！");
+        }
+        return Result.success(user);
     }
-    public int getUid() {//从数据库里查询id
+    public Result<User> getUserById(int id) {
+        User user = userRepository.findById(id).orElse(null);
+        if (user == null) {
+            return Result.error(404, "用户不存在！");
+        }
+        return Result.success(user);
+    }
+    public int getUid() {//从数据库里查询当前登录用户id
         String username = ((UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
         return userRepository.findUserByUsername(username).getId();
 

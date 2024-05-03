@@ -22,11 +22,11 @@ public class UserController {
     @GetMapping("/get")
     public Result<org.example.backend.entity.User> get() {
         User user =(User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        return Result.success(service.getUserByUsername(user.getUsername()));
+        return service.getUserByUsername(user.getUsername());
     }
-    @GetMapping("/get/{username}")
-    public Result<org.example.backend.entity.User> get(@PathVariable String username) {
-        return Result.success(service.getUserByUsername(username));
+    @GetMapping("/get/{uid}")
+    public Result<org.example.backend.entity.User> getUserById(@PathVariable int uid) {
+        return service.getUserById(uid);
     }
     @PutMapping("/update")
     public Result<org.example.backend.entity.User> update(@RequestBody UserRequest request) {

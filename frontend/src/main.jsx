@@ -10,7 +10,6 @@ import BecomeExpertPage from "./pages/become-expert";
 import UserPage from "./pages/user";
 import "./css/global.css";
 import ExpertChoosePage from "./pages/expertchoose";
-import BuildYourOwnTeamLibrary from "./pages/test";
 import PlazaPage from "./pages/plaza";
 import ArticlePage from "./pages/article";
 import RankingPage from "./pages/ranking";
@@ -68,7 +67,7 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
   {
-    path: "/test",
+    path: "/consultation/:receiverId",
     element: <WStest />,
     errorElement: <ErrorPage />,
   },
@@ -79,7 +78,7 @@ const router = createBrowserRouter([
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
+  
     <RouterProvider router={router} />
-  </React.StrictMode>
+  
 );
