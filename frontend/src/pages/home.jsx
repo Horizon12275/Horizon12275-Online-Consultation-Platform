@@ -7,6 +7,11 @@ import TagBar from "../components/tagbar";
 import SearchBar from "../components/searchbox";
 import { SearchProvider } from "../context/searchcontext";
 import RecommendSidebar from "../components/recommend_sidebar";
+import ShowSpeciality from "../components/speciality_card";
+import HomeComment from "../components/home_comment";
+import ShowArticle from "../components/home_article";
+import ShowConsultation from "../components/home_experts";
+
 
 export default function HomePage() {
   return (
@@ -28,24 +33,14 @@ export default function HomePage() {
           >
             <SearchBar />
           </Header>
-          <Row>
-            <Col flex={"1"}>
-              <Flex vertical className="w-[1000px] m-auto" justify="center">
-                <h2 className="text-6xl tracking-tight text-black mt-10">
-                  Topics
-                </h2>
-                <TagBar />
-                <HomeArticle />
-              </Flex>
-            </Col>
-            <Col width={300} style={{ background: "#f5f5f5" }}>
-              {/* 右侧内容 */}
-              <h2 className="text-2xl leading-7 text-black max-w-[152px]">
-                热门专家
-              </h2>
-              <RecommendSidebar />
-            </Col>
-          </Row>
+
+        <div className="flex flex-col gap-5 px-5 max-md:flex-wrap">
+          <ShowSpeciality/>
+          <ShowConsultation/>
+          <ShowArticle/>
+          <HomeComment/>
+        </div>
+
         </BasicLayout>
       </TagProvider>
     </SearchProvider>

@@ -8,6 +8,7 @@ import ConsultPage from "./pages/consultation";
 import HistoryPage from "./pages/history";
 import BecomeExpertPage from "./pages/become-expert";
 import UserPage from "./pages/user";
+import ArticleBrowsePage from "./pages/article-browse";
 import "./css/global.css";
 import ExpertChoosePage from "./pages/expertchoose";
 import BuildYourOwnTeamLibrary from "./pages/test";
@@ -51,6 +52,11 @@ const router = createBrowserRouter([
   {
     path: "/expert/:id/consultation",
     element: <ConsultPage />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/article",
+    element: <ArticleBrowsePage />,
     errorElement: <ErrorPage />,
   },
   {
