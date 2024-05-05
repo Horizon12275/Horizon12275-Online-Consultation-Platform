@@ -9,6 +9,7 @@ import HistoryPage from "./pages/history";
 import BecomeExpertPage from "./pages/become-expert";
 import UserPage from "./pages/user";
 import "./css/global.css";
+import "./index.css";
 import ExpertChoosePage from "./pages/expertchoose";
 import PlazaPage from "./pages/plaza";
 import ArticlePage from "./pages/article";
