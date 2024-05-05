@@ -20,7 +20,7 @@ import RegisterPage from "./pages/register_page.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <LandingPage />,
+    element: <HomePage />,
     errorElement: <ErrorPage />,
   },
   {
