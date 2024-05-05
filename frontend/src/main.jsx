@@ -11,9 +11,10 @@ import UserPage from "./pages/user";
 import ArticleBrowsePage from "./pages/article-browse";
 import "./css/global.css";
 import ExpertChoosePage from "./pages/expertchoose";
-import BuildYourOwnTeamLibrary from "./pages/test";
 import PlazaPage from "./pages/plaza";
 import ArticlePage from "./pages/article";
+import RankingPage from "./pages/ranking";
+import WStest from "./pages/test";
 import LandingPage from "./pages/landing.jsx";
 import LoginPage from "./pages/login_page.jsx";
 import RegisterPage from "./pages/register_page.jsx";
@@ -85,13 +86,23 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
   {
+    path: "/ranking",
+    element: <RankingPage />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/consultation/:receiverId",
+    element: <WStest />,
+    errorElement: <ErrorPage />,
+  },
+  {
     path: "*",
     element: <ErrorPage />,
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
+  
     <RouterProvider router={router} />
-  </React.StrictMode>
+  
 );

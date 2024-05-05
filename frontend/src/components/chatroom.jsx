@@ -5,6 +5,7 @@ import "@chatui/core/dist/index.css";
 import data from "../json/messages.json";
 
 const ChatRoom = ({ expert }) => {
+  
   const initialMessages = data.messages;
 
   const defaultQuickReplies = [
