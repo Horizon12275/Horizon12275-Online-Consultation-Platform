@@ -35,7 +35,6 @@ const UserOrLogin = () => {
           Sign Up
         </Button>
       </Link>
-      <GoogleSignInButton />
     </div>
   );
 };

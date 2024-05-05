@@ -7,6 +7,7 @@ import {
   SolutionOutlined,
   UserOutlined,
   LoginOutlined,
+  BookOutlined
 } from "@ant-design/icons";
 import { Flex, Layout, Menu } from "antd";
 import { Link } from "react-router-dom";
@@ -19,37 +20,37 @@ const Sidebar = () => {
 
   const menuItems = [
     {
-      label: "首页",
+      label: "Home",
       value: "/",
       icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/7578b42594aaecbb15294edfbb20e8d5b8238fa9789278c9437c13b583981681?apiKey=9e661a5e0ad74c878ca984d592b3752c&",
     },
     {
-      label: "咨询历史",
+      label: "Experts",
       value: "/expert",
       icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/fe1f7d779e1cb4aa26a49439af034934f03aa9024f8a3a83885b322d66ac46a2?apiKey=9e661a5e0ad74c878ca984d592b3752c&",
     },
     {
-      label: "专家咨询",
+      label: "History",
       value: "/expert/1/consultation",
       icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/07d261bcd92e5b651bbf3ee474dd7d3fd577dd2a898811375f3cf1b699518c71?apiKey=9e661a5e0ad74c878ca984d592b3752c&",
     },
     {
-      label: "广场",
+      label: "Articles",
+      value: "/article",
+      icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/07d261bcd92e5b651bbf3ee474dd7d3fd577dd2a898811375f3cf1b699518c71?apiKey=9e661a5e0ad74c878ca984d592b3752c&",
+    },
+    {
+      label: "Plaza",
       value: "/plaza",
       icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/2b7c55e1879373d855dc8c7b241dfcb63ac54bddbf3dee01f1c40e58e55618ba?apiKey=9e661a5e0ad74c878ca984d592b3752c&",
     },
     {
-      label: "Ranking",
-      value: "/ranking",
-      icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/2b356933ff52616cf2e605de5fb15a396a201736ac278c2ea2ee081e20823df6?apiKey=9e661a5e0ad74c878ca984d592b3752c&",
-    },
-    {
-      label: "成为专家",
+      label: "ToBeExpert",
       value: "/become-expert",
       icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/84841d85ef1193d6b8bee18151161336ed1a0282dff45b9e832ec2a3ccf9e6f9?apiKey=9e661a5e0ad74c878ca984d592b3752c&",
     },
     {
-      label: "用户主页",
+      label: "Profile",
       value: "/user",
       icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/5889a1cc004cbe2696521a1d1a3fd9466e393044d2b77f1f0be3b2966c617977?apiKey=9e661a5e0ad74c878ca984d592b3752c&",
     },
