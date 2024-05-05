@@ -2,7 +2,7 @@ import Sidebar from "./components/sidebar";
 import Footer from "./components/footer";
 import { Layout } from "antd";
 import React from "react";
-const { Content } = Layout;
+const { Sider, Content } = Layout;
 
 export function BasicLayout({ children }) {
   return (
