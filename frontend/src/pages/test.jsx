@@ -1,35 +1,136 @@
-import * as React from "react";
-import '../index.css';
+import React, { useEffect, useState } from "react";
+import { login } from "../services/loginService";
+import { Button, Form, Input } from "antd";
+import { getHistory } from "../services/messageService";
+import { getOtherUserById, getUser } from "../services/userService";
+import { useParams } from "react-router-dom";
 
-function BuildYourOwnTeamLibrary() {
-    return (
-        <section className="flex flex-col justify-center max-w-[685px]">
-            <div className="pr-8 w-full bg-neutral-50 max-md:pr-5 max-md:max-w-full">
-                <div className="flex gap-5 max-md:flex-col max-md:gap-0">
-                    <div className="flex flex-col w-[55%] max-md:ml-0 max-md:w-full">
-                        <img
-                            loading="lazy"
-                            src="https://cdn.builder.io/api/v1/image/assets/TEMP/0c2c31f695955a77caa37322e2ed82b7e1a2b1b013650c5302b63627b128a5a5?apiKey=f52c53764647463db8da4a641cad04a5&"
-                            alt="Team library illustration"
-                            className="grow w-full aspect-[0.7] max-md:mt-8"
-                        />
-                    </div>
-                    <div className="flex flex-col ml-5 w-[45%] max-md:ml-0 max-md:w-full">
-                        <div className="flex flex-col self-stretch my-auto max-md:mt-10">
-                            <h2 className="text-4xl font-bold tracking-tighter leading-10 text-black">
-                                Build your own team library
-                            </h2>
-                            <p className="mt-6 text-sm tracking-normal leading-6 text-black text-opacity-80">
-                                Don't reinvent the wheel with every design. Team libraries let
-                                you share styles and components across files, with everyone on
-                                your team.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    );
-}
+const WebSocketChat = () => {
+  const { receiverId } = useParams();
+  const [sender, setSender] = useState({}); //以后应该用useContext
+  const [receiver, setReceiver] = useState({});
+  const [messages, setMessages] = useState([]);
+  const [inputMessage, setInputMessage] = useState("");
+  const [ws, setWs] = useState(null);
+  const [isConnected, setIsConnected] = useState(false);
+  const initWebSocket = (sender, receiver) => {
+    const socket = new WebSocket(`ws://localhost:8080/ws/${receiverId}`);
 
-export default BuildYourOwnTeamLibrary;
+    socket.onopen = () => {
+      setIsConnected(true);
+      console.log("Connected to WebSocket server");
+    };
+
+    socket.onmessage = (event) => {
+      const receivedMessage = JSON.parse(event.data);
+      if (receivedMessage.receiver.id == sender.id&&receivedMessage.sender.id==receiver.id)//如果是发给自己的消息
+        setMessages((prevMessages) => [...prevMessages, receivedMessage]); // 添加到现有消息
+    };
+
+    socket.onerror = (err) => {
+      console.error("WebSocket error:", err);
+    };
+
+    socket.onclose = () => {
+      setIsConnected(false);
+      console.log("Disconnected from WebSocket server");
+    };
+
+    setWs(socket);
+
+    return () => {
+      socket.close(); // 组件卸载时关闭连接
+    };
+  };
+
+  useEffect(() => {
+    Promise.all([
+      getUser(),
+      getHistory(receiverId),
+      getOtherUserById(receiverId),
+    ])
+      .then((values) => {
+        setSender(values[0]);
+        setMessages(values[1]);
+        setReceiver(values[2]);
+        initWebSocket(values[0], values[2]);
+      })
+      .catch((err) => {
+        alert(err);
+      });
+  }, []); // 空数组确保仅首次加载时运行
+
+  const sendMessage = () => {
+    if (isConnected && inputMessage.trim() !== "") {
+      ws.send(inputMessage);
+      if (!(sender.id === receiver.id))
+        //如果不是给自己发消息
+        setMessages((prevMessages) => [
+          ...prevMessages,
+          {
+            content: inputMessage,
+            sendTime: Date.now(),
+            sender: { username: sender.username },
+            receiver: { username: receiver.username },
+          },
+        ]);
+      setInputMessage(""); // 清空输入
+    } else {
+      console.warn("Cannot send message: WebSocket not connected");
+    }
+  };
+
+  const handleInputChange = (event) => {
+    setInputMessage(event.target.value);
+  };
+
+  return (
+    <div>
+      <Form initialValues={{ remember: true }} onFinish={login}>
+        <Form.Item
+          id="username"
+          name="username"
+          rules={[{ required: true, message: "请输入您的用户名!" }]}
+          style={{ width: "100%", margin: 0 }}
+        >
+          <Input size="large" placeholder="用户名" allowClear />
+        </Form.Item>
+        <Form.Item
+          id="password"
+          name="password"
+          rules={[{ required: true, message: "请输入您的密码!" }]}
+          style={{ width: "100%", margin: 0 }}
+        >
+          <Input.Password size="large" type="password" placeholder="密码" />
+        </Form.Item>
+
+        <Button type="primary" htmlType="submit" style={{ width: "100%" }}>
+          登录
+        </Button>
+      </Form>
+      <h1>Chat Room</h1>
+      <div>
+        {messages.map((message, index) => (
+          <div key={index}>{`发送时间: ${new Date(
+            message.sendTime
+          ).toLocaleString()} 内容: ${message.content} 发送者：${
+            message.sender.username
+          } 接收者：${message.receiver.username}\n`}</div>
+        ))}
+      </div>
+      <div>
+        <input
+          type="text"
+          value={inputMessage}
+          onChange={handleInputChange}
+          placeholder="Type your message here"
+        />
+        <button onClick={sendMessage} disabled={!isConnected}>
+          Send
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default WebSocketChat;

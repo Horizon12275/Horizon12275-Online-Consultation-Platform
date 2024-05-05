@@ -5,6 +5,9 @@ import { getArticleById } from "../services/articleService";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import RecommendedArticles from "../components/whattoreadnext";
+import "github-markdown-css/github-markdown.css";
+import ArticleEditor from "../components/article_editor";
+import ArticleDisplay from "../components/article_display";
 
 const ArticlePage = () => {
   const { id } = useParams();
@@ -18,12 +21,9 @@ const ArticlePage = () => {
     <BasicLayout>
       <Flex vertical align="center">
         <ArticleHeader article={article} />
-        {Array(20)
-          .fill(0)
-          .map((_, index) => (
-            <div key={index}>{article.content}</div>
-          ))}
+        <ArticleDisplay article={article} />
         <Divider />
+        <ArticleEditor />
         <RecommendedArticles />
       </Flex>
     </BasicLayout>

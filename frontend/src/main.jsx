@@ -8,19 +8,22 @@ import ConsultPage from "./pages/consultation";
 import HistoryPage from "./pages/history";
 import BecomeExpertPage from "./pages/become-expert";
 import UserPage from "./pages/user";
+import ArticleBrowsePage from "./pages/article-browse";
 import "./css/global.css";
+import "./index.css";
 import ExpertChoosePage from "./pages/expertchoose";
-import BuildYourOwnTeamLibrary from "./pages/test";
 import PlazaPage from "./pages/plaza";
 import ArticlePage from "./pages/article";
 import LandingPage from "./pages/landing.jsx";
 import LoginPage from "./pages/login_page.jsx";
 import RegisterPage from "./pages/register_page.jsx";
+import RankingPage from "./pages/ranking";
+import WStest from "./pages/test";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <LandingPage />,
+    element: <HomePage />,
     errorElement: <ErrorPage />,
   },
   {
@@ -54,6 +57,11 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
   {
+    path: "/article",
+    element: <ArticleBrowsePage />,
+    errorElement: <ErrorPage />,
+  },
+  {
     path: "/article/:id",
     element: <ArticlePage />,
     errorElement: <ErrorPage />,
@@ -79,13 +87,23 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
   {
+    path: "/ranking",
+    element: <RankingPage />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/consultation/:receiverId",
+    element: <WStest />,
+    errorElement: <ErrorPage />,
+  },
+  {
     path: "*",
     element: <ErrorPage />,
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
+  
     <RouterProvider router={router} />
-  </React.StrictMode>
+  
 );

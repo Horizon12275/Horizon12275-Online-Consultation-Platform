@@ -12,11 +12,11 @@ function Button({ children, className }) {
 
 function GoogleSignInButton() {
   return (
-    <button className="flex gap-3 justify-center px-4 py-2.5 mt-6 text-base leading-6 bg-white rounded-lg border border-blue-400 border-solid shadow-sm text-slate-700">
+    <button className="flex  justify-center px-4 py-2.5 mt-6 text-base leading-6 bg-white rounded-lg border border-blue-400 border-solid shadow-sm text-slate-700">
       <img
         src="https://cdn.builder.io/api/v1/image/assets/TEMP/164d58cdc72bb1777d56826375ab206ad40eabe72ff8d01872511dc35952e729?apiKey=9e661a5e0ad74c878ca984d592b3752c&"
         alt="Google logo"
-        className="shrink-0 w-6 aspect-square"
+        className="shrink-0 w-6 aspect-square mr-1"
       />
       <span>Sign in with Google</span>
     </button>
@@ -24,7 +24,7 @@ function GoogleSignInButton() {
 }
 const UserOrLogin = () => {
   return (
-    <div className="flex flex-col text-sm font-semibold leading-5 w-[220px] self-center my-3">
+    <div className="flex flex-col text-sm font-semibold leading-5 w-[200px] self-center my-3">
       <Link to={"/login"}>
         <Button className="text-white whitespace-nowrap bg-blue-400 border-sky-500">
           Login
@@ -35,7 +35,6 @@ const UserOrLogin = () => {
           Sign Up
         </Button>
       </Link>
-      <GoogleSignInButton />
     </div>
   );
 };
