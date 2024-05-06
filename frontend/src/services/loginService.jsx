@@ -6,7 +6,7 @@ export async function login({ username, password }) {
   try {
     result = await postUrlencoded(url, { username, password });
     alert("登录成功！");
-    // location.reload();
+     location.href = "/";
   } catch (e) {
     console.log(e);
     alert(e);

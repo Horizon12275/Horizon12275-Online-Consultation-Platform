@@ -6,7 +6,7 @@ const { Content } = Layout;
 
 export function BasicLayout({ children }) {
   return (
-    <Layout hasSider style={{ minWidth: "1600px" }}>
+    <Layout hasSider style={{ minWidth: "1600px",minHeight: "800px"  }}>
       <Sidebar />
       <Layout className="site-layout">
         <Content style={{}}>{children}</Content>

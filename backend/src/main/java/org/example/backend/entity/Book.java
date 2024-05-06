@@ -33,8 +33,6 @@ public class Book {
     private int ISBN;
     @OneToMany(mappedBy = "book",cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.LAZY)
     private List<CartItem> cartItems;
-    @JsonIgnoreProperties("replies")
-    @OneToMany(mappedBy = "book",cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.LAZY)
-    private List<Comment> comments;
+
 
 }

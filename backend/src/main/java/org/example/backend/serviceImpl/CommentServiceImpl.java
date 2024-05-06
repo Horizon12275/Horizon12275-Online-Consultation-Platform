@@ -22,8 +22,7 @@ public class CommentServiceImpl implements CommentService {
     }
     public Result<Comment> addComment(int bid,int uid, String content) {
         Comment comment = new Comment();
-        comment.setBook(new Book());
-        comment.getBook().setId(bid);
+
         User user = userRepository.findById(uid).orElse(null);
         comment.setUser(user);
         comment.setContent(content);

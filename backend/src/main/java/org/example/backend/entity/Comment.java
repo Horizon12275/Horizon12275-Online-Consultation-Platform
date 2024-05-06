@@ -27,8 +27,8 @@ public class Comment {
     @JsonIgnoreProperties({"comments","aboutMe"})
     private User user;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "bid")
-    private Book book;
+    @JoinColumn(name = "aid")
+    private Article article;
     @OneToMany(mappedBy = "comment",cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.LAZY)
     private List<Reply> replies;
 }

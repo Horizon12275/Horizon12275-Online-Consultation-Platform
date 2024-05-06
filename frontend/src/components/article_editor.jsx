@@ -1,10 +1,12 @@
 import { Button, Form } from "antd";
 import MdEditor from "for-editor";
 import { useState } from "react";
+import { post } from "../services/requestService";
 const ArticleEditor = () => {
   const [value, setValue] = useState("");
   const handleClick = () => {
-    console.log(value);
+    
+    setValue("");
   };
   return (
     <div>
