@@ -1,16 +1,19 @@
-import React from "react";
-import { Layout } from "antd";
-const { Header, Footer, Sider, Content } = Layout;
-import Histogram from "../components/histogram";
+import { Col, Flex, Layout, Row } from "antd";
+const { Header, Sider, Content } = Layout;
 import HomeArticle from "../components/homearticle";
-import MyCarousel from "../components/carousel";
 import { BasicLayout } from "../layouts";
 import { TagProvider } from "../context/tagcontext";
 import TagBar from "../components/tagbar";
 import SearchBar from "../components/searchbox";
 import { SearchProvider } from "../context/searchcontext";
+import RecommendSidebar from "../components/recommend_sidebar";
+import ShowSpeciality from "../components/speciality_card";
+import HomeComment from "../components/home_comment";
+import ShowArticle from "../components/home_article";
+import ShowConsultation from "../components/home_experts";
 
-export default function Homepage() {
+
+export default function HomePage() {
   return (
     <SearchProvider>
       <TagProvider>
@@ -21,7 +24,7 @@ export default function Homepage() {
               width: "80%",
               height: "50px",
               position: "sticky",
-              top: 20,
+              top: 10,
               right: 0,
               zIndex: 999,
               padding: "0 20px",
@@ -30,20 +33,14 @@ export default function Homepage() {
           >
             <SearchBar />
           </Header>
-          <Layout>
-            <Layout>
-              <Content style={{ minHeight: "100vh" }}>
-                {/* 中间内容 */}
-                <h1 style={{ fontSize: "40px", margin: "30px" }}>热门话题</h1>
-                <TagBar />
-                <HomeArticle />
-              </Content>
-            </Layout>
-            <Sider width={300} style={{ background: "#f5f5f5" }}>
-              {/* 右侧内容 */}
-              <MyCarousel />
-            </Sider>
-          </Layout>
+
+        <div className="flex flex-col gap-5 px-5 max-md:flex-wrap">
+          <ShowSpeciality/>
+          <ShowConsultation/>
+          <ShowArticle/>
+          <HomeComment/>
+        </div>
+
         </BasicLayout>
       </TagProvider>
     </SearchProvider>

@@ -1,68 +1,66 @@
-import React from "react";
-import { Card, Badge } from "antd";
 import Link from "antd/es/typography/Link";
-import { ProCard } from "@ant-design/pro-components";
-import { Avatar, Typography, Tag, Row, Col, Flex } from "antd";
-import { UserOutlined } from "@ant-design/icons";
+
 import { findExpertArticleTags } from "../services/articleService";
 
-const { Meta } = Card;
-const { Title, Paragraph } = Typography;
+function ProfileImage({ src, alt }) {
+  return (
+    <div className="flex flex-col ">
+      <img
+        loading="lazy"
+        src={src}
+        alt={alt}
+        className="m-auto mr-3 shrink-0 object-cover w-[140px] h-[140px] rounded-full"
+      />
+    </div>
+  );
+}
+
+function ProfileInfo({ name, price, specialty, rating }) {
+  return (
+    <div className="flex flex-col self-stretch mx-4 my-auto">
+      <div className=" text-xl font-bold text-black">{name}</div>
+      <div className=" text-base text-black">
+        Price: <span className="text-rose-600">{price}</span>
+        <br />
+        Specialty: <span className="text-rose-600">{specialty}</span>
+        <br />
+        Rate: <span className="text-rose-600">{rating}</span>
+      </div>
+    </div>
+  );
+}
+
+function ProfileIntroduction({ introduction }) {
+  return (
+    <div className="text-sm text-black">
+      <h3 className="font-semibold" style={{ color: "#4299e1" }}>
+        Introduction:
+      </h3>
+      {introduction}
+    </div>
+  );
+}
 
 export default function ExpertShowCard({ item }) {
+  console.log("item:", item);
   const allTags = findExpertArticleTags(item);
-  const tags = allTags.map((tag) => (
-    <Tag key={tag} color="blue">
-      {tag}
-    </Tag>
-  ));
   return (
     <div>
       <Link href={`/expert/${item.id}`}>
-        <ProCard
-          split="horizontal"
-          style={{ width: "100%", height: "350px" }}
-          hoverable
-        >
-          <ProCard style={{ width: "100%", minHeight: "100px" }}>
-            <Flex justify="center" align="center" style={{ width: "100%" }}>
-              <img
-                src={item.image}
-                style={{
-                  width: "35%",
-                  aspectRatio: "1/1",
-                  borderRadius: "2000px",
-                  objectFit: "cover",
-                }}
+        <div className="flex flex-col bg-white rounded-xl px-6 py-2 w-[400px] h-[330px] shadow-sm">
+          <div className="flex flex-col justify-center my-3">
+            <div className="flex">
+              <ProfileImage src={item.image} alt={item.name} />
+              <ProfileInfo
+                name={item.name}
+                price={item.price}
+                specialty={allTags.map((tag) => tag + " ")}
+                rating={item.rating}
               />
-              <Flex
-                style={{
-                  width: "60%",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  padding: "0 20px",
-                }}
-              >
-                <Title level={4}>
-                  价格：{item.price}/h
-                  <br />
-                  评分：{item.rating}
-                  <br />
-                  {tags}
-                </Title>
-              </Flex>
-            </Flex>
-          </ProCard>
-          <ProCard style={{ width: "100%" }}>
-            <Meta
-              description={
-                <Paragraph ellipsis={{ rows: 3 }}>{item.description}</Paragraph>
-              }
-            />
-
-            <Paragraph>咨询次数：203</Paragraph>
-          </ProCard>
-        </ProCard>
+            </div>
+          </div>
+          <ProfileIntroduction introduction={item.introduction} />
+        </div>
       </Link>
     </div>
   );

@@ -5,13 +5,13 @@
       "expertid": 1,
       "user": "Alice",
       "userid": 1,
-      "content": "非常专业，对我的问题给出了很好的解答。",
+      "content": "Very professional, gave me a great answer to my question.",
       "time": "2024-03-06 14:00",
       "likes": 10,
       "replies": [
         {
           "user": "Bob",
-          "content": "我也觉得是！"
+          "content": "I think so too!"
         }
       ]
     },
@@ -20,13 +20,13 @@
       "expertid": 1,
       "user": "Charlie",
       "userid": 2,
-      "content": "解释得很清楚，非常感谢。",
+      "content": "Explained very clearly, much appreciated.",
       "time": "2024-03-06 15:30",
       "likes": 8,
       "replies": [
         {
           "user": "David",
-          "content": "同意你！"
+          "content": "Agree with you!"
         }
       ]
     },
@@ -35,13 +35,13 @@
       "expertid": 2,
       "user": "Eve",
       "userid": 3,
-      "content": "非常专业，回答得很详细。",
+      "content": "Very professional, answered in detail.",
       "time": "2024-03-07 09:45",
       "likes": 12,
       "replies": [
         {
           "user": "Frank",
-          "content": "赞同！"
+          "content": "Agreed!"
         }
       ]
     },
@@ -50,13 +50,13 @@
       "expertid": 3,
       "user": "Grace",
       "userid": 4,
-      "content": "非常耐心，解答得很仔细。",
+      "content": "Very patient, answered very carefully.",
       "time": "2024-03-07 11:20",
       "likes": 6,
       "replies": [
         {
           "user": "Henry",
-          "content": "同感！"
+          "content": "I feel the same!"
         }
       ]
     },
@@ -65,13 +65,13 @@
       "expertid": 4,
       "user": "Ivy",
       "userid": 5,
-      "content": "很专业，给出了很好的建议。",
+      "content": "Very professional, provided great advice.",
       "time": "2024-03-07 14:50",
       "likes": 9,
       "replies": [
         {
           "user": "Jack",
-          "content": "没错！"
+          "content": "Exactly!"
         }
       ]
     },
@@ -80,13 +80,13 @@
       "expertid": 1,
       "user": "John",
       "userid": 6,
-      "content": "非常专业，回答得很详细。",
+      "content": "Very professional, answered in detail.",
       "time": "2024-03-08 10:15",
       "likes": 11,
       "replies": [
         {
           "user": "Kate",
-          "content": "赞同！"
+          "content": "Agreed!"
         }
       ]
     },
@@ -95,13 +95,13 @@
       "expertid": 2,
       "user": "Lily",
       "userid": 7,
-      "content": "非常耐心，解答得很仔细。",
+      "content": "Very patient, answered very carefully.",
       "time": "2024-03-08 12:40",
       "likes": 7,
       "replies": [
         {
           "user": "Mike",
-          "content": "同感！"
+          "content": "I feel the same!"
         }
       ]
     },
@@ -110,13 +110,13 @@
       "expertid": 3,
       "user": "Nancy",
       "userid": 8,
-      "content": "很专业，给出了很好的建议。",
+      "content": "Very professional, provided great advice.",
       "time": "2024-03-08 16:20",
       "likes": 5,
       "replies": [
         {
           "user": "Oliver",
-          "content": "没错！"
+          "content": "Exactly!"
         }
       ]
     },
@@ -125,13 +125,13 @@
       "expertid": 4,
       "user": "Peter",
       "userid": 9,
-      "content": "非常专业，对我的问题给出了很好的解答。",
+      "content": "Very professional, gave me a great answer to my question.",
       "time": "2024-03-09 09:10",
       "likes": 13,
       "replies": [
         {
           "user": "Queen",
-          "content": "我也觉得是！"
+          "content": "I think so too!"
         }
       ]
     },
@@ -140,13 +140,13 @@
       "expertid": 5,
       "user": "Rachel",
       "userid": 10,
-      "content": "解释得很清楚，非常感谢。",
+      "content": "Explained very clearly, much appreciated.",
       "time": "2024-03-09 11:30",
       "likes": 4,
       "replies": [
         {
           "user": "Sam",
-          "content": "同意你！"
+          "content": "Agree with you!"
         }
       ]
     }

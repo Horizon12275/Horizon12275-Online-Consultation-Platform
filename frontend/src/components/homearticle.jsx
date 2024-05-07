@@ -1,22 +1,20 @@
 import React, { useState, useEffect } from "react";
-import { Avatar, List, Space, Button, Row, Typography, Card } from "antd";
-import { LikeOutlined, MessageOutlined, StarOutlined } from "@ant-design/icons";
-import Link from "antd/es/typography/Link";
+import { List } from "antd";
 import TagContext from "../context/tagcontext"; // 导入标签的上下文
-import { getAllArticles,getRecommendedArticles } from "../services/articleService"; // 导入书籍相关的服务函数
-
-const { Title, Paragraph } = Typography;
-
-// 用于渲染文章列表的组件
-const IconText = ({ icon, text }) => (
-  <Space>
-    {React.createElement(icon)}
-    {text}
-  </Space>
-);
+import {
+  getAllArticles,
+  getRecommendedArticles,
+} from "../services/articleService"; // 导入书籍相关的服务函数
+import HomeArticleCard from "./homearticle_card";
+import { Link } from "react-router-dom";
 
 export default function HomeArticle() {
-  const all = getAllArticles();
+  const [articles, setArticles] = useState([]);
+  useEffect(() => {
+    getAllArticles().then((data) => {
+      setArticles(data);
+    });
+  }, []);
   // 获取全局的标签状态
   const { selectedTags } = React.useContext(TagContext);
 
@@ -42,49 +40,21 @@ export default function HomeArticle() {
 
   // 渲染文章列表
   return (
-    <>
-      <List
-        itemLayout="vertical"
-        size="large"
-        dataSource={filteredData}
-        style={{ width: "100%", marginTop: "40px" }}
-        renderItem={(item) => (
-          <List.Item
-            key={item.title}
-            actions={[
-              <IconText
-                icon={StarOutlined}
-                text="156"
-                key="list-vertical-star-o"
-              />,
-              <IconText
-                icon={LikeOutlined}
-                text="156"
-                key="list-vertical-like-o"
-              />,
-              <IconText
-                icon={MessageOutlined}
-                text="2"
-                key="list-vertical-message"
-              />,
-            ]}
-            extra={
-              <img
-                style={{ borderRadius: "20px" }}
-                width={450}
-                alt="logo"
-                src={item.cover} // Replace the image source with item.image from filteredData
-              />
-            }
-          >
-            <List.Item.Meta
-              title={<Title ellipsis>{item.title}</Title>}
-              description={item.author}
-            />
-            <Paragraph ellipsis={{ rows: 5 }}>{item.content}</Paragraph>
-          </List.Item>
-        )}
-      />
-    </>
+    <List
+      dataSource={filteredData}
+      grid={{
+        column: 3,
+      }}
+      pagination={{
+        pageSize: 6,
+      }}
+      renderItem={(item) => (
+        <List.Item>
+          
+            <HomeArticleCard article={item} />
+          
+        </List.Item>
+      )}
+    ></List>
   );
 }

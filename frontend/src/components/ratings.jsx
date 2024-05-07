@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react';
 import { Bar } from '@ant-design/plots';
 
 const Rating = () => {
@@ -27,6 +26,7 @@ const Rating = () => {
   ];
   const config = {
     data,
+    width: 300,
     height: 300,
     xField: 'rate',
     yField: 'count',

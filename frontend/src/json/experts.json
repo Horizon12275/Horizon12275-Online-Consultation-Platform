@@ -2,23 +2,23 @@
   "experts": [
     {
       "id": 1,
-      "name": "张三",
+      "name": "Zhang San",
       "articles": [1, 2, 26, 27, 28, 29, 30, 31, 32, 33],
-      "rating": 4.5,
-      "price": 200,
-      "description": "张三教授，经济学博士，拥有20年金融行业经验。",
-      "image": "1.jpg",
+      "rating": 5.0,
+      "price": 100,
+      "description": "Professor Zhang San, Ph.D. in Economics, with 20 years of experience in the finance industry.",
+      "image": "/1.jpg",
       "consultation_times": 150,
       "comments": [
         {
-          "username": "用户A",
-          "content": "非常专业，对我的问题给出了很好的解答。",
+          "username": "User A",
+          "content": "Very professional, gave me a great answer to my question.",
           "date": "2023-10-05",
           "userid": 1
         },
         {
-          "username": "用户B",
-          "content": "解释得很清楚，非常感谢。",
+          "username": "User B",
+          "content": "Explained very clearly, much appreciated.",
           "date": "2023-11-12",
           "userid": 2
         }
@@ -26,23 +26,23 @@
     },
     {
       "id": 2,
-      "name": "李四",
+      "name": "Li Si",
       "articles": [3],
       "rating": 4.7,
       "price": 250,
-      "description": "李四博士，人工智能领域的顶尖专家，具有丰富的实战经验。",
-      "image": "2.jpg",
+      "description": "Dr. Li Si, a top expert in the field of artificial intelligence, with extensive practical experience.",
+      "image": "/2.jpg",
       "consultation_times": 200,
       "comments": [
         {
-          "username": "用户C",
-          "content": "李教授的见解让我受益匪浅。",
+          "username": "User C",
+          "content": "Dr. Li's insights have been very beneficial to me.",
           "date": "2024-01-20",
           "userid": 3
         },
         {
-          "username": "用户D",
-          "content": "非常棒的一次咨询体验，推荐！",
+          "username": "User D",
+          "content": "Great consultation experience, highly recommended!",
           "date": "2024-02-15",
           "userid": 4
         }
@@ -50,23 +50,23 @@
     },
     {
       "id": 3,
-      "name": "王五",
+      "name": "Wang Wu",
       "articles": [4],
       "rating": 4.2,
       "price": 180,
-      "description": "王五教授，计算机科学博士，专注于软件工程和数据结构。",
-      "image": "3.jpg",
+      "description": "Professor Wang Wu, Ph.D. in Computer Science, specializing in software engineering and data structures.",
+      "image": "/3.jpg",
       "consultation_times": 120,
       "comments": [
         {
-          "username": "用户E",
-          "content": "王教授的解答非常详细，让我对数据结构有了更深入的理解。",
+          "username": "User E",
+          "content": "Professor Wang's explanations are very detailed, giving me a deeper understanding of data structures.",
           "date": "2024-03-10",
           "userid": 5
         },
         {
-          "username": "用户F",
-          "content": "非常耐心地解答了我的问题，感谢！",
+          "username": "User F",
+          "content": "Very patiently answered my questions, thank you!",
           "date": "2024-04-18",
           "userid": 6
         }
@@ -74,23 +74,23 @@
     },
     {
       "id": 4,
-      "name": "赵六",
+      "name": "Zhao Liu",
       "articles": [5],
       "rating": 4.8,
       "price": 300,
-      "description": "赵六博士，人力资源管理专家，擅长组织行为学和员工培训。",
-      "image": "4.jpg",
+      "description": "Dr. Zhao Liu, an expert in human resource management, proficient in organizational behavior and employee training.",
+      "image": "/4.jpg",
       "consultation_times": 180,
       "comments": [
         {
-          "username": "用户G",
-          "content": "赵教授的咨询帮助我解决了团队管理中的问题。",
+          "username": "User G",
+          "content": "Dr. Zhao's consultation helped me solve team management issues.",
           "date": "2024-05-25",
           "userid": 7
         },
         {
-          "username": "用户H",
-          "content": "非常专业的人力资源咨询，推荐给需要的人。",
+          "username": "User H",
+          "content": "Very professional human resources consultation, recommended for those in need.",
           "date": "2024-06-30",
           "userid": 8
         }
@@ -98,24 +98,24 @@
     },
     {
       "id": 5,
-      "name": "钱七",
+      "name": "Qian Qi",
       "articles": [6],
       "rating": 4.4,
       "price": 220,
-      "tags": ["市场营销", "品牌管理", "消费者行为"],
-      "description": "钱七教授，市场营销专家，研究领域包括品牌管理和消费者行为。",
-      "image": "5.jpg",
+      "tags": ["Marketing", "Brand Management", "Consumer Behavior"],
+      "description": "Professor Qian Qi, a marketing expert, research areas include brand management and consumer behavior.",
+      "image": "/5.jpg",
       "consultation_times": 140,
       "comments": [
         {
-          "username": "用户I",
-          "content": "钱教授的市场营销策略对我的企业非常有帮助。",
+          "username": "User I",
+          "content": "Professor Qian's marketing strategies have been very helpful for my business.",
           "date": "2024-07-15",
           "userid": 9
         },
         {
-          "username": "用户J",
-          "content": "非常专业的市场营销咨询，值得信赖。",
+          "username": "User J",
+          "content": "Highly professional marketing consultation, trustworthy.",
           "date": "2024-08-20",
           "userid": 10
         }
@@ -123,24 +123,24 @@
     },
     {
       "id": 6,
-      "name": "孙八",
+      "name": "Sun Ba",
       "articles": [7],
       "rating": 4.6,
       "price": 260,
-      "tags": ["人际关系", "沟通技巧", "领导力"],
-      "description": "孙八博士，人际关系专家，擅长沟通技巧和领导力发展。",
-      "image": "6.jpg",
+      "tags": ["Interpersonal Relationships", "Communication Skills", "Leadership"],
+      "description": "Dr. Sun Ba, an expert in interpersonal relationships, proficient in communication skills and leadership development.",
+      "image": "/6.jpg",
       "consultation_times": 160,
       "comments": [
         {
-          "username": "用户K",
-          "content": "孙教授的人际关系咨询让我在工作中更加得心应手。",
+          "username": "User K",
+          "content": "Dr. Sun's consultation on interpersonal relationships has made me more proficient in my work.",
           "date": "2024-09-05",
           "userid": 11
         },
         {
-          "username": "用户L",
-          "content": "非常有用的人际关系咨询，推荐给需要的人。",
+          "username": "User L",
+          "content": "Very useful interpersonal relationship consultation, recommended for those in need.",
           "date": "2024-10-10",
           "userid": 12
         }
@@ -148,24 +148,24 @@
     },
     {
       "id": 7,
-      "name": "周九",
+      "name": "Zhou Jiu",
       "articles": [8],
       "rating": 4.3,
       "price": 190,
-      "tags": ["法律", "合同法", "知识产权"],
-      "description": "周九教授，法学博士，专注于合同法和知识产权领域。",
-      "image": "7.jpg",
+      "tags": ["Law", "Contract Law", "Intellectual Property"],
+      "description": "Dr. Zhou Jiu, a Ph.D. in Law, specializes in contract law and intellectual property.",
+      "image": "/7.jpg",
       "consultation_times": 130,
       "comments": [
         {
-          "username": "用户M",
-          "content": "周教授的法律咨询帮助我解决了合同纠纷问题。",
+          "username": "User M",
+          "content": "Dr. Zhou's legal consultation helped me resolve contract disputes.",
           "date": "2024-11-25",
           "userid": 13
         },
         {
-          "username": "用户N",
-          "content": "非常专业的法律咨询，值得信赖。",
+          "username": "User N",
+          "content": "Very professional legal consultation, trustworthy.",
           "date": "2024-12-30",
           "userid": 14
         }
@@ -173,24 +173,24 @@
     },
     {
       "id": 8,
-      "name": "吴十",
+      "name": "Wu Shi",
       "articles": [9],
       "rating": 4.9,
       "price": 320,
-      "tags": ["创业", "商业计划", "风险管理"],
-      "description": "吴十博士，创业导师，擅长商业计划和风险管理。",
-      "image": "8.jpg",
+      "tags": ["Entrepreneurship", "Business Planning", "Risk Management"],
+      "description": "Dr. Wu Shi, a mentor in entrepreneurship, proficient in business planning and risk management.",
+      "image": "/8.jpg",
       "consultation_times": 170,
       "comments": [
         {
-          "username": "用户O",
-          "content": "吴教授的创业咨询让我在创业过程中少走了很多弯路。",
+          "username": "User O",
+          "content": "Dr. Wu's entrepreneurship consultation helped me avoid many pitfalls in the entrepreneurial process.",
           "date": "2025-01-15",
           "userid": 15
         },
         {
-          "username": "用户P",
-          "content": "非常有经验的创业导师，推荐给有创业意向的人。",
+          "username": "User P",
+          "content": "Very experienced entrepreneurship mentor, recommended for those with entrepreneurial intentions.",
           "date": "2025-02-20",
           "userid": 16
         }
@@ -198,24 +198,24 @@
     },
     {
       "id": 9,
-      "name": "郑十一",
+      "name": "Zheng Shiyi",
       "articles": [10],
       "rating": 4.1,
       "price": 170,
-      "tags": ["心理学", "情绪管理", "压力应对"],
-      "description": "郑十一博士，心理学专家，研究领域包括情绪管理和压力应对。",
-      "image": "9.jpg",
+      "tags": ["Psychology", "Emotional Management", "Stress Management"],
+      "description": "Dr. Zheng Shiyi, a psychology expert, research areas include emotional management and stress management.",
+      "image": "/9.jpg",
       "consultation_times": 110,
       "comments": [
         {
-          "username": "用户Q",
-          "content": "郑教授的心理咨询帮助我更好地管理情绪和应对压力。",
+          "username": "User Q",
+          "content": "Dr. Zheng's psychological consultation helped me better manage emotions and cope with stress.",
           "date": "2025-03-10",
           "userid": 17
         },
         {
-          "username": "用户R",
-          "content": "非常专业的心理咨询，值得信赖。",
+          "username": "User R",
+          "content": "Very professional psychological consultation, trustworthy.",
           "date": "2025-04-18",
           "userid": 18
         }
@@ -223,24 +223,24 @@
     },
     {
       "id": 10,
-      "name": "钟十二",
+      "name": "Zhong Shier",
       "articles": [11],
       "rating": 4.5,
       "price": 200,
-      "tags": ["教育", "教学设计", "学生评价"],
-      "description": "钟十二博士，教育学专家，擅长教学设计和学生评价。",
-      "image": "10.jpg",
+      "tags": ["Education", "Instructional Design", "Student Evaluation"],
+      "description": "Dr. Zhong Shier, an expert in education, proficient in instructional design and student evaluation.",
+      "image": "/10.jpg",
       "consultation_times": 150,
       "comments": [
         {
-          "username": "用户S",
-          "content": "钟教授的教育咨询帮助我提升了教学质量。",
+          "username": "User S",
+          "content": "Dr. Zhong's education consultation helped me improve the quality of teaching.",
           "date": "2025-05-25",
           "userid": 19
         },
         {
-          "username": "用户T",
-          "content": "非常有经验的教育学专家，推荐给需要的人。",
+          "username": "User T",
+          "content": "Highly experienced expert in education, recommended for those in need.",
           "date": "2025-06-30",
           "userid": 20
         }
@@ -248,24 +248,24 @@
     },
     {
       "id": 11,
-      "name": "杨十三",
+      "name": "Yang Shisan",
       "articles": [12],
       "rating": 4.7,
       "price": 250,
-      "tags": ["健康管理", "营养学", "运动训练"],
-      "description": "杨十三博士，健康管理专家，研究领域包括营养学和运动训练。",
-      "image": "11.jpg",
+      "tags": ["Health Management", "Nutrition", "Exercise Training"],
+      "description": "Dr. Yang Shisan, a health management expert, research areas include nutrition and exercise training.",
+      "image": "/11.jpg",
       "consultation_times": 200,
       "comments": [
         {
-          "username": "用户U",
-          "content": "杨教授的健康咨询让我更好地管理自己的身体健康。",
+          "username": "User U",
+          "content": "Dr. Yang's health consultation helped me better manage my physical health.",
           "date": "2025-07-15",
           "userid": 21
         },
         {
-          "username": "用户V",
-          "content": "非常专业的健康管理咨询，值得信赖。",
+          "username": "User V",
+          "content": "Very professional health management consultation, trustworthy.",
           "date": "2025-08-20",
           "userid": 22
         }
@@ -273,24 +273,24 @@
     },
     {
       "id": 12,
-      "name": "黄十四",
+      "name": "Huang Shisi",
       "articles": [13],
       "rating": 4.2,
       "price": 180,
-      "tags": ["环境科学", "可持续发展", "环境保护"],
-      "description": "黄十四博士，环境科学专家，擅长可持续发展和环境保护。",
-      "image": "12.jpg",
+      "tags": ["Environmental Science", "Sustainable Development", "Environmental Protection"],
+      "description": "Dr. Huang Shisi, an environmental science expert, proficient in sustainable development and environmental protection.",
+      "image": "/12.jpg",
       "consultation_times": 120,
       "comments": [
         {
-          "username": "用户W",
-          "content": "黄教授的环境咨询帮助我更好地了解了环境保护的重要性。",
+          "username": "User W",
+          "content": "Dr. Huang's environmental consultation helped me better understand the importance of environmental protection.",
           "date": "2025-09-05",
           "userid": 23
         },
         {
-          "username": "用户X",
-          "content": "非常有经验的环境科学专家，推荐给需要的人。",
+          "username": "User X",
+          "content": "Very experienced environmental science expert, recommended for those in need.",
           "date": "2025-10-10",
           "userid": 24
         }
@@ -298,24 +298,24 @@
     },
     {
       "id": 13,
-      "name": "陈十五",
+      "name": "Chen Shiwu",
       "articles": [14],
       "rating": 4.4,
       "price": 220,
-      "tags": ["社会学", "社会调查", "社会问题"],
-      "description": "陈十五博士，社会学专家，研究领域包括社会调查和社会问题。",
-      "image": "13.jpg",
+      "tags": ["Sociology", "Social Survey", "Social Issues"],
+      "description": "Dr. Chen Shiwu, a sociology expert, research areas include social surveys and social issues.",
+      "image": "/13.jpg",
       "consultation_times": 140,
       "comments": [
         {
-          "username": "用户Y",
-          "content": "陈教授的社会学咨询帮助我更好地了解了社会问题。",
+          "username": "User Y",
+          "content": "Dr. Chen's sociology consultation helped me better understand social issues.",
           "date": "2025-11-25",
           "userid": 25
         },
         {
-          "username": "用户Z",
-          "content": "非常专业的社会学咨询，值得信赖。",
+          "username": "User Z",
+          "content": "Very professional sociology consultation, trustworthy.",
           "date": "2025-12-30",
           "userid": 26
         }
@@ -323,24 +323,24 @@
     },
     {
       "id": 14,
-      "name": "林十六",
+      "name": "Lin Shiliu",
       "articles": [15],
       "rating": 4.6,
       "price": 260,
-      "tags": ["艺术", "绘画", "雕塑"],
-      "description": "林十六博士，艺术专家，擅长绘画和雕塑。",
-      "image": "14.jpg",
+      "tags": ["Art", "Painting", "Sculpture"],
+      "description": "Dr. Lin Shiliu, an art expert, proficient in painting and sculpture.",
+      "image": "/14.jpg",
       "consultation_times": 160,
       "comments": [
         {
-          "username": "用户AA",
-          "content": "林教授的艺术咨询帮助我提升了艺术创作水平。",
+          "username": "User AA",
+          "content": "Dr. Lin's art consultation helped me improve my artistic creation level.",
           "date": "2026-01-05",
           "userid": 27
         },
         {
-          "username": "用户BB",
-          "content": "非常有经验的艺术专家，推荐给需要的人。",
+          "username": "User BB",
+          "content": "Very experienced art expert, recommended for those in need.",
           "date": "2026-02-10",
           "userid": 28
         }
@@ -348,24 +348,24 @@
     },
     {
       "id": 15,
-      "name": "刘十七",
+      "name": "Liu Shiqi",
       "articles": [16],
       "rating": 4.3,
       "price": 190,
-      "tags": ["音乐", "作曲", "演奏"],
-      "description": "刘十七博士，音乐专家，研究领域包括作曲和演奏。",
-      "image": "15.jpg",
+      "tags": ["Music", "Composition", "Performance"],
+      "description": "Dr. Liu Shiqi, a music expert, research areas include composition and performance.",
+      "image": "/15.jpg",
       "consultation_times": 130,
       "comments": [
         {
-          "username": "用户CC",
-          "content": "刘教授的音乐咨询帮助我提升了音乐技巧。",
+          "username": "User CC",
+          "content": "Dr. Liu's music consultation helped me improve my music skills.",
           "date": "2026-03-25",
           "userid": 29
         },
         {
-          "username": "用户DD",
-          "content": "非常专业的音乐专家，值得信赖。",
+          "username": "User DD",
+          "content": "Very professional music expert, trustworthy.",
           "date": "2026-04-30",
           "userid": 30
         }
@@ -373,24 +373,24 @@
     },
     {
       "id": 16,
-      "name": "陶十八",
+      "name": "Tao Shiba",
       "articles": [17],
       "rating": 4.9,
       "price": 320,
-      "tags": ["历史", "文化研究", "考古学"],
-      "description": "陶十八博士，历史学专家，擅长文化研究和考古学。",
-      "image": "16.jpg",
+      "tags": ["History", "Cultural Studies", "Archaeology"],
+      "description": "Dr. Tao Shiba, a history expert, proficient in cultural studies and archaeology.",
+      "image": "/16.jpg",
       "consultation_times": 170,
       "comments": [
         {
-          "username": "用户EE",
-          "content": "陶教授的历史咨询帮助我更好地了解了历史文化。",
+          "username": "User EE",
+          "content": "Dr. Tao's history consultation helped me better understand historical culture.",
           "date": "2026-05-15",
           "userid": 31
         },
         {
-          "username": "用户FF",
-          "content": "非常有经验的历史学专家，推荐给需要的人。",
+          "username": "User FF",
+          "content": "Highly experienced history expert, recommended for those in need.",
           "date": "2026-06-20",
           "userid": 32
         }
@@ -398,205 +398,231 @@
     },
     {
       "id": 17,
-      "name": "王十九",
+      "name": "Han Shiqi",
       "articles": [18],
-      "rating": 4.7,
-      "price": 280,
-      "tags": ["心理学", "咨询", "心理健康"],
-      "description": "王十九博士，心理学专家，研究领域包括心理咨询和心理健康。",
-      "image": "17.jpg",
-      "consultation_times": 150,
+      "rating": 4.1,
+      "price": 170,
+      "tags": ["Literature", "Poetry", "Prose"],
+      "description": "Dr. Han Shiqi, a literature expert, research areas include poetry and prose.",
+      "image": "/17.jpg",
+      "consultation_times": 110,
       "comments": [
         {
-          "username": "用户A",
-          "content": "王教授的心理学咨询帮助我解决了很多心理问题。",
-          "date": "2026-07-05",
-          "userid": 1
+          "username": "User GG",
+          "content": "Dr. Han's literature consultation helped me improve my writing skills.",
+          "date": "2026-07-10",
+          "userid": 33
         },
         {
-          "username": "用户B",
-          "content": "非常专业的心理学专家，值得信赖。",
-          "date": "2026-08-10",
-          "userid": 2
+          "username": "User HH",
+          "content": "Very professional literature expert, trustworthy.",
+          "date": "2026-08-18",
+          "userid": 34
         }
       ]
     },
     {
       "id": 18,
-      "name": "赵二十",
+      "name": "Zhang Shiba",
       "articles": [19],
       "rating": 4.5,
-      "price": 240,
-      "tags": ["经济学", "金融", "投资"],
-      "description": "赵二十博士，经济学专家，擅长金融和投资。",
-      "image": "18.jpg",
-      "consultation_times": 180,
+      "price": 200,
+      "tags": ["Philosophy", "Ethics", "Metaphysics"],
+      "description": "Dr. Zhang Shiba, a philosophy expert, proficient in ethics and metaphysics.",
+      "image": "/18.jpg",
+      "consultation_times": 150,
       "comments": [
         {
-          "username": "用户C",
-          "content": "赵教授的经济学咨询帮助我更好地理解了金融市场。",
-          "date": "2026-09-25",
-          "userid": 3
+          "username": "User II",
+          "content": "Dr. Zhang's philosophy consultation helped me deepen my understanding of life.",
+          "date": "2026-09-05",
+          "userid": 35
         },
         {
-          "username": "用户D",
-          "content": "非常有经验的经济学专家，推荐给需要的人。",
-          "date": "2026-10-30",
-          "userid": 4
+          "username": "User JJ",
+          "content": "Highly experienced philosophy expert, recommended for those in need.",
+          "date": "2026-10-10",
+          "userid": 36
         }
       ]
     },
     {
       "id": 19,
-      "name": "孙二十一",
+      "name": "Li Shijiu",
       "articles": [20],
-      "rating": 4.8,
-      "price": 300,
-      "tags": ["法律", "法规", "诉讼"],
-      "description": "孙二十一博士，法律专家，研究领域包括法规和诉讼。",
-      "image": "19.jpg",
-      "consultation_times": 190,
+      "rating": 4.7,
+      "price": 250,
+      "tags": ["Religion", "Theology", "Comparative Religion"],
+      "description": "Dr. Li Shijiu, a religion expert, research areas include theology and comparative religion.",
+      "image": "/19.jpg",
+      "consultation_times": 200,
       "comments": [
         {
-          "username": "用户E",
-          "content": "孙教授的法律咨询帮助我解决了法律问题。",
-          "date": "2026-11-15",
-          "userid": 5
+          "username": "User KK",
+          "content": "Dr. Li's religious consultation helped me better understand religious beliefs.",
+          "date": "2026-11-25",
+          "userid": 37
         },
         {
-          "username": "用户F",
-          "content": "非常专业的法律专家，值得信赖。",
-          "date": "2026-12-20",
-          "userid": 6
+          "username": "User LL",
+          "content": "Very professional religious expert, trustworthy.",
+          "date": "2026-12-30",
+          "userid": 38
         }
       ]
     },
     {
       "id": 20,
-      "name": "李二十二",
+      "name": "Wang Shiba",
       "articles": [21],
-      "rating": 4.4,
-      "price": 220,
-      "tags": ["计算机科学", "编程", "算法"],
-      "description": "李二十二博士，计算机科学专家，擅长编程和算法。",
-      "image": "20.jpg",
-      "consultation_times": 200,
-      "comments": [
-        {
-          "username": "用户G",
-          "content": "李教授的计算机科学咨询帮助我提升了编程技能。",
-          "date": "2027-01-05",
-          "userid": 7
-        },
-        {
-          "username": "用户H",
-          "content": "非常有经验的计算机科学专家，推荐给需要的人。",
-          "date": "2027-02-10",
-          "userid": 8
-        }
-      ]
-    },
-    {
-      "id": 21,
-      "name": "周二十三",
-      "articles": [22],
       "rating": 4.2,
       "price": 180,
-      "tags": ["医学", "健康", "疾病"],
-      "description": "周二十三博士，医学专家，研究领域包括健康和疾病。",
-      "image": "21.jpg",
-      "consultation_times": 220,
+      "tags": ["Languages", "Linguistics", "Translation"],
+      "description": "Dr. Wang Shiba, a linguistics expert, proficient in languages and translation.",
+      "image": "/20.jpg",
+      "consultation_times": 120,
       "comments": [
         {
-          "username": "用户I",
-          "content": "周教授的医学咨询帮助我更好地了解了健康问题。",
-          "date": "2027-03-25",
-          "userid": 9
+          "username": "User MM",
+          "content": "Dr. Wang's language consultation helped me improve my language skills.",
+          "date": "2027-01-15",
+          "userid": 39
         },
         {
-          "username": "用户J",
-          "content": "非常专业的医学专家，值得信赖。",
-          "date": "2027-04-30",
-          "userid": 10
-        }
-      ]
-    },
-    {
-      "id": 22,
-      "name": "郑二十四",
-      "articles": [23],
-      "rating": 4.9,
-      "price": 340,
-      "tags": ["教育学", "教学", "学生"],
-      "description": "郑二十四博士，教育学专家，擅长教学和学生问题。",
-      "image": "22.jpg",
-      "consultation_times": 240,
-      "comments": [
-        {
-          "username": "用户K",
-          "content": "郑教授的教育学咨询帮助我解决了教学问题。",
-          "date": "2027-05-15",
-          "userid": 11
-        },
-        {
-          "username": "用户L",
-          "content": "非常有经验的教育学专家，推荐给需要的人。",
-          "date": "2027-06-20",
-          "userid": 12
-        }
-      ]
-    },
-    {
-      "id": 23,
-      "name": "钱二十五",
-      "articles": [24],
-      "rating": 4.6,
-      "price": 260,
-      "tags": ["环境科学", "可持续发展", "气候变化"],
-      "description": "钱二十五博士，环境科学专家，研究领域包括可持续发展和气候变化。",
-      "image": "23.jpg",
-      "consultation_times": 260,
-      "comments": [
-        {
-          "username": "用户M",
-          "content": "钱教授的环境科学咨询帮助我更好地了解了可持续发展问题。",
-          "date": "2027-07-05",
-          "userid": 13
-        },
-        {
-          "username": "用户N",
-          "content": "非常专业的环境科学专家，值得信赖。",
-          "date": "2027-08-10",
-          "userid": 14
-        }
-      ]
-    },
-    {
-      "id": 24,
-      "name": "孔二十六",
-      "articles": [25],
-      "rating": 4.3,
-      "price": 200,
-      "tags": ["哲学", "思想", "伦理"],
-      "description": "孔二十六博士，哲学专家，擅长思想和伦理。",
-      "image": "24.jpg",
-      "consultation_times": 280,
-      "comments": [
-        {
-          "username": "用户O",
-          "content": "孔教授的哲学咨询帮助我更好地理解了思想问题。",
-          "date": "2027-09-25",
-          "userid": 15
-        },
-        {
-          "username": "用户P",
-          "content": "非常有经验的哲学专家，推荐给需要的人。",
-          "date": "2027-10-30",
-          "userid": 16
+          "username": "User NN",
+          "content": "Very professional linguistics expert, trustworthy.",
+          "date": "2027-02-20",
+          "userid": 40
         }
       ]
     }
+  ],
+  "articles": [
+    {
+      "id": 1,
+      "title": "Introduction to Financial Risk Management",
+      "author": "Zhang San",
+      "content": "Financial risk management is the practice of economic value in a firm by using financial instruments to manage exposure to risk: Operational risk, credit risk and market risk, Foreign exchange risk, Shape risk, Volatility risk, Liquidity risk, Inflation risk, Business risk, Legal risk, Reputational risk, Sector risk etc."
+    },
+    {
+      "id": 2,
+      "title": "Economic Growth and Inequality",
+      "author": "Zhang San",
+      "content": "Economic growth is the measure of the change of GDP from one year to the next. This percentage growth rate means that the economy has gotten that much bigger over the period of a year. It is a way to look at how the economy is doing, whether it is getting better or worse."
+    },
+    {
+      "id": 3,
+      "title": "The Future of Artificial Intelligence",
+      "author": "Li Si",
+      "content": "The future of artificial intelligence is often painted as either a paradise or a doomsday scenario. Some envision a world where AI enhances human abilities and makes life more convenient, while others fear job loss, privacy invasion, and even the eventual dominance of AI over humanity."
+    },
+    {
+      "id": 4,
+      "title": "Software Engineering Best Practices",
+      "author": "Wang Wu",
+      "content": "Software engineering best practices are the disciplined approaches to producing software that has higher quality, is easier to maintain and modify, and meets its requirements. These practices include understanding and managing requirements, using appropriate tools and methodologies, design and architecture, testing, and deployment."
+    },
+    {
+      "id": 5,
+      "title": "Effective Human Resource Management Strategies",
+      "author": "Zhao Liu",
+      "content": "Effective human resource management strategies involve aligning HR practices with the strategic objectives of the organization, attracting and retaining top talent, fostering a positive work culture, providing opportunities for employee development, and ensuring compliance with labor laws and regulations."
+    },
+    {
+      "id": 6,
+      "title": "Marketing Trends in the Digital Age",
+      "author": "Qian Qi",
+      "content": "Marketing trends in the digital age include the shift towards online and mobile advertising, the importance of content marketing and social media engagement, the use of data analytics for targeted marketing campaigns, and the rise of influencer marketing and user-generated content."
+    },
+    {
+      "id": 7,
+      "title": "Effective Communication Strategies for Leaders",
+      "author": "Sun Ba",
+      "content": "Effective communication strategies for leaders involve active listening, clear and concise messaging, empathy and emotional intelligence, nonverbal communication skills, feedback mechanisms, and the ability to adapt communication style to different audiences and situations."
+    },
+    {
+      "id": 8,
+      "title": "Key Principles of Contract Law",
+      "author": "Zhou Jiu",
+      "content": "Key principles of contract law include offer and acceptance, consideration, intention to create legal relations, capacity, legality of purpose, certainty, and the requirement that the contract must not be contrary to public policy or statute law."
+    },
+    {
+      "id": 9,
+      "title": "Essentials of Business Planning",
+      "author": "Wu Shi",
+      "content": "Essentials of business planning include defining business goals and objectives, conducting market research and competitive analysis, developing a business model and revenue streams, creating a marketing and sales strategy, setting up operations and logistics, and financial planning and budgeting."
+    },
+    {
+      "id": 10,
+      "title": "Understanding Emotional Intelligence",
+      "author": "Zheng Shiyi",
+      "content": "Understanding emotional intelligence involves recognizing and managing one's own emotions, understanding the emotions of others, empathy and social skills, self-motivation and resilience, and effective communication and conflict resolution."
+    },
+    {
+      "id": 11,
+      "title": "Principles of Effective Teaching",
+      "author": "Zhong Shier",
+      "content": "Principles of effective teaching include clear learning objectives, engaging and interactive instructional methods, differentiation and individualized instruction, assessment and feedback, classroom management and discipline, and fostering a positive learning environment."
+    },
+    {
+      "id": 12,
+      "title": "Holistic Approaches to Health Management",
+      "author": "Yang Shisan",
+      "content": "Holistic approaches to health management involve addressing physical, mental, emotional, and spiritual well-being through a combination of lifestyle modifications, nutrition and exercise, stress management techniques, mindfulness and relaxation practices, and preventive healthcare measures."
+    },
+    {
+      "id": 13,
+      "title": "Environmental Conservation Strategies",
+      "author": "Huang Shisi",
+      "content": "Environmental conservation strategies include reducing resource consumption and waste generation, protecting and restoring natural habitats, promoting renewable energy sources and sustainable transportation, raising awareness and education, and advocating for environmental policies and regulations."
+    },
+    {
+      "id": 14,
+      "title": "Research Methods in Sociology",
+      "author": "Chen Shiwu",
+      "content": "Research methods in sociology include surveys and questionnaires, interviews and focus groups, observational studies and ethnography, experiments and field trials, content analysis and historical research, and quantitative and qualitative data analysis techniques."
+    },
+    {
+      "id": 15,
+      "title": "Artistic Expression and Cultural Identity",
+      "author": "Lin Shiliu",
+      "content": "Artistic expression and cultural identity are closely intertwined, as art reflects the values, beliefs, and experiences of a society or community, and serves as a means of preserving and transmitting cultural heritage across generations."
+    },
+    {
+      "id": 16,
+      "title": "The Role of Music in Society",
+      "author": "Liu Shiqi",
+      "content": "The role of music in society is multifaceted, encompassing entertainment and leisure, cultural expression and identity, social cohesion and community building, emotional expression and communication, and cognitive development and therapeutic benefits."
+    },
+    {
+      "id": 17,
+      "title": "Unearthing Ancient Civilizations: Archaeological Perspectives",
+      "author": "Tao Shiba",
+      "content": "Archaeological perspectives on ancient civilizations involve the study of material culture and artifacts, excavation and fieldwork, dating techniques and stratigraphy, analysis of human remains and environmental data, and interpretation of historical contexts and social structures."
+    },
+    {
+      "id": 18,
+      "title": "Exploring Literary Themes: Love, Loss, and Redemption",
+      "author": "Han Shiqi",
+      "content": "Literary themes of love, loss, and redemption are universal and timeless, explored through various genres and forms of literature, including poetry, prose, drama, and fiction, and reflecting the human experience and condition across cultures and centuries."
+    },
+    {
+      "id": 19,
+      "title": "Ethical Dilemmas in Philosophy",
+      "author": "Zhang Shiba",
+      "content": "Ethical dilemmas in philosophy involve complex moral questions and considerations, such as the nature of good and evil, the source of moral values, the principles of justice and fairness, and the application of ethical theories to real-world situations and moral decision-making."
+    },
+    {
+      "id": 20,
+      "title": "Religious Pluralism and Interfaith Dialogue",
+      "author": "Li Shijiu",
+      "content": "Religious pluralism and interfaith dialogue are essential for promoting understanding, tolerance, and cooperation among people of different religious traditions, fostering peaceful coexistence and social harmony, and addressing common challenges and issues facing humanity."
+    },
+    {
+      "id": 21,
+      "title": "The Art of Translation: Preserving Meaning Across Languages",
+      "author": "Wang Shiba",
+      "content": "The art of translation involves more than just converting words from one language to another; it requires preserving the meaning, style, and cultural context of the original text, and conveying it accurately and effectively to the target audience."
+    }
   ]
-  
-
 }
