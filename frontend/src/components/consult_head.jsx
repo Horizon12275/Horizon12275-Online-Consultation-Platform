@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 function Avatar({ src, alt }) {
   return <img className="avatar" src={src} alt={alt} />;
@@ -14,6 +14,19 @@ function UserInfo({ name, status }) {
         <span className="status-text">{status}</span>
       </div>
     </div>
+  );
+}
+
+function VideoButton() {
+  return (
+    <button className="call-button">
+      <img
+        className="call-icon"
+        src="https://cdn.builder.io/api/v1/image/assets/TEMP/8c021edfc9b00b4b26bfa8ac69dab5ee7e915ca7310725b8e4ddfc4bb009bc60?apiKey=b565e599026f4ea2ba591e53566a67d8&"
+        alt="Video icon"
+      />
+      <span className="call-text">Video</span>
+    </button>
   );
 }
 
@@ -36,6 +49,9 @@ function ConsultHead({ receiver }) {
       <div className="user-card">
         <Avatar src={receiver.avatar} alt={`${receiver.username}'s avatar`} />
         <UserInfo name={receiver.username} status={"Online"} />
+        <Link to={`/videochat/${receiver.id}`}>
+          <VideoButton />
+        </Link>
         <CallButton />
       </div>
 

@@ -1,21 +1,14 @@
-import { Box, Heading, Container } from '@chakra-ui/react';
-import Notifications from '../components/Notifications';
-import Options from '../components/Options';
-import VideoPlayer from '../components/VideoPlayer';
-import { BasicLayout } from '../layouts';
+import { BasicLayout } from "../layouts";
+import ChatApp from "../components/consult";
+import VideosDisplay from "../components/videos_display";
+import React from "react";
 
-function videoChatPage() {
-    return (
-        <BasicLayout>
-            <Box>
-                <Container maxW="1200px" mt="8">
-                    <Heading as="h2" size="2xl"> Video Chat App </Heading>
-                    <VideoPlayer />
-                    <Options />
-                    <Notifications />
-                </Container>
-            </Box>
-        </BasicLayout>
-    );
+function VideoChatPage() {
+  return (
+    <BasicLayout>
+      <VideosDisplay />
+      <ChatApp />
+    </BasicLayout>
+  );
 }
-export default videoChatPage;
+export default VideoChatPage;
