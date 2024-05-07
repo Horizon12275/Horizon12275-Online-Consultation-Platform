@@ -11,21 +11,16 @@ import java.util.List;
 
 @Data
 @Entity
-@Table(name = "tweets")
+@Table(name = "tags")
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})//忽略cartItems属性 并且解决cartItems属性为null的问题
-public class Tweet {
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
+public class Tag {
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY)
     private int id;
-    private LocalDateTime time;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "uid")
-    @JsonIgnoreProperties({"tweets"})
-    private User poster;
     @Lob
     private String content;
-
-
+    @ManyToMany(mappedBy = "tags",fetch = FetchType.LAZY)
+    private List<Article> articles;
 }

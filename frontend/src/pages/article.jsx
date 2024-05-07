@@ -16,7 +16,7 @@ const ArticlePage = () => {
     getArticleById(id).then((article) => {
       setArticle(article);
     });
-  }, [id]);
+  }, []);
   return (
     <BasicLayout>
       <Flex vertical align="center">

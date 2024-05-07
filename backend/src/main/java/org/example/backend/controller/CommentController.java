@@ -25,8 +25,8 @@ public class CommentController {
         return userRepository.findUserByUsername(username).getId();
     }
     @GetMapping("/list/{bid}")
-    public Result<List<Comment>> getCommentsByBid(@PathVariable int bid) {
-        return service.getCommentsByBid(bid);
+    public Result<List<Comment>> getCommentsByAid(@PathVariable int bid) {
+        return service.getCommentsByAid(bid);
     }
     @PostMapping("/add/{bid}")
     public Result<Comment> addComment(@PathVariable int bid,@RequestBody String content) {

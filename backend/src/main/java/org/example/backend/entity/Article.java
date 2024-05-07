@@ -20,13 +20,16 @@ public class Article {
     private int id;
     private String title;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "uid")
-    @JsonIgnoreProperties({"comments","aboutMe"})
-    private User author;
+    @JoinColumn(name = "eid")
+    @JsonIgnoreProperties({"articles"})
+    private Expert author;
     @Lob
     private String content;
     private String cover;
     @JsonIgnoreProperties("replies")
     @OneToMany(mappedBy = "article",cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.LAZY)
     private List<Comment> comments;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "article_tag",joinColumns = @JoinColumn(name = "aid"),inverseJoinColumns = @JoinColumn(name = "tid"))
+    private List<Tag> tags;
 }

@@ -4,13 +4,14 @@ import { getOtherUserById, getUser } from "../services/userService";
 import { getHistory } from "../services/messageService";
 import Messagebox from "./message_box";
 import ConsultHead from "./consult_head";
+import toTime from "../utils/time";
 
 const ChatMessage = ({ message, isSender }) => (
   <div className={`chat-message ${isSender ? "sent" : "received"}`}>
     <div className="message-content">{message.content}</div>
     <div className="message-meta">
       <div className="message-time">
-        {`${new Date(message.sendTime).toLocaleString()}`}
+        {`${toTime(new Date(message.sendTime))}`}
       </div>
       <img
         src={

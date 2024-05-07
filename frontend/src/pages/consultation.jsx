@@ -9,9 +9,9 @@ import CommentList from "../components/comment_list";
 import { getComments } from "../services/commentService";
 import History from "../components/history.jsx";
 import AIPrompt from "../components/ai_prompt.jsx";
-import ConsultHead from "../components/consult_head.jsx";
+
 import ChatApp from "../components/consult.jsx";
-import Messagebox from "../components/message_box.jsx";
+
 const ConsultPage = () => {
   let { id } = useParams();
   const [expert, setExpert] = useState({});

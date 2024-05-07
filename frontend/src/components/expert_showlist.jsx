@@ -20,30 +20,11 @@ const ExpertShowList = ({ sortBy }) => {
     handleSearch(sv);
   }
   console.log("searchValue:", searchValue);
-  // 过滤专家数据，优化了搜索逻辑
-  let filteredExperts = experts.filter((expert) => {
-    for (let key in expert) {
-      if (
-        typeof expert[key] === "string" &&
-        expert[key].toLowerCase().includes(searchValue.toLowerCase())
-      ) {
-        return true;
-      }
-    }
-    return false;
-  });
-
-  filteredExperts =
-    selectedTags === "All"
-      ? filteredExperts
-      : filteredExperts.filter((expert) =>
-          findExpertArticleTags(expert).includes(selectedTags)
-        );
 
   if (sortBy === "price") {
-    filteredExperts.sort((a, b) => a.price - b.price);
+    experts.sort((a, b) => a.price - b.price);
   } else if (sortBy === "rating") {
-    filteredExperts.sort((a, b) => b.rating - a.rating);
+    experts.sort((a, b) => b.rating - a.rating);
   }
 
   return (
@@ -61,7 +42,7 @@ const ExpertShowList = ({ sortBy }) => {
           showSizeChanger: false,
           showQuickJumper: true,
         }}
-        dataSource={filteredExperts}
+        dataSource={experts}
         renderItem={(expert) => (
           <List.Item>
             <ExpertShowCard item={expert} />

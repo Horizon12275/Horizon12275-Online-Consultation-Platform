@@ -4,6 +4,7 @@ import { Col, Flex, Tag, Row, Button } from "antd";
 import TagContext from "../context/tagcontext";
 import { getAllArticles } from "../services/articleService";
 import SearchContext from "../context/searchcontext";
+import Data from "../json/articles.json"
 
 const TagBar = () => {
   const [n, setN] = useState(15);
@@ -17,7 +18,7 @@ const TagBar = () => {
 
   // 首页显示的标签数据
   var tagsData = ["All"];
-  const all = getAllArticles();
+  const all = Data.articles;
 
   // 获取所有书籍的标签
   all.forEach((item) => {

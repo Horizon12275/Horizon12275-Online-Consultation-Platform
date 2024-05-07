@@ -42,6 +42,7 @@ function ProfileIntroduction({ introduction }) {
 }
 
 export default function ExpertShowCard({ item }) {
+  console.log("item:", item);
   const allTags = findExpertArticleTags(item);
   return (
     <div>
@@ -58,7 +59,7 @@ export default function ExpertShowCard({ item }) {
               />
             </div>
           </div>
-          <ProfileIntroduction introduction={item.description} />
+          <ProfileIntroduction introduction={item.introduction} />
         </div>
       </Link>
     </div>

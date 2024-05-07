@@ -1,6 +1,7 @@
 import Markdown from "react-markdown";
 import SyntaxHighlighter from "react-syntax-highlighter/dist/esm/default-highlight";
 import rehypeRaw from "rehype-raw";
+import remarkBreaks from "remark-breaks";
 
 const ArticleDisplay = ({ article }) => {
   return (
@@ -9,6 +10,7 @@ const ArticleDisplay = ({ article }) => {
       children={article.content}
       // remarkPlugins={[remarkGfm, { singleTilde: false }]}
       rehypePlugins={[rehypeRaw]}
+      remarkPlugins={[remarkBreaks]}
       components={{
         code({ node, inline, className, children, ...props }) {
           const match = /language-(\w+)/.exec(className || "");

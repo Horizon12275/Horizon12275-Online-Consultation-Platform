@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Col, Flex, Grid, List, Row, Space, Typography } from "antd";
-import { LikeOutlined, MessageOutlined, StarOutlined } from "@ant-design/icons";
+import { List } from "antd";
 import TagContext from "../context/tagcontext"; // 导入标签的上下文
 import {
   getAllArticles,
@@ -10,7 +9,12 @@ import HomeArticleCard from "./homearticle_card";
 import { Link } from "react-router-dom";
 
 export default function HomeArticle() {
-  const all = getAllArticles();
+  const [articles, setArticles] = useState([]);
+  useEffect(() => {
+    getAllArticles().then((data) => {
+      setArticles(data);
+    });
+  }, []);
   // 获取全局的标签状态
   const { selectedTags } = React.useContext(TagContext);
 
@@ -37,7 +41,6 @@ export default function HomeArticle() {
   // 渲染文章列表
   return (
     <List
-    
       dataSource={filteredData}
       grid={{
         column: 3,
@@ -47,9 +50,9 @@ export default function HomeArticle() {
       }}
       renderItem={(item) => (
         <List.Item>
-          <Link to={`/article/${item.id}`}>
+          
             <HomeArticleCard article={item} />
-          </Link>
+          
         </List.Item>
       )}
     ></List>
