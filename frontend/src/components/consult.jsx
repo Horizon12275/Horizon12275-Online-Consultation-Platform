@@ -13,15 +13,17 @@ const ChatMessage = ({ message, isSender }) => (
       <div className="message-time">
         {`${toTime(new Date(message.sendTime))}`}
       </div>
-      <img
-        src={
-          message.read
-            ? "https://cdn.builder.io/api/v1/image/assets/TEMP/9c26193174ef9bc362bc2618464cf9e3cde1611b15be9b876766906701d3058d?apiKey=b565e599026f4ea2ba591e53566a67d8&"
-            : "https://cdn.builder.io/api/v1/image/assets/TEMP/58a5dbc9afab586b5e6561fe7a0022a701c4ecaa2c5846bd55119c89808fc227?apiKey=b565e599026f4ea2ba591e53566a67d8&"
-        }
-        alt="Message status icon"
-        className="message-status-icon"
-      />
+      {isSender && (
+        <img
+          src={
+            message.seen
+              ? "https://cdn.builder.io/api/v1/image/assets/TEMP/9c26193174ef9bc362bc2618464cf9e3cde1611b15be9b876766906701d3058d?apiKey=b565e599026f4ea2ba591e53566a67d8&"
+              : "https://pic.616pic.com/ys_b_img/00/25/57/f5whnOarFb.jpg"
+          }
+          alt="Message status icon"
+          className="message-status-icon"
+        />
+      )}
     </div>
   </div>
 );
@@ -61,16 +63,32 @@ function ChatApp() {
 
     socket.onopen = () => {
       console.log("Connected to WebSocket server");
+      socket.send(JSON.stringify({ type: "seen", data: receiverId }));
     };
 
     socket.onmessage = (event) => {
-      const receivedMessage = JSON.parse(event.data);
-      if (
-        receivedMessage.receiver.id == sender.id &&
-        receivedMessage.sender.id == receiver.id
-      )
-        //如果是发给自己的消息
-        setMessages((prevMessages) => [...prevMessages, receivedMessage]); // 添加到现有消息
+      const type = JSON.parse(event.data).type;
+      if (type === "message") {
+        const receivedMessage = JSON.parse(event.data).data;
+        if (
+          receivedMessage.receiver.id == sender.id &&
+          receivedMessage.sender.id == receiver.id
+        )
+          setMessages((prevMessages) => [...prevMessages, receivedMessage]); // 添加到现有消息
+        if (receivedMessage.sender.id == receiverId)
+          socket.send(
+            JSON.stringify({ type: "seen", data: receiverId })
+          );
+      } else if (type === "seen") {
+        const uid = JSON.parse(event.data).data;
+        if (uid == receiverId)
+          setMessages((prevMessages) =>
+            prevMessages.map((message) => {
+              if (message.sender.id == sender.id) message.seen = true;
+              return message;
+            })
+          );
+      }
     };
 
     socket.onerror = (err) => {
@@ -109,7 +127,7 @@ function ChatApp() {
 
   const sendMessage = () => {
     if (inputMessage.trim() !== "") {
-      ws.send(inputMessage);
+      ws.send(JSON.stringify({ type: "message", data: inputMessage }));
       if (!(sender.id === receiver.id))
         //如果不是给自己发消息
         setMessages((prevMessages) => [
@@ -117,7 +135,7 @@ function ChatApp() {
           {
             content: inputMessage,
             sendTime: Date.now(),
-            sender: { username: sender.username },
+            sender: { username: sender.username, id: sender.id },
             receiver: { username: receiver.username, id: receiver.id },
           },
         ]);

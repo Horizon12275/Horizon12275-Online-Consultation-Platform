@@ -24,5 +24,5 @@ public class Message {
     @JoinColumn(name = "rid")
     private User receiver;
     private LocalDateTime sendTime;
-    private boolean isRead;
+    private boolean seen;
 }
