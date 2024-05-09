@@ -50,7 +50,7 @@ function ShowSpeciality() {
           </p>
         </div>
         <Link
-          to={"/experts"}
+          to={"/expert"}
           className="justify-center self-start px-8 py-4 text-base font-extrabold leading-5 text-center text-white bg-gray-900 rounded-full max-md:px-5"
         >
           View all specialities
