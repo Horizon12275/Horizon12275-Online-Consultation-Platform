@@ -19,6 +19,7 @@ import LoginPage from "./pages/login_page.jsx";
 import RegisterPage from "./pages/register_page.jsx";
 import RankingPage from "./pages/ranking";
 import WStest from "./pages/test";
+import VideoChatPage from "./pages/videoChat.jsx";
 
 const router = createBrowserRouter([
   {
@@ -52,7 +53,7 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
   {
-    path: "/expert/:id/consultation",
+    path: "/expert/:receiverId/consultation",
     element: <ConsultPage />,
     errorElement: <ErrorPage />,
   },
@@ -97,13 +98,16 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
   {
+    path: "/videochat/:receiverId",
+    element: <VideoChatPage />,
+    errorElement: <ErrorPage />,
+  },
+  {
     path: "*",
     element: <ErrorPage />,
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  
     <RouterProvider router={router} />
-  
 );

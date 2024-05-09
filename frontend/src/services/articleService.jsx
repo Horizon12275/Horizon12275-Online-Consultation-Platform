@@ -1,4 +1,6 @@
-import Data from "../json/articles.json"; // 导入本地的书籍数据
+import { BASEURL, get } from "./requestService";
+const PREFIX = `${BASEURL}/api/article`;
+import Data from "../json/articles.json";
 
 export const search = async (keyword, pageIndex, pageSize) => {
   // 模拟从本地 JSON 文件获取书籍数据
@@ -12,13 +14,28 @@ export const search = async (keyword, pageIndex, pageSize) => {
 };
 
 export const getRecommendedArticles = async () => {
-  // 模拟从本地 JSON 文件获取推荐书籍数据
-  return Data.articles.slice(0, 6); // 假设前三本书为推荐书籍
+  const url = `${PREFIX}/recommend/1`;
+  let result;
+  try {
+    result = await get(url);
+    return result;
+  } catch (e) {
+    console.log(e);
+    alert(e);
+  }
 };
 
-export const getAllArticles = () => {
-  return Data.articles; // 假设 allBooks.json 中的顶层属性名称为 books
-};
+export async function getAllArticles() {
+  const url = `${PREFIX}/list`;
+  let result;
+  try {
+    result = await get(url);
+    return result;
+  } catch (e) {
+    console.log(e);
+    
+  }
+}
 
 export const findExpertArticleTags = (expert) => {
   // 筛选出属于该专家的所有文章的标签
@@ -53,5 +70,9 @@ export const findExpertArticlesById = async (expertId) => {
 
 export const getArticleById = async (id) => {
   // 模拟从本地 JSON 文件获取书籍数据
-  return Data.articles.find((article) => article.id === parseInt(id));
+  const url = `${PREFIX}/get/${id}`;
+  let result;
+
+  result = await get(url);
+  return result;
 };

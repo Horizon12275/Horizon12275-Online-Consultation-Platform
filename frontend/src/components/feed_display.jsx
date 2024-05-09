@@ -1,7 +1,7 @@
 import * as React from "react";
 
 function ProfileImage({ src, alt }) {
-  return <img src={src} alt={alt} className="aspect-square w-[49px]" />;
+  return <img src={src} alt={alt} className="aspect-square w-[49px] rounded-full" />;
 }
 
 function UserInfo({ name, username, timestamp }) {
@@ -81,7 +81,7 @@ function TweetActions() {
   );
 }
 
-function FeedDisplay() {
+function FeedDisplay({ tweet }) {
   return (
     <div className="flex flex-col justify-end max-w-[831px] m-auto">
       <div className="flex flex-col justify-center w-full max-md:max-w-full">
@@ -90,13 +90,13 @@ function FeedDisplay() {
       <div className="flex gap-2.5 pl-4 mt-2.5 w-full max-md:flex-wrap max-md:pl-5 max-md:max-w-full">
         <div className="flex flex-col items-start pb-20">
           <ProfileImage
-            src="https://cdn.builder.io/api/v1/image/assets/TEMP/c227976e1676baf92e63c2cbac817ef676f1c8a18239ee978267ce0d19f5177a?apiKey=9e661a5e0ad74c878ca984d592b3752c&"
+            src={tweet.poster.avatar}
             alt="Profile picture of Devon Lane"
           />
         </div>
         <div className="flex flex-col py-1 max-md:max-w-full">
-          <UserInfo name="Devon Lane" username="@johndue" timestamp="23s" />
-          <TweetContent text="Tom is in a big hurry." />
+          <UserInfo name={tweet.poster.username} username="@johndue" timestamp={new Date(tweet.time).toDateString()} />
+          <TweetContent text={tweet.content} />
           <TweetImage
             src="https://cdn.builder.io/api/v1/image/assets/TEMP/a2d6cd9fdce7ad26e6da0a1e133265b83891ca1a384025e59c4bcb46d0dea9af?apiKey=9e661a5e0ad74c878ca984d592b3752c&"
             alt="Image attached to Devon Lane's tweet"

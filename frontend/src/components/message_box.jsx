@@ -1,9 +1,16 @@
+import { Input } from "antd";
 import * as React from "react";
+import EmojiDropdown from "./emoji_dropdown";
 
-function Messagebox() {
+function Messagebox({
+  inputMessage,
+  handleInputChange,
+  sendMessage,
+  setInputMessage,
+}) {
   return (
-      <>
-        <style jsx>{`
+    <>
+      <style jsx>{`
         .message-container {
           align-self: stretch;
           border-radius: 12px;
@@ -16,10 +23,10 @@ function Messagebox() {
           white-space: nowrap;
           padding: 8px 16px;
           position: absolute;
-          top:650px;
-          left:950px;
+          top: 650px;
+          left: 950px;
           width: 550px;
-          height:100px
+          height: 100px;
         }
 
         @media (max-width: 991px) {
@@ -49,22 +56,25 @@ function Messagebox() {
         }
       `}</style>
 
-        <div className="message-container">
-          <img
-              loading="lazy"
-              src="https://cdn.builder.io/api/v1/image/assets/TEMP/701f569110a2e55438e8d39f84febbf793abb2e00ba22365ecc7e49453487c5b?apiKey=b565e599026f4ea2ba591e53566a67d8&"
-              alt="Message icon"
-              className="icon"
-          />
-          <p className="message-text">Message</p>
-          <img
-              loading="lazy"
-              src="https://cdn.builder.io/api/v1/image/assets/TEMP/b9756dca2a9a5dbe643a121821f637f456f994d6b255efabb6fd57baa8d97aa6?apiKey=b565e599026f4ea2ba591e53566a67d8&"
-              alt="Message icon"
-              className="icon"
-          />
-        </div>
-      </>
+      <div className="message-container">
+        <EmojiDropdown value={inputMessage} setValue={setInputMessage} />
+        <Input.TextArea
+          className="message-text border-none "
+          type="text"
+          value={inputMessage}
+          onChange={handleInputChange}
+          placeholder="Message"
+          onPressEnter={sendMessage}
+        />
+        <img
+          loading="lazy"
+          src="https://cdn.builder.io/api/v1/image/assets/TEMP/b9756dca2a9a5dbe643a121821f637f456f994d6b255efabb6fd57baa8d97aa6?apiKey=b565e599026f4ea2ba591e53566a67d8&"
+          alt="Message icon"
+          className="icon cursor-pointer"
+          onClick={sendMessage}
+        />
+      </div>
+    </>
   );
 }
 

@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import ChatRoom from "../components/chatroom";
 import { useParams } from "react-router-dom";
 import { getExpertById } from "../services/expertService"; // 导入专家相关的服务函数
 import { Flex, Divider } from "antd";
@@ -10,9 +9,9 @@ import CommentList from "../components/comment_list";
 import { getComments } from "../services/commentService";
 import History from "../components/history.jsx";
 import AIPrompt from "../components/ai_prompt.jsx";
-import ConsultHead from "../components/consult_head.jsx";
+
 import ChatApp from "../components/consult.jsx";
-import Messagebox from "../components/message_box.jsx";
+
 const ConsultPage = () => {
   let { id } = useParams();
   const [expert, setExpert] = useState({});
@@ -31,8 +30,8 @@ const ConsultPage = () => {
       <Flex>
         <div
           style={{
-            width: "350px",
-            minHeight: "550px",
+            
+            minHeight: "800px",
             backgroundColor: "#f5f5f5",
             padding: "0 10px",
             height: "100vh",
@@ -43,13 +42,11 @@ const ConsultPage = () => {
           <Divider style={{ margin: "10px 0" }} />
           <RateButton />
           <CommentList comments={comments} />
-            <History/>
-            <AIPrompt/>
-            <ConsultHead/>
-            <ChatApp/>
-            <Messagebox/>
+          <History />
+          <AIPrompt />
+          
+          <ChatApp />
         </div>
-
       </Flex>
     </ChatLayout>
   );

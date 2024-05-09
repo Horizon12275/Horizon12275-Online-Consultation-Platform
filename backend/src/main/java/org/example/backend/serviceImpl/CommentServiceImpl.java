@@ -16,14 +16,13 @@ public class CommentServiceImpl implements CommentService {
         this.repository = repository;
         this.userRepository = userRepository;
     }
-    public Result<List<Comment>> getCommentsByBid(int bid) {
-        List<Comment> comments = repository.getCommentsByBookId(bid);
+    public Result<List<Comment>> getCommentsByAid(int aid) {
+        List<Comment> comments = repository.getCommentsByArticleId(aid);
         return Result.success(comments);
     }
     public Result<Comment> addComment(int bid,int uid, String content) {
         Comment comment = new Comment();
-        comment.setBook(new Book());
-        comment.getBook().setId(bid);
+
         User user = userRepository.findById(uid).orElse(null);
         comment.setUser(user);
         comment.setContent(content);

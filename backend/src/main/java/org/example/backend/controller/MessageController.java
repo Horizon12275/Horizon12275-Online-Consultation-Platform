@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Comparator;
 import java.util.List;
 
 @RestController
@@ -24,7 +25,8 @@ public class MessageController {
     public Result<List<Message>> getHistoryMessages(@PathVariable int rid) {
         int sid = myUserDetails.getUid();
         List<Message> historyMessages = messageRepository.getMessagesBySenderIdAndReceiverId(sid, rid);
-        historyMessages.addAll(messageRepository.getMessagesBySenderIdAndReceiverId(rid, sid));//将双方的消息合并
+        if(sid != rid) historyMessages.addAll(messageRepository.getMessagesBySenderIdAndReceiverId(rid, sid));//将双方的消息合并 并按时间排序
+        historyMessages.sort(Comparator.comparing(Message::getSendTime));
         return Result.success(historyMessages);
     }
 }

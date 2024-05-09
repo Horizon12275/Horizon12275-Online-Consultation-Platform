@@ -6,7 +6,7 @@ export async function login({ username, password }) {
   try {
     result = await postUrlencoded(url, { username, password });
     alert("登录成功！");
-    // location.reload();
+     location.href = "/";
   } catch (e) {
     console.log(e);
     alert(e);
@@ -32,17 +32,9 @@ export async function checkAuth() {
     result = await get(url);
     return result;
   } catch (e) {
-    location.href = "/";
+    location.href = "/login";
     alert(e);
   }
 }
 
-export async function checkLogin() {
-  const url = `${PREFIX}/check`;
-  try {
-    await get(url);
-    return true;
-  } catch (e) {
-    return false;
-  }
-}
+
