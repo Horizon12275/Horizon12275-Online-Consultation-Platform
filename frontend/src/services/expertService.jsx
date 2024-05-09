@@ -46,7 +46,3 @@ export const getExpertById = async (id) => {
   return result;
 };
 
-export const getCommentsByExpertId = async (id) => {
-  const comments = getExpertById(id).comments;
-  return comments;
-};

@@ -1,11 +1,12 @@
 import CommentCard from "./comment_card";
 
 const CommentList = ({ comments }) => {
+  console.log(comments);
   return (
     <section>
-      {comments.map((comment) => (
+      {comments.map((comment, index) => (
         <CommentCard
-          key={comment.id}
+          key={index}
           author={comment.user.username}
           avatar={comment.user.avatar}
           content={comment.content}

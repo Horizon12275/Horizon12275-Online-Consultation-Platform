@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { Input } from "antd";
 import { addArticleComment } from "../services/articleCommentService";
+import { addTweetComment } from "../services/tweetCommentService";
+import { addExpertComment } from "../services/expertCommentService";
+import { useAuth } from "../context/authContext";
 
 const { TextArea } = Input;
 
@@ -38,14 +41,32 @@ function ShareButton({ handleClick }) {
   );
 }
 
-function CommentBox({ expertId }) {
+function CommentBox({ id, type, setComments }) {
+  const { user, setUser } = useAuth();
   const [value, setValue] = useState("");
   const handleSubmit = () => {
-    console.log(expertId);
     if (value.trim() === "") {
       return;
     }
-    addArticleComment({ aid: expertId, content: value });
+    if (type === "article") addArticleComment({ aid: id, content: value });
+    else if (type === "tweet") addTweetComment({ tid: id, content: value });
+    else if (type === "expert") addExpertComment({ eid: id, content: value });
+    setValue("");
+    console.log(user);
+    setComments((prev) => [
+      ...prev,
+      {
+        id: prev.length + 1,
+        content: value,
+        time: new Date().toLocaleString(),
+        likes: 0,
+        user: {
+          id: user.id,
+          username: user.username,
+          avatar: user.avatar,
+        },
+      },
+    ]);
   };
   return (
     <div className="flex flex-col justify-center max-w-xs text-base">

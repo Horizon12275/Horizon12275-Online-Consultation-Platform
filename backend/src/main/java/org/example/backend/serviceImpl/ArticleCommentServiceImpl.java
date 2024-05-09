@@ -49,21 +49,21 @@ public class ArticleCommentServiceImpl implements ArticleCommentService {
         }
         return Result.error(404,"评论不存在");
     }
-    public Result<Reply> addArticleReply(int cid, String content) {
+    public Result<ArticleReply> addArticleReply(int cid, String content) {
         int uid = getUid();
         ArticleComment articleComment = repository.findById(cid).orElse(null);
         if (articleComment == null) {
             return Result.error(404, "评论不存在");
         }
-        Reply reply = new Reply();
-        reply.setArticleComment(articleComment);
+        ArticleReply articleReply = new ArticleReply();
+        articleReply.setArticleComment(articleComment);
         User user = userRepository.findById(uid).orElse(null);
         if (user == null) {
             return Result.error(404, "用户不存在");
         }
-        reply.setUser(user);
-        reply.setContent(content);
-        reply.setTime(LocalDateTime.now());
-        return Result.success(reply);
+        articleReply.setUser(user);
+        articleReply.setContent(content);
+        articleReply.setTime(LocalDateTime.now());
+        return Result.success(articleReply);
     }
 }

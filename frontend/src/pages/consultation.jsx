@@ -11,6 +11,7 @@ import AIPrompt from "../components/ai_prompt.jsx";
 import ChatApp from "../components/consult.jsx";
 import CommentBox from "../components/comment_box.jsx";
 import { getCommentsByArticleId } from "../services/articleCommentService.jsx";
+import { getCommentsByExpertId } from "../services/expertCommentService.jsx";
 
 const ConsultPage = () => {
   let { receiverId } = useParams();
@@ -20,7 +21,7 @@ const ConsultPage = () => {
   useEffect(() => {
     Promise.all([
       getExpertById(receiverId),
-      getCommentsByArticleId(receiverId),
+      getCommentsByExpertId(receiverId),
     ]).then(([expert, comments]) => {
       setExpert(expert);
       setComments(comments);
@@ -43,8 +44,8 @@ const ConsultPage = () => {
           <ConsultationHistoryList />
           <Divider style={{ margin: "10px 0" }} />
           <RateButton />
-          <CommentList comments={comments} />
-          <CommentBox expertId={receiverId} />
+          <CommentList comments={comments}  />
+          <CommentBox id={receiverId} type={"expert"} setComments={setComments} />
           <History />
           <AIPrompt />
 

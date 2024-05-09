@@ -11,11 +11,11 @@ import java.util.List;
 
 @Data
 @Entity
-@Table(name = "article_comments")
+@Table(name = "expert_comments")
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties({"hibernateLazyInitializer","handler","article"})//忽略cartItems属性 并且解决cartItems属性为null的问题
-public class ArticleComment {
+public class ExpertComment {
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY)
     private int id;
@@ -27,8 +27,8 @@ public class ArticleComment {
     @JsonIgnoreProperties({"comments","aboutMe"})
     private User user;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "aid")
-    private Article article;
-    @OneToMany(mappedBy = "articleComment",cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.LAZY)
-    private List<ArticleReply> replies;
+    @JoinColumn(name = "eid")
+    private Expert expert;
+    //@OneToMany(mappedBy = "expertComment",cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.LAZY)
+    //private List<ArticleReply> replies;
 }

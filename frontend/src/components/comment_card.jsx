@@ -39,7 +39,7 @@ export default function CommentCard({
   return (
     <article className="flex gap-0 mt-3">
       <div className="flex flex-col justify-center items-start self-start pr-4">
-        <Avatar src={"/1.jpg"} alt={`${author}'s avatar`} />
+        <Avatar src={avatar} alt={`${author}'s avatar`} />
       </div>
       <div className="flex flex-col">
         <AuthorInfo
