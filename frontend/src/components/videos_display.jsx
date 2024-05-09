@@ -2,6 +2,34 @@ import React, { useEffect, useState, useRef } from "react";
 import Peer from "peerjs";
 import { useParams } from "react-router-dom";
 import { getUser } from "../services/userService";
+import "../css/loading.css";
+import VideoBox from "./video_box";
+
+function CallButton({ onClick }) {
+  return (
+    <button className="call-button" onClick={onClick}>
+      <img
+        className="call-icon"
+        src="https://cdn.builder.io/api/v1/image/assets/TEMP/8c021edfc9b00b4b26bfa8ac69dab5ee7e915ca7310725b8e4ddfc4bb009bc60?apiKey=b565e599026f4ea2ba591e53566a67d8&"
+        alt="Call icon"
+      />
+      <span className="call-text">Connect</span>
+    </button>
+  );
+}
+
+function CancelButton({ onClick }) {
+  return (
+    <button className="call-button" onClick={onClick}>
+      <img
+        className="call-icon"
+        src="https://cdn.builder.io/api/v1/image/assets/TEMP/8c021edfc9b00b4b26bfa8ac69dab5ee7e915ca7310725b8e4ddfc4bb009bc60?apiKey=b565e599026f4ea2ba591e53566a67d8&"
+        alt="Cancel icon"
+      />
+      <span className="call-text">Cancel</span>
+    </button>
+  );
+}
 
 const VideosDisplay = () => {
   const { receiverId } = useParams();
@@ -13,6 +41,8 @@ const VideosDisplay = () => {
   const remoteVideoRef = useRef(null);
   const currentUserVideoRef = useRef(null);
   const peerInstance = useRef(null);
+  const [isLoadingCurrentUser, setIsLoadingCurrentUser] = useState(true);
+
   //获取当前已经登陆的用户的信息，并通过解析路由，获取即将通讯的用户的id
   useEffect(() => {
     getUser().then((res) => {
@@ -72,56 +102,52 @@ const VideosDisplay = () => {
 
     getUserMedia({ video: true, audio: true }, (mediaStream) => {
       currentUserVideoRef.current.srcObject = mediaStream;
-      currentUserVideoRef.current.play();
+      currentUserVideoRef.current.play().catch((error) => {
+        console.log('Play method error: ', error);
+      });
 
       const call = peerInstance.current.call(remotePeerId, mediaStream);
       console.log(mediaStream);
 
       call.on("stream", (remoteStream) => {
         remoteVideoRef.current.srcObject = remoteStream;
-        remoteVideoRef.current.play();
+    
+        remoteVideoRef.current.play().catch((error) => {
+          console.log('Play method error: ', error);
+        });
       });
     });
+    setIsLoadingCurrentUser(false);
+  };
+
+  const cancel = () => {
+    if (currentUserVideoRef.current && currentUserVideoRef.current.srcObject) {
+      const tracks = currentUserVideoRef.current.srcObject.getTracks();
+      tracks.forEach((track) => {
+        track.stop();
+      });
+      currentUserVideoRef.current.srcObject = null;
+    }
+
+    if (remoteVideoRef.current && remoteVideoRef.current.srcObject) {
+      const tracks = remoteVideoRef.current.srcObject.getTracks();
+      tracks.forEach((track) => {
+        track.stop();
+      });
+      remoteVideoRef.current.srcObject = null;
+    }
+    setIsLoadingCurrentUser(true);
   };
 
   return (
-    <div className="App" style={{ textAlign: "left" }}>
-      <h1 style={{ color: "black" }}>Current user id is {peerId}</h1>
-      <input
-        type="text"
-        value={remotePeerIdValue}
-        onChange={(e) => setRemotePeerIdValue(e.target.value)}
-        style={{
-          width: "200px",
-          height: "30px",
-          fontSize: "16px",
-          color: "black",
-        }}
-      />
-      <button
-        onClick={() => call(remotePeerIdValue)}
-        style={{
-          marginLeft: "10px",
-          padding: "10px 20px",
-          fontSize: "16px",
-          backgroundColor: "green",
-        }}
-      >
-        Call
-      </button>
-      <div style={{ marginTop: "20px" }}>
-        <video
-          ref={currentUserVideoRef}
-          style={{ width: "300px", height: "200px" }}
-        />
+    <>
+      <div className="App" style={{ textAlign: "left" }}>
+        <CallButton onClick={() => call(remotePeerIdValue)} />
+        <CancelButton onClick={() => cancel()} />
+        <VideoBox currentUserVideoRef={currentUserVideoRef} isLoadingCurrentUser={isLoadingCurrentUser} />
+        <VideoBox currentUserVideoRef={remoteVideoRef} isLoadingCurrentUser={isLoadingCurrentUser} />
       </div>
-      <div style={{ marginTop: "20px" }}>
-        <video
-          ref={remoteVideoRef}
-          style={{ width: "300px", height: "200px" }}
-        />
-      </div>
-    </div>
+    </>
   );
 };
 
