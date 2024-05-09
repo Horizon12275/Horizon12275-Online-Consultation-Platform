@@ -11,11 +11,11 @@ import java.util.List;
 
 @Data
 @Entity
-@Table(name = "comments")
+@Table(name = "article_comments")
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler","book"})//忽略cartItems属性 并且解决cartItems属性为null的问题
-public class Comment {
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","article"})//忽略cartItems属性 并且解决cartItems属性为null的问题
+public class ArticleComment {
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY)
     private int id;
@@ -29,6 +29,6 @@ public class Comment {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "aid")
     private Article article;
-    @OneToMany(mappedBy = "comment",cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "articleComment",cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.LAZY)
     private List<Reply> replies;
 }

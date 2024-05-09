@@ -11,5 +11,5 @@ public interface ExpertRepository extends JpaRepository<Expert, Integer> {
     Expert findExpertByUserUsername(String username);
     Expert findExpertByUserId(int uid);
     Expert findExpertById(int id);
-    List<Expert> getExpertsByUserUsernameLike(String keyword);
+    List<Expert> getExpertsByNameLikeOrIntroductionLike(String name, String introduction);
 }

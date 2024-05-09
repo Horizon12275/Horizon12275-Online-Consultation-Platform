@@ -3,7 +3,7 @@ package org.example.backend.controller;
 import org.example.backend.entity.Message;
 import org.example.backend.entity.Result;
 import org.example.backend.repository.MessageRepository;
-import org.example.backend.service.MyUserDetails;
+import org.example.backend.service.MyUserDetailsService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,8 +16,8 @@ import java.util.List;
 @RequestMapping("/api/message")
 public class MessageController {
     private final MessageRepository messageRepository;
-    private final MyUserDetails myUserDetails;
-    public MessageController(MessageRepository messageRepository, MyUserDetails myUserDetails) {
+    private final MyUserDetailsService myUserDetails;
+    public MessageController(MessageRepository messageRepository, MyUserDetailsService myUserDetails) {
         this.messageRepository = messageRepository;
         this.myUserDetails = myUserDetails;
     }

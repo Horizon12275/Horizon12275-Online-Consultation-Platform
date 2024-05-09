@@ -6,11 +6,11 @@ const CommentList = ({ comments }) => {
       {comments.map((comment) => (
         <CommentCard
           key={comment.id}
-          author={comment.user}
-          avatar={comment.avatar}
+          author={comment.user.username}
+          avatar={comment.user.avatar}
           content={comment.content}
           timestamp={comment.time}
-          likes={comment.likes}
+          likes={3}
           onReply={() => console.log(`Reply to comment ${comment.id}`)}
         />
       ))}

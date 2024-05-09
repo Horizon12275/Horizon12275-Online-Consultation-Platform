@@ -1,20 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { getAllExperts } from "../services/expertService";
 import ExpertShowCard from "./expert_showcard";
-import { findExpertArticleTags } from "../services/articleService";
 
 const ExpertRecommend = ({ tag }) => {
-  
   const [experts, setExperts] = useState([]);
   useEffect(() => {
     getAllExperts().then((res) => {
       setExperts(res);
     });
   }, []);
-  let filteredExperts = experts.filter((experts) =>
-          findExpertArticleTags(experts).includes(tag)
-        );
-  const similarExperts = filteredExperts.slice(0, 3);
 
   return (
     <div>

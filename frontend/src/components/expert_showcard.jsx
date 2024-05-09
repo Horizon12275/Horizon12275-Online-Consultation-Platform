@@ -1,7 +1,5 @@
 import Link from "antd/es/typography/Link";
 
-import { findExpertArticleTags } from "../services/articleService";
-
 function ProfileImage({ src, alt }) {
   return (
     <div className="flex flex-col ">
@@ -43,7 +41,7 @@ function ProfileIntroduction({ introduction }) {
 
 export default function ExpertShowCard({ item }) {
   console.log("item:", item);
-  const allTags = findExpertArticleTags(item);
+ 
   return (
     <div>
       <Link href={`/expert/${item.id}`}>
@@ -54,7 +52,7 @@ export default function ExpertShowCard({ item }) {
               <ProfileInfo
                 name={item.name}
                 price={item.price}
-                specialty={allTags.map((tag) => tag + " ")}
+                //specialty={allTags.map((tag) => tag + " ")}
                 rating={item.rating}
               />
             </div>

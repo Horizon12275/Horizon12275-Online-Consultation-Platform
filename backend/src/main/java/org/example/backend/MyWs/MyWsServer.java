@@ -8,7 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.example.backend.entity.Message;
 
 import org.example.backend.entity.User;
-import org.example.backend.entity.WsMessage;
+import org.example.backend.DTO.WsMessage;
 import org.example.backend.repository.MessageRepository;
 import org.example.backend.repository.UserRepository;
 

@@ -76,9 +76,7 @@ function ChatApp() {
         )
           setMessages((prevMessages) => [...prevMessages, receivedMessage]); // 添加到现有消息
         if (receivedMessage.sender.id == receiverId)
-          socket.send(
-            JSON.stringify({ type: "seen", data: receiverId })
-          );
+          socket.send(JSON.stringify({ type: "seen", data: receiverId }));
       } else if (type === "seen") {
         const uid = JSON.parse(event.data).data;
         if (uid == receiverId)
@@ -119,13 +117,15 @@ function ChatApp() {
         setReceiver(values[2]);
         initWebSocket(values[0], values[2]);
       })
-      .catch((err) => {
-        alert(err);
-        location.href = "/login";
+      .catch((e) => {
+        console.error(e);
+        //alert(e);
+        history.back();
       });
   }, [receiverId]); // 空数组确保仅首次加载时运行
 
-  const sendMessage = () => {
+  const sendMessage = (event) => {
+    event.preventDefault(); //阻止换行
     if (inputMessage.trim() !== "") {
       ws.send(JSON.stringify({ type: "message", data: inputMessage }));
       if (!(sender.id === receiver.id))
