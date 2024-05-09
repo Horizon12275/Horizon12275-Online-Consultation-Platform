@@ -18,13 +18,14 @@ const ConsultPage = () => {
   const [expert, setExpert] = useState({});
   const [comments, setComments] = useState([]);
   useEffect(() => {
-    Promise.all([getExpertById(receiverId), getCommentsByArticleId(receiverId)]).then(
-      ([expert, comments]) => {
-        setExpert(expert);
-        setComments(comments);
-        console.log(receiverId)
-      }
-    );
+    Promise.all([
+      getExpertById(receiverId),
+      getCommentsByArticleId(receiverId),
+    ]).then(([expert, comments]) => {
+      setExpert(expert);
+      setComments(comments);
+      console.log(receiverId);
+    });
   }, [receiverId]);
 
   return (

@@ -2,17 +2,16 @@ import React, { useEffect, useState } from "react";
 import ConsultationHistoryCard from "./consultation_history_card";
 import { Link } from "react-router-dom";
 import { getOtherUserById } from "../services/userService";
+import { getRecommendedExperts } from "../services/expertService";
 
 export default function ConsultationHistoryList() {
   const [n, setN] = useState(3);
   const [expanded, setExpanded] = useState(false);
   const [experts, setExperts] = useState([]);
   useEffect(() => {
-    for (let i = 1; i <= 3; i++) {
-      getOtherUserById(i).then((res) => {
-        setExperts((prev) => [...prev, res]);
-      });
-    }
+    getRecommendedExperts().then((res) => {
+      setExperts(res);
+    });
   }, []);
 
   const handleClick = () => {

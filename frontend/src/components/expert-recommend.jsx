@@ -16,7 +16,7 @@ const ExpertRecommend = ({ tag }) => {
         Recommended Experts
       </h1>
       <div className="flex gap-4">
-        {similarExperts.map((expert) => (
+        {experts.map((expert) => (
           <ExpertShowCard key={expert.id} item={expert} />
         ))}
       </div>
