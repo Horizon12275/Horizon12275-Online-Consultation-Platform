@@ -2,7 +2,9 @@ package org.example.backend.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -10,12 +12,19 @@ import java.util.List;
 @Data
 @Entity
 @Table(name = "experts")
+@AllArgsConstructor
+@NoArgsConstructor
 @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 public class Expert {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
+    private String firstName;
+    private String lastName;
+    private String field;
+    @Enumerated(EnumType.STRING)
+    private educationLevel education;
     private String introduction;
     private String image;
     @Column(precision = 3,scale = 1)
@@ -29,4 +38,8 @@ public class Expert {
     @OneToMany(mappedBy = "author",cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.LAZY)
     @JsonIgnoreProperties({"author"})
     private List<Article> articles;
+
+    public enum educationLevel {
+        Junior,Senior,Master,Doctor,Undergraduate
+    }
 }

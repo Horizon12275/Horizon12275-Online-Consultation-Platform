@@ -14,4 +14,5 @@ public interface ExpertService {
     public Result<Expert> updateExpert(int id, Expert expert);
     public Result<Expert> deleteExpert(int id);
     public Result<List<Expert>> searchExperts(String keyword);
+    public Result<List<Expert>> getRecommendedExperts(int nums);
 }

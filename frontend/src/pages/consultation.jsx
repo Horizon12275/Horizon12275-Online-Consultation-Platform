@@ -4,33 +4,35 @@ import { getExpertById } from "../services/expertService"; // 导入专家相关
 import { Flex, Divider } from "antd";
 import ConsultationHistoryList from "../components/consultation_history_list";
 import RateButton from "../components/rate";
-import { ChatLayout } from "../layouts";
+import { BasicLayout, ChatLayout } from "../layouts";
 import CommentList from "../components/comment_list";
-import { getComments } from "../services/commentService";
 import History from "../components/history.jsx";
 import AIPrompt from "../components/ai_prompt.jsx";
-
 import ChatApp from "../components/consult.jsx";
+import CommentBox from "../components/comment_box.jsx";
+import { getCommentsByArticleId } from "../services/articleCommentService.jsx";
 
 const ConsultPage = () => {
-  let { id } = useParams();
+  let { receiverId } = useParams();
+
   const [expert, setExpert] = useState({});
   const [comments, setComments] = useState([]);
   useEffect(() => {
-    Promise.all([getExpertById(id), getComments(id)]).then(
-      ([expert, comments]) => {
-        setExpert(expert);
-        setComments(comments);
-      }
-    );
-  }, [id]);
+    Promise.all([
+      getExpertById(receiverId),
+      getCommentsByArticleId(receiverId),
+    ]).then(([expert, comments]) => {
+      setExpert(expert);
+      setComments(comments);
+      console.log(receiverId);
+    });
+  }, [receiverId]);
 
   return (
-    <ChatLayout>
+    <BasicLayout>
       <Flex>
         <div
           style={{
-            
             minHeight: "800px",
             backgroundColor: "#f5f5f5",
             padding: "0 10px",
@@ -42,13 +44,14 @@ const ConsultPage = () => {
           <Divider style={{ margin: "10px 0" }} />
           <RateButton />
           <CommentList comments={comments} />
+          <CommentBox expertId={receiverId} />
           <History />
           <AIPrompt />
-          
+
           <ChatApp />
         </div>
       </Flex>
-    </ChatLayout>
+    </BasicLayout>
   );
 };
 

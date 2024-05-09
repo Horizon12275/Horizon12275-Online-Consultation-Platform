@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @Table(name = "replies")
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler","comment"})//忽略cartItems属性 并且解决cartItems属性为null的问题
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","articleComment"})//忽略cartItems属性 并且解决cartItems属性为null的问题
 public class Reply {
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY)
@@ -26,6 +26,6 @@ public class Reply {
     private User user;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cid")
-    private Comment comment;
+    private ArticleComment articleComment;
 
 }

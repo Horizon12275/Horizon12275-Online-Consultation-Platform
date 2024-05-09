@@ -1,12 +1,63 @@
-import React from 'react';
-import { Input } from 'antd';
+import React, { useState } from "react";
+import { Input } from "antd";
+import { addArticleComment } from "../services/articleCommentService";
 
 const { TextArea } = Input;
 
-export default function CommentBox() {
+function CommentInput({ value, onChange }) {
   return (
-      <>
-          <TextArea rows={4} placeholder="写下你的评价..." style={{marginBottom:"20px"}}/>
-      </>
-  )
+    <div className="flex flex-col justify-center w-full leading-6 text-gray-500">
+      <div className="flex flex-col justify-center w-full">
+        <TextArea
+          required
+          value={value}
+          onChange={onChange}
+          rows={4}
+          placeholder="Enter your Comment Here!"
+          className="justify-center px-3.5 py-2.5 bg-white rounded-lg border border-gray-300 border-solid shadow-sm"
+        />
+      </div>
+    </div>
+  );
 }
+
+function ShareButton({ handleClick }) {
+  return (
+    <div
+      onClick={handleClick}
+      className="flex gap-2 justify-center px-4 py-2.5 mt-2 font-semibold text-blue-600 bg-sky-200 rounded-lg cursor-pointer"
+    >
+      <img
+        loading="lazy"
+        src="https://cdn.builder.io/api/v1/image/assets/TEMP/c3d5daf1ba07a37f084d4b24416314a47919d5aac10e3f391ca19da010b33476?apiKey=9e661a5e0ad74c878ca984d592b3752c&"
+        alt=""
+        className="shrink-0 w-6 aspect-square"
+      />
+      <div className="my-auto">Share Your Comment !</div>
+    </div>
+  );
+}
+
+function CommentBox({ expertId }) {
+  const [value, setValue] = useState("");
+  const handleSubmit = () => {
+    console.log(expertId);
+    if (value.trim() === "") {
+      return;
+    }
+    addArticleComment({ aid: expertId, content: value });
+  };
+  return (
+    <div className="flex flex-col justify-center max-w-xs text-base">
+      <CommentInput
+        value={value}
+        onChange={(e) => {
+          setValue(e.target.value);
+        }}
+      />
+      <ShareButton handleClick={handleSubmit} />
+    </div>
+  );
+}
+
+export default CommentBox;

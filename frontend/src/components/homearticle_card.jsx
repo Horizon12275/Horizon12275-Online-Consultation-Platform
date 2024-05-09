@@ -23,7 +23,7 @@ function AuthorInfo({ article }) {
         className="shrink-0 my-auto w-10 aspect-square"
       />
       <div className="flex flex-col">
-        <div className="text-zinc-700">{article.author.user.username}</div>
+        <div className="text-zinc-700">{article.author.name}</div>
         <div className="text-zinc-600">Aug 18</div>
       </div>
     </div>
