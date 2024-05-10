@@ -62,9 +62,9 @@ function FillForm() {
           flex-direction: column;
           font-weight: 400;
             position: absolute;
-         top: 29px;
-            left:950px;
-            width:500px
+         top: 40px;
+            left:1000px;
+            width:550px
         }
 
         @media (max-width: 991px) {
@@ -76,7 +76,7 @@ function FillForm() {
         .header {
           display: flex;
           width: 100%;
-          gap: 10px;
+          gap: 15px;
           padding: 0 1px;
           align-items: center;
         }
@@ -97,7 +97,7 @@ function FillForm() {
 
         .actions {
           display: flex;
-          gap: 20px;
+          gap: 23px;
           font-size: 19px;
           white-space: nowrap;
           justify-content: space-between;
@@ -112,7 +112,7 @@ function FillForm() {
         .button {
           font-family: Carter One, sans-serif;
           border-radius: 7px;
-          padding: 23px;
+          padding: 25px;
           cursor: pointer;
         }
 
@@ -150,7 +150,7 @@ function FillForm() {
         .form-row {
           display: flex;
           gap: 20px;
-          margin-top: 30px;
+          margin-top: 35px;
         }
 
         @media (max-width: 991px) {
@@ -176,13 +176,13 @@ function FillForm() {
           border: 2px solid rgba(229, 229, 229, 1);
           border-radius: 7px;
           height: 52px;
-          margin-top: 15px;
+          margin-top: 20px;
           padding: 0 10px;
           font: 16px Cardo, sans-serif;
         }
 
         .form-input {
-          margin-top: 20px;
+          margin-top: 23px;
         }
 
         @media (max-width: 991px) {
@@ -195,7 +195,7 @@ function FillForm() {
         .textarea-container {
           display: flex;
           flex-direction: column;
-          margin-top: 35px;
+          margin-top: 37px;
         }
 
         @media (max-width: 991px) {
@@ -209,7 +209,7 @@ function FillForm() {
           border: 2px solid rgba(229, 229, 229, 1);
           border-radius: 7px;
           height: 149px;
-          margin-top: 31px;
+          margin-top: 35px;
           padding: 10px;
           font: 16px Cardo, sans-serif;
           resize: vertical;

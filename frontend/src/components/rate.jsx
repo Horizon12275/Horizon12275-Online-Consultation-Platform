@@ -9,7 +9,7 @@ const RateButton = () => {
       gap="middle"
       vertical
       align="center"
-      style={{ marginTop: "30px", margin: "20px" }}
+      style={{ marginTop: "40px", margin: "20px"}}
     >
       <header className="text-2xl text-center text-black max-w-[84px] m-auto ">
         Rating:

@@ -2,7 +2,7 @@ import CommentCard from "./comment_card";
 
 const CommentList = ({ comments }) => {
   return (
-    <section>
+    <section style={{marginTop:'40px',display:'grid',gap:'30px'}}>
       {comments.map((comment) => (
         <CommentCard
           key={comment.id}

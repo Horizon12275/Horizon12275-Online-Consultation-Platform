@@ -5,7 +5,7 @@ const SpecialityCard = ({ image, title, buttonText }) => {
       <img loading="lazy" src={image} alt="" className="gap-0 w-full aspect-[1.79]" />
       <div className="flex flex-col gap-3 p-3 bg-white">
         <div className="gap-0 text-black">{title}</div>
-        <div className="gap-0 mt-3 text-blue-300">{buttonText}</div>
+        <div className="gap-0 mt-3 text-blue-500">{buttonText}</div>
       </div>
     </div>
   );
@@ -49,7 +49,7 @@ function ShowSpeciality() {
         </p>
       </div>
       <button onClick={handleSpeciality} 
-        className="justify-center self-start px-8 py-4 text-base font-extrabold leading-5 text-center text-white bg-gray-900 rounded-full max-md:px-5">
+        className="justify-center self-start px-8 py-4 text-base font-extrabold leading-5 text-center text-white bg-blue-700 rounded-full max-md:px-5">
         View all specialities
       </button>
     </div>

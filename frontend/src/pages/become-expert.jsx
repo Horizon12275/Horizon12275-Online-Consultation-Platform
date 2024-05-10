@@ -109,20 +109,20 @@ const BecomeExpertPage = () => {
           </Header>
          
          {!submitted && (
-            <div className="flex flex-col items-start px-14 pt-9 rounded-xl bg-zinc-100 bg-opacity-60 max-md:px-5">
-              <h1 className="self-stretch text-5xl font-semibold tracking-tighter text-center text-gray-900 max-md:max-w-full max-md:text-4xl">
-                to be an expert
+            <div className="flex flex-col items-start px-14 pt-9 rounded-xl bg-zinc-100 bg-opacity-60 max-md:px-6">
+              <h1 className="self-stretch text-6xl font-semibold tracking-tighter text-center text-gray-900 max-md:max-w-full max-md:text-5xl">
+                To  be  an  Expert
               </h1>
-              <p className="self-center mt-12 text-xl leading-8 text-center text-slate-600 max-md:mt-10 max-md:max-w-full">
+              <p className="self-center mt-10 text-xl leading-8 text-center text-slate-600 max-md:mt-10 max-md:max-w-full">
                 We'd love to hear from you. Please fill out this form.
               </p>
 
-              <div className="flex gap-5 self-stretch mt-20 max-md:flex-wrap max-md:mt-10 mb-10">
+              <div className="flex gap-10 self-stretch mt-30 max-md:flex-wrap max-md:mt-10 mb-10">
                 {inputFields.slice(0, 2).map((field, index) => (
                   <InputField key={index} {...field} />
                 ))}
               </div>
-              <div className="flex gap-5 self-stretch max-md:flex-wrap max-md:mt-10 mb-10">
+              <div className="flex gap-10 self-stretch max-md:flex-wrap max-md:mt-10 mb-10">
                 {inputFields.slice(2, 3).map((field, index) => (
                   <InputField key={index} {...field} />
                 ))}
@@ -157,7 +157,7 @@ const BecomeExpertPage = () => {
                 placeholder="a brief introduction of yourself, including personal strengths, professional strengths, interests and research directions in the professional field, etc."
               />
 
-              <div className="flex gap-3 self-stretch mt-10 text-base leading-6 text-slate-600 max-md:flex-wrap">
+              <div className="flex gap-4 self-stretch mt-10 text-base leading-6 text-slate-600 max-md:flex-wrap">
                 <input
                   type="checkbox"
                   className="shrink-0 my-auto w-5 h-5 bg-white rounded-md border border-gray-300 border-solid"
@@ -167,7 +167,7 @@ const BecomeExpertPage = () => {
                 </label>
               </div>
               <button 
-                className="justify-center items-center self-stretch px-5 py-2.5 mt-10 text-base font-semibold leading-6 text-white bg-blue-400 rounded-lg border border-gray-400 border-solid shadow-sm max-md:max-w-full"
+                className="justify-center items-center self-stretch px-5 py-4 mt-10 text-base font-semibold leading-6 text-white bg-blue-400 rounded-lg border border-gray-400 border-solid shadow-sm max-md:max-w-full"
                 onClick={handleSubmit}>
                 Apply to become an expert
               </button>

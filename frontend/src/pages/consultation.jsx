@@ -8,7 +8,7 @@ import RateButton from "../components/rate";
 import { ChatLayout } from "../layouts";
 import CommentList from "../components/comment_list";
 import { getComments } from "../services/commentService";
-import History from "../components/history.jsx";
+import VoiceChatList from "../components/history.jsx";
 import AIPrompt from "../components/ai_prompt.jsx";
 import ConsultHead from "../components/consult_head.jsx";
 import ChatApp from "../components/consult.jsx";
@@ -32,18 +32,19 @@ const ConsultPage = () => {
         <div
           style={{
             width: "350px",
-            minHeight: "550px",
+
+
             backgroundColor: "#f5f5f5",
-            padding: "0 10px",
-            height: "100vh",
+            padding: "0 15px",
+              marginTop:"20px",
             overflowY: "scroll",
           }}
         >
           <ConsultationHistoryList />
-          <Divider style={{ margin: "10px 0" }} />
+          <Divider style={{ margin: "30px 0" }} />
           <RateButton />
           <CommentList comments={comments} />
-            <History/>
+            <VoiceChatList/>
             <AIPrompt/>
             <ConsultHead/>
             <ChatApp/>

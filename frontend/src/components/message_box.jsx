@@ -16,9 +16,9 @@ function Messagebox() {
           white-space: nowrap;
           padding: 8px 16px;
           position: absolute;
-          top:650px;
-          left:950px;
-          width: 550px;
+          top:780px;
+          left:980px;
+          width: 630px;
           height:100px
         }
 

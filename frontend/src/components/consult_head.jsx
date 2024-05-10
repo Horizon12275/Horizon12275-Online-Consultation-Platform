@@ -50,12 +50,12 @@ function ConsultHead() {
           justify-content: space-between;
           align-items: center;
           max-width: 2000px;
-          gap:110px;
+          gap:140px;
           font-weight: 600;
           padding: 10px 10px;
             position: absolute;
-            top:20px;
-            left:940px
+            top:30px;
+            left:970px
         }
 
         @media (max-width: 991px) {

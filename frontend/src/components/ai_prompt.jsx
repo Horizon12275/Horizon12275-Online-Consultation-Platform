@@ -14,9 +14,9 @@ function AIPrompt() {
           display: flex;
           flex-direction: column;
             position:absolute;
-            top:390px;
-            left:600px;
-          max-width: 317px;
+            top:565px;
+            left:586px;
+          max-width: 330px;
           padding: 0 15px;
           font-size: 24px;
           color: #fff;
@@ -36,7 +36,7 @@ function AIPrompt() {
           border-radius: 20px;
           box-shadow: 0px 30px 30px 0px rgba(0, 0, 0, 0.05);
           background-color: var(--Blue-500, #2e90fa);
-          margin-top: 15px;
+          margin-top: 10px;
           width: 100%;
           justify-content: center;
           padding: 35px 37px;

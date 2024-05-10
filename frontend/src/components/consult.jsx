@@ -64,10 +64,10 @@ function ChatApp() {
           font-weight: 400;
           padding: 24px;
             position: absolute;
-            top:100px;
-            left:940px;
-            width:560px;
-            height: 540px;
+            top:130px;
+            left:980px;
+            width:610px;
+            height: 620px;
         }
 
         @media (max-width: 991px) {
