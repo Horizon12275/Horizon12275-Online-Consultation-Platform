@@ -3,7 +3,7 @@ import CommentCard from "./comment_card";
 const CommentList = ({ comments }) => {
   console.log(comments);
   return (
-    <section>
+    <section style={{position:'fixed',top:'600px',left:'400px'}}>
       {comments.map((comment, index) => (
         <CommentCard
           key={index}
