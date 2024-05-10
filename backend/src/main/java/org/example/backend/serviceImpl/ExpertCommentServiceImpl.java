@@ -16,11 +16,11 @@ import java.util.List;
 public class ExpertCommentServiceImpl implements ExpertCommentService {
     private final ExpertCommentRepository repository;
     private final UserRepository userRepository;
-    private final ClientRepository clientRepository;
-    public ExpertCommentServiceImpl(ExpertCommentRepository repository, UserRepository userRepository, ClientRepository clientRepository) {
+
+    public ExpertCommentServiceImpl(ExpertCommentRepository repository, UserRepository userRepository) {
         this.repository = repository;
         this.userRepository = userRepository;
-        this.clientRepository = clientRepository;
+
     }
     public int getUid() {//从数据库里查询id
         String username = ((UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
@@ -32,7 +32,7 @@ public class ExpertCommentServiceImpl implements ExpertCommentService {
     }
     public Result<ExpertComment> addExpertComment(int aid, String content) {
         int uid = getUid();
-        if(clientRepository.getClientByUserId(uid) == null)
+        if(userRepository.findUserById(uid).getRole() != User.Role.user)
             return Result.error(403,"只有用户才能评论！");
         ExpertComment expertComment = new ExpertComment();
         expertComment.setExpert(new Expert());

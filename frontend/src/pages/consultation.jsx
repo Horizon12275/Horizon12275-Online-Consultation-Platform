@@ -25,7 +25,6 @@ const ConsultPage = () => {
     ]).then(([expert, comments]) => {
       setExpert(expert);
       setComments(comments);
-      console.log(receiverId);
     });
   }, [receiverId]);
 
