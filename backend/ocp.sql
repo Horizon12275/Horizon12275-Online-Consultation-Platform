@@ -1,7 +1,7 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : mysql
+ Source Server         : MySQL
  Source Server Type    : MySQL
  Source Server Version : 80036 (8.0.36)
  Source Host           : localhost:3306
@@ -11,73 +11,134 @@
  Target Server Version : 80036 (8.0.36)
  File Encoding         : 65001
 
- Date: 03/05/2024 23:26:38
+ Date: 10/05/2024 11:54:54
 */
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 
 -- ----------------------------
--- Table structure for books
+-- Table structure for article_comments
 -- ----------------------------
-DROP TABLE IF EXISTS `books`;
-CREATE TABLE `books`  (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `isbn` int NOT NULL,
-  `author` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
-  `cover` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
-  `description` tinytext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL,
-  `price` decimal(5, 2) NULL DEFAULT NULL,
-  `rating` decimal(3, 1) NULL DEFAULT NULL,
-  `stock` int NOT NULL,
-  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of books
--- ----------------------------
-
--- ----------------------------
--- Table structure for cart_items
--- ----------------------------
-DROP TABLE IF EXISTS `cart_items`;
-CREATE TABLE `cart_items`  (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `quantity` int NOT NULL,
-  `bid` int NULL DEFAULT NULL,
-  `uid` int NULL DEFAULT NULL,
-  PRIMARY KEY (`id`) USING BTREE,
-  INDEX `FKsa9oia6v2qv02lim3gxk2hmdq`(`bid` ASC) USING BTREE,
-  INDEX `FKn86teseb73mlpl86xh5ikp6sw`(`uid` ASC) USING BTREE,
-  CONSTRAINT `FKn86teseb73mlpl86xh5ikp6sw` FOREIGN KEY (`uid`) REFERENCES `users` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  CONSTRAINT `FKsa9oia6v2qv02lim3gxk2hmdq` FOREIGN KEY (`bid`) REFERENCES `books` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of cart_items
--- ----------------------------
-
--- ----------------------------
--- Table structure for comments
--- ----------------------------
-DROP TABLE IF EXISTS `comments`;
-CREATE TABLE `comments`  (
+DROP TABLE IF EXISTS `article_comments`;
+CREATE TABLE `article_comments`  (
   `id` int NOT NULL AUTO_INCREMENT,
   `content` tinytext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL,
   `time` datetime(6) NULL DEFAULT NULL,
-  `bid` int NULL DEFAULT NULL,
+  `aid` int NULL DEFAULT NULL,
   `uid` int NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
-  INDEX `FKkbth5o6nwvdhphqmkn4n9mww6`(`bid` ASC) USING BTREE,
-  INDEX `FKquluhan0rqmtk5x8v3178ypd6`(`uid` ASC) USING BTREE,
-  CONSTRAINT `FKkbth5o6nwvdhphqmkn4n9mww6` FOREIGN KEY (`bid`) REFERENCES `books` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  CONSTRAINT `FKquluhan0rqmtk5x8v3178ypd6` FOREIGN KEY (`uid`) REFERENCES `users` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+  INDEX `FKngossfgv8yv6sm8gnl5f4rwg8`(`aid` ASC) USING BTREE,
+  INDEX `FKpraxg70kj24nb2w8g9c8ntmp1`(`uid` ASC) USING BTREE,
+  CONSTRAINT `FKngossfgv8yv6sm8gnl5f4rwg8` FOREIGN KEY (`aid`) REFERENCES `articles` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `FKpraxg70kj24nb2w8g9c8ntmp1` FOREIGN KEY (`uid`) REFERENCES `users` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
--- Records of comments
+-- Table structure for article_tag
 -- ----------------------------
+DROP TABLE IF EXISTS `article_tag`;
+CREATE TABLE `article_tag`  (
+  `aid` int NOT NULL,
+  `tid` int NOT NULL,
+  INDEX `FKfh833kah5dgdn7n21unoc7mq6`(`tid` ASC) USING BTREE,
+  INDEX `FKt75q5ig3ov66onmfl26upqtkv`(`aid` ASC) USING BTREE,
+  CONSTRAINT `FKfh833kah5dgdn7n21unoc7mq6` FOREIGN KEY (`tid`) REFERENCES `tags` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `FKt75q5ig3ov66onmfl26upqtkv` FOREIGN KEY (`aid`) REFERENCES `articles` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Table structure for articlecomments
+-- ----------------------------
+DROP TABLE IF EXISTS `articlecomments`;
+CREATE TABLE `articlecomments`  (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `content` tinytext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL,
+  `time` datetime(6) NULL DEFAULT NULL,
+  `uid` int NULL DEFAULT NULL,
+  `aid` int NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `FKquluhan0rqmtk5x8v3178ypd6`(`uid` ASC) USING BTREE,
+  INDEX `FKo9dhrhg0ray7ck63pdxfbuo39`(`aid` ASC) USING BTREE,
+  CONSTRAINT `FKo9dhrhg0ray7ck63pdxfbuo39` FOREIGN KEY (`aid`) REFERENCES `articles` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `FKquluhan0rqmtk5x8v3178ypd6` FOREIGN KEY (`uid`) REFERENCES `users` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Table structure for articles
+-- ----------------------------
+DROP TABLE IF EXISTS `articles`;
+CREATE TABLE `articles`  (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `content` tinytext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL,
+  `cover` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `eid` int NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `FKj2qnw5lhuen82dh7rbg77v2fq`(`eid` ASC) USING BTREE,
+  CONSTRAINT `FKj2qnw5lhuen82dh7rbg77v2fq` FOREIGN KEY (`eid`) REFERENCES `experts` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Table structure for clients
+-- ----------------------------
+DROP TABLE IF EXISTS `clients`;
+CREATE TABLE `clients`  (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `money` int NOT NULL,
+  `uid` int NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE INDEX `UK_fxfj4bhpwrsb9a7jljj5vcgn1`(`uid` ASC) USING BTREE,
+  CONSTRAINT `FKd9pfrc1rkibxn39b3pv96coga` FOREIGN KEY (`uid`) REFERENCES `users` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Table structure for expert_applications
+-- ----------------------------
+DROP TABLE IF EXISTS `expert_applications`;
+CREATE TABLE `expert_applications`  (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `education` enum('Doctor','Junior','Master','Senior','Undergraduate') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `field` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `first_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `introduction` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `last_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Table structure for expert_comments
+-- ----------------------------
+DROP TABLE IF EXISTS `expert_comments`;
+CREATE TABLE `expert_comments`  (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `content` tinytext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL,
+  `time` datetime(6) NULL DEFAULT NULL,
+  `eid` int NULL DEFAULT NULL,
+  `uid` int NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `FKg8h6ufiqd152ag54i5aa7fjip`(`eid` ASC) USING BTREE,
+  INDEX `FKgkfbhai1p60xl0ck0mtxe15ch`(`uid` ASC) USING BTREE,
+  CONSTRAINT `FKg8h6ufiqd152ag54i5aa7fjip` FOREIGN KEY (`eid`) REFERENCES `experts` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `FKgkfbhai1p60xl0ck0mtxe15ch` FOREIGN KEY (`uid`) REFERENCES `users` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Table structure for experts
+-- ----------------------------
+DROP TABLE IF EXISTS `experts`;
+CREATE TABLE `experts`  (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `uid` int NULL DEFAULT NULL,
+  `introduction` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `price` decimal(5, 2) NULL DEFAULT NULL,
+  `rating` decimal(3, 1) NULL DEFAULT NULL,
+  `image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE INDEX `UK_sibbswq0bpg6yy463kldqjvhi`(`uid` ASC) USING BTREE,
+  CONSTRAINT `FKhjs294rjx9s8jek5mb41g4ewg` FOREIGN KEY (`uid`) REFERENCES `users` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Table structure for messages
@@ -85,67 +146,17 @@ CREATE TABLE `comments`  (
 DROP TABLE IF EXISTS `messages`;
 CREATE TABLE `messages`  (
   `id` int NOT NULL AUTO_INCREMENT,
-  `content` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `content` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `is_read` bit(1) NOT NULL,
   `send_time` datetime(6) NULL DEFAULT NULL,
-  `rid` int NULL DEFAULT NULL,
-  `sid` int NULL DEFAULT NULL,
+  `rid` int NOT NULL,
+  `sid` int NOT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `FKkhn411bjhq2gmroo37haksfn9`(`rid` ASC) USING BTREE,
   INDEX `FK8u7qcajotrmyek2o3al96pc69`(`sid` ASC) USING BTREE,
   CONSTRAINT `FK8u7qcajotrmyek2o3al96pc69` FOREIGN KEY (`sid`) REFERENCES `users` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `FKkhn411bjhq2gmroo37haksfn9` FOREIGN KEY (`rid`) REFERENCES `users` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 112 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of messages
--- ----------------------------
-INSERT INTO `messages` VALUES (106, '你好', b'0', '2024-05-03 17:14:10.785920', 1, 2);
-INSERT INTO `messages` VALUES (107, '嗨嗨', b'0', '2024-05-03 17:14:16.711262', 2, 1);
-INSERT INTO `messages` VALUES (108, '还在吗', b'0', '2024-05-03 17:23:16.313170', 2, 1);
-INSERT INTO `messages` VALUES (109, '在的', b'0', '2024-05-03 17:23:22.950427', 1, 2);
-INSERT INTO `messages` VALUES (110, '哦哦', b'0', '2024-05-03 17:23:26.416590', 2, 1);
-INSERT INTO `messages` VALUES (111, '十分感谢', b'0', '2024-05-03 17:24:42.062190', 2, 1);
-
--- ----------------------------
--- Table structure for order_items
--- ----------------------------
-DROP TABLE IF EXISTS `order_items`;
-CREATE TABLE `order_items`  (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `quantity` int NOT NULL,
-  `bid` int NULL DEFAULT NULL,
-  `oid` int NULL DEFAULT NULL,
-  PRIMARY KEY (`id`) USING BTREE,
-  INDEX `FKin1q0xhd1x9dh98xpdpbw8h5t`(`bid` ASC) USING BTREE,
-  INDEX `FKl4ipr6s7s08pcb3klykm8sji4`(`oid` ASC) USING BTREE,
-  CONSTRAINT `FKin1q0xhd1x9dh98xpdpbw8h5t` FOREIGN KEY (`bid`) REFERENCES `books` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  CONSTRAINT `FKl4ipr6s7s08pcb3klykm8sji4` FOREIGN KEY (`oid`) REFERENCES `orders` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of order_items
--- ----------------------------
-
--- ----------------------------
--- Table structure for orders
--- ----------------------------
-DROP TABLE IF EXISTS `orders`;
-CREATE TABLE `orders`  (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `address` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
-  `create_time` datetime(6) NULL DEFAULT NULL,
-  `receiver` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
-  `tel` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
-  `uid` int NULL DEFAULT NULL,
-  PRIMARY KEY (`id`) USING BTREE,
-  INDEX `FKbdolj6vr67tqh6wgsl44mur9y`(`uid` ASC) USING BTREE,
-  CONSTRAINT `FKbdolj6vr67tqh6wgsl44mur9y` FOREIGN KEY (`uid`) REFERENCES `users` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of orders
--- ----------------------------
+) ENGINE = InnoDB AUTO_INCREMENT = 198 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Table structure for replies
@@ -160,13 +171,51 @@ CREATE TABLE `replies`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `FKbq9kgpy1ldyjko15n0r7bf157`(`cid` ASC) USING BTREE,
   INDEX `FKt202gd81iqyu8dkc3jteqa2q8`(`uid` ASC) USING BTREE,
-  CONSTRAINT `FKbq9kgpy1ldyjko15n0r7bf157` FOREIGN KEY (`cid`) REFERENCES `comments` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  CONSTRAINT `FKt202gd81iqyu8dkc3jteqa2q8` FOREIGN KEY (`uid`) REFERENCES `users` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+  CONSTRAINT `FKt202gd81iqyu8dkc3jteqa2q8` FOREIGN KEY (`uid`) REFERENCES `users` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `FKbq9kgpy1ldyjko15n0r7bf157` FOREIGN KEY (`cid`) REFERENCES `articlecomments` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
--- Records of replies
+-- Table structure for tags
 -- ----------------------------
+DROP TABLE IF EXISTS `tags`;
+CREATE TABLE `tags`  (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `content` tinytext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Table structure for tweet_comments
+-- ----------------------------
+DROP TABLE IF EXISTS `tweet_comments`;
+CREATE TABLE `tweet_comments`  (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `content` tinytext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL,
+  `time` datetime(6) NULL DEFAULT NULL,
+  `tid` int NULL DEFAULT NULL,
+  `uid` int NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `FKmrqx37la0jqy02bmx8o9xlp70`(`tid` ASC) USING BTREE,
+  INDEX `FK5h7so4mjxvifwktpt5y6nvuvc`(`uid` ASC) USING BTREE,
+  CONSTRAINT `FK5h7so4mjxvifwktpt5y6nvuvc` FOREIGN KEY (`uid`) REFERENCES `users` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `FKmrqx37la0jqy02bmx8o9xlp70` FOREIGN KEY (`tid`) REFERENCES `tweets` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Table structure for tweets
+-- ----------------------------
+DROP TABLE IF EXISTS `tweets`;
+CREATE TABLE `tweets`  (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `content` tinytext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL,
+  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `uid` int NULL DEFAULT NULL,
+  `time` datetime(6) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `FKrwcopc611je5ychhqvbnhnkk6`(`uid` ASC) USING BTREE,
+  CONSTRAINT `FKrwcopc611je5ychhqvbnhnkk6` FOREIGN KEY (`uid`) REFERENCES `users` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Table structure for users
@@ -180,16 +229,13 @@ CREATE TABLE `users`  (
   `enabled` int NOT NULL,
   `level` int NOT NULL,
   `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
-  `role` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  `role` enum('expert','user') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `tel` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `username` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of users
--- ----------------------------
-INSERT INTO `users` VALUES (1, NULL, NULL, NULL, 1, 1, '123', 'admin', NULL, 'admin');
-INSERT INTO `users` VALUES (2, NULL, NULL, NULL, 1, 1, '123', 'user', NULL, 'zh');
+  `uid` int NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE INDEX `UK_efqukogbk7i0poucwoy2qie74`(`uid` ASC) USING BTREE,
+  CONSTRAINT `FKcsfakukbkvv07whce3vl5eiy8` FOREIGN KEY (`uid`) REFERENCES `users` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;
 
 SET FOREIGN_KEY_CHECKS = 1;

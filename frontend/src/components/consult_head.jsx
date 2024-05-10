@@ -1,61 +1,72 @@
 import * as React from "react";
+import { Link, useParams } from "react-router-dom";
 
 function Avatar({ src, alt }) {
-    return <img className="avatar" src={src} alt={alt} />;
+  return <img className="avatar" src={src} alt={alt} />;
 }
 
 function UserInfo({ name, status }) {
-    return (
-        <div className="user-info">
-            <h2 className="user-name">{name}</h2>
-            <div className="user-status">
-                <span className="status-indicator"></span>
-                <span className="status-text">{status}</span>
-            </div>
-        </div>
-    );
+  return (
+    <div className="user-info">
+      <h2 className="user-name">{name}</h2>
+      <div className="user-status">
+        <span className="status-indicator"></span>
+        <span className="status-text">{status}</span>
+      </div>
+    </div>
+  );
+}
+
+function VideoButton() {
+  return (
+    <button className="call-button">
+      <img
+        className="call-icon"
+        src="https://cdn.builder.io/api/v1/image/assets/TEMP/8c021edfc9b00b4b26bfa8ac69dab5ee7e915ca7310725b8e4ddfc4bb009bc60?apiKey=b565e599026f4ea2ba591e53566a67d8&"
+        alt="Video icon"
+      />
+      <span className="call-text">Video</span>
+    </button>
+  );
 }
 
 function CallButton() {
-    return (
-        <button className="call-button">
-            <img
-                className="call-icon"
-                src="https://cdn.builder.io/api/v1/image/assets/TEMP/8c021edfc9b00b4b26bfa8ac69dab5ee7e915ca7310725b8e4ddfc4bb009bc60?apiKey=b565e599026f4ea2ba591e53566a67d8&"
-                alt="Call icon"
-            />
-            <span className="call-text">Call</span>
-        </button>
-    );
+  return (
+    <button className="call-button">
+      <img
+        className="call-icon"
+        src="https://cdn.builder.io/api/v1/image/assets/TEMP/8c021edfc9b00b4b26bfa8ac69dab5ee7e915ca7310725b8e4ddfc4bb009bc60?apiKey=b565e599026f4ea2ba591e53566a67d8&"
+        alt="Call icon"
+      />
+      <span className="call-text">Call</span>
+    </button>
+  );
 }
 
-function ConsultHead() {
-    const user = {
-        avatar: "https://cdn.builder.io/api/v1/image/assets/TEMP/7c9e5922f1408367594bcb29e62a64126d87a726dbe74c2060a2a049e92134a4?apiKey=b565e599026f4ea2ba591e53566a67d8&",
-        name: "Florencio Dorrance",
-        status: "Online",
-    };
+function ConsultHead({ receiver }) {
+  return (
+    <>
+      <div className="user-card">
+        <Avatar src={receiver.avatar} alt={`${receiver.username}'s avatar`} />
+        <UserInfo name={receiver.username} status={"Online"} />
+        <Link to={`/videochat/${receiver.id}`}>
+          <VideoButton />
+        </Link>
+        <CallButton />
+      </div>
 
-    return (
-        <>
-            <div className="user-card">
-                <Avatar src={user.avatar} alt={`${user.name}'s avatar`} />
-                <UserInfo name={user.name} status={user.status} />
-                <CallButton />
-            </div>
-
-            <style jsx>{`
+      <style jsx>{`
         .user-card {
           display: flex;
           justify-content: space-between;
           align-items: center;
           max-width: 2000px;
-          gap:140px;
+          gap: 110px;
           font-weight: 600;
           padding: 10px 10px;
-            position: absolute;
-            top:30px;
-            left:970px
+          position: absolute;
+          top: 20px;
+          left: 940px;
         }
 
         @media (max-width: 991px) {
@@ -67,7 +78,7 @@ function ConsultHead() {
 
         .avatar {
           width: 50px;
-          height:50px;
+          height: 50px;
           object-fit: cover;
           border-radius: 50%;
         }
@@ -139,7 +150,7 @@ function ConsultHead() {
           margin: auto 0;
         }
       `}</style>
-        </>
-    );
+    </>
+  );
 }
-export  default ConsultHead
+export default ConsultHead;

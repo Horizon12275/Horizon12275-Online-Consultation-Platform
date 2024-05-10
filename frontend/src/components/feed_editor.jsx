@@ -1,10 +1,12 @@
 import { Button, Col, Flex, Input, Row } from "antd";
 import EmojiDropdown from "./emoji_dropdown";
 import { useState } from "react";
+import { postTweet } from "../services/tweetService";
+import { useAuth } from "../context/authContext";
 
-const FeedEditor = () => {
+const FeedEditor = ({ setTweets }) => {
   const [value, setValue] = useState("");
-
+  const { user, setUser } = useAuth();
   const socialIcons = [
     {
       children: (
@@ -32,7 +34,15 @@ const FeedEditor = () => {
       handleClick: () => console.log("Social icon 1 clicked"),
     },
   ];
-
+  const handleClick = () => {
+    postTweet({ content: value });
+    setValue("");
+    setTweets((prev) => [
+      ...prev,
+      { poster: user, content: value, time: new Date().toLocaleString() },
+    ]);
+    alert("Tweet posted successfully");
+  };
   return (
     <Flex vertical className=" h-[300] m-auto">
       <Row>
@@ -65,7 +75,11 @@ const FeedEditor = () => {
             />
           ))}
         </nav>
-        <button className=" justify-center px-5 py-2.5 text-base font-bold leading-5 text-center text-white whitespace-nowrap bg-sky-500 rounded-full">
+        <button
+          disabled={value.trim() === ""}
+          onClick={handleClick}
+          className=" justify-center px-5 py-2.5 text-base font-bold leading-5 text-center text-white whitespace-nowrap bg-sky-500 rounded-full disabled:opacity-50 disabled:cursor-not-allowed"
+        >
           Publish
         </button>
       </Row>

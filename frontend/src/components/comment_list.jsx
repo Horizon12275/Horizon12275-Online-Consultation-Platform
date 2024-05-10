@@ -1,16 +1,17 @@
 import CommentCard from "./comment_card";
 
 const CommentList = ({ comments }) => {
+  console.log(comments);
   return (
-    <section style={{marginTop:'40px',display:'grid',gap:'30px'}}>
-      {comments.map((comment) => (
+    <section>
+      {comments.map((comment, index) => (
         <CommentCard
-          key={comment.id}
-          author={comment.user}
-          avatar={comment.avatar}
+          key={index}
+          author={comment.user.username}
+          avatar={comment.user.avatar}
           content={comment.content}
           timestamp={comment.time}
-          likes={comment.likes}
+          likes={3}
           onReply={() => console.log(`Reply to comment ${comment.id}`)}
         />
       ))}

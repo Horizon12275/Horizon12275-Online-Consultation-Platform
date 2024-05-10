@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -26,7 +27,8 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http.authorizeHttpRequests((requests) ->{requests
-                                .requestMatchers("/api/book/**").permitAll()
+                                .requestMatchers("/api/user/register")
+                                .permitAll()
                                 .anyRequest().authenticated();
                         }
                 ).formLogin(
@@ -64,7 +66,7 @@ public class SecurityConfig {
     }
     @Bean
     public PasswordEncoder passwordEncoder(){//密码编码器
-        return NoOpPasswordEncoder.getInstance();
+        return new BCryptPasswordEncoder();
     }
     private void handleProcess(
             HttpServletRequest request,

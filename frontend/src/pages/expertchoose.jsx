@@ -16,23 +16,21 @@ const ExpertChoosePage = () => {
   };
 
   return (
-    <SearchProvider>
-      <TagProvider>
-        <BasicLayout>
-          <Flex vertical gap="middle" className="mx-auto w-[1300px]" >
-            <h1 className="text-5xl tracking-tight text-black self-start mt-8">
-              Find Your Expert!
-            </h1>
-            <TagBar />
-            <Row justify={"space-between"}>
-              <SearchBar />
-              <RadioSort onSortChange={handleSortChange} />
-            </Row>
-            <ExpertShowList sortBy={sortBy} />
-          </Flex>
-        </BasicLayout>
-      </TagProvider>
-    </SearchProvider>
+    <TagProvider>
+      <BasicLayout>
+        <Flex vertical gap="middle" className="mx-auto w-[1300px]">
+          <h1 className="text-5xl tracking-tight text-black self-start mt-8">
+            Find Your Expert!
+          </h1>
+          <TagBar />
+          <Row justify={"space-between"}>
+            <SearchBar />
+            <RadioSort onSortChange={handleSortChange} />
+          </Row>
+          <ExpertShowList sortBy={sortBy} />
+        </Flex>
+      </BasicLayout>
+    </TagProvider>
   );
 };
 

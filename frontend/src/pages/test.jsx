@@ -86,28 +86,7 @@ const WebSocketChat = () => {
 
   return (
     <div>
-      <Form initialValues={{ remember: true }} onFinish={login}>
-        <Form.Item
-          id="username"
-          name="username"
-          rules={[{ required: true, message: "请输入您的用户名!" }]}
-          style={{ width: "100%", margin: 0 }}
-        >
-          <Input size="large" placeholder="用户名" allowClear />
-        </Form.Item>
-        <Form.Item
-          id="password"
-          name="password"
-          rules={[{ required: true, message: "请输入您的密码!" }]}
-          style={{ width: "100%", margin: 0 }}
-        >
-          <Input.Password size="large" type="password" placeholder="密码" />
-        </Form.Item>
-
-        <Button type="primary" htmlType="submit" style={{ width: "100%" }}>
-          登录
-        </Button>
-      </Form>
+     
       <h1>Chat Room</h1>
       <div>
         {messages.map((message, index) => (
