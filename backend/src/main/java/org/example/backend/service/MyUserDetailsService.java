@@ -25,13 +25,13 @@ public class MyUserDetailsService implements UserDetailsService {
     }
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException, DisabledException{
-        User user = userRepository.findUserByUsername(username);
+        User user = userRepository.findUserByEmail(username);
         if (user == null) {
             throw new UsernameNotFoundException("未找到用户");
         }
         List< GrantedAuthority > authorities = new ArrayList<>();
         authorities.add((GrantedAuthority) () -> "ROLE_" + user.getRole());
-        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),  true, true, true, true, authorities);
+        return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(),  true, true, true, true, authorities);
     }
     public Result<User> updateUser(UserProfile request) {
         int id = getUid();
@@ -39,33 +39,25 @@ public class MyUserDetailsService implements UserDetailsService {
         if (user == null) {
             return Result.error(404, "用户不存在！");
         }
-        if(userRepository.existsUserByUsername(request.getUsername()) && !request.getUsername().equals(user.getUsername())) {
-            return Result.error(400, "用户名已存在！");
+        if(userRepository.existsUserByEmail(request.getEmail()) && !request.getEmail().equals(user.getEmail())) {
+            return Result.error(400, "邮箱已被占用！");
         }
-        user.setUsername(request.getUsername());
         user.setEmail(request.getEmail());
-        user.setTel(request.getTel());
-        user.setAboutMe(request.getAboutMe());
         userRepository.save(user);
         return Result.success(user);
 
     }
     public Result<User> addUser(RegisterRequest request) {
-        if(userRepository.existsUserByUsername(request.getUsername())) {
+        if(userRepository.existsUserByEmail(request.getUsername())) {
             return Result.error(400, "用户名已存在！");
         }
         if(userRepository.existsUserByEmail(request.getEmail())) {
             return Result.error(400, "邮箱已被占用！");
         }
         User user = new User();
-        user.setUsername(request.getUsername());
         user.setPassword(new BCryptPasswordEncoder().encode(request.getPassword()));//加密密码
         user.setEmail(request.getEmail());
         user.setRole(User.Role.user);
-        user.setLevel(1);
-        user.setAvatar("https://img.moegirl.org.cn/common/b/b7/Transparent_Akkarin.jpg");//默认头像
-        user.setTel("");
-        user.setAboutMe("");
         userRepository.save(user);
         return Result.success(user);
     }
@@ -78,7 +70,7 @@ public class MyUserDetailsService implements UserDetailsService {
         }
     }
     public Result<User> getUserByUsername(String username) {
-        User user = userRepository.findUserByUsername(username);
+        User user = userRepository.findUserByEmail(username);
         if (user == null) {
             return Result.error(404, "用户不存在！");
         }
@@ -86,7 +78,7 @@ public class MyUserDetailsService implements UserDetailsService {
     }
     public int getUid() {//从数据库里查询id
         String username = ((UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
-        return userRepository.findUserByUsername(username).getId();
+        return userRepository.findUserByEmail(username).getId();
     }
 
     public Result<User> getUserById(int uid) {

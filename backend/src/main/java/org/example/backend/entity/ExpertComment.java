@@ -24,7 +24,7 @@ public class ExpertComment {
     private LocalDateTime time;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "uid")
-    @JsonIgnoreProperties({"comments","aboutMe"})
+    @JsonIgnoreProperties({"expertComments"})
     private User user;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "eid")

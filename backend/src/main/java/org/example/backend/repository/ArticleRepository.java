@@ -10,5 +10,5 @@ import java.util.List;
 public interface ArticleRepository extends JpaRepository<Article, Integer> {
     public Article getArticleById(int id);
 
-    public List<Article> getArticlesByTitleLikeOrAuthor_UserUsernameLike(String title, String username);
+    public List<Article> getArticlesByTitleLikeOrAuthorNameLike(String title, String author);
 }

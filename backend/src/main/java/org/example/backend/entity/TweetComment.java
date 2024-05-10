@@ -24,7 +24,7 @@ public class TweetComment {
     private LocalDateTime time;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "uid")
-    @JsonIgnoreProperties({"comments","aboutMe"})
+    @JsonIgnoreProperties({"tweetComments"})
     private User user;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "tid")

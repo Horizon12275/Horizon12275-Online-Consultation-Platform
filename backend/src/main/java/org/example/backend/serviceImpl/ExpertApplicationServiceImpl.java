@@ -9,6 +9,7 @@ import org.example.backend.repository.ExpertApplicationRepository;
 import org.example.backend.repository.ExpertRepository;
 import org.example.backend.repository.UserRepository;
 import org.example.backend.service.ExpertApplicationService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -57,9 +58,23 @@ public class ExpertApplicationServiceImpl implements ExpertApplicationService {
         if (application == null) {
             return Result.error(404,"申请不存在");
         }
-        User user = new User(null, "","", User.Role.expert,null,null,1,0,null,null,null,null,null,null,null   );
+        User user = new User();
+        user.setEmail(application.getEmail());
+        user.setPassword(new BCryptPasswordEncoder().encode(application.getPassword()));
+        user.setRole(User.Role.expert);
+        user.setEnabled(true);
         userRepository.save(user);
-        Expert expert = new Expert(null, application.getFirstName()+application.getLastName(), application.getFirstName(), application.getLastName(), application.getField(),application.getEducation(),application.getIntroduction(),null,null,null,user,null);
+        Expert expert = new Expert();
+        expert.setUser(user);
+        expert.setFirstName(application.getFirstName());
+        expert.setLastName(application.getLastName());
+        expert.setAboutMe(application.getAboutMe());
+        expert.setField(application.getField());
+        expert.setAvatar(application.getAvatar());
+        expert.setName(application.getFirstName() + " " + application.getLastName());
+        expert.setRegion(application.getRegion());
+        expert.setIntroduction(application.getIntroduction());
+        expert.setEducation(application.getEducation());
         expertRepository.save(expert);
         repository.deleteById(id);
         return Result.success(application);

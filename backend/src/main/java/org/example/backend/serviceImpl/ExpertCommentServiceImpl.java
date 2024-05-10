@@ -24,7 +24,7 @@ public class ExpertCommentServiceImpl implements ExpertCommentService {
     }
     public int getUid() {//从数据库里查询id
         String username = ((UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
-        return userRepository.findUserByUsername(username).getId();
+        return userRepository.findUserByEmail(username).getId();
     }
     public Result<List<ExpertComment>> getExpertCommentsByAid(int aid) {
         List<ExpertComment> expertComments = repository.getExpertCommentsByExpertId(aid);

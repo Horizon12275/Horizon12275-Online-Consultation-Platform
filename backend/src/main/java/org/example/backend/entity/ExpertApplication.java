@@ -19,13 +19,18 @@ public class ExpertApplication {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    private String email;
+    private String password;
     private String firstName;
     private String lastName;
     private String field;
+    private String region;
     @Enumerated(EnumType.STRING)
     private Expert.educationLevel education;
     private String introduction;
-    //private String image;
+    private String aboutMe;
+    private String avatar;
+
 
 
 }

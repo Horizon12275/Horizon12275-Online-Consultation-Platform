@@ -21,7 +21,7 @@ public class TweetCommentServiceImpl implements TweetCommentService {
     }
     public int getUid() {//从数据库里查询id
         String username = ((UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
-        return userRepository.findUserByUsername(username).getId();
+        return userRepository.findUserByEmail(username).getId();
     }
     public Result<List<TweetComment>> getTweetCommentsByAid(int aid) {
         List<TweetComment> tweetComments = repository.getTweetCommentsByTweetId(aid);

@@ -20,13 +20,16 @@ public class Expert {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
+    private String region;
     private String firstName;
     private String lastName;
+    @Lob
+    private String aboutMe;
     private String field;
     @Enumerated(EnumType.STRING)
     private educationLevel education;
     private String introduction;
-    private String image;
+    private String avatar;
     @Column(precision = 3,scale = 1)
     private BigDecimal rating;
     @Column(precision = 5,scale = 2)

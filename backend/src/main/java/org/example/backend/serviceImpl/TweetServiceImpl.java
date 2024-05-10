@@ -23,7 +23,7 @@ public class TweetServiceImpl implements TweetService {
     }
     public int getUid() {//从数据库里查询id
         String username = ((UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
-        return userRepository.findUserByUsername(username).getId();
+        return userRepository.findUserByEmail(username).getId();
     }
     public Result<List<Tweet>> getTweets() {
         List<Tweet> tweets = repository.findAll();

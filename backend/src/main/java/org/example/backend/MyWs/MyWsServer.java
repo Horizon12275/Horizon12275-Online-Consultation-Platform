@@ -40,7 +40,7 @@ public class MyWsServer {
     }
     private static final ConcurrentHashMap<Integer, Session> sessionPool = new ConcurrentHashMap<>();//一个用户建立一个连接 如果想实现一个用户同时和多个用户聊天 需要修改
     private int getUid(Session session) {
-        return userRepository.findUserByUsername(session.getUserPrincipal().getName()).getId();
+        return userRepository.findUserByEmail(session.getUserPrincipal().getName()).getId();
     }
     /**
      * 链接成功调用的方法
@@ -77,10 +77,10 @@ public class MyWsServer {
             msg.setContent(message);
             msg.setSender(new User());
             msg.getSender().setId(senderId);
-            msg.getSender().setUsername(userRepository.findUserById(senderId).getUsername());
+            msg.getSender().setEmail(userRepository.findUserById(senderId).getEmail());
             msg.setReceiver(new User());
             msg.getReceiver().setId(receiverId);
-            msg.getReceiver().setUsername(userRepository.findUserById(receiverId).getUsername());
+            msg.getReceiver().setEmail(userRepository.findUserById(receiverId).getEmail());
             msg.setSendTime(LocalDateTime.now());
             msg.setSeen(false);
             if (receiverSession != null) {//如果接收者在线 则发送消息

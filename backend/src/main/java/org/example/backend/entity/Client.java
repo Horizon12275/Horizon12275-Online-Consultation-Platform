@@ -15,7 +15,13 @@ public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private int money;
+    @Column(precision = 5,scale = 2)
+    private BigDecimal money;
+    private String region;
+    private String username;
+    @Lob
+    private String aboutMe;
+    private String avatar;
     @OneToOne(fetch=FetchType.LAZY)
     @JoinColumn(name = "uid")
     @JsonIgnoreProperties({"clients"})
