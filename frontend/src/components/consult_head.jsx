@@ -45,7 +45,8 @@ function CallButton() {
   );
 }
 
-function ConsultHead({ receiver }) {//这里的receiver是专家或者用户的信息
+function ConsultHead({ receiver }) {
+  //这里的receiver是专家或者用户的信息
   return (
     <>
       <div className="user-card">
@@ -66,12 +67,12 @@ function ConsultHead({ receiver }) {//这里的receiver是专家或者用户的�
           justify-content: space-between;
           align-items: center;
           max-width: 2000px;
-          gap: 110px;
+          gap: 140px;
           font-weight: 600;
           padding: 10px 10px;
           position: absolute;
-          top: 20px;
-          left: 940px;
+          top: 30px;
+          left: 970px;
         }
 
         @media (max-width: 991px) {

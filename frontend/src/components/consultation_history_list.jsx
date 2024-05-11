@@ -24,7 +24,7 @@ export default function ConsultationHistoryList() {
   };
 
   return (
-    <div style={{ width: "100%" }}>
+    <div style={{ width: "100%",display:'grid',gap:'5px' }}>
       <header className="text-2xl text-center text-black max-w-[84px] m-auto mt-3">
         History:
       </header>

@@ -5,10 +5,7 @@ import { Link } from "react-router-dom";
 const SpecialityCard = ({ expert }) => {
   return (
     <div className="flex flex-col gap-0 rounded">
-      <Link
-        to={`/expert/${expert.id}`}
-        className="gap-0 mt-3 text-blue-300"
-      >
+      <Link to={`/expert/${expert.id}`} className="gap-0 mt-3 text-blue-300">
         <img
           loading="lazy"
           src={expert.image}
@@ -17,18 +14,12 @@ const SpecialityCard = ({ expert }) => {
         />
       </Link>
       <div className="flex flex-col gap-3 p-3 bg-white">
-        <div className="gap-0 text-black">{expert.name}</div>
-        <Link
-          to={`/expert/${expert.id}/consultation`}
-          className="gap-0 mt-3 text-blue-300"
-        >
-          {"CONSULT NOW"}
-        </Link>
+        <div className="gap-0 text-black">{title}</div>
+        <div className="gap-0 mt-3 text-blue-500">{buttonText}</div>
       </div>
     </div>
   );
 };
-
 
 function ShowSpeciality() {
   const [experts, setExperts] = useState([]);
@@ -49,12 +40,12 @@ function ShowSpeciality() {
             Consult with top experts across specialities
           </p>
         </div>
-        <Link
-          to={"/expert"}
-          className="justify-center self-start px-8 py-4 text-base font-extrabold leading-5 text-center text-white bg-gray-900 rounded-full max-md:px-5"
+        <button
+          onClick={handleSpeciality}
+          className="justify-center self-start px-8 py-4 text-base font-extrabold leading-5 text-center text-white bg-blue-700 rounded-full max-md:px-5"
         >
           View all specialities
-        </Link>
+        </button>
       </div>
 
       <div className="flex gap-5 justify-between pr-5 mt-7 text-base font-medium max-md:flex-wrap">
