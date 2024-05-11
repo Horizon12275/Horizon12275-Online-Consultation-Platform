@@ -9,7 +9,7 @@ const { TextArea } = Input;
 
 function CommentInput({ value, onChange }) {
   return (
-    <div className="flex flex-col justify-center w-full leading-6 text-gray-500">
+    <div className="flex flex-col justify-center w-full leading-8 text-gray-500">
       <div className="flex flex-col justify-center w-full">
         <TextArea
           required
@@ -69,7 +69,6 @@ function CommentBox({ id, type, setComments }) {
     ]);
   };
   return (
-<<<<<<< HEAD
     <div  style={{
       position: "absolute",
       top: "630px",
@@ -80,9 +79,6 @@ function CommentBox({ id, type, setComments }) {
       padding: "10px",
       // border: "1px solid black",
     }}>
-=======
-    <div className="flex flex-col justify-center max-w-xs text-base">
->>>>>>> parent of 15678bd (ok)
       <CommentInput
         value={value}
         onChange={(e) => {
