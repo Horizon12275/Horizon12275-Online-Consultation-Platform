@@ -32,20 +32,29 @@ const ConsultPage = () => {
     <BasicLayout>
       <Flex>
         <div
-          // style={{
-          //   minHeight: "800px",
-          //   backgroundColor: "#f5f5f5",
-          //   padding: "0 10px",
-          //   height: "100vh",
-          //
-          // }}
+          style={{
+            minHeight: "800px",
+            backgroundColor: "#f5f5f5",
+            padding: "0 10px",
+            height: "100vh",
+            overflowY: "scroll",
+          }}
         >
+<<<<<<< HEAD
           <ConsultationHistoryList style={{ position:"fixed",top:"30px",left:"300px" }}/>
           {/*<Divider style={{ margin: "10px 0" }} />*/}
           <RateButton />
           <CommentList comments={comments}  />
           <CommentBox id={receiverId} type={"expert"} setComments={setComments} style={{ position:"absolute",top:"30px",left:"300px" }} />
 
+=======
+          <ConsultationHistoryList />
+          <Divider style={{ margin: "10px 0" }} />
+          <RateButton />
+          <CommentList comments={comments}  />
+          <CommentBox id={receiverId} type={"expert"} setComments={setComments} />
+          <History />
+>>>>>>> parent of 15678bd (ok)
           <AIPrompt />
 
           <ChatApp />

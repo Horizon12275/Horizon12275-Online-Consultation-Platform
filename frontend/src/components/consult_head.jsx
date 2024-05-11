@@ -52,7 +52,7 @@ function ConsultHead({ receiver }) {
         <Link to={`/videochat/${receiver.id}`}>
           <VideoButton />
         </Link>
-       
+        <CallButton />
       </div>
 
       <style jsx>{`
