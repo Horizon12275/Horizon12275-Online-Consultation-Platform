@@ -16,7 +16,7 @@ public class ExpertCommentController {
     }
     @GetMapping("/list/{aid}")
     public Result<List<ExpertComment>> getCommentsByAid(@PathVariable int aid) {
-        return service.getExpertCommentsByAid(aid);
+        return service.getExpertCommentsByEid(aid);
     }
     @PostMapping("/add/{aid}")
     public Result<ExpertComment> addComment(@PathVariable int aid, @RequestBody String content) {

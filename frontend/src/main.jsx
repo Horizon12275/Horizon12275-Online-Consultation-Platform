@@ -56,8 +56,13 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
   {
-    path: "/expert/:receiverId/consultation",
+    path: "/consultation/:receiverId",
     element: <ConsultPage />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/landing",
+    element: <LandingPage />,
     errorElement: <ErrorPage />,
   },
   {

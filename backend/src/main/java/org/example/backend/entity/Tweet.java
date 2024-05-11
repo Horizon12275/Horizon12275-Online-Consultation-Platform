@@ -23,7 +23,7 @@ public class Tweet {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "uid")
     @JsonIgnoreProperties({"tweets"})
-    private User poster;
+    private Client poster;
     @Lob
     private String content;
 

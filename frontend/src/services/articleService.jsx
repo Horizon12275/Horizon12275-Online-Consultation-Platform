@@ -15,7 +15,7 @@ export const searchArticles = async ({ keyword }) => {
 };
 
 export const getRecommendedArticles = async () => {
-  const url = `${PREFIX}/recommend/1`;
+  const url = `${PREFIX}/recommend/0`;
   let result;
 
   result = await get(url);
@@ -32,10 +32,10 @@ export async function getAllArticles() {
 
 
 
-export const findExpertArticlesById = async (expertId) => {
+export const findExpertArticlesById = async (receiverId) => {
   // 筛选出属于该专家的所有文章
   const expertArticles = Data.articles.filter(
-    (article) => article.author_id === parseInt(expertId)
+    (article) => article.author_id === parseInt(receiverId)
   );
 
   return expertArticles;

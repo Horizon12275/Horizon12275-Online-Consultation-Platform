@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getOtherUserById, getUser } from "../services/userService";
+import {
+  getOtherUserById,
+  getReceiverId,
+  getUser,
+} from "../services/userService";
 import { getHistory } from "../services/messageService";
 import Messagebox from "./message_box";
 import ConsultHead from "./consult_head";
@@ -51,19 +55,21 @@ const ChatMessages = ({ messages, rid }) => {
   );
 };
 
-function ChatApp() {
-  const { receiverId } = useParams();
-  const [sender, setSender] = useState({}); //以后应该用useContext
-  const [receiver, setReceiver] = useState({});
+function ChatApp({ sid, receiver }) {
+  //sid是当前用户id（用于初始化ws） receiver是对方(专家或客户，用于渲染header)
+  const { receiverId } = useParams(); //获取接收者id 如果当前用户是专家则为用户id 如果当前用户是用户则为专家id 发送到后端转换成userId
+  const [rid, setRid] = useState();
   const [messages, setMessages] = useState([]);
   const [inputMessage, setInputMessage] = useState("");
   const [ws, setWs] = useState(null);
-  const initWebSocket = (sender, receiver) => {
+  const initWebSocket = (sid, rid) => {
+    //sid是发送者id rid是接收者id 这里的id已经是后端获取的userId了
     const socket = new WebSocket(`ws://localhost:8080/ws/${receiverId}`);
 
     socket.onopen = () => {
       console.log("Connected to WebSocket server");
-      socket.send(JSON.stringify({ type: "seen", data: receiverId }));
+      socket.send(JSON.stringify({ type: "seen", data: rid }));
+      setWs(socket);
     };
 
     socket.onmessage = (event) => {
@@ -71,18 +77,18 @@ function ChatApp() {
       if (type === "message") {
         const receivedMessage = JSON.parse(event.data).data;
         if (
-          receivedMessage.receiver.id == sender.id &&
-          receivedMessage.sender.id == receiver.id
+          receivedMessage.receiver.id == sid &&
+          receivedMessage.sender.id == rid
         )
           setMessages((prevMessages) => [...prevMessages, receivedMessage]); // 添加到现有消息
-        if (receivedMessage.sender.id == receiverId)
-          socket.send(JSON.stringify({ type: "seen", data: receiverId }));
+        if (receivedMessage.sender.id == rid)
+          socket.send(JSON.stringify({ type: "seen", data: rid }));
       } else if (type === "seen") {
         const uid = JSON.parse(event.data).data;
-        if (uid == receiverId)
+        if (uid == rid)
           setMessages((prevMessages) =>
             prevMessages.map((message) => {
-              if (message.sender.id == sender.id) message.seen = true;
+              if (message.sender.id == sid) message.seen = true;
               return message;
             })
           );
@@ -97,30 +103,26 @@ function ChatApp() {
       console.log("Disconnected from WebSocket server");
     };
 
-    setWs(socket);
-
     return () => {
+      console.log("Closing WebSocket connection");
       socket.close(); // 组件卸载时关闭连接
     };
   };
 
   useEffect(() => {
-    Promise.all([
-      getUser(),
-      getHistory(receiverId),
-      getOtherUserById(receiverId),
-    ])
-      .then((values) => {
-        setSender(values[0]);
-        setMessages(values[1]);
-        messages.sort((a, b) => a.sendTime - b.sendTime);
-        setReceiver(values[2]);
-        initWebSocket(values[0], values[2]);
+    getReceiverId(receiverId) //根据接收者id获取userId
+      .then((res) => {
+        setRid(res);
+        getHistory(res).then((history) => {
+          //根据获取的userId获取聊天记录
+          setMessages(history);
+          messages.sort((a, b) => a.sendTime - b.sendTime);
+        });
+        initWebSocket(sid, res);
       })
-      .catch((e) => {
-        console.error(e);
-        //alert(e);
-        history.back();
+      .catch((err) => {
+        console.error(err);
+        alert(err);
       });
   }, [receiverId]); // 空数组确保仅首次加载时运行
 
@@ -128,17 +130,16 @@ function ChatApp() {
     event.preventDefault(); //阻止换行
     if (inputMessage.trim() !== "") {
       ws.send(JSON.stringify({ type: "message", data: inputMessage }));
-      if (!(sender.id === receiver.id))
-        //如果不是给自己发消息
-        setMessages((prevMessages) => [
-          ...prevMessages,
-          {
-            content: inputMessage,
-            sendTime: Date.now(),
-            sender: { username: sender.username, id: sender.id },
-            receiver: { username: receiver.username, id: receiver.id },
-          },
-        ]);
+      setMessages([
+        ...messages,
+        {
+          content: inputMessage,
+          receiver: { id: rid },
+          sender: { id: sid },
+          sendTime: new Date().getTime(),
+          seen: false,
+        },
+      ]);
       setInputMessage(""); // 清空输入
     } else {
       console.warn("Cannot send message: WebSocket not connected");
@@ -154,7 +155,7 @@ function ChatApp() {
       <ConsultHead receiver={receiver} />
       <div className="chat-container">
         <div className="chat-header">Today</div>
-        <ChatMessages messages={messages} rid={receiverId} />
+        <ChatMessages messages={messages} rid={rid} />
       </div>
       <Messagebox
         inputMessage={inputMessage}

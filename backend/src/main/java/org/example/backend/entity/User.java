@@ -13,7 +13,7 @@ import java.util.List;
 @Table(name = "users")
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler","expert","articleComments","expertComments","password","sendMessages","receiveMessages"})//忽略cartItems属性 并且解决cartItems属性为null的问题
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","expert","client","articleComments","expertComments","tweetComments","password","sendMessages","receiveMessages"})//忽略cartItems属性 并且解决cartItems属性为null的问题
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,7 +24,11 @@ public class User {
     private Role role;
     private boolean enabled;
     @OneToOne(mappedBy = "user",cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.LAZY)
+    @JsonIgnoreProperties({"user"})
     private Expert expert;
+    @OneToOne(mappedBy = "user",cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.LAZY)
+    @JsonIgnoreProperties({"user"})
+    private Client client;
     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.LAZY)
     private List<ArticleComment> articleComments;
     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.LAZY)
@@ -35,9 +39,7 @@ public class User {
     private List<Message> sendMessages;
     @OneToMany(mappedBy = "receiver",cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.LAZY)
     private List<Message> receiveMessages;
-    @OneToMany(mappedBy = "poster",cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.LAZY)
-    @JsonIgnoreProperties({"poster"})
-    private List<Tweet> tweets;
+
 
     public enum Role {
         user,expert,admin

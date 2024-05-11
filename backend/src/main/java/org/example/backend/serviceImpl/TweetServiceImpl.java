@@ -1,8 +1,10 @@
 package org.example.backend.serviceImpl;
 
+import org.example.backend.entity.Client;
 import org.example.backend.entity.Result;
 import org.example.backend.entity.Tweet;
 import org.example.backend.entity.User;
+import org.example.backend.repository.ClientRepository;
 import org.example.backend.repository.TweetRepository;
 import org.example.backend.repository.UserRepository;
 import org.example.backend.service.TweetService;
@@ -17,9 +19,11 @@ import java.util.List;
 public class TweetServiceImpl implements TweetService {
     TweetRepository repository;
     UserRepository userRepository;
-    public TweetServiceImpl(TweetRepository repository, UserRepository userRepository) {
+    ClientRepository clientRepository;
+    public TweetServiceImpl(TweetRepository repository, UserRepository userRepository, ClientRepository clientRepository) {
         this.repository = repository;
         this.userRepository = userRepository;
+        this.clientRepository = clientRepository;
     }
     public int getUid() {//从数据库里查询id
         String username = ((UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
@@ -37,11 +41,13 @@ public class TweetServiceImpl implements TweetService {
         return Result.success(tweet);
     }
     public Result<Tweet> addTweet(String content) {
+        Client client = clientRepository.getClientByUserId(getUid());
+        if(client==null){
+            return Result.error(403, "You are not a client");
+        }
         Tweet tweet = new Tweet();
         tweet.setContent(content);
-        User poster=new User();
-        poster.setId(getUid());
-        tweet.setPoster(poster);
+        tweet.setPoster(client);
         tweet.setTime(LocalDateTime.now());
         return Result.success(repository.save(tweet));
     }
@@ -50,7 +56,7 @@ public class TweetServiceImpl implements TweetService {
         if (oldTweet == null) {
             return Result.error(404, "Tweet not found");
         }
-        if(oldTweet.getPoster().getId()!=getUid()){
+        if(oldTweet.getPoster().getId()!=clientRepository.getClientByUserId(getUid()).getId()){
             return Result.error(403, "You are not the poster of this tweet");
         }
         oldTweet.setContent(tweet.getContent());
@@ -58,7 +64,7 @@ public class TweetServiceImpl implements TweetService {
     }
     public Result<Tweet> deleteTweet(int id) {
         if (repository.existsById(id)) {
-            if(repository.getTweetById(id).getPoster().getId()!=getUid()){
+            if(repository.getTweetById(id).getPoster().getId()!=clientRepository.getClientByUserId(getUid()).getId()){
                 return Result.error(403, "You are not the poster of this tweet");
             }
             repository.deleteById(id);

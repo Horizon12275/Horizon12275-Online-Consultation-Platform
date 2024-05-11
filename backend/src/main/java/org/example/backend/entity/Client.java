@@ -24,6 +24,9 @@ public class Client {
     private String avatar;
     @OneToOne(fetch=FetchType.LAZY)
     @JoinColumn(name = "uid")
-    @JsonIgnoreProperties({"clients"})
+    @JsonIgnoreProperties({"client"})
     private User user;
+    @OneToMany(mappedBy = "poster",cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.LAZY)
+    @JsonIgnoreProperties({"poster"})
+    private List<Tweet> tweets;
 }

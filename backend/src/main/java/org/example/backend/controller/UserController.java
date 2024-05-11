@@ -43,4 +43,8 @@ public class UserController {
     public Result<org.example.backend.entity.User> delete(@PathVariable int id) {
         return service.deleteUser(id);
     }
+    @GetMapping("/receiver/{id}")
+    public Result<Integer> getReceiverId(@PathVariable int id) {
+        return service.getReceiverId(id);
+    }
 }

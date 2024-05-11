@@ -30,7 +30,7 @@ export default function ConsultationHistoryList() {
       </header>
 
       {experts.slice(0, n).map((expert) => (
-        <Link to={`/expert/${expert.id}/consultation`} key={expert.id}>
+        <Link to={`/consultation/${expert.id}`} key={expert.id}>
           <React.Fragment key={expert.id}>
             <ConsultationHistoryCard expert={expert} />
           </React.Fragment>

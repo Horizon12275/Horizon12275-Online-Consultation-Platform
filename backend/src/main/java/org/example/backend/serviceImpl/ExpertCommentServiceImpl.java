@@ -26,8 +26,8 @@ public class ExpertCommentServiceImpl implements ExpertCommentService {
         String username = ((UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
         return userRepository.findUserByEmail(username).getId();
     }
-    public Result<List<ExpertComment>> getExpertCommentsByAid(int aid) {
-        List<ExpertComment> expertComments = repository.getExpertCommentsByExpertId(aid);
+    public Result<List<ExpertComment>> getExpertCommentsByEid(int eid) {
+        List<ExpertComment> expertComments = repository.getExpertCommentsByExpertId(eid);
         return Result.success(expertComments);
     }
     public Result<ExpertComment> addExpertComment(int aid, String content) {
