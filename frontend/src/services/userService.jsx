@@ -31,3 +31,9 @@ export async function getOtherUserById(id) {
   result = await get(url);
   return result;
 }
+export async function getReceiverId(id) {
+  const url = `${PREFIX}/receiver/${id}`;
+  let result;
+  result = await get(url);
+  return result;
+}

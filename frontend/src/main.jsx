@@ -6,19 +6,23 @@ import ErrorPage from "./pages/errorpage";
 import ExpertProfilePage from "./pages/expertprofile";
 import ConsultPage from "./pages/consultation";
 import HistoryPage from "./pages/history";
-import BecomeExpertPage from "./pages/become-expert";
+
 import UserPage from "./pages/user";
-import ArticleBrowsePage from "./pages/article-browse";
+
 import "./css/global.css";
 import "./index.css";
 import ExpertChoosePage from "./pages/expertchoose";
 import PlazaPage from "./pages/plaza";
 import ArticlePage from "./pages/article";
 import LandingPage from "./pages/landing.jsx";
-import LoginPage from "./pages/login_page.jsx";
-import RegisterPage from "./pages/register_page.jsx";
+import LoginPage from "./pages/login.jsx";
+import RegisterPage from "./pages/register.jsx";
 import RankingPage from "./pages/ranking";
 import WStest from "./pages/test";
+import VideoChatPage from "./pages/videoChat.jsx";
+import ArticleBrowsePage from "./pages/article_browse.jsx";
+import BecomeExpertPage from "./pages/become_expert.jsx";
+import { AuthProvider } from "./context/authContext.jsx";
 
 const router = createBrowserRouter([
   {
@@ -52,8 +56,13 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
   {
-    path: "/expert/:id/consultation",
+    path: "/consultation/:receiverId",
     element: <ConsultPage />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/landing",
+    element: <LandingPage />,
     errorElement: <ErrorPage />,
   },
   {
@@ -92,8 +101,8 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
   {
-    path: "/consultation/:receiverId",
-    element: <WStest />,
+    path: "/videochat/:receiverId",
+    element: <VideoChatPage />,
     errorElement: <ErrorPage />,
   },
   {
@@ -103,7 +112,7 @@ const router = createBrowserRouter([
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  
+  <AuthProvider>
     <RouterProvider router={router} />
-  
+  </AuthProvider>
 );

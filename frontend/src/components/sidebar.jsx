@@ -7,7 +7,7 @@ import {
   SolutionOutlined,
   UserOutlined,
   LoginOutlined,
-  BookOutlined
+  BookOutlined,
 } from "@ant-design/icons";
 import { Flex, Layout, Menu } from "antd";
 import { Link } from "react-router-dom";

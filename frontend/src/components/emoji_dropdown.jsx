@@ -28,6 +28,7 @@ const emojiList = [
 const EmojiDropdown = ({ value, setValue }) => {
   return (
     <Popover
+      className="shrink-0 w-6 aspect-square cursor-pointer"
       placement="top"
       trigger={["click"]}
       content={

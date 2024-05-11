@@ -6,7 +6,7 @@ import { getOtherUserById, getUser } from "../services/userService";
 import { useParams } from "react-router-dom";
 
 const WebSocketChat = () => {
-  const { receiverId } = useParams();
+  const { expertId } = useParams();
   const [sender, setSender] = useState({}); //以后应该用useContext
   const [receiver, setReceiver] = useState({});
   const [messages, setMessages] = useState([]);
@@ -14,7 +14,7 @@ const WebSocketChat = () => {
   const [ws, setWs] = useState(null);
   const [isConnected, setIsConnected] = useState(false);
   const initWebSocket = (sender, receiver) => {
-    const socket = new WebSocket(`ws://localhost:8080/ws/${receiverId}`);
+    const socket = new WebSocket(`ws://localhost:8080/ws/${expertId}`);
 
     socket.onopen = () => {
       setIsConnected(true);
@@ -46,8 +46,8 @@ const WebSocketChat = () => {
   useEffect(() => {
     Promise.all([
       getUser(),
-      getHistory(receiverId),
-      getOtherUserById(receiverId),
+      getHistory(expertId),
+      getOtherUserById(expertId),
     ])
       .then((values) => {
         setSender(values[0]);
@@ -86,28 +86,7 @@ const WebSocketChat = () => {
 
   return (
     <div>
-      <Form initialValues={{ remember: true }} onFinish={login}>
-        <Form.Item
-          id="username"
-          name="username"
-          rules={[{ required: true, message: "请输入您的用户名!" }]}
-          style={{ width: "100%", margin: 0 }}
-        >
-          <Input size="large" placeholder="用户名" allowClear />
-        </Form.Item>
-        <Form.Item
-          id="password"
-          name="password"
-          rules={[{ required: true, message: "请输入您的密码!" }]}
-          style={{ width: "100%", margin: 0 }}
-        >
-          <Input.Password size="large" type="password" placeholder="密码" />
-        </Form.Item>
-
-        <Button type="primary" htmlType="submit" style={{ width: "100%" }}>
-          登录
-        </Button>
-      </Form>
+     
       <h1>Chat Room</h1>
       <div>
         {messages.map((message, index) => (

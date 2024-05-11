@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -26,7 +27,8 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http.authorizeHttpRequests((requests) ->{requests
-                                .requestMatchers("/api/book/**").permitAll()
+                                .requestMatchers("/api/user/register")
+                                .permitAll()
                                 .anyRequest().authenticated();
                         }
                 ).formLogin(
@@ -42,6 +44,10 @@ public class SecurityConfig {
                             CorsConfiguration cors = new CorsConfiguration();
                             cors.addAllowedOrigin("http://localhost:5173");
                             cors.addAllowedOrigin("http://localhost:5174");
+                            cors.addAllowedOrigin("http://101.132.129.104:5173");
+                            cors.addAllowedOrigin("http://101.132.129.104:5174");
+                            cors.addAllowedOrigin("http://202.120.8.117:5173");
+                            cors.addAllowedOrigin("http://202.120.8.117:5174");
                             cors.setAllowCredentials(true);//允许携带cookie
                             cors.addAllowedMethod("*");
                             cors.addAllowedHeader("*");
@@ -64,7 +70,7 @@ public class SecurityConfig {
     }
     @Bean
     public PasswordEncoder passwordEncoder(){//密码编码器
-        return NoOpPasswordEncoder.getInstance();
+        return new BCryptPasswordEncoder();
     }
     private void handleProcess(
             HttpServletRequest request,

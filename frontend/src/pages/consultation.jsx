@@ -1,30 +1,41 @@
 import { useEffect, useState } from "react";
-import ChatRoom from "../components/chatroom";
 import { useParams } from "react-router-dom";
 import { getExpertById } from "../services/expertService"; // 导入专家相关的服务函数
 import { Flex, Divider } from "antd";
 import ConsultationHistoryList from "../components/consultation_history_list";
 import RateButton from "../components/rate";
-import { ChatLayout } from "../layouts";
+import { BasicLayout } from "../layouts";
 import CommentList from "../components/comment_list";
 import { getComments } from "../services/commentService";
 import VoiceChatList from "../components/history.jsx";
 import AIPrompt from "../components/ai_prompt.jsx";
-import ConsultHead from "../components/consult_head.jsx";
 import ChatApp from "../components/consult.jsx";
-import Messagebox from "../components/message_box.jsx";
+import CommentBox from "../components/comment_box.jsx";
+import { getCommentsByExpertId } from "../services/expertCommentService.jsx";
+import { useAuth } from "../context/authContext.jsx";
+import { getClientById } from "../services/clientService.jsx";
+
 const ConsultPage = () => {
-  let { id } = useParams();
-  const [expert, setExpert] = useState({});
+  const { user } = useAuth();
+  let { receiverId } = useParams();
+  const [receiver, setReceiver] = useState({});
   const [comments, setComments] = useState([]);
   useEffect(() => {
-    Promise.all([getExpertById(id), getComments(id)]).then(
-      ([expert, comments]) => {
-        setExpert(expert);
+    if (user?.role === "user") {
+      Promise.all([
+        getExpertById(receiverId),
+        getCommentsByExpertId(receiverId),
+      ]).then(([expert, comments]) => {
+        setReceiver(expert);
         setComments(comments);
-      }
-    );
-  }, [id]);
+      });
+    } else {
+      // 如果当前用户是专家，则获取用户信息
+      getClientById(receiverId).then((client) => {
+        setReceiver(client);
+      });
+    }
+  }, [receiverId, user]);
 
   return (
     <ChatLayout>
@@ -33,10 +44,9 @@ const ConsultPage = () => {
           style={{
             width: "350px",
 
-
             backgroundColor: "#f5f5f5",
             padding: "0 15px",
-              marginTop:"20px",
+            marginTop: "20px",
             overflowY: "scroll",
           }}
         >
@@ -44,13 +54,12 @@ const ConsultPage = () => {
           <Divider style={{ margin: "30px 0" }} />
           <RateButton />
           <CommentList comments={comments} />
-            <VoiceChatList/>
-            <AIPrompt/>
-            <ConsultHead/>
-            <ChatApp/>
-            <Messagebox/>
+          <VoiceChatList />
+          <AIPrompt />
+          <ConsultHead />
+          <ChatApp />
+          <Messagebox />
         </div>
-
       </Flex>
     </ChatLayout>
   );
