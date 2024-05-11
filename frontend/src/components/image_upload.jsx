@@ -1,8 +1,7 @@
 import { Dropdown } from "antd";
 import React, { useRef, useState } from "react";
 
-const ImageUploader = ({ onImageSelect, children }) => {
-  const [selectedImages, setSelectedImages] = useState([]);
+const ImageUploader = ({ selectedImages, setSelectedImages, children }) => {
   const inputRef = useRef(null);
   const handleClick = () => {
     inputRef.current.click();
@@ -11,19 +10,21 @@ const ImageUploader = ({ onImageSelect, children }) => {
     const files = event.target.files;
     const imagesArray = Array.from(files);
     setSelectedImages([...selectedImages, ...imagesArray]);
-    onImageSelect(imagesArray); // 将文件数组传递给父组件
   };
   const items = [
     {
-      label:
-        selectedImages &&
-        selectedImages.map((image) => (
-          <img
-            src={URL.createObjectURL(image)}
-            alt="Selected"
-            className="w-[300px] object-cover"
-          />
-        )),
+      label: (
+        <div className="flex items-center gap-2 min-h-52 min-w-[400px]">
+          {selectedImages &&
+            selectedImages.map((image) => (
+              <img
+                src={URL.createObjectURL(image)}
+                alt="Selected"
+                className="w-[300px] object-cover"
+              />
+            ))}
+        </div>
+      ),
     },
   ];
   return (

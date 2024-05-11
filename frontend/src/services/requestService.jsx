@@ -59,12 +59,10 @@ export async function postUrlencoded(url, data) {
   return await res.json().then(handleResponse);
 }
 export async function postFormData(url, formData) {
+  //千万不能手动设置Content-Type 浏览器会自动根据formData设置并且生成webkitboundary 如果手动设置会导致boundary不匹配
   let opts = {
     method: "POST",
     body: formData,
-    headers: {
-      "Content-Type": "multipart/form-data",
-    },
     credentials: "include",
   };
   let res = await fetch(url, opts);

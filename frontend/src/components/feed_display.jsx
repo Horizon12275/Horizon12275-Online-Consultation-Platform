@@ -145,7 +145,7 @@ function FeedDisplay({ tweet }) {
             />
             <TweetContent text={tweet.content} />
             <TweetImage
-              src="https://cdn.builder.io/api/v1/image/assets/TEMP/a2d6cd9fdce7ad26e6da0a1e133265b83891ca1a384025e59c4bcb46d0dea9af?apiKey=9e661a5e0ad74c878ca984d592b3752c&"
+              src={tweet.image}
               alt="Image attached to Devon Lane's tweet"
             />
             <TweetActions actions={actions} />

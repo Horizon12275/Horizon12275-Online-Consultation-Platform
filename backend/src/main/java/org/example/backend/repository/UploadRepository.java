@@ -14,7 +14,7 @@ import java.util.UUID;
 @Repository
 public class UploadRepository {
     private static final String UPLOAD_DIR = "src/main/resources/static/image/";
-    private static final String DOMAIN = "http://localhost:8081/";
+    private static final String DOMAIN = "http://localhost:8080/";
 
     public String uploadFile( MultipartFile file,String type) throws IOException {
         if (file.isEmpty()) {

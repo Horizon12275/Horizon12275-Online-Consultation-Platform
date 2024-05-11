@@ -23,9 +23,8 @@ function LoginPage() {
           });
         setUser(res);
       });
-
-      // alert("登录成功！");
-      // history.back();
+      alert("登录成功！");
+      history.back();
     } catch (error) {
       alert(error);
     }

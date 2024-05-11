@@ -1,4 +1,4 @@
-import { Button, Col, Flex, Input, Row } from "antd";
+import { Button, Col, Flex, Input, Row, Upload } from "antd";
 import EmojiDropdown from "./emoji_dropdown";
 import { useState } from "react";
 import { postTweet } from "../services/tweetService";
@@ -9,15 +9,14 @@ import ImageUploader from "./image_upload";
 const FeedEditor = ({ setTweets }) => {
   const [value, setValue] = useState("");
   const { client } = useAuth();
-  const [uploadedImage, setUploadedImage] = useState([]);
-  const handleImageSelect = (imageFile) => {
-    setUploadedImage(imageFile);
-  };
+  const [selectedImages, setSelectedImages] = useState([]);
+
   const socialIcons = [
     {
       children: (
         <ImageUploader
-          onImageSelect={handleImageSelect}
+          selectedImages={selectedImages}
+          setSelectedImages={setSelectedImages}
           children={
             <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/295d4cbba18c8555324aa8193d53ca9d7005accc5bd91937a2bf67ced21afa67?apiKey=9e661a5e0ad74c878ca984d592b3752c&" />
           }
@@ -47,17 +46,19 @@ const FeedEditor = ({ setTweets }) => {
     },
   ];
   const handleClick = () => {
-    postTweet({ content: value });
-    setValue("");
-    setTweets((prev) => [
-      ...prev,
-      {
-        poster: client,
-        content: value,
-        time: new Date().toLocaleString(),
-        likes: [],
-      },
-    ]);
+    postTweet({ content: value, file: selectedImages[0] }).then((res) => {
+      setValue("");
+      setTweets((prev) => [
+        ...prev,
+        {
+          poster: client,
+          content: value,
+          time: new Date().toLocaleString(),
+          likes: [],
+          image: res.image,
+        },
+      ]);
+    });
     alert("Tweet posted successfully");
   };
   return (
