@@ -6,8 +6,7 @@ import ConsultationHistoryList from "../components/consultation_history_list";
 import RateButton from "../components/rate";
 import { BasicLayout } from "../layouts";
 import CommentList from "../components/comment_list";
-import { getComments } from "../services/commentService";
-import VoiceChatList from "../components/history.jsx";
+import History from "../components/history.jsx";
 import AIPrompt from "../components/ai_prompt.jsx";
 import ChatApp from "../components/consult.jsx";
 import CommentBox from "../components/comment_box.jsx";
@@ -38,30 +37,42 @@ const ConsultPage = () => {
   }, [receiverId, user]);
 
   return (
-    <ChatLayout>
-      <Flex>
-        <div
-          style={{
-            width: "350px",
+    user && (
+      <BasicLayout>
+        <Flex>
+          <div
+          // style={{
+          //   minHeight: "800px",
+          //   backgroundColor: "#f5f5f5",
+          //   padding: "0 10px",
+          //   height: "100vh",
+          //
+          // }}
+          >
+            {user.role === "user" && (
+              <>
+                <ConsultationHistoryList
+                  style={{ position: "fixed", top: "30px", left: "300px" }}
+                />
+                {/*<Divider style={{ margin: "10px 0" }} />*/}
+                <RateButton />
+                <CommentList comments={comments} />
+                <CommentBox
+                  id={receiverId}
+                  type={"expert"}
+                  setComments={setComments}
+                  style={{ position: "absolute", top: "30px", left: "300px" }}
+                />
 
-            backgroundColor: "#f5f5f5",
-            padding: "0 15px",
-            marginTop: "20px",
-            overflowY: "scroll",
-          }}
-        >
-          <ConsultationHistoryList />
-          <Divider style={{ margin: "30px 0" }} />
-          <RateButton />
-          <CommentList comments={comments} />
-          <VoiceChatList />
-          <AIPrompt />
-          <ConsultHead />
-          <ChatApp />
-          <Messagebox />
-        </div>
-      </Flex>
-    </ChatLayout>
+                <AIPrompt />
+              </>
+            )}
+
+            <ChatApp sid={user.id} receiver={receiver} />
+          </div>
+        </Flex>
+      </BasicLayout>
+    )
   );
 };
 

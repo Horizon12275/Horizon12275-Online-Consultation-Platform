@@ -4,15 +4,25 @@ import { MailOutlined, LockOutlined, UserOutlined } from "@ant-design/icons";
 import { login } from "../services/loginService";
 import { useAuth } from "../context/authContext";
 import { getUser } from "../services/userService";
+import { getClientById } from "../services/clientService";
+import { getExpertById } from "../services/expertService";
 
 function LoginPage() {
-  const { user, setUser } = useAuth();
+  const { setUser, setClient, setExpert } = useAuth();
   const loginAndSetUser = async (values) => {
     try {
       await login(values);
-      const userRes = await getUser();
-      setUser(userRes);
-      console.log(userRes);
+      await getUser().then((res) => {
+        if (res.role === "user")
+          getClientById(res.id).then((res) => {
+            setClient(res);
+          });
+        else if (res.role === "expert")
+          getExpertById(res.id).then((res) => {
+            setExpert(res);
+          });
+        setUser(res);
+      });
       alert("登录成功！");
       history.back();
     } catch (error) {

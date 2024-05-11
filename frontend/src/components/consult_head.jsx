@@ -48,115 +48,116 @@ function CallButton() {
 function ConsultHead({ receiver }) {
   //这里的receiver是专家或者用户的信息
   return (
-    <>
-      <div className="user-card">
-        <Avatar src={receiver.avatar} alt={`avatar`} />
-        <UserInfo
-          name={receiver.name || receiver.username} //这里的receiver.name是专家的名字，receiver.username是用户的名字
-          status={"Online"}
-        />
-        <Link to={`/videochat/${receiver.id}`}>
-          <VideoButton />
-        </Link>
-        <CallButton />
-      </div>
+    receiver && (
+      <>
+        <div className="user-card">
+          <Avatar src={receiver.avatar} alt={`avatar`} />
+          <UserInfo
+            name={receiver.name || receiver.username} //这里的receiver.name是专家的名字，receiver.username是用户的名字
+            status={"Online"}
+          />
+          <Link to={`/videochat/${receiver.id}`}>
+            <VideoButton />
+          </Link>
+        </div>
 
-      <style jsx>{`
-        .user-card {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          max-width: 2000px;
-          gap: 140px;
-          font-weight: 600;
-          padding: 10px 10px;
-          position: absolute;
-          top: 30px;
-          left: 970px;
-        }
-
-        @media (max-width: 991px) {
+        <style jsx>{`
           .user-card {
-            flex-wrap: wrap;
-            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 2000px;
+            gap: 200px;
+            font-weight: 600;
+            padding: 10px 10px;
+            position: absolute;
+            top: 40px;
+            left: 870px;
           }
-        }
 
-        .avatar {
-          width: 50px;
-          height: 50px;
-          object-fit: cover;
-          border-radius: 50%;
-        }
+          @media (max-width: 991px) {
+            .user-card {
+              flex-wrap: wrap;
+              padding: 0 20px;
+            }
+          }
 
-        .user-info {
-          display: flex;
-          flex-direction: column;
-        }
+          .avatar {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 50%;
+          }
 
-        .user-name {
-          color: #000;
-          font-size: 20px;
-          font-family: Inter, sans-serif;
-          margin: 0;
-        }
+          .user-info {
+            display: flex;
+            flex-direction: column;
+          }
 
-        .user-status {
-          display: flex;
-          align-items: center;
-          gap: 8px;
-          font-size: 12px;
-          color: #000;
-          line-height: 150%;
-        }
+          .user-name {
+            color: #000;
+            font-size: 20px;
+            font-family: Inter, sans-serif;
+            margin: 0;
+          }
 
-        @media (max-width: 991px) {
           .user-status {
-            white-space: initial;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            color: #000;
+            line-height: 150%;
           }
-        }
 
-        .status-indicator {
-          width: 10px;
-          height: 10px;
-          background-color: #68d391;
-          border-radius: 50%;
-        }
+          @media (max-width: 991px) {
+            .user-status {
+              white-space: initial;
+            }
+          }
 
-        .status-text {
-          font-family: Inter, sans-serif;
-        }
+          .status-indicator {
+            width: 10px;
+            height: 10px;
+            background-color: #68d391;
+            border-radius: 50%;
+          }
 
-        .call-button {
-          display: flex;
-          align-items: center;
-          gap: 8px;
-          padding: 10px 16px;
-          background-color: #b2ddff;
-          color: #1570ef;
-          font-size: 16px;
-          font-family: Inter, sans-serif;
-          border: none;
-          border-radius: 8px;
-          cursor: pointer;
-        }
+          .status-text {
+            font-family: Inter, sans-serif;
+          }
 
-        @media (max-width: 991px) {
           .call-button {
-            white-space: initial;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px;
+            background-color: #b2ddff;
+            color: #1570ef;
+            font-size: 16px;
+            font-family: Inter, sans-serif;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
           }
-        }
 
-        .call-icon {
-          width: 24px;
-          height: 24px;
-        }
+          @media (max-width: 991px) {
+            .call-button {
+              white-space: initial;
+            }
+          }
 
-        .call-text {
-          margin: auto 0;
-        }
-      `}</style>
-    </>
+          .call-icon {
+            width: 24px;
+            height: 24px;
+          }
+
+          .call-text {
+            margin: auto 0;
+          }
+        `}</style>
+      </>
+    )
   );
 }
 export default ConsultHead;

@@ -23,10 +23,10 @@ function Messagebox({
           white-space: nowrap;
           padding: 8px 16px;
           position: absolute;
-          top: 780px;
-          left: 980px;
-          width: 630px;
-          height: 100px;
+          top: 730px;
+          left: 870px;
+          width: 670px;
+          height: 80px;
         }
 
         @media (max-width: 991px) {

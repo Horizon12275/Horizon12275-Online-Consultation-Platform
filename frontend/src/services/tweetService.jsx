@@ -1,4 +1,4 @@
-import { BASEURL, get, post, postText } from "./requestService";
+import { BASEURL, get, post, postFormData, postText } from "./requestService";
 const PREFIX = `${BASEURL}/api/tweet`;
 
 export async function getAllTweets() {
@@ -13,11 +13,14 @@ export async function getAllTweets() {
   }
 }
 
-export async function postTweet({ content }) {
+export async function postTweet({ content, file }) {
+  let formData = new FormData();
+  formData.append("content", content);
+  formData.append("file", file);
   const url = `${PREFIX}/add`;
   let result;
   try {
-    result = await postText(url,  content );
+    result = await postFormData(url, formData);
     return result;
   } catch (e) {
     console.log(e);

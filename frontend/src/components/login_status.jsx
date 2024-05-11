@@ -25,12 +25,14 @@ function GoogleSignInButton() {
   );
 }
 const UserOrLogin = () => {
-  const { user, setUser } = useAuth();
+  const { user, setUser, setClient, setExpert } = useAuth();
 
   const logoutAndClearUser = () => {
     logout()
       .then(() => {
         setUser(null);
+        setClient(null);
+        setExpert(null);
         alert("登出成功！");
         location.href = "/";
       })

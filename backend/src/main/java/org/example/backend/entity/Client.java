@@ -10,7 +10,7 @@ import java.util.List;
 @Data
 @Entity
 @Table(name = "clients")
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","tweets","user"})
 public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,9 +24,7 @@ public class Client {
     private String avatar;
     @OneToOne(fetch=FetchType.LAZY)
     @JoinColumn(name = "uid")
-    @JsonIgnoreProperties({"client"})
     private User user;
     @OneToMany(mappedBy = "poster",cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.LAZY)
-    @JsonIgnoreProperties({"poster"})
     private List<Tweet> tweets;
 }

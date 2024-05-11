@@ -7,7 +7,7 @@ import {
   SolutionOutlined,
   UserOutlined,
   LoginOutlined,
-  BookOutlined,
+  BookOutlined
 } from "@ant-design/icons";
 import { Flex, Layout, Menu } from "antd";
 import { Link } from "react-router-dom";
@@ -30,8 +30,8 @@ const Sidebar = () => {
       icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/fe1f7d779e1cb4aa26a49439af034934f03aa9024f8a3a83885b322d66ac46a2?apiKey=9e661a5e0ad74c878ca984d592b3752c&",
     },
     {
-      label: "Consulting",
-      value: "/expert/1/consultation",
+      label: "History",
+      value: "/consultation/1",
       icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/07d261bcd92e5b651bbf3ee474dd7d3fd577dd2a898811375f3cf1b699518c71?apiKey=9e661a5e0ad74c878ca984d592b3752c&",
     },
     {
