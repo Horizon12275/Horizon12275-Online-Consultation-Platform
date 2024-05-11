@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import {
   getOtherUserById,
   getReceiverId,
@@ -61,7 +61,7 @@ function ChatApp({ sid, receiver }) {
   const [rid, setRid] = useState();
   const [messages, setMessages] = useState([]);
   const [inputMessage, setInputMessage] = useState("");
-  const [ws, setWs] = useState(null);
+  const ws = useRef(null);
   const initWebSocket = (sid, rid) => {
     //sid是发送者id rid是接收者id 这里的id已经是后端获取的userId了
     const socket = new WebSocket(`ws://localhost:8080/ws/${receiverId}`);
@@ -69,7 +69,7 @@ function ChatApp({ sid, receiver }) {
     socket.onopen = () => {
       console.log("Connected to WebSocket server");
       socket.send(JSON.stringify({ type: "seen", data: rid }));
-      setWs(socket);
+      ws.current = socket; // 保存WebSocket对象
     };
 
     socket.onmessage = (event) => {
@@ -102,14 +102,10 @@ function ChatApp({ sid, receiver }) {
     socket.onclose = () => {
       console.log("Disconnected from WebSocket server");
     };
-
-    return () => {
-      console.log("Closing WebSocket connection");
-      socket.close(); // 组件卸载时关闭连接
-    };
   };
 
   useEffect(() => {
+    //ws?.close(); // 关闭先前的连接
     getReceiverId(receiverId) //根据接收者id获取userId
       .then((res) => {
         setRid(res);
@@ -124,12 +120,15 @@ function ChatApp({ sid, receiver }) {
         console.error(err);
         alert(err);
       });
+    return () => {
+      ws.current?.close();
+    };
   }, [receiverId]); // 空数组确保仅首次加载时运行
 
   const sendMessage = (event) => {
     event.preventDefault(); //阻止换行
     if (inputMessage.trim() !== "") {
-      ws.send(JSON.stringify({ type: "message", data: inputMessage }));
+      ws.current.send(JSON.stringify({ type: "message", data: inputMessage }));
       setMessages([
         ...messages,
         {

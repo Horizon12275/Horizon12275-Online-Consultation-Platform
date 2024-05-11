@@ -25,9 +25,6 @@ public class Expert {
     private String lastName;
     @Lob
     private String aboutMe;
-    private String field;
-    @Enumerated(EnumType.STRING)
-    private educationLevel education;
     private String introduction;
     private String avatar;
     @Column(precision = 3,scale = 1)

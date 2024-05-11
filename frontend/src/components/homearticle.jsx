@@ -2,7 +2,7 @@ import React from "react";
 import { List } from "antd";
 import HomeArticleCard from "./homearticle_card";
 
-export default function HomeArticle({ articles }) {
+export default function HomeArticle({ articles,length }) {
   return (
     <List
       dataSource={articles}

@@ -40,8 +40,6 @@ function ProfileIntroduction({ introduction }) {
 }
 
 export default function ExpertShowCard({ item }) {
-  console.log("item:", item);
- 
   return (
     <div>
       <Link href={`/expert/${item.id}`}>

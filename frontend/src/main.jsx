@@ -101,11 +101,6 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
   {
-    path: "/consultation/:receiverId",
-    element: <WStest />,
-    errorElement: <ErrorPage />,
-  },
-  {
     path: "/videochat/:receiverId",
     element: <VideoChatPage />,
     errorElement: <ErrorPage />,

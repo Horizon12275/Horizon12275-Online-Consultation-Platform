@@ -26,6 +26,8 @@ public class Tweet {
     private Client poster;
     @Lob
     private String content;
-
+    @OneToMany(mappedBy = "tweet",cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.LAZY)
+    @JsonIgnoreProperties({"tweet","id"})
+    private List<TweetLike> likes;
 
 }

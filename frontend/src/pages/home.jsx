@@ -27,7 +27,7 @@ export default function HomePage() {
               margin: "0 auto",
             }}
           >
-            <SearchBar />
+            <SearchBar withSelect />
           </Header>
 
           <div className="flex flex-col gap-5 px-5 max-md:flex-wrap">

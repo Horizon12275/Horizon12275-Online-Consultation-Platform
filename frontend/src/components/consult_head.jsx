@@ -45,7 +45,7 @@ function CallButton() {
   );
 }
 
-function ConsultHead({ receiver }) {
+function ConsultHead({ receiver }) {//这里的receiver是专家或者用户的信息
   return (
     <>
       <div className="user-card">

@@ -69,12 +69,10 @@ public class ExpertApplicationServiceImpl implements ExpertApplicationService {
         expert.setFirstName(application.getFirstName());
         expert.setLastName(application.getLastName());
         expert.setAboutMe(application.getAboutMe());
-        expert.setField(application.getField());
         expert.setAvatar(application.getAvatar());
         expert.setName(application.getFirstName() + " " + application.getLastName());
         expert.setRegion(application.getRegion());
         expert.setIntroduction(application.getIntroduction());
-        expert.setEducation(application.getEducation());
         expertRepository.save(expert);
         repository.deleteById(id);
         return Result.success(application);

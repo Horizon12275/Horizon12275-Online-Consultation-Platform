@@ -39,7 +39,7 @@ const FeedEditor = ({ setTweets }) => {
     setValue("");
     setTweets((prev) => [
       ...prev,
-      { poster: user, content: value, time: new Date().toLocaleString() },
+      { poster: user, content: value, time: new Date().toLocaleString(), likes: []},
     ]);
     alert("Tweet posted successfully");
   };

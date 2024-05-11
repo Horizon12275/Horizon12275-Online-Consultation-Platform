@@ -1,7 +1,6 @@
 import CommentCard from "./comment_card";
 
 const CommentList = ({ comments }) => {
-  console.log(comments);
   return (
     <section>
       {comments.map((comment, index) => (
