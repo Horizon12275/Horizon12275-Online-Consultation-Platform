@@ -9,7 +9,7 @@ const { TextArea } = Input;
 
 function CommentInput({ value, onChange }) {
   return (
-    <div className="flex flex-col justify-center w-full leading-6 text-gray-500">
+    <div className="flex flex-col justify-center w-full leading-8 text-gray-500">
       <div className="flex flex-col justify-center w-full">
         <TextArea
           required
@@ -69,7 +69,16 @@ function CommentBox({ id, type, setComments }) {
     ]);
   };
   return (
-    <div className="flex flex-col justify-center max-w-xs text-base">
+    <div  style={{
+      position: "absolute",
+      top: "630px",
+      left: "280px",
+      width:"500px",
+      // height:"100px",
+      backgroundColor: "white",
+      padding: "10px",
+      // border: "1px solid black",
+    }}>
       <CommentInput
         value={value}
         onChange={(e) => {

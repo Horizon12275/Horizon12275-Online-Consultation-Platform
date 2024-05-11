@@ -11,7 +11,7 @@ const ExpertInfoCard = ({ expert }) => {
       <Col>
         <img
           loading="lazy"
-          src={expert.image}
+          src={expert.avatar}
           alt="Profile"
           className="border-white border-solid shadow-lg aspect-square rounded-full w-[260px] object-cover mr-10"
         />

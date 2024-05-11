@@ -7,6 +7,7 @@ import org.example.backend.service.ExpertService;
 import org.example.backend.service.TweetService;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -36,9 +37,10 @@ public class TweetController {
         return service.deleteTweet(id);
     }
     @PostMapping("/add")
-    public Result<Tweet> addTweet(@RequestBody String content) {
-        return service.addTweet(content);
+    public Result<Tweet> addTweet(@RequestParam("content") String content,@RequestParam("file") MultipartFile file) {
+        return service.addTweet(content,file);
     }
+
     @GetMapping("/search")
     public Result<List<Tweet>> searchTweets(@RequestParam String keyword) {
         return service.getTweetsByContentLike(keyword);

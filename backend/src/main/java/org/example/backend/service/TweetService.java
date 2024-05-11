@@ -3,6 +3,7 @@ package org.example.backend.service;
 import org.example.backend.entity.Result;
 import org.example.backend.entity.Tweet;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -10,7 +11,7 @@ import java.util.List;
 public interface TweetService {
     public Result<List<Tweet>> getTweets();
     public Result<Tweet> getTweetById(int id);
-    public Result<Tweet> addTweet(String content);
+    public Result<Tweet> addTweet(String content, MultipartFile file);
     public Result<Tweet> updateTweet(int id, Tweet tweet);
     public Result<Tweet> deleteTweet(int id);
     public Result<List<Tweet>> getTweetsByPosterId(int uid);
