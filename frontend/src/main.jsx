@@ -6,9 +6,7 @@ import ErrorPage from "./pages/errorpage";
 import ExpertProfilePage from "./pages/expertprofile";
 import ConsultPage from "./pages/consultation";
 import HistoryPage from "./pages/history";
-
 import UserPage from "./pages/user";
-
 import "./css/global.css";
 import "./index.css";
 import ExpertChoosePage from "./pages/expertchoose";
@@ -18,10 +16,11 @@ import LandingPage from "./pages/landing.jsx";
 import LoginPage from "./pages/login.jsx";
 import RegisterPage from "./pages/register.jsx";
 import RankingPage from "./pages/ranking";
-import WStest from "./pages/test";
 import VideoChatPage from "./pages/videoChat.jsx";
 import ArticleBrowsePage from "./pages/article_browse.jsx";
 import BecomeExpertPage from "./pages/become_expert.jsx";
+import WriteArticlePage from "./pages/writeArticle.jsx";
+import VerifyExpertPage from "./pages/verifyExpert.jsx";
 import { AuthProvider } from "./context/authContext.jsx";
 
 const router = createBrowserRouter([
@@ -103,6 +102,16 @@ const router = createBrowserRouter([
   {
     path: "/videochat/:receiverId",
     element: <VideoChatPage />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/write-article",
+    element: <WriteArticlePage />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/verify-expert",
+    element: <VerifyExpertPage />,
     errorElement: <ErrorPage />,
   },
   {
