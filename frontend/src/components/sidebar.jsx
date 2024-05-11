@@ -45,7 +45,7 @@ const Sidebar = () => {
       icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/2b7c55e1879373d855dc8c7b241dfcb63ac54bddbf3dee01f1c40e58e55618ba?apiKey=9e661a5e0ad74c878ca984d592b3752c&",
     },
     {
-      label: "BeExpert",
+      label: "Be Expert",
       value: "/become-expert",
       icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/84841d85ef1193d6b8bee18151161336ed1a0282dff45b9e832ec2a3ccf9e6f9?apiKey=9e661a5e0ad74c878ca984d592b3752c&",
     },

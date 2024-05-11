@@ -3,8 +3,7 @@ import * as React from "react";
 function AIPrompt() {
     const questions = [
         "What are design patterns?",
-        "What are design patterns?",
-        "What are design patterns?"
+
     ];
 
     return (
@@ -13,22 +12,23 @@ function AIPrompt() {
         .questions-container {
           display: flex;
           flex-direction: column;
-            position:absolute;
-            top:390px;
-            left:600px;
-          max-width: 317px;
+          position: fixed;
+          top:550px; /* 你想要的距离顶部的位置 */
+          left: 870px; /* 你想要的距离左侧的位置 */
+          max-width: 260px;
           padding: 0 15px;
           font-size: 24px;
           color: #fff;
-          font-weight: 480;
-          line-height: 15px;
+          font-weight: 100;
+          line-height: 20px;
+          z-index: 999; /* 确保在其他内容的上方 */
         }
 
         .questions-title {
           color: #000;
           text-align: center;
           width: 100%;
-          font: 400 20px Inter, sans-serif;
+          font: 400 16px Inter, sans-serif;
         }
 
         .question-item {
@@ -36,7 +36,7 @@ function AIPrompt() {
           border-radius: 20px;
           box-shadow: 0px 30px 30px 0px rgba(0, 0, 0, 0.05);
           background-color: var(--Blue-500, #2e90fa);
-          margin-top: 15px;
+          margin-top: 10px;
           width: 100%;
           justify-content: center;
           padding: 35px 37px;
@@ -54,4 +54,4 @@ function AIPrompt() {
         </>
     );
 }
-export default AIPrompt
+export default AIPrompt;

@@ -173,10 +173,10 @@ function ChatApp({ sid, receiver }) {
           font-weight: 400;
           padding: 24px;
           position: absolute;
-          top: 100px;
-          left: 940px;
-          width: 560px;
-          height: 540px;
+          top: 120px;
+          left: 870px;
+          width: 670px;
+          height: 600px;
         }
 
         @media (max-width: 991px) {

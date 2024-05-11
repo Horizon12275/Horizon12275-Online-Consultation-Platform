@@ -92,7 +92,7 @@ function Profile() {
         .stat-label {
           font: 700 22px Cardo, sans-serif;
           color: #6c6c6c;
-          margin-top: 55px;
+          margin-top: 50px;
         }
 
         @media (max-width: 991px) {
@@ -105,7 +105,7 @@ function Profile() {
           width: 2px;
           height: 100px;
           background-color: #6c6c6c;
-          margin-top: 9px;
+          margin-top:10px;
         }
 
         .upload-button {
@@ -113,8 +113,9 @@ function Profile() {
           color: #fff;
           background-color: rgba(46, 144, 250, 1);
           border-radius: 10px;
-          padding: 16px 56px;
+          padding: 20px 60px;
           max-width: 100%;
+            margin-top: 20px;
           width: 336px;
         }
 

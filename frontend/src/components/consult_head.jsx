@@ -57,7 +57,7 @@ function ConsultHead({ receiver }) {//这里的receiver是专家或者用户的�
         <Link to={`/videochat/${receiver.id}`}>
           <VideoButton />
         </Link>
-        <CallButton />
+       
       </div>
 
       <style jsx>{`
@@ -66,12 +66,12 @@ function ConsultHead({ receiver }) {//这里的receiver是专家或者用户的�
           justify-content: space-between;
           align-items: center;
           max-width: 2000px;
-          gap: 110px;
+          gap: 200px;
           font-weight: 600;
           padding: 10px 10px;
           position: absolute;
-          top: 20px;
-          left: 940px;
+          top: 40px;
+          left: 870px;
         }
 
         @media (max-width: 991px) {
