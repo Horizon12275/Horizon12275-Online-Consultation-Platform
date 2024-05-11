@@ -26,7 +26,7 @@ export const getAllExperts = async () => {
 };
 
 export const getRecommendedExperts = async () => {
-  const url = `${PREFIX}/recommend/0`;
+  const url = `${PREFIX}/recommend/3`;
   let result;
   try {
     result = await get(url);

@@ -15,7 +15,7 @@ export const searchArticles = async ({ keyword }) => {
 };
 
 export const getRecommendedArticles = async () => {
-  const url = `${PREFIX}/recommend/0`;
+  const url = `${PREFIX}/recommend/1`;
   let result;
 
   result = await get(url);
