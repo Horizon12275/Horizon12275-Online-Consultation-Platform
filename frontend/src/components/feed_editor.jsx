@@ -3,15 +3,27 @@ import EmojiDropdown from "./emoji_dropdown";
 import { useState } from "react";
 import { postTweet } from "../services/tweetService";
 import { useAuth } from "../context/authContext";
+import ImageUpload from "./image_upload";
+import ImageUploader from "./image_upload";
 
 const FeedEditor = ({ setTweets }) => {
   const [value, setValue] = useState("");
-  const { user, setUser } = useAuth();
+  const { client } = useAuth();
+  const [uploadedImage, setUploadedImage] = useState([]);
+  const handleImageSelect = (imageFile) => {
+    setUploadedImage(imageFile);
+  };
   const socialIcons = [
     {
       children: (
-        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/295d4cbba18c8555324aa8193d53ca9d7005accc5bd91937a2bf67ced21afa67?apiKey=9e661a5e0ad74c878ca984d592b3752c&" />
+        <ImageUploader
+          onImageSelect={handleImageSelect}
+          children={
+            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/295d4cbba18c8555324aa8193d53ca9d7005accc5bd91937a2bf67ced21afa67?apiKey=9e661a5e0ad74c878ca984d592b3752c&" />
+          }
+        />
       ),
+
       alt: "Image",
       handleClick: () => console.log("Social icon 1 clicked"),
     },
@@ -39,7 +51,12 @@ const FeedEditor = ({ setTweets }) => {
     setValue("");
     setTweets((prev) => [
       ...prev,
-      { poster: user, content: value, time: new Date().toLocaleString(), likes: []},
+      {
+        poster: client,
+        content: value,
+        time: new Date().toLocaleString(),
+        likes: [],
+      },
     ]);
     alert("Tweet posted successfully");
   };

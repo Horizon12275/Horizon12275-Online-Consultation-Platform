@@ -37,9 +37,10 @@ const ConsultPage = () => {
   }, [receiverId, user]);
 
   return (
-    <BasicLayout>
-      <Flex>
-        <div
+    user && (
+      <BasicLayout>
+        <Flex>
+          <div
           // style={{
           //   minHeight: "800px",
           //   backgroundColor: "#f5f5f5",
@@ -47,19 +48,31 @@ const ConsultPage = () => {
           //   height: "100vh",
           //
           // }}
-        >
-          <ConsultationHistoryList style={{ position:"fixed",top:"30px",left:"300px" }}/>
-          {/*<Divider style={{ margin: "10px 0" }} />*/}
-          <RateButton />
-          <CommentList comments={comments}  />
-          <CommentBox id={receiverId} type={"expert"} setComments={setComments} style={{ position:"absolute",top:"30px",left:"300px" }} />
+          >
+            {user.role === "user" && (
+              <>
+                <ConsultationHistoryList
+                  style={{ position: "fixed", top: "30px", left: "300px" }}
+                />
+                {/*<Divider style={{ margin: "10px 0" }} />*/}
+                <RateButton />
+                <CommentList comments={comments} />
+                <CommentBox
+                  id={receiverId}
+                  type={"expert"}
+                  setComments={setComments}
+                  style={{ position: "absolute", top: "30px", left: "300px" }}
+                />
 
-          <AIPrompt />
+                <AIPrompt />
+              </>
+            )}
 
-          <ChatApp />
-        </div>
-      </Flex>
-    </BasicLayout>
+            <ChatApp sid={user.id} receiver={receiver} />
+          </div>
+        </Flex>
+      </BasicLayout>
+    )
   );
 };
 

@@ -58,6 +58,18 @@ export async function postUrlencoded(url, data) {
   let res = await fetch(url, opts);
   return await res.json().then(handleResponse);
 }
+export async function postFormData(url, formData) {
+  let opts = {
+    method: "POST",
+    body: formData,
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+    credentials: "include",
+  };
+  let res = await fetch(url, opts);
+  return await res.json().then(handleResponse);
+}
 
 export async function Delete(url) {
   let opts = {
