@@ -27,17 +27,17 @@ public class TweetController {
         return service.getTweetById(id);
     }
 
-    @PutMapping("/admin/update/{id}")
+    @PutMapping("/update/{id}")
     public Result<Tweet> updateTweet(@PathVariable int id, @RequestBody Tweet tweet) {
         return service.updateTweet(id, tweet);
     }
-    @DeleteMapping("/admin/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public Result<Tweet> deleteTweet(@PathVariable int id) {
         return service.deleteTweet(id);
     }
-    @PostMapping("/admin/add")
-    public Result<Tweet> addTweet(@RequestBody Tweet tweet) {
-        return service.addTweet(tweet);
+    @PostMapping("/add")
+    public Result<Tweet> addTweet(@RequestBody String content) {
+        return service.addTweet(content);
     }
     @GetMapping("/search")
     public Result<List<Tweet>> searchTweets(@RequestParam String keyword) {

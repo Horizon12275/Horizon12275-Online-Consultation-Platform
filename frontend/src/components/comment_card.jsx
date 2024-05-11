@@ -7,8 +7,8 @@ function Avatar({ src, alt }) {
 function AuthorInfo({ name, timestamp }) {
   return (
     <div className="flex gap-0 py-px pr-5">
-      <div className="text-sm font-bold leading-5 text-neutral-800">
-        {name}{" "}
+      <div className="text-sm font-bold leading-5 text-neutral-800 mr-2">
+        {name}
       </div>
       <div className="text-xs leading-5 text-neutral-400">{timestamp}</div>
     </div>
@@ -28,14 +28,24 @@ function ReactionButton({ icon, count }) {
   );
 }
 
-export default function CommentCard({ author, avatar, content, timestamp, likes, onReply }) {
+export default function CommentCard({
+  author,
+  avatar,
+  content,
+  timestamp,
+  likes,
+  onReply,
+}) {
   return (
     <article className="flex gap-0 mt-3">
       <div className="flex flex-col justify-center items-start self-start pr-4">
-        <Avatar src={"/1.jpg"} alt={`${author}'s avatar`} />
+        <Avatar src={avatar} alt={`${author}'s avatar`} />
       </div>
       <div className="flex flex-col">
-        <AuthorInfo name={author} timestamp={timestamp} />
+        <AuthorInfo
+          name={author}
+          timestamp={new Date(timestamp).toDateString()}
+        />
         <p className="justify-center text-sm leading-5 text-neutral-800">
           {content}
         </p>

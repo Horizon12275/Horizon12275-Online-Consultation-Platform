@@ -21,7 +21,7 @@ const PlazaPage = () => {
         <BasicLayout>
           <Row justify={"space-around"} className="w-[1400px] m-auto">
             <Col>
-              <FeedEditor />
+              <FeedEditor setTweets={setTweets} />
               {tweets.map((tweet, index) => (
                 <FeedDisplay key={index} tweet={tweet} />
               ))}

@@ -6,7 +6,7 @@ import { getOtherUserById, getUser } from "../services/userService";
 import { useParams } from "react-router-dom";
 
 const WebSocketChat = () => {
-  const { receiverId } = useParams();
+  const { expertId } = useParams();
   const [sender, setSender] = useState({}); //以后应该用useContext
   const [receiver, setReceiver] = useState({});
   const [messages, setMessages] = useState([]);
@@ -14,7 +14,7 @@ const WebSocketChat = () => {
   const [ws, setWs] = useState(null);
   const [isConnected, setIsConnected] = useState(false);
   const initWebSocket = (sender, receiver) => {
-    const socket = new WebSocket(`ws://localhost:8080/ws/${receiverId}`);
+    const socket = new WebSocket(`ws://localhost:8080/ws/${expertId}`);
 
     socket.onopen = () => {
       setIsConnected(true);
@@ -46,8 +46,8 @@ const WebSocketChat = () => {
   useEffect(() => {
     Promise.all([
       getUser(),
-      getHistory(receiverId),
-      getOtherUserById(receiverId),
+      getHistory(expertId),
+      getOtherUserById(expertId),
     ])
       .then((values) => {
         setSender(values[0]);

@@ -51,6 +51,6 @@ public class ArticleServiceImpl implements ArticleService {
         }
     }
     public Result<List<Article>> searchArticles(String keyword){
-        return Result.success(repository.getArticlesByTitleLikeOrAuthor_UserUsernameLike("%"+keyword+"%", "%"+keyword+"%"));
+        return Result.success(repository.getArticlesByTitleLikeOrAuthorNameLike(keyword, keyword));
     }
 }

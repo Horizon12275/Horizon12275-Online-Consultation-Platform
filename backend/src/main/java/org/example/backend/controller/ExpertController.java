@@ -25,6 +25,11 @@ public class ExpertController {
         return service.getExpertById(id);
     }
 
+    @GetMapping("/recommend/{nums}")
+    public Result<List<Expert>> getRecommendations(@PathVariable int nums) {
+        return service.getRecommendedExperts(nums);
+    }
+
     @PutMapping("/admin/update/{id}")
     @PreAuthorize("hasRole('expert')")
     public Result<Expert> updateExpert(@PathVariable int id, @RequestBody Expert expert) {

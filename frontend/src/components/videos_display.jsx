@@ -1,9 +1,10 @@
 import React, { useEffect, useState, useRef } from "react";
 import Peer from "peerjs";
 import { useParams } from "react-router-dom";
-import { getUser } from "../services/userService";
+import { getReceiverId, getUser } from "../services/userService";
 import "../css/loading.css";
 import VideoBox from "./video_box";
+import { useAuth } from "../context/authContext";
 
 function CallButton({ onClick }) {
   return (
@@ -32,6 +33,7 @@ function CancelButton({ onClick }) {
 }
 
 const VideosDisplay = () => {
+  const { user } = useAuth();
   const { receiverId } = useParams();
   const [stream, setStream] = useState(null);
   const [peerId, setPeerId] = useState("");
@@ -45,11 +47,11 @@ const VideosDisplay = () => {
 
   //获取当前已经登陆的用户的信息，并通过解析路由，获取即将通讯的用户的id
   useEffect(() => {
-    getUser().then((res) => {
-      setCurrentUserId(res.id);
-      setRemotePeerIdValue(receiverId);
-      console.log("Current user id is: " + res.id);
-      console.log("Receiver id is: " + receiverId);
+    setCurrentUserId(user?.id);
+    getReceiverId(receiverId).then((res) => {
+      setRemotePeerIdValue(res);
+      console.log("Current user id is: " + user?.id);
+      console.log("Receiver id is: " + res);
     });
   }, []);
   useEffect(() => {
@@ -103,7 +105,7 @@ const VideosDisplay = () => {
     getUserMedia({ video: true, audio: true }, (mediaStream) => {
       currentUserVideoRef.current.srcObject = mediaStream;
       currentUserVideoRef.current.play().catch((error) => {
-        console.log('Play method error: ', error);
+        console.log("Play method error: ", error);
       });
 
       const call = peerInstance.current.call(remotePeerId, mediaStream);
@@ -111,9 +113,9 @@ const VideosDisplay = () => {
 
       call.on("stream", (remoteStream) => {
         remoteVideoRef.current.srcObject = remoteStream;
-    
+
         remoteVideoRef.current.play().catch((error) => {
-          console.log('Play method error: ', error);
+          console.log("Play method error: ", error);
         });
       });
     });
@@ -144,8 +146,14 @@ const VideosDisplay = () => {
       <div className="App" style={{ textAlign: "left" }}>
         <CallButton onClick={() => call(remotePeerIdValue)} />
         <CancelButton onClick={() => cancel()} />
-        <VideoBox currentUserVideoRef={currentUserVideoRef} isLoadingCurrentUser={isLoadingCurrentUser} />
-        <VideoBox currentUserVideoRef={remoteVideoRef} isLoadingCurrentUser={isLoadingCurrentUser} />
+        <VideoBox
+          currentUserVideoRef={currentUserVideoRef}
+          isLoadingCurrentUser={isLoadingCurrentUser}
+        />
+        <VideoBox
+          currentUserVideoRef={remoteVideoRef}
+          isLoadingCurrentUser={isLoadingCurrentUser}
+        />
       </div>
     </>
   );

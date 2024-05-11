@@ -1,5 +1,7 @@
-import * as React from "react";
 import { Link, useParams } from "react-router-dom";
+import { getExpertById } from "../services/expertService";
+import { useEffect, useState } from "react";
+import { getOtherUserById } from "../services/userService";
 
 function Avatar({ src, alt }) {
   return <img className="avatar" src={src} alt={alt} />;
@@ -43,12 +45,15 @@ function CallButton() {
   );
 }
 
-function ConsultHead({ receiver }) {
+function ConsultHead({ receiver }) {//这里的receiver是专家或者用户的信息
   return (
     <>
       <div className="user-card">
-        <Avatar src={receiver.avatar} alt={`${receiver.username}'s avatar`} />
-        <UserInfo name={receiver.username} status={"Online"} />
+        <Avatar src={receiver.avatar} alt={`avatar`} />
+        <UserInfo
+          name={receiver.name || receiver.username} //这里的receiver.name是专家的名字，receiver.username是用户的名字
+          status={"Online"}
+        />
         <Link to={`/videochat/${receiver.id}`}>
           <VideoButton />
         </Link>

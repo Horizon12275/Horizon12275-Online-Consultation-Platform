@@ -1,25 +1,22 @@
 import React, { useContext, useEffect, useState } from "react";
-import { List, Space, Flex } from "antd";
+import { List, Flex } from "antd";
 import ExpertShowCard from "./expert_showcard";
-import { getAllExperts } from "../services/expertService";
-import SearchContext from "../context/searchcontext";
+
 import TagContext from "../context/tagcontext";
-import { findExpertArticleTags } from "../services/articleService";
+import { useSearchParams } from "react-router-dom";
+import { searchExperts } from "../services/expertService";
 
 const ExpertShowList = ({ sortBy }) => {
-  const { searchValue, handleSearch } = useContext(SearchContext);
   const { selectedTags, setSelectedTags } = useContext(TagContext);
   const [experts, setExperts] = useState([]);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const keyword = searchParams.get("keyword") || "";
   useEffect(() => {
-    getAllExperts().then((res) => {
+    setSearchParams({ keyword: keyword });
+    searchExperts({ keyword }).then((res) => {
       setExperts(res);
     });
-  }, []);
-  const sv = new URLSearchParams(window.location.search).get("search");
-  if (sv) {
-    handleSearch(sv);
-  }
-  console.log("searchValue:", searchValue);
+  }, [keyword]);
 
   if (sortBy === "price") {
     experts.sort((a, b) => a.price - b.price);

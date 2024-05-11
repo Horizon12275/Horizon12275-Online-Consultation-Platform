@@ -26,7 +26,7 @@ public class ExpertServiceImpl implements ExpertService {
         return Result.success(expert);
     }
     public Result<List<Expert>> searchExperts(String keyword){
-        return Result.success(repository.getExpertsByUserUsernameLike("%"+keyword+"%"));
+        return Result.success(repository.getExpertsByNameLikeOrIntroductionLike("%"+keyword+"%", "%"+keyword+"%"));
     }
     public Result<Expert> addExpert(Expert expert){
         return Result.success(repository.save(expert));
@@ -47,7 +47,7 @@ public class ExpertServiceImpl implements ExpertService {
             return Result.error(404, "专家不存在！");
         }
     }
-    public Result<List<Expert>> getRecommendations(int nums){
+    public Result<List<Expert>> getRecommendedExperts(int nums){
         return Result.success(repository.findAll().subList(0, nums));//返回前nums个专家
     }
 }

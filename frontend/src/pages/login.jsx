@@ -1,10 +1,24 @@
 import React from "react";
 import { Input, Checkbox, Button, Form } from "antd";
 import { MailOutlined, LockOutlined, UserOutlined } from "@ant-design/icons";
-import { Link } from "react-router-dom";
 import { login } from "../services/loginService";
+import { useAuth } from "../context/authContext";
+import { getUser } from "../services/userService";
 
 function LoginPage() {
+  const { user, setUser } = useAuth();
+  const loginAndSetUser = async (values) => {
+    try {
+      await login(values);
+      const userRes = await getUser();
+      setUser(userRes);
+      console.log(userRes);
+      alert("登录成功！");
+      history.back();
+    } catch (error) {
+      alert(error);
+    }
+  };
   const containerStyle = {
     width: "50%",
     height: "90vh", // 调整容器高度，使其占据更多垂直空间
@@ -55,7 +69,7 @@ function LoginPage() {
       <Form
         style={containerStyle}
         initialValues={{ remember: true }}
-        onFinish={login}
+        onFinish={loginAndSetUser}
       >
         <div
           className="title"

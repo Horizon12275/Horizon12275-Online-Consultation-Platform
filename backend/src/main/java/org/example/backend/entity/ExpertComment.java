@@ -11,11 +11,11 @@ import java.util.List;
 
 @Data
 @Entity
-@Table(name = "comments")
+@Table(name = "expert_comments")
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler","book"})//忽略cartItems属性 并且解决cartItems属性为null的问题
-public class Comment {
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","article"})//忽略cartItems属性 并且解决cartItems属性为null的问题
+public class ExpertComment {
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY)
     private int id;
@@ -24,11 +24,11 @@ public class Comment {
     private LocalDateTime time;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "uid")
-    @JsonIgnoreProperties({"comments","aboutMe"})
+    @JsonIgnoreProperties({"expertComments"})
     private User user;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "aid")
-    private Article article;
-    @OneToMany(mappedBy = "comment",cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.LAZY)
-    private List<Reply> replies;
+    @JoinColumn(name = "eid")
+    private Expert expert;
+    //@OneToMany(mappedBy = "expertComment",cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.LAZY)
+    //private List<ArticleReply> replies;
 }

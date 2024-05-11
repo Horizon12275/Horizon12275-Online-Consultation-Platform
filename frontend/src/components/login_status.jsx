@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { logout } from "../services/loginService";
+import { useAuth } from "../context/authContext";
 
 function Button({ children, className }) {
   return (
@@ -23,13 +25,34 @@ function GoogleSignInButton() {
   );
 }
 const UserOrLogin = () => {
+  const { user, setUser } = useAuth();
+
+  const logoutAndClearUser = () => {
+    logout()
+      .then(() => {
+        setUser(null);
+        alert("登出成功！");
+        location.href = "/";
+      })
+      .catch((e) => {
+        alert(e);
+      });
+  };
   return (
     <div className="flex flex-col text-sm font-semibold leading-5 w-[200px] self-center my-3">
-      <Link to={"/login"}>
-        <Button className="text-white whitespace-nowrap bg-blue-400 border-sky-500">
-          Login
-        </Button>
-      </Link>
+      {user ? (
+        <div onClick={logoutAndClearUser}>
+          <Button className=" mt-7 text-white whitespace-nowrap bg-blue-400 border-sky-500">
+            Logout
+          </Button>
+        </div>
+      ) : (
+        <Link to={"/login"}>
+          <Button className="text-white whitespace-nowrap bg-blue-400 border-sky-500">
+            Login
+          </Button>
+        </Link>
+      )}
       <Link to={"/register"}>
         <Button className="mt-7 text-blue-400 bg-white border-blue-400">
           Sign Up
