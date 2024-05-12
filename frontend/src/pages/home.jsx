@@ -32,7 +32,7 @@ export default function HomePage() {
 
           <div className="flex flex-col gap-5 px-5 max-md:flex-wrap">
             <ShowSpeciality />
-            <ShowConsultation />
+            {/* <ShowConsultation /> */}
             <ShowArticle />
             <HomeComment />
           </div>
