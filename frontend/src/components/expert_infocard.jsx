@@ -1,11 +1,10 @@
 //专家个人主页的信息卡片
-import { Row, Col,  Tag,  Flex } from "antd";
+import { Row, Col, Tag, Flex } from "antd";
 import { Link } from "react-router-dom";
 
 const ExpertInfoCard = ({ expert }) => {
   // 渲染专家信息卡片
   const specialties = ["Label", "Label", "Label"];
-  console.log("expert:", expert);
   return (
     <Row justify="space-between" align="middle" className="my-10">
       <Col>
@@ -20,14 +19,14 @@ const ExpertInfoCard = ({ expert }) => {
         <Row justify="space-between" align="middle">
           <h1 className="text-5xl tracking-tight text-black">{expert.name}</h1>
           <Link to="consultation">
-          <button className="px-4 py-2.5 text-2xl font-semibold text-white bg-blue-200 rounded">
-            Chat Now!
-            <img
-              loading="lazy"
-              src="https://cdn.builder.io/api/v1/image/assets/TEMP/12c64b4eb1c8217bbde363e8ecd7cce3d58af649839a7536b6f9b3b1af89a1f3?apiKey=9e661a5e0ad74c878ca984d592b3752c&"
-              alt="Chat icon"
-            />
-          </button>
+            <button className="px-4 py-2.5 text-2xl font-semibold text-white bg-blue-200 rounded">
+              Chat Now!
+              <img
+                loading="lazy"
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/12c64b4eb1c8217bbde363e8ecd7cce3d58af649839a7536b6f9b3b1af89a1f3?apiKey=9e661a5e0ad74c878ca984d592b3752c&"
+                alt="Chat icon"
+              />
+            </button>
           </Link>
         </Row>
         <p className="my-4 text-2xl leading-8 text-black whitespace-normal min-h-40">

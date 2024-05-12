@@ -1,5 +1,6 @@
 package org.example.backend.controller;
 
+import org.example.backend.DTO.ExpertPageResponse;
 import org.example.backend.entity.Expert;
 import org.example.backend.entity.Result;
 import org.example.backend.service.ExpertService;
@@ -44,7 +45,11 @@ public class ExpertController {
         return service.addExpert(expert);
     }
     @GetMapping("/search")
-    public Result<List<Expert>> searchExperts(@RequestParam String keyword) {
-        return service.searchExperts(keyword);
+    public Result<ExpertPageResponse> searchExperts(@RequestParam(defaultValue = "") String keyword, @RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "10") int pageSize){
+        return service.searchExperts(keyword, page, pageSize);
+    }
+    @GetMapping("/category")
+    public Result<ExpertPageResponse> categorySearch(@RequestParam(defaultValue = "") int tag, @RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "10") int pageSize){
+        return service.categorySearch(tag, page, pageSize);
     }
 }

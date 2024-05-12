@@ -2,6 +2,7 @@ package org.example.backend.serviceImpl;
 
 import org.example.backend.entity.*;
 import org.example.backend.repository.ClientRepository;
+import org.example.backend.repository.CommentRepository;
 import org.example.backend.repository.ExpertCommentRepository;
 import org.example.backend.repository.UserRepository;
 import org.example.backend.service.ExpertCommentService;
@@ -16,11 +17,12 @@ import java.util.List;
 public class ExpertCommentServiceImpl implements ExpertCommentService {
     private final ExpertCommentRepository repository;
     private final UserRepository userRepository;
+    private final CommentRepository commentRepository;
 
-    public ExpertCommentServiceImpl(ExpertCommentRepository repository, UserRepository userRepository) {
+    public ExpertCommentServiceImpl(ExpertCommentRepository repository, UserRepository userRepository, CommentRepository commentRepository) {
         this.repository = repository;
         this.userRepository = userRepository;
-
+        this.commentRepository = commentRepository;
     }
     public int getUid() {//从数据库里查询id
         String username = ((UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
@@ -34,11 +36,14 @@ public class ExpertCommentServiceImpl implements ExpertCommentService {
         int uid = getUid();
         if(userRepository.findUserById(uid).getRole() != User.Role.user)
             return Result.error(403,"只有用户才能评论！");
+        Comment comment = new Comment();
+        commentRepository.save(comment);
         ExpertComment expertComment = new ExpertComment();
         expertComment.setExpert(new Expert());
         expertComment.getExpert().setId(aid);
-        User user = userRepository.findById(uid).orElse(null);
-        expertComment.setUser(user);
+        expertComment.setUser(new User());
+        expertComment.getUser().setId(uid);
+        expertComment.setComment(comment);
         expertComment.setContent(content);
         expertComment.setTime(LocalDateTime.now());//获取当前时间
         repository.save(expertComment);
@@ -49,6 +54,7 @@ public class ExpertCommentServiceImpl implements ExpertCommentService {
         if (repository.existsById(id)) {
             if(repository.getExpertCommentById(id).getUser().getId() != getUid())
                 return Result.error(403,"无权删除");
+
             repository.deleteById(id);
             return Result.success(null);
         }

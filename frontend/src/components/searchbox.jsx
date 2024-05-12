@@ -24,7 +24,6 @@ const SearchBar = ({ withSelect }) => {
   const [searchType, setSearchType] = useState("Expert"); // expert, article, tweet
   const [keyword, setKeyword] = useState("");
   const handleSearch = (value) => {
-    console.log("searchType", searchType);
     if (withSelect) {
       location.href = `/${searchType}?keyword=${value}`;
     } else setSearchParams({ keyword: value });

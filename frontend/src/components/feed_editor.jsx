@@ -3,7 +3,6 @@ import EmojiDropdown from "./emoji_dropdown";
 import { useState } from "react";
 import { postTweet } from "../services/tweetService";
 import { useAuth } from "../context/authContext";
-import ImageUpload from "./image_upload";
 import ImageUploader from "./image_upload";
 
 const FeedEditor = ({ setTweets }) => {
@@ -15,6 +14,7 @@ const FeedEditor = ({ setTweets }) => {
     {
       children: (
         <ImageUploader
+          multiple
           selectedImages={selectedImages}
           setSelectedImages={setSelectedImages}
           children={
@@ -24,42 +24,43 @@ const FeedEditor = ({ setTweets }) => {
       ),
 
       alt: "Image",
-      handleClick: () => console.log("Social icon 1 clicked"),
     },
     {
       children: (
         <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/655f4514f4fdaf7779139ba1b2d7717c8c824c697d315cd030e3675443da1402?apiKey=9e661a5e0ad74c878ca984d592b3752c&" />
       ),
       alt: "GIF",
-      handleClick: () => console.log("Social icon 1 clicked"),
     },
 
     {
       children: <EmojiDropdown value={value} setValue={setValue} />,
       alt: "Emoji",
-      handleClick: () => console.log("Social icon 1 clicked"),
     },
     {
       src: "https://cdn.builder.io/api/v1/image/assets/TEMP/3fc6030265755617261f3f38675fdb7eb7dbebb5b48743e15830df963cc0c37b?apiKey=9e661a5e0ad74c878ca984d592b3752c&",
       alt: "Social icon 5",
-      handleClick: () => console.log("Social icon 1 clicked"),
     },
   ];
   const handleClick = () => {
-    postTweet({ content: value, file: selectedImages[0] }).then((res) => {
-      setValue("");
-      setTweets((prev) => [
-        ...prev,
-        {
-          poster: client,
-          content: value,
-          time: new Date().toLocaleString(),
-          likes: [],
-          image: res.image,
-        },
-      ]);
-    });
-    alert("Tweet posted successfully");
+    postTweet({ content: value, file: selectedImages[0] })
+      .then((res) => {
+        setValue("");
+        setTweets((prev) => [
+          ...prev,
+          {
+            id: res.id,
+            poster: client,
+            content: value,
+            time: new Date().toLocaleString(),
+            likes: [],
+            image: res.image,
+          },
+        ]);
+        alert("Tweet posted successfully");
+      })
+      .catch((e) => {
+        alert(e);
+      });
   };
   return (
     <Flex vertical className=" h-[300] m-auto">

@@ -42,7 +42,7 @@ function ShareButton({ handleClick }) {
 }
 
 function CommentBox({ id, type, setComments }) {
-  const { user, setUser } = useAuth();
+  const { user, client, expert } = useAuth();
   const [value, setValue] = useState("");
   const handleSubmit = () => {
     if (value.trim() === "") {
@@ -52,33 +52,34 @@ function CommentBox({ id, type, setComments }) {
     else if (type === "tweet") addTweetComment({ tid: id, content: value });
     else if (type === "expert") addExpertComment({ eid: id, content: value });
     setValue("");
-    console.log(user);
     setComments((prev) => [
       ...prev,
       {
         id: prev.length + 1,
         content: value,
         time: new Date().toLocaleString(),
-        likes: 0,
+        comment: { likes: [], repies: [] },
         user: {
           id: user.id,
-          username: user.username,
-          avatar: user.avatar,
+          expert: expert,
+          client: client,
         },
       },
     ]);
   };
   return (
-    <div  style={{
-      position: "absolute",
-      top: "630px",
-      left: "280px",
-      width:"500px",
-      // height:"100px",
-      backgroundColor: "white",
-      padding: "10px",
-      // border: "1px solid black",
-    }}>
+    <div
+      style={{
+        position: "absolute",
+        top: "630px",
+        left: "280px",
+        width: "500px",
+        // height:"100px",
+        backgroundColor: "white",
+        padding: "10px",
+        // border: "1px solid black",
+      }}
+    >
       <CommentInput
         value={value}
         onChange={(e) => {

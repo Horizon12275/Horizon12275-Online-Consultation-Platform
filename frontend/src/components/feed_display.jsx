@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useAuth } from "../context/authContext";
 import { LikeOutlined, LikeTwoTone } from "@ant-design/icons";
 import { getTids, likeTweet } from "../services/tweetLikeService";
+import { Image } from "antd";
 
 function ProfileImage({ src, alt }) {
   return (
@@ -30,15 +31,18 @@ function TweetContent({ text }) {
 
 function TweetImage({ src, alt }) {
   return (
-    <div className="flex flex-col justify-center py-2.5 rounded-2xl max-md:max-w-full">
-      <div className="flex flex-col justify-center items-start rounded-2xl border border-solid border-slate-400 max-md:pr-5 max-md:max-w-full">
-        <img
-          src={src}
-          alt={alt}
-          className="object-cover max-w-full aspect-[2.08] w-[721px]"
-        />
+    src && (
+      <div className="flex flex-col justify-center py-2.5 rounded-2xl max-md:max-w-full">
+        <div className="flex flex-col justify-center items-start rounded-2xl border border-solid border-slate-400 max-md:pr-5 max-md:max-w-full">
+          <Image
+            src={src}
+            alt={alt}
+            width={721}
+            //className="object-cover max-w-full aspect-[2.08] w-[721px]"
+          />
+        </div>
       </div>
-    </div>
+    )
   );
 }
 
@@ -133,13 +137,13 @@ function FeedDisplay({ tweet }) {
         <div className="flex gap-2.5 pl-4 mt-2.5 w-full max-md:flex-wrap max-md:pl-5 max-md:max-w-full">
           <div className="flex flex-col items-start pb-20">
             <ProfileImage
-              src={tweet.poster.avatar}
+              src={tweet.poster?.avatar}
               alt="Profile picture of Devon Lane"
             />
           </div>
           <div className="flex flex-col py-1 max-md:max-w-full">
             <UserInfo
-              name={tweet.poster.username}
+              name={tweet.poster?.username}
               username="@johndue"
               timestamp={new Date(tweet.time).toDateString()}
             />

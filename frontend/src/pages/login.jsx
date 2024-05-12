@@ -16,15 +16,17 @@ function LoginPage() {
         if (res.role === "user")
           getClientById(res.id).then((res) => {
             setClient(res);
+            alert("登录成功！");
+            history.back();
           });
         else if (res.role === "expert")
           getExpertById(res.id).then((res) => {
             setExpert(res);
+            alert("登录成功！");
+            history.back();
           });
         setUser(res);
       });
-      alert("登录成功！");
-      history.back();
     } catch (error) {
       alert(error);
     }

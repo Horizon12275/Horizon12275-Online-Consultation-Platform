@@ -35,7 +35,6 @@ public class ArticleCommentServiceImpl implements ArticleCommentService {
         articleComment.setUser(user);
         articleComment.setContent(content);
         articleComment.setTime(LocalDateTime.now());//获取当前时间
-        articleComment.setReplies(List.of());//设置回复为空 防止空指针异常
         repository.save(articleComment);
         return Result.success(articleComment);
     }
@@ -49,21 +48,21 @@ public class ArticleCommentServiceImpl implements ArticleCommentService {
         }
         return Result.error(404,"评论不存在");
     }
-    public Result<ArticleReply> addArticleReply(int cid, String content) {
+    public Result<Reply> addArticleReply(int cid, String content) {
         int uid = getUid();
         ArticleComment articleComment = repository.findById(cid).orElse(null);
         if (articleComment == null) {
             return Result.error(404, "评论不存在");
         }
-        ArticleReply articleReply = new ArticleReply();
-        articleReply.setArticleComment(articleComment);
+        Reply reply = new Reply();
+        //reply.setcomment(articleComment);
         User user = userRepository.findById(uid).orElse(null);
         if (user == null) {
             return Result.error(404, "用户不存在");
         }
-        articleReply.setUser(user);
-        articleReply.setContent(content);
-        articleReply.setTime(LocalDateTime.now());
-        return Result.success(articleReply);
+        reply.setUser(user);
+        reply.setContent(content);
+        reply.setTime(LocalDateTime.now());
+        return Result.success(reply);
     }
 }

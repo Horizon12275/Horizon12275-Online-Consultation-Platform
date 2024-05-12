@@ -6,7 +6,7 @@ function ArticleCard({ article }) {
     <article className="flex flex-col justify-between grow self-stretch p-3 w-full bg-white h-[240px]">
       <div className="flex flex-col items-start pr-20 max-md:pr-5 max-md:max-w-full">
         <div className="justify-center py-0.5 text-xs text-stone-300">
-          {article.publishedAt}
+          {new Date(article.time).toLocaleDateString()}
         </div>
         <h2 className="justify-center mt-2 text-2xl font-extrabold leading-8 text-black max-md:max-w-full">
           {article.title}
@@ -22,11 +22,11 @@ function ArticleCard({ article }) {
               <img
                 loading="lazy"
                 src={article.cover}
-                alt={article.author}
+                alt={"Author profile picture"}
                 className="w-5 aspect-square object-cover fill-black rounded-full"
               />
             </div>
-            <div className="text-xs text-stone-500">{article.author}</div>
+            <div className="text-xs text-stone-500">{article.author.name}</div>
           </div>
         </div>
         <div className="flex gap-2.5">

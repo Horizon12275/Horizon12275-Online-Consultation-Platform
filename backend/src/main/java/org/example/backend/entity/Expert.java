@@ -23,9 +23,10 @@ public class Expert {
     private String region;
     private String firstName;
     private String lastName;
+    @Enumerated(EnumType.STRING)
+    private educationLevel education;
     @Lob
     private String aboutMe;
-    private String introduction;
     private String avatar;
     @Column(precision = 3,scale = 1)
     private BigDecimal rating;
@@ -41,6 +42,9 @@ public class Expert {
     @JsonIgnoreProperties("expert")
     @OneToMany(mappedBy = "expert",cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.LAZY)
     private List<ExpertComment> expertComments;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "expert_speciality",joinColumns = @JoinColumn(name = "eid"),inverseJoinColumns = @JoinColumn(name = "sid"))
+    private List<Speciality> specialities;
 
     public enum educationLevel {
         Junior,Senior,Master,Doctor,Undergraduate

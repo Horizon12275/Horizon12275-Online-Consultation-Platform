@@ -16,14 +16,10 @@ export async function getAllTweets() {
 export async function postTweet({ content, file }) {
   let formData = new FormData();
   formData.append("content", content);
-  formData.append("file", file);
+  if (file) formData.append("file", file);
   const url = `${PREFIX}/add`;
   let result;
-  try {
-    result = await postFormData(url, formData);
-    return result;
-  } catch (e) {
-    console.log(e);
-    alert(e);
-  }
+
+  result = await postFormData(url, formData);
+  return result;
 }
