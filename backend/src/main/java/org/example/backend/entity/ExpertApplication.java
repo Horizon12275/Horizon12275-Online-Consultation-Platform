@@ -14,22 +14,20 @@ import java.util.List;
 @Table(name = "expert_applications")
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","verificationCode"})
 public class ExpertApplication {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String email;
     private String password;
+    private String verificationCode;
     private String firstName;
     private String lastName;
-    private String field;
-    private String region;
-    @Enumerated(EnumType.STRING)
-    private Expert.educationLevel education;
-    private String introduction;
-    private String aboutMe;
-    private String avatar;
+    private String field;//一个json字符串，解析为List<speciality>
+    private String education;
+    private String selfIntroduction;
+    private String image;
 
 
 

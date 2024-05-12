@@ -9,6 +9,7 @@ import org.example.backend.service.MyUserDetailsService;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/api/user")
@@ -46,5 +47,10 @@ public class UserController {
     @GetMapping("/receiver/{id}")
     public Result<Integer> getReceiverId(@PathVariable int id) {
         return service.getReceiverId(id);
+    }
+    @PostMapping("/avatar")
+    public Result<String> uploadAvatar(@RequestParam("avatar") MultipartFile file) {
+
+        return service.updateAvatar(file);
     }
 }

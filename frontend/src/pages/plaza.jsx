@@ -16,8 +16,6 @@ const PlazaPage = () => {
     });
   }, []);
   return (
-    <SearchProvider>
-      <TagProvider>
         <BasicLayout>
           <Row justify={"space-around"} className="w-[1400px] m-auto">
             <Col>
@@ -31,8 +29,6 @@ const PlazaPage = () => {
             </Col>
           </Row>
         </BasicLayout>
-      </TagProvider>
-    </SearchProvider>
   );
 };
 

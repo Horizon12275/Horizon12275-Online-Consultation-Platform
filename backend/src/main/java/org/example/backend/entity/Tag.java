@@ -14,7 +14,7 @@ import java.util.List;
 @Table(name = "tags")
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","articles"})
 public class Tag {
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY)

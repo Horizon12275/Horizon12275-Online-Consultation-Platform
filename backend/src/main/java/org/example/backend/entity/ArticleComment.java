@@ -22,6 +22,10 @@ public class ArticleComment {
     @Lob
     private String content;
     private LocalDateTime time;
+    @OneToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name = "cid")
+    @JsonIgnoreProperties({"articleComment","expertComment","tweetComment"})
+    private Comment comment;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "uid")
     @JsonIgnoreProperties({"articleComments"})
@@ -29,6 +33,4 @@ public class ArticleComment {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "aid")
     private Article article;
-    @OneToMany(mappedBy = "articleComment",cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.LAZY)
-    private List<ArticleReply> replies;
 }

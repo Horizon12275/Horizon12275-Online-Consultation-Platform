@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { getAllExperts } from "../services/expertService";
+import { getAllExperts, getRecommendedExperts } from "../services/expertService";
 import ExpertShowCard from "./expert_showcard";
 
 const ExpertRecommend = ({ tag }) => {
   const [experts, setExperts] = useState([]);
   useEffect(() => {
-    getAllExperts().then((res) => {
+    getRecommendedExperts().then((res) => {
       setExperts(res);
     });
   }, []);

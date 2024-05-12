@@ -30,7 +30,7 @@ public class ExpertApplicationController {
     public Result<ExpertApplication> updateApplication(@RequestBody ExpertApplication application) {
         return service.updateApplication(application);
     }
-    @GetMapping("/approve/{id}")
+    @PostMapping("/approve/{id}")
     public Result<ExpertApplication> approveApplication(@PathVariable int id) {
         return service.approveApplication(id);
     }

@@ -1,12 +1,11 @@
 package org.example.backend.serviceImpl;
 
 
-import org.example.backend.entity.Expert;
-import org.example.backend.entity.ExpertApplication;
-import org.example.backend.entity.Result;
-import org.example.backend.entity.User;
+import com.alibaba.fastjson2.JSON;
+import org.example.backend.entity.*;
 import org.example.backend.repository.ExpertApplicationRepository;
 import org.example.backend.repository.ExpertRepository;
+import org.example.backend.repository.SpecialityRepository;
 import org.example.backend.repository.UserRepository;
 import org.example.backend.service.ExpertApplicationService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -20,10 +19,12 @@ public class ExpertApplicationServiceImpl implements ExpertApplicationService {
     private final ExpertApplicationRepository repository;
     private final UserRepository userRepository;
     private final ExpertRepository expertRepository;
-    public ExpertApplicationServiceImpl(ExpertApplicationRepository repository, UserRepository userRepository, ExpertRepository expertRepository) {
+    private final SpecialityRepository specialityRepository;
+    public ExpertApplicationServiceImpl(ExpertApplicationRepository repository, UserRepository userRepository, ExpertRepository expertRepository, SpecialityRepository specialityRepository) {
         this.repository = repository;
         this.userRepository = userRepository;
         this.expertRepository = expertRepository;
+        this.specialityRepository = specialityRepository;
     }
     public Result<ExpertApplication> addApplication(ExpertApplication application) {
         repository.save(application);
@@ -68,11 +69,16 @@ public class ExpertApplicationServiceImpl implements ExpertApplicationService {
         expert.setUser(user);
         expert.setFirstName(application.getFirstName());
         expert.setLastName(application.getLastName());
-        expert.setAboutMe(application.getAboutMe());
-        expert.setAvatar(application.getAvatar());
         expert.setName(application.getFirstName() + " " + application.getLastName());
-        expert.setRegion(application.getRegion());
-        expert.setIntroduction(application.getIntroduction());
+        List<Speciality> specialities = JSON.parseArray(application.getField(), Speciality.class);
+        for (Speciality speciality : specialities) {
+            speciality = specialityRepository.findById(speciality.getId()).orElse(null  );
+            if (speciality == null) {
+                return Result.error(404, "专长不存在");
+            }
+        }
+        expert.setSpecialities(specialities);
+        expert.setEducation(application.getEducation());
         expertRepository.save(expert);
         repository.deleteById(id);
         return Result.success(application);

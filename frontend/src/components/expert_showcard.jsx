@@ -46,11 +46,11 @@ export default function ExpertShowCard({ item }) {
         <div className="flex flex-col bg-white rounded-xl px-6 py-2 w-[400px] h-[330px] shadow-sm">
           <div className="flex flex-col justify-center my-3">
             <div className="flex">
-              <ProfileImage src={item.image} alt={item.name} />
+              <ProfileImage src={item.avatar} alt={item.name} />
               <ProfileInfo
                 name={item.name}
                 price={item.price}
-                //specialty={allTags.map((tag) => tag + " ")}
+                specialty={item.specialties?.map((tag) => tag + " ")}
                 rating={item.rating}
               />
             </div>

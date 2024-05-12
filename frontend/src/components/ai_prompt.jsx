@@ -13,13 +13,13 @@ function AIPrompt() {
           display: flex;
           flex-direction: column;
           position: fixed;
-          top:550px; /* 你想要的距离顶部的位置 */
-          left: 870px; /* 你想要的距离左侧的位置 */
-          max-width: 260px;
-          padding: 0 15px;
-          font-size: 24px;
+          top:570px; /* 你想要的距离顶部的位置 */
+          left: 730px; /* 你想要的距离左侧的位置 */
+          max-width: 200px;
+          padding: 0 10px;
+          font-size:16px;
           color: #fff;
-          font-weight: 100;
+          font-weight: 50;
           line-height: 20px;
           z-index: 999; /* 确保在其他内容的上方 */
         }
@@ -39,12 +39,12 @@ function AIPrompt() {
           margin-top: 10px;
           width: 100%;
           justify-content: center;
-          padding: 35px 37px;
+          padding: 30px 30px;
         }
       `}</style>
 
             <section className="questions-container">
-                <h2 className="questions-title">Possible Quetions from AI:</h2>
+                <h2 className="questions-title">Possible Quetions</h2>
                 {questions.map((question, index) => (
                     <div key={index} className="question-item">
                         {question}

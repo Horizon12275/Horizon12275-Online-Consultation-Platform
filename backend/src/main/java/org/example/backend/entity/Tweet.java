@@ -28,7 +28,7 @@ public class Tweet {
     private String content;
     private String image;
     @OneToMany(mappedBy = "tweet",cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.LAZY)
-    @JsonIgnoreProperties({"tweet","id"})
+    @JsonIgnoreProperties({"tweet","id","user"})
     private List<TweetLike> likes;
 
 }
