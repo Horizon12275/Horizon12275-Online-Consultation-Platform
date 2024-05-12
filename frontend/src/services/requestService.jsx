@@ -94,6 +94,7 @@ export async function put(url, data) {
   return await res.json().then(handleResponse);
 }
 
+//export const BASEURL = "http://101.132.129.104:8080";
 export const BASEURL = "http://localhost:8080";
 export const PREFIX = `${BASEURL}/api`;
 //export const API_DOCS_URL = `${BASEURL}/api-docs`;
