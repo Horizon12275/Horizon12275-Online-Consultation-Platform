@@ -26,7 +26,7 @@ export const categoryArticles = async ({ tag, page, pageSize }) => {
 };
 
 export const getRecommendedArticles = async () => {
-  const url = `${PREFIX}/recommend/0`;
+  const url = `${PREFIX}/recommend/3`;
   let result;
 
   result = await get(url);
