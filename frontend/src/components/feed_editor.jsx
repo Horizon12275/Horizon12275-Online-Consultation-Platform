@@ -68,7 +68,7 @@ const FeedEditor = ({ setTweets }) => {
         <Col>
           <img
             loading="lazy"
-            src="https://cdn.builder.io/api/v1/image/assets/TEMP/b2cfb9074e6b0dba093da573ddfff70007b435a441359a1c30ff33a3d04f7a36?apiKey=9e661a5e0ad74c878ca984d592b3752c&"
+            src={client?.avatar}
             alt="Profile picture"
             className="shrink-0 aspect-square w-[49px] m-3 "
           />

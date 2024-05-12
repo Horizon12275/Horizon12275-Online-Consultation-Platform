@@ -39,7 +39,7 @@ const CommentList = ({ comments }) => {
         <CommentCard
           key={index}
           comment={comment}
-          isLiked={cids.includes(comment.comment.id)}
+          isLiked={cids.includes(comment.comment?.id)}
           handleLike={handleLike}
         />
       ))}

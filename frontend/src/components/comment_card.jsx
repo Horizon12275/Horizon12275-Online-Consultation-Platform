@@ -60,11 +60,11 @@ export default function CommentCard({ comment, isLiked, handleLike }) {
           <ReactionButton
             isLiked={isLiked}
             onCLick={() => handleLike(comment)}
-            count={comment.comment.likes.length}
+            count={comment.comment?.likes.length}
           />
           <ReactionButton
             icon="https://cdn.builder.io/api/v1/image/assets/TEMP/7779fcae421b948b4e4285d944f27ab8d485f3c154d45d011e90c7bc01161efe?apiKey=9e661a5e0ad74c878ca984d592b3752c&"
-            count={comment.comment.likes.length}
+            count={comment.comment?.likes.length}
           />
           <div className="justify-center px-4 py-2 text-xs leading-5 uppercase whitespace-nowrap text-neutral-400">
             reply
