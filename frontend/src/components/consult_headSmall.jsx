@@ -32,7 +32,20 @@ function VideoButton() {
   );
 }
 
-function ConsultHead({ receiver }) {
+function CallButton() {
+  return (
+    <button className="call-button">
+      <img
+        className="call-icon"
+        src="https://cdn.builder.io/api/v1/image/assets/TEMP/8c021edfc9b00b4b26bfa8ac69dab5ee7e915ca7310725b8e4ddfc4bb009bc60?apiKey=b565e599026f4ea2ba591e53566a67d8&"
+        alt="Call icon"
+      />
+      <span className="call-text">Call</span>
+    </button>
+  );
+}
+
+function ConsultHeadSmall({ receiver }) {
   //这里的receiver是专家或者用户的信息
   return (
     receiver && (
@@ -43,33 +56,19 @@ function ConsultHead({ receiver }) {
             name={receiver.name || receiver.username} //这里的receiver.name是专家的名字，receiver.username是用户的名字
             status={"Online"}
           />
-          <Link to={`/videochat/${receiver.id}`}>
-<<<<<<< Updated upstream
-            <VideoButton />
-=======
-            <VideoButton className="video-button" />
->>>>>>> Stashed changes
-          </Link>
         </div>
 
         <style jsx>{`
           .user-card {
             display: flex;
             justify-content: space-between;
-<<<<<<< Updated upstream
-            align-items: center;
-            max-width: 2000px;
-            gap: 200px;
-=======
-
             max-width: 1000px;
             gap: 20px;
->>>>>>> Stashed changes
             font-weight: 600;
             padding: 10px 10px;
             position: absolute;
             top: 40px;
-            left: 870px;
+            left: 1000px;
           }
 
           @media (max-width: 991px) {
@@ -127,13 +126,8 @@ function ConsultHead({ receiver }) {
           .call-button {
             display: flex;
             align-items: center;
-<<<<<<< Updated upstream
-            gap: 8px;
-            padding: 10px 16px;
-=======
             gap: 10px;
             padding: 10px 18px;
->>>>>>> Stashed changes
             background-color: #b2ddff;
             color: #1570ef;
             font-size: 16px;
@@ -141,21 +135,8 @@ function ConsultHead({ receiver }) {
             border: none;
             border-radius: 8px;
             cursor: pointer;
-<<<<<<< Updated upstream
           }
 
-          @media (max-width: 991px) {
-            .call-button {
-              white-space: initial;
-            }
-          }
-
-=======
-            position: absolute;
-            left: 780px;
-          }
-
->>>>>>> Stashed changes
           .call-icon {
             width: 24px;
             height: 24px;
@@ -169,4 +150,4 @@ function ConsultHead({ receiver }) {
     )
   );
 }
-export default ConsultHead;
+export default ConsultHeadSmall;

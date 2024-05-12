@@ -11,8 +11,6 @@ const CustomFooter = () => {
       }}
     >
       © 2024 Online Consultation Platform
-      <br />
-      <a href="/about"> 关于作者 </a>
     </Footer>
   );
 };
