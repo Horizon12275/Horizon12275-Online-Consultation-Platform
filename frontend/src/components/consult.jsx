@@ -168,14 +168,14 @@ function ChatApp({ sid, receiver }) {
           border-radius: 16px;
           background-color: var(--Blue-100, #d1e9ff);
           display: flex;
-          max-width: 1000px;
+          
           flex-direction: column;
           font-weight: 400;
           padding: 24px;
           position: absolute;
-          top: 120px;
-          left: 870px;
-          width: 670px;
+          top: 130px;
+          left: 710px;
+          width: 900px;
           height: 600px;
         }
 

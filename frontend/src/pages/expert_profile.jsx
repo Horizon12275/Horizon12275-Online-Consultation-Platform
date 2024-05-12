@@ -3,14 +3,14 @@ import { LeftOutlined } from '@ant-design/icons';
 import { BasicLayout } from '../layouts'
 import Commentcard from "../components/commentcard.jsx";
 import FillForm from "../components/fillinform.jsx";
-import User from "../components/user_profile.jsx";
-export default function UserPage() {
+import Profile from "../components/profile.jsx";
+export default function Expert_profile() {
     return (
         <BasicLayout>
 
-           <Commentcard/>
+            <Commentcard/>
             <FillForm/>
- <User/>
+            <Profile/>
         </BasicLayout>
     )
 }

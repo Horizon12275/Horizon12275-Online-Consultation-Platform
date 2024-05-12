@@ -44,6 +44,10 @@ public class SecurityConfig {
                             CorsConfiguration cors = new CorsConfiguration();
                             cors.addAllowedOrigin("http://localhost:5173");
                             cors.addAllowedOrigin("http://localhost:5174");
+                            cors.addAllowedOrigin("http://101.132.129.104:5173");
+                            cors.addAllowedOrigin("http://101.132.129.104:5174");
+                            cors.addAllowedOrigin("http://202.120.8.117:5173");
+                            cors.addAllowedOrigin("http://202.120.8.117:5174");
                             cors.setAllowCredentials(true);//允许携带cookie
                             cors.addAllowedMethod("*");
                             cors.addAllowedHeader("*");

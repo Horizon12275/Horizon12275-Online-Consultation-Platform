@@ -22,6 +22,7 @@ import BecomeExpertPage from "./pages/become_expert.jsx";
 import WriteArticlePage from "./pages/writeArticle.jsx";
 import VerifyExpertPage from "./pages/verifyExpert.jsx";
 import { AuthProvider } from "./context/authContext.jsx";
+import Expert_profile from "./pages/expert_profile.jsx";
 
 const router = createBrowserRouter([
   {
@@ -112,6 +113,11 @@ const router = createBrowserRouter([
   {
     path: "/verify-expert",
     element: <VerifyExpertPage />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path:"/expert_profile",
+    element:<Expert_profile/>,
     errorElement: <ErrorPage />,
   },
   {
