@@ -30,7 +30,6 @@ const ArticlePage = () => {
         <ArticleHeader article={article} />
         <ArticleDisplay article={article} />
         <Divider />
-        <ArticleEditor />
         <CommentList comments={comments} />
         <CommentBox id={id} type={"article"} setComments={setComments} />
         <RecommendedArticles />
