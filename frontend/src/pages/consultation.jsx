@@ -65,7 +65,7 @@ const ConsultPage = () => {
                   style={{ position: "absolute", top: "30px", left: "300px" }}
                 />
 
-                <AIPrompt />
+                {/*<AIPrompt />*/}
               </>
             )}
 
