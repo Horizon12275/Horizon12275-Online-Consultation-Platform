@@ -67,7 +67,7 @@ const VideosDisplay = () => {
     }
     console.log("Current user id for peer is: " + currentUserId);
     const peer = new Peer(currentUserId, {
-      host: "localhost",
+      host: "101.132.129.104",
       port: 9000,
       path: "/myapp",
     });

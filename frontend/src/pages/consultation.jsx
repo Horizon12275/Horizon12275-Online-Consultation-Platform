@@ -41,13 +41,12 @@ const ConsultPage = () => {
       <BasicLayout>
         <Flex>
           <div
-          // style={{
-          //   minHeight: "800px",
-          //   backgroundColor: "#f5f5f5",
-          //   padding: "0 10px",
-          //   height: "100vh",
-          //
-          // }}
+            style={{
+              minHeight: "800px",
+              backgroundColor: "#f5f5f5",
+              padding: "0 10px",
+              height: "100vh",
+            }}
           >
             {user.role === "user" && (
               <>

@@ -64,7 +64,8 @@ function ChatApp({ sid, receiver }) {
   const ws = useRef(null);
   const initWebSocket = (sid, rid) => {
     //sid是发送者id rid是接收者id 这里的id已经是后端获取的userId了
-    const socket = new WebSocket(`ws://localhost:8080/ws/${receiverId}`);
+    //const socket = new WebSocket(`ws://localhost:8080/ws/${receiverId}`);
+    const socket = new WebSocket(`ws://101.132.129.104:8080/ws/${receiverId}`);
 
     socket.onopen = () => {
       console.log("Connected to WebSocket server");

@@ -14,7 +14,8 @@ const WebSocketChat = () => {
   const [ws, setWs] = useState(null);
   const [isConnected, setIsConnected] = useState(false);
   const initWebSocket = (sender, receiver) => {
-    const socket = new WebSocket(`ws://localhost:8080/ws/${expertId}`);
+    //const socket = new WebSocket(`ws://localhost:8080/ws/${expertId}`);
+    const socket = new WebSocket(`ws://101.132.129.104:8080/ws/${expertId}`);
 
     socket.onopen = () => {
       setIsConnected(true);
@@ -23,7 +24,11 @@ const WebSocketChat = () => {
 
     socket.onmessage = (event) => {
       const receivedMessage = JSON.parse(event.data);
-      if (receivedMessage.receiver.id == sender.id&&receivedMessage.sender.id==receiver.id)//如果是发给自己的消息
+      if (
+        receivedMessage.receiver.id == sender.id &&
+        receivedMessage.sender.id == receiver.id
+      )
+        //如果是发给自己的消息
         setMessages((prevMessages) => [...prevMessages, receivedMessage]); // 添加到现有消息
     };
 
@@ -44,11 +49,7 @@ const WebSocketChat = () => {
   };
 
   useEffect(() => {
-    Promise.all([
-      getUser(),
-      getHistory(expertId),
-      getOtherUserById(expertId),
-    ])
+    Promise.all([getUser(), getHistory(expertId), getOtherUserById(expertId)])
       .then((values) => {
         setSender(values[0]);
         setMessages(values[1]);
@@ -86,7 +87,6 @@ const WebSocketChat = () => {
 
   return (
     <div>
-     
       <h1>Chat Room</h1>
       <div>
         {messages.map((message, index) => (
