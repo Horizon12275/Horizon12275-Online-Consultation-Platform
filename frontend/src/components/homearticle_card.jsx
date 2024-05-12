@@ -45,7 +45,7 @@ const HomeArticleCard = ({ article }) => {
               {article.title}
             </h2>
             <p className="mt-3.5 leading-5 text-zinc-700 h-[100px]">
-              {article.content}
+              {article.description}
             </p>
             <AuthorInfo article={article} />
           </div>
