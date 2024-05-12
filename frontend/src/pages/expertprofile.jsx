@@ -8,13 +8,12 @@ import ExpertInfoCard from "../components/expert_infocard";
 import Rating from "../components/ratings";
 import CommentList from "../components/comment_list";
 import { getExpertById } from "../services/expertService";
-import { getComments } from "../services/commentService";
 import { ArticleList } from "../components/expert_articles";
 import { findExpertArticlesById } from "../services/articleService";
 import { SearchProvider } from "../context/searchcontext";
 // 导入专家相关的服务函数
 import ExpertRecommend from "../components/expert-recommend";
-import ExpertShowList from "../components/expert_showlist";
+import { getCommentsByArticleId } from "../services/articleCommentService";
 
 const ExpertProfilePage = () => {
   let { id } = useParams();
@@ -27,7 +26,7 @@ const ExpertProfilePage = () => {
   useEffect(() => {
     Promise.all([
       getExpertById(id),
-      getComments(id),
+      getCommentsByArticleId(id),
       findExpertArticlesById(id),
     ]).then(([expert, comments, articles]) => {
       setExpert(expert);
@@ -35,7 +34,7 @@ const ExpertProfilePage = () => {
       setArticles(articles);
       setExpertTag(expert.tags); // 设置专家标签
     });
-  }, [id]);
+  }, []);
 
   return (
     <SearchProvider>

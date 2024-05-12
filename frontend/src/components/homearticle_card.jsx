@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function MembersOnlyBadge() {
   return (
     <div className="flex gap-2 self-start text-sm text-zinc-600">
@@ -21,7 +23,7 @@ function AuthorInfo({ article }) {
         className="shrink-0 my-auto w-10 aspect-square"
       />
       <div className="flex flex-col">
-        <div className="text-zinc-700">{article.author}</div>
+        <div className="text-zinc-700">{article.author.name}</div>
         <div className="text-zinc-600">Aug 18</div>
       </div>
     </div>
@@ -29,7 +31,10 @@ function AuthorInfo({ article }) {
 }
 const HomeArticleCard = ({ article }) => {
   return (
-    <main className="flex flex-col text-base leading-6 shadow-lg w-[300px] h-[460px]  m-4">
+    <Link
+      to={`/article/${article.id}`}
+      className="flex flex-col text-base leading-6 shadow-lg w-[300px] h-[460px]  m-4"
+    >
       <img src={article.cover} className=" h-40 object-cover" />
       <article className="flex flex-col justify-center w-full h-full">
         <div className="flex flex-col pb-4 w-full bg-white rounded-none h-full">
@@ -46,7 +51,7 @@ const HomeArticleCard = ({ article }) => {
           </div>
         </div>
       </article>
-    </main>
+    </Link>
   );
 };
 

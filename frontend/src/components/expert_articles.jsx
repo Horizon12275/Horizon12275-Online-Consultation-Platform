@@ -1,10 +1,4 @@
 import React from "react";
-import { List, Card, Typography, Space } from "antd";
-import {
-  ShoppingCartOutlined,
-  LikeOutlined,
-  MessageOutlined,
-} from "@ant-design/icons";
 import { Link } from "react-router-dom";
 
 function ArticleCard({ article }) {

@@ -14,11 +14,24 @@
     "@ant-design/plots": "^2.1.14",
     "@ant-design/pro-components": "^2.6.49",
     "@chatui/core": "^2.4.2",
+    "@uiw/react-md-editor": "^4.0.4",
     "antd": "^5.15.1",
+    "for-editor": "^0.3.5",
+    "github-markdown-css": "^5.5.1",
     "less": "^4.2.0",
+    "markdown-navbar": "^1.4.3",
+    "peerjs": "^1.5.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.22.2"
+    "react-markdown": "^9.0.1",
+    "react-router-dom": "^6.22.2",
+    "react-syntax-highlighter": "^15.5.0",
+    "rehype-raw": "^7.0.0",
+    "remark-breaks": "^4.0.0",
+    "remark-gfm": "^4.0.0",
+    "socket.io-client": "^4.7.5",
+    "tailwindcss": "^3.4.3",
+    "websocket": "^1.0.34"
   },
   "devDependencies": {
     "@types/react": "^18.2.56",
@@ -30,7 +43,6 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
     "postcss": "^8.4.37",
-    "tailwindcss": "^3.4.1",
     "vite": "^5.1.4"
   }
 }

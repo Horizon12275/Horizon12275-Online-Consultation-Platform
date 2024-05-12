@@ -1,16 +1,17 @@
 //专家个人主页的信息卡片
-import { Row, Col, Avatar, Typography, Tag, Button, Flex } from "antd";
+import { Row, Col,  Tag,  Flex } from "antd";
 import { Link } from "react-router-dom";
 
 const ExpertInfoCard = ({ expert }) => {
   // 渲染专家信息卡片
   const specialties = ["Label", "Label", "Label"];
+  console.log("expert:", expert);
   return (
     <Row justify="space-between" align="middle" className="my-10">
       <Col>
         <img
           loading="lazy"
-          src={expert.image}
+          src={expert.avatar}
           alt="Profile"
           className="border-white border-solid shadow-lg aspect-square rounded-full w-[260px] object-cover mr-10"
         />
@@ -30,7 +31,7 @@ const ExpertInfoCard = ({ expert }) => {
           </Link>
         </Row>
         <p className="my-4 text-2xl leading-8 text-black whitespace-normal min-h-40">
-          {expert.description}
+          {expert.introduction}
         </p>
         <Row justify="start" align="middle">
           <h2 className="my-auto text-2xl leading-7 text-black">擅长领域：</h2>
