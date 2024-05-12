@@ -1,54 +1,77 @@
 import * as React from "react";
+import { useAuth } from "../context/authContext";
+import { Image, Upload } from "antd";
 
 function Profile() {
-    return (
-        <>
-            <div className="div">
-                <div className="div-2">
-                    <img
-                        loading="lazy"
-                        srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/ef88502c207249b6976ec49ef9e9731d30629156ddf8be63182f0534c2c7b6b4?apiKey=b565e599026f4ea2ba591e53566a67d8&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/ef88502c207249b6976ec49ef9e9731d30629156ddf8be63182f0534c2c7b6b4?apiKey=b565e599026f4ea2ba591e53566a67d8&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/ef88502c207249b6976ec49ef9e9731d30629156ddf8be63182f0534c2c7b6b4?apiKey=b565e599026f4ea2ba591e53566a67d8&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/ef88502c207249b6976ec49ef9e9731d30629156ddf8be63182f0534c2c7b6b4?apiKey=b565e599026f4ea2ba591e53566a67d8&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/ef88502c207249b6976ec49ef9e9731d30629156ddf8be63182f0534c2c7b6b4?apiKey=b565e599026f4ea2ba591e53566a67d8&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/ef88502c207249b6976ec49ef9e9731d30629156ddf8be63182f0534c2c7b6b4?apiKey=b565e599026f4ea2ba591e53566a67d8&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/ef88502c207249b6976ec49ef9e9731d30629156ddf8be63182f0534c2c7b6b4?apiKey=b565e599026f4ea2ba591e53566a67d8&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/ef88502c207249b6976ec49ef9e9731d30629156ddf8be63182f0534c2c7b6b4?apiKey=b565e599026f4ea2ba591e53566a67d8&"
-                        className="img"
-                    />
-                    <img
-                        loading="lazy"
-                        srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/ef88502c207249b6976ec49ef9e9731d30629156ddf8be63182f0534c2c7b6b4?apiKey=b565e599026f4ea2ba591e53566a67d8&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/ef88502c207249b6976ec49ef9e9731d30629156ddf8be63182f0534c2c7b6b4?apiKey=b565e599026f4ea2ba591e53566a67d8&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/ef88502c207249b6976ec49ef9e9731d30629156ddf8be63182f0534c2c7b6b4?apiKey=b565e599026f4ea2ba591e53566a67d8&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/ef88502c207249b6976ec49ef9e9731d30629156ddf8be63182f0534c2c7b6b4?apiKey=b565e599026f4ea2ba591e53566a67d8&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/ef88502c207249b6976ec49ef9e9731d30629156ddf8be63182f0534c2c7b6b4?apiKey=b565e599026f4ea2ba591e53566a67d8&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/ef88502c207249b6976ec49ef9e9731d30629156ddf8be63182f0534c2c7b6b4?apiKey=b565e599026f4ea2ba591e53566a67d8&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/ef88502c207249b6976ec49ef9e9731d30629156ddf8be63182f0534c2c7b6b4?apiKey=b565e599026f4ea2ba591e53566a67d8&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/ef88502c207249b6976ec49ef9e9731d30629156ddf8be63182f0534c2c7b6b4?apiKey=b565e599026f4ea2ba591e53566a67d8&"
-                        className="img-2"
-                    />
-                </div>
-                <div className="div-3">Khusan Akhmedov</div>
-                <div className="div-4">Paris, France</div>
-                <div className="div-5">
-                    <div className="div-6">
-                        <div className="div-7">21</div>
-                        <div className="div-8">Likes</div>
-                    </div>
-                    <div className="div-9" />
-                    <div className="div-10">
-                        <div className="div-11">238</div>
-                        <div className="div-12">Comments</div>
-                    </div>
-                    <div className="div-13" />
-                    <div className="div-14">
-                        <div className="div-15">$101</div>
-                        <div className="div-16">Balance</div>
-                    </div>
-                </div>
-                <div className="div-17">
-                    <div className="div-18">Upload new avatar</div>
-                    <div className="div-19">Add funds to wallet</div>
-                </div>
+  const { user, client, setClient, expert, setExpert } = useAuth();
+  const handleChange = (info) => {
+    if (info.file.status === "done") {
+      if (info.file.response.code === 200) {
+        if (user?.role === "user")
+          setClient({ ...client, avatar: info.file.response.data });
+        else setExpert({ ...expert, avatar: info.file.response.data });
+      } else alert(info.file.response.message);
+    } else if (info.file.status === "error") {
+    }
+  };
+  return (
+    <>
+      <div className="div">
+        <div className="div-2">
+          <Image
+            src={client?.avatar || expert?.avatar}
+            className="aspect-square object-cover "
+          />
+        </div>
+        <div className="div-3">{client?.username || expert?.name}</div>
+        <div className="div-4">{client?.region || expert?.region}</div>
+        <div className="div-5">
+          <div className="div-6">
+            <div className="div-7">
+              {user?.tweetLikes.length + user?.commentLikes.length}
             </div>
-            <style jsx>{`
+            <div className="div-8">Likes</div>
+          </div>
+          <div className="div-9" />
+          <div className="div-10">
+            <div className="div-11">
+              {user?.tweetComments.length +
+                user?.articleComments.length +
+                user?.expertComments.length}
+            </div>
+            <div className="div-12">Comments</div>
+          </div>
+          <div className="div-13" />
+          <div className="div-14">
+            <div className="div-15">{`$${client?.balance}`}</div>
+            <div className="div-16">Balance</div>
+          </div>
+        </div>
+        <div className="div-17">
+          <Upload
+            showUploadList={false}
+            name="avatar"
+            action={"http://localhost:8080/api/user/avatar"}
+            withCredentials
+            onChange={handleChange}
+            className="div-18"
+          >
+            <span>Upload new avatar</span>
+          </Upload>
+
+          <div className="div-19">Add funds to wallet</div>
+        </div>
+      </div>
+      <style jsx>{`
         .div {
           display: flex;
           max-width: 749px;
           flex-direction: column;
           align-items: center;
           padding: 0 20px;
-            position: absolute;
-            top:0px;
-            left:250px;
+          position: absolute;
+          top: 0px;
+          left: 250px;
         }
         .div-2 {
           disply: flex;
@@ -205,6 +228,7 @@ function Profile() {
           flex-grow: 1;
           width: fit-content;
           padding: 16px 52px;
+          cursor: pointer;
         }
         @media (max-width: 991px) {
           .div-18 {
@@ -227,8 +251,7 @@ function Profile() {
           }
         }
       `}</style>
-        </>
-    );
+    </>
+  );
 }
-export default Profile
-
+export default Profile;

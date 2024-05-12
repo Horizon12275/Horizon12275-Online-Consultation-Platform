@@ -45,27 +45,31 @@ function CommentBox({ id, type, setComments }) {
   const { user, client, expert } = useAuth();
   const [value, setValue] = useState("");
   const handleSubmit = () => {
-    if (value.trim() === "") {
-      return;
-    }
-    if (type === "article") addArticleComment({ aid: id, content: value });
-    else if (type === "tweet") addTweetComment({ tid: id, content: value });
-    else if (type === "expert") addExpertComment({ eid: id, content: value });
-    setValue("");
-    setComments((prev) => [
-      ...prev,
-      {
-        id: prev.length + 1,
-        content: value,
-        time: new Date().toLocaleString(),
-        comment: { likes: [], repies: [] },
-        user: {
-          id: user.id,
-          expert: expert,
-          client: client,
-        },
+    if (value.trim() === "") return;
+    const comment = {
+      content: value,
+      time: new Date().toLocaleString(),
+      comment: { id: 0, likes: [], repies: [] },
+      user: {
+        id: user.id,
+        expert: expert,
+        client: client,
       },
-    ]);
+    };
+    if (type === "article")
+      addArticleComment({ aid: id, content: value }).then((res) => {
+        comment.comment.id = res.comment.id;
+      });
+    else if (type === "tweet")
+      addTweetComment({ tid: id, content: value }).then((res) => {
+        comment.comment.id = res.comment.id;
+      });
+    else if (type === "expert")
+      addExpertComment({ eid: id, content: value }).then((res) => {
+        comment.comment.id = res.comment.id;
+      });
+    setValue("");
+    setComments((prev) => [...prev, comment]);
   };
   return (
     <div

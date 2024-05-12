@@ -13,18 +13,15 @@ function LoginPage() {
     try {
       await login(values);
       await getUser().then((res) => {
-        if (res.role === "user")
-          getClientById(res.id).then((res) => {
-            setClient(res);
-            alert("登录成功！");
-            history.back();
-          });
-        else if (res.role === "expert")
-          getExpertById(res.id).then((res) => {
-            setExpert(res);
-            alert("登录成功！");
-            history.back();
-          });
+        if (res.role === "user") {
+          setClient(res.client);
+          alert("登录成功！");
+          history.back();
+        } else if (res.role === "expert") {
+          setExpert(res.expert);
+          alert("登录成功！");
+          history.back();
+        }
         setUser(res);
       });
     } catch (error) {

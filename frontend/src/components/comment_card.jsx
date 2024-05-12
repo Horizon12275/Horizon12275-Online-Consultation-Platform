@@ -28,7 +28,7 @@ function ReactionButton({ count, isLiked, onCLick }) {
               : "https://cdn.builder.io/api/v1/image/assets/TEMP/7779fcae421b948b4e4285d944f27ab8d485f3c154d45d011e90c7bc01161efe?apiKey=9e661a5e0ad74c878ca984d592b3752c&"
           }
           alt=""
-          className="w-4 aspect-square"
+          className="w-4 aspect-square cursor-pointer"
           onClick={onCLick}
         />
       </div>

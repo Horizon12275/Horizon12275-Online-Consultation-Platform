@@ -25,8 +25,7 @@ public class ExpertApplication {
     private String firstName;
     private String lastName;
     private String field;//一个json字符串，解析为List<speciality>
-    @Enumerated(EnumType.STRING)
-    private Expert.educationLevel education;
+    private String education;
     private String selfIntroduction;
     private String image;
 

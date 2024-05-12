@@ -13,7 +13,7 @@ import java.util.List;
 @Table(name = "specialities")
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","experts"})
 public class Speciality {
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY)

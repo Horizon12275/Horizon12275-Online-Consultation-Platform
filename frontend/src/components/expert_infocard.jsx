@@ -18,7 +18,7 @@ const ExpertInfoCard = ({ expert }) => {
       <Flex vertical flex={"1"} justify={"space-between"} className="h-[300px]">
         <Row justify="space-between" align="middle">
           <h1 className="text-5xl tracking-tight text-black">{expert.name}</h1>
-          <Link to="consultation">
+          <Link to={`/consultation/${expert.id}`}>
             <button className="px-4 py-2.5 text-2xl font-semibold text-white bg-blue-200 rounded">
               Chat Now!
               <img

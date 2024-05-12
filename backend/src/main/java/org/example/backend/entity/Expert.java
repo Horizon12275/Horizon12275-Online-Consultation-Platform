@@ -14,7 +14,7 @@ import java.util.List;
 @Table(name = "experts")
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIgnoreProperties({"hibernateLazyInitializer","handler","expertComments","articles","user"})
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","expertComments","user"})
 public class Expert {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,8 +23,7 @@ public class Expert {
     private String region;
     private String firstName;
     private String lastName;
-    @Enumerated(EnumType.STRING)
-    private educationLevel education;
+    private String education;
     @Lob
     private String aboutMe;
     private String avatar;
@@ -37,7 +36,7 @@ public class Expert {
     @JsonIgnoreProperties({"expert"})
     private User user;
     @OneToMany(mappedBy = "author",cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.LAZY)
-    @JsonIgnoreProperties({"author"})
+    @JsonIgnoreProperties({"id","title","description","content","cover","time","author","articleComments","tags"})
     private List<Article> articles;
     @JsonIgnoreProperties("expert")
     @OneToMany(mappedBy = "expert",cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.LAZY)
