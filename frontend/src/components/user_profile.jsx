@@ -21,7 +21,7 @@ function Profile() {
                 <div className="div-5">
                     <div className="div-6">
                         <div className="div-7">21</div>
-                        <div className="div-8">Posts</div>
+                        <div className="div-8">Likes</div>
                     </div>
                     <div className="div-9" />
                     <div className="div-10">
@@ -30,13 +30,13 @@ function Profile() {
                     </div>
                     <div className="div-13" />
                     <div className="div-14">
-                        <div className="div-15">101</div>
-                        <div className="div-16">Ratings</div>
+                        <div className="div-15">$101</div>
+                        <div className="div-16">Balance</div>
                     </div>
                 </div>
                 <div className="div-17">
                     <div className="div-18">Upload new avatar</div>
-                    <div className="div-19">Post A New Article</div>
+                    <div className="div-19">Add funds to wallet</div>
                 </div>
             </div>
             <style jsx>{`

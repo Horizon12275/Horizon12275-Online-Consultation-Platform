@@ -71,9 +71,9 @@ function CommentBox({ id, type, setComments }) {
   return (
     <div  style={{
       position: "absolute",
-      top: "630px",
+      top: "440px",
       left: "280px",
-      width:"500px",
+      width:"360px",
       // height:"100px",
       backgroundColor: "white",
       padding: "10px",

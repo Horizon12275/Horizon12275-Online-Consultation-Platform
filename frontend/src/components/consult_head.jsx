@@ -57,7 +57,7 @@ function ConsultHead({ receiver }) {
             status={"Online"}
           />
           <Link to={`/videochat/${receiver.id}`}>
-            <VideoButton />
+              <VideoButton className="video-button" />
           </Link>
         </div>
 
@@ -65,14 +65,14 @@ function ConsultHead({ receiver }) {
           .user-card {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            max-width: 2000px;
-            gap: 200px;
+            
+            max-width: 1000px;
+           gap:20px;
             font-weight: 600;
             padding: 10px 10px;
             position: absolute;
             top: 40px;
-            left: 870px;
+            left: 710px;
           }
 
           @media (max-width: 991px) {
@@ -130,8 +130,8 @@ function ConsultHead({ receiver }) {
           .call-button {
             display: flex;
             align-items: center;
-            gap: 8px;
-            padding: 10px 16px;
+            gap:10px;
+            padding: 10px 18px;
             background-color: #b2ddff;
             color: #1570ef;
             font-size: 16px;
@@ -139,13 +139,12 @@ function ConsultHead({ receiver }) {
             border: none;
             border-radius: 8px;
             cursor: pointer;
+             
+              margin-left: 630px;
+              
           }
 
-          @media (max-width: 991px) {
-            .call-button {
-              white-space: initial;
-            }
-          }
+          
 
           .call-icon {
             width: 24px;
@@ -155,6 +154,7 @@ function ConsultHead({ receiver }) {
           .call-text {
             margin: auto 0;
           }
+     
         `}</style>
       </>
     )
