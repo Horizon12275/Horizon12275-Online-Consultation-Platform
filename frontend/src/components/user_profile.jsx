@@ -49,14 +49,14 @@ function Profile() {
         </div>
         <div className="div-17">
           <Upload
-            showUploadList={false}
-            name="avatar"
-            action={"http://101.132.129.104:8081/api/user/avatar"}
-            withCredentials
-            onChange={handleChange}
-            className="div-18"
+              showUploadList={false}
+              name="avatar"
+              action={"http://101.132.129.104:8081/api/user/avatar"}
+              withCredentials
+              onChange={handleChange}
+              className="div-18"
           >
-            <span>Upload new avatar</span>
+            <span className="upload-avatar-text">Upload new avatar</span>
           </Upload>
 
           <div className="div-19">Add funds to wallet</div>
@@ -207,10 +207,10 @@ function Profile() {
         .div-17 {
           align-self: stretch;
           display: flex;
-          margin-top: 25px;
+          margin-top: 30px;
           width: 100%;
           gap: 20px;
-          font-size: 24px;
+          font-size: 20px;
           color: #fff;
           font-weight: 400;
         }
@@ -239,11 +239,23 @@ function Profile() {
           font-family: Carter One, sans-serif;
           border-radius: 10px;
           background-color: rgba(229, 62, 62, 1);
+         
+          justify-content: center;
+          flex-grow: 1;
+          width: fit-content;
+          padding: 20px 52px;
+        }
+        .upload-avatar-text {
+
+          font-family: Carter One, sans-serif;
+          border-radius: 10px; /* 鼠标悬停时显示指针形状，表示可点击 */
           align-items: start;
           justify-content: center;
           flex-grow: 1;
           width: fit-content;
           padding: 18px 52px;
+          font-size: 20px;
+          
         }
         @media (max-width: 991px) {
           .div-19 {
