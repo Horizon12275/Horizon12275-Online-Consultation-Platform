@@ -50,7 +50,7 @@ public class UserController {
         String verificationCode = generateVerificationCode();
 
         // 构建邮件内容，包括验证码和ASCII风格的banner
-        String emailContent = "您的验证码是：" + verificationCode + "\n\n" +
+        String emailContent = "亲爱的用户，您的验证码是：" + verificationCode + "\n\n" +
                 "--------------------------------------------------\n\n" +
                 "感谢您使用OCP平台，祝您使用愉快！\n\n" +
                 "OCP平台团队";
