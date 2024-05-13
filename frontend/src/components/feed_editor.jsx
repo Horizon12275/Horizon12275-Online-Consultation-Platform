@@ -70,7 +70,7 @@ const FeedEditor = ({ setTweets }) => {
             loading="lazy"
             src={client?.avatar}
             alt="Profile picture"
-            className="shrink-0 aspect-square w-[49px] m-3 "
+            className="shrink-0 aspect-square w-[49px] m-3 rounded-full "
           />
         </Col>
         <Col>

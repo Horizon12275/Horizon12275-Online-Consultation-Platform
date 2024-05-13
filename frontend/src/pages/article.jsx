@@ -22,7 +22,7 @@ const ArticlePage = () => {
     getCommentsByArticleId(id).then((comments) => {
       setComments(comments);
     });
-  }, []);
+  }, [id]);
   return (
     <BasicLayout>
       <Flex vertical align="center">
