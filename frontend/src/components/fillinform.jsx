@@ -1,70 +1,95 @@
+import { Form } from "antd";
 import * as React from "react";
+import { updateUser } from "../services/userService";
+import { useAuth } from "../context/authContext";
 
-function Button({ children, className }) {
-    return <button className={`button ${className}`}>{children}</button>;
+function Button({ children, className, htmlType, onClick }) {
+  return (
+    <button type={htmlType} onClick={onClick} className={`button ${className}`}>
+      {children}
+    </button>
+  );
 }
 
 function Input({ id, label, className, ...rest }) {
-    return (
-        <div className={`input-container ${className}`}>
-            <label htmlFor={id} className="label">
-                {label}
-            </label>
-            <input id={id} className="input" {...rest} />
-        </div>
-    );
+  return (
+    <div className={`input-container ${className}`}>
+      <label htmlFor={id} className="label">
+        {label}
+      </label>
+      <input id={id} className="input" {...rest} />
+    </div>
+  );
 }
 
 function Textarea({ id, label, className, ...rest }) {
-    return (
-        <div className={`textarea-container ${className}`}>
-            <label htmlFor={id} className="label">
-                {label}
-            </label>
-            <textarea id={id} className="textarea" {...rest} />
-        </div>
-    );
+  return (
+    <div className={`textarea-container ${className}`}>
+      <label htmlFor={id} className="label">
+        {label}
+      </label>
+      <textarea id={id} className="textarea" {...rest} />
+    </div>
+  );
 }
 
 function FillForm() {
-    return (
-        <>
-            <div className="container">
-                <header className="header">
-                    <h1 className="title">BASIC INFO</h1>
-                    <div className="actions">
-                        <Button className="cancel-button">CANCEL</Button>
-                        <Button className="save-button">SAVE</Button>
-                    </div>
-                </header>
-                <div className="divider" />
-                <div className="form-row">
-                    <Input id="firstName" label="FIRST NAME" className="form-input" />
-                    <Input id="lastName" label="LAST NAME" className="form-input" />
-                </div>
-                <Input id="region" label="Region" className="form-input" />
-                <Input
-                    id="email"
-                    label="Email"
-                    type="email"
-                    className="form-input"
-                />
-                <Textarea
-                    id="aboutMe"
-                    label="ABOUT ME"
-                    className="form-textarea"
-                />
-                <div className="divider" />
-            </div>
-            <style jsx>{`
+  const {  setClient, setExpert } = useAuth();
+  const handleSave = async (user) => {
+    if (user.aboutMe?.length > 3000) {
+      alert(`个人简介过长，当前字数${user.aboutMe.length}，请控制在3000字以内`);
+      return;
+    }
+    try {
+      await updateUser(user).then((res) => {
+        if (res?.role === "user") setClient(res.client);
+        else setExpert(res.expert);
+        console.log(res);
+        alert("修改成功！");
+      });
+    } catch (e) {
+      alert(e);
+    }
+  };
+  return (
+    <Form layout="vertical" onFinish={handleSave}>
+      <div className="container">
+        <header className="header">
+          <h1 className="title">BASIC INFO</h1>
+          <div className="actions">
+            <Button className="cancel-button">CANCEL</Button>
+            <Button htmlType={"submit"} className="save-button">
+              SAVE
+            </Button>
+          </div>
+        </header>
+        <div className="divider" />
+        <div className="form-row">
+          <Form.Item name="firstName">
+            <Input id="firstName" label="FIRST NAME" className="form-input" />
+          </Form.Item>
+          <Form.Item name="lastName">
+            <Input id="lastName" label="LAST NAME" className="form-input" />
+          </Form.Item>
+        </div>
+        <Form.Item name="region">
+          <Input id="region" label="Region" className="form-input" />
+        </Form.Item>
+        <Input id="email" label="Email" type="email" className="form-input" />
+        <Form.Item name="aboutMe">
+          <Textarea id="aboutMe" label="ABOUT ME" className="form-textarea" />
+        </Form.Item>
+        <div className="divider" />
+      </div>
+      <style jsx>{`
         .container {
           display: flex;
           flex-direction: column;
           font-weight: 400;
-            position: absolute;
-         top: 40px;
-            left:1000px;
-            width:550px
+          position: absolute;
+          top: 40px;
+          left: 1000px;
+          width: 550px;
         }
 
         @media (max-width: 991px) {
@@ -118,7 +143,7 @@ function FillForm() {
 
         .cancel-button {
           border: 2px solid rgba(46, 144, 250, 1);
-            background-color: #fff;
+          background-color: #fff;
           color: #000c;
         }
 
@@ -215,7 +240,7 @@ function FillForm() {
           resize: vertical;
         }
       `}</style>
-        </>
-    );
+    </Form>
+  );
 }
-export  default FillForm
+export default FillForm;

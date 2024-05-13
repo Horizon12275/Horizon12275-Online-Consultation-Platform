@@ -2,11 +2,13 @@ package org.example.backend.service;
 
 import org.example.backend.DTO.RegisterRequest;
 import org.example.backend.entity.Client;
+import org.example.backend.entity.Expert;
 import org.example.backend.entity.Result;
 import org.example.backend.entity.User;
 import org.example.backend.DTO.UserProfile;
 import org.example.backend.repository.ClientRepository;
 import org.example.backend.repository.ExpertRepository;
+import org.example.backend.repository.UploadRepository;
 import org.example.backend.repository.UserRepository;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.core.GrantedAuthority;
@@ -16,7 +18,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,10 +29,12 @@ public class MyUserDetailsService implements UserDetailsService {
     UserRepository userRepository;
     ClientRepository clientRepository;
     ExpertRepository expertRepository;
-    public MyUserDetailsService(UserRepository userRepository, ClientRepository clientRepository, ExpertRepository expertRepository) {
+    UploadRepository uploadRepository;
+    public MyUserDetailsService(UserRepository userRepository, ClientRepository clientRepository, ExpertRepository expertRepository, UploadRepository uploadRepository) {
         this.userRepository = userRepository;
         this.clientRepository = clientRepository;
         this.expertRepository = expertRepository;
+        this.uploadRepository = uploadRepository;
     }
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException, DisabledException{
@@ -43,16 +49,25 @@ public class MyUserDetailsService implements UserDetailsService {
     public Result<User> updateUser(UserProfile request) {
         int id = getUid();
         User user = userRepository.findById(id).orElse(null);
-        if (user == null) {
-            return Result.error(404, "用户不存在！");
+        if(user.getRole() == User.Role.expert) {
+            Expert expert = expertRepository.findExpertByUserId(id);
+            expert.setFirstName(request.getFirstName());
+            expert.setLastName(request.getLastName());
+            expert.setName(request.getFirstName() + " " + request.getLastName());
+            expert.setRegion(request.getRegion());
+            expert.setAboutMe(request.getAboutMe());
+            expertRepository.save(expert);
         }
-        if(userRepository.existsUserByEmail(request.getEmail()) && !request.getEmail().equals(user.getEmail())) {
-            return Result.error(400, "邮箱已被占用！");
+        else {
+            Client client = clientRepository.getClientByUserId(id);
+            client.setFirstName(request.getFirstName());
+            client.setLastName(request.getLastName());
+            //client.setName(request.getFirstName() + " " + request.getLastName());
+            client.setRegion(request.getRegion());
+            client.setAboutMe(request.getAboutMe());
+            clientRepository.save(client);
         }
-        user.setEmail(request.getEmail());
-        userRepository.save(user);
         return Result.success(user);
-
     }
     public Result<User> addUser(RegisterRequest request) {
         if(userRepository.existsUserByEmail(request.getEmail())) {
@@ -106,5 +121,28 @@ public class MyUserDetailsService implements UserDetailsService {
         else //如果当前用户是客户 则接收者是专家 把专家id转换为用户id
             receiverId = expertRepository.findExpertById(receiverId).getUser().getId();
         return Result.success(receiverId);
+    }
+
+    public Result<String> updateAvatar(MultipartFile file) {
+        int id = getUid();
+        User user = userRepository.findById(id).orElse(null);
+        String url;
+        try {
+            url = uploadRepository.uploadFile(file, "image");
+        }
+        catch (IOException e) {
+            return Result.error(500, e.getMessage());
+        }
+        if(user.getRole() == User.Role.expert) {
+            Expert expert = expertRepository.findExpertByUserId(id);
+            expert.setAvatar(url);
+            expertRepository.save(expert);
+        }
+        else {
+            Client client = clientRepository.getClientByUserId(id);
+            client.setAvatar(url);
+            clientRepository.save(client);
+        }
+        return Result.success(url);
     }
 }

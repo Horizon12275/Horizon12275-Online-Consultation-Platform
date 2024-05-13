@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { BasicLayout } from "../layouts";
 import TagBar from "../components/tagbar";
 import SearchBar from "../components/searchbox";
-import { Flex, Row } from "antd";
+import { Col, Flex, Row } from "antd";
 import HomeArticle from "../components/homearticle";
 import { useSearchParams } from "react-router-dom";
-import { searchArticles } from "../services/articleService";
+import { categoryArticles, searchArticles } from "../services/articleService";
 import { useEffect } from "react";
 
 const ArticleBrowsePage = () => {
@@ -17,14 +17,34 @@ const ArticleBrowsePage = () => {
   const pageSize = searchParams.get("pageSize") || 12; //默认为12 对应block布局
   const tag = searchParams.get("tag") || "";
   useEffect(() => {
-    if (keyword) {
+    if (keyword)
       searchArticles({
         keyword: keyword,
+        page: page,
+        pageSize: pageSize,
       }).then((res) => {
-        setArticles(res.books);
-        //setLength(res.total);
+        setArticles(res.articles);
+        setLength(res.total);
       });
-    }
+    else if (tag)
+      categoryArticles({
+        keyword: "",
+        page: page,
+        pageSize: pageSize,
+        tag: tag,
+      }).then((res) => {
+        setArticles(res.articles);
+        setLength(res.total);
+      });
+    else
+      searchArticles({
+        keyword: "",
+        page: page,
+        pageSize: pageSize,
+      }).then((res) => {
+        setArticles(res.articles);
+        setLength(res.total);
+      });
   }, [keyword, page, pageSize, tag]);
   return (
     <BasicLayout>
@@ -34,7 +54,11 @@ const ArticleBrowsePage = () => {
         </h1>
         <TagBar />
         <Row justify={"space-between"}>
-          <SearchBar />
+          <Col></Col>
+          <Col className="w-1/2"> 
+            <SearchBar />
+          </Col>
+          <Col></Col>
         </Row>
         <HomeArticle articles={articles} />
       </Flex>

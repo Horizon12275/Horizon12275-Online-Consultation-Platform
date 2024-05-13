@@ -11,7 +11,7 @@ const SpecialityCard = ({ expert }) => {
       >
         <img
           loading="lazy"
-          src={expert.image}
+          src={expert.avatar}
           alt=""
           className="gap-0 w-[400px] aspect-[1.79] object-cover"
         />

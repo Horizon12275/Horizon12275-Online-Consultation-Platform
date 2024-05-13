@@ -13,18 +13,17 @@ function LoginPage() {
     try {
       await login(values);
       await getUser().then((res) => {
-        if (res.role === "user")
-          getClientById(res.id).then((res) => {
-            setClient(res);
-          });
-        else if (res.role === "expert")
-          getExpertById(res.id).then((res) => {
-            setExpert(res);
-          });
+        if (res.role === "user") {
+          setClient(res.client);
+          alert("登录成功！");
+          history.back();
+        } else if (res.role === "expert") {
+          setExpert(res.expert);
+          alert("登录成功！");
+          history.back();
+        }
         setUser(res);
       });
-      alert("登录成功！");
-      history.back();
     } catch (error) {
       alert(error);
     }
@@ -137,9 +136,9 @@ function LoginPage() {
           }}
         >
           <Checkbox>Remember me</Checkbox>
-          <a href="/forgot-password" style={linkStyle}>
+          {/* <a href="/forgot-password" style={linkStyle}>
             Forget Password?
-          </a>
+          </a> */}
         </div>
         <div className="login-btn" style={inputStyle}>
           <Button type="primary" htmlType="submit" style={{ width: "100%" }}>

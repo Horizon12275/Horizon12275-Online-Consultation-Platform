@@ -10,8 +10,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class UserProfile {
-    private String username;
-    private String email;
-    private String tel;
+    private String firstName;
+    private String lastName;
+    private String region;
     private String aboutMe;
 }

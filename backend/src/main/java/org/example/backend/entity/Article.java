@@ -20,7 +20,9 @@ public class Article {
     @GeneratedValue( strategy = GenerationType.IDENTITY)
     private int id;
     private String title;
+    private String description;
     @Lob
+    @Column(columnDefinition = "TEXT")
     private String content;
     private String cover;
     private LocalDateTime time;

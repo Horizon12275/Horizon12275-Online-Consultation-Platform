@@ -9,6 +9,7 @@ import { getHistory } from "../services/messageService";
 import Messagebox from "./message_box";
 import ConsultHead from "./consult_head";
 import toTime from "../utils/time";
+import { WSURL } from "../services/requestService";
 
 const ChatMessage = ({ message, isSender }) => (
   <div className={`chat-message ${isSender ? "sent" : "received"}`}>
@@ -64,7 +65,7 @@ function ChatApp({ sid, receiver }) {
   const ws = useRef(null);
   const initWebSocket = (sid, rid) => {
     //sid是发送者id rid是接收者id 这里的id已经是后端获取的userId了
-    const socket = new WebSocket(`ws://localhost:8080/ws/${receiverId}`);
+    const socket = new WebSocket(`${WSURL}/${receiverId}`);
 
     socket.onopen = () => {
       console.log("Connected to WebSocket server");
@@ -92,6 +93,9 @@ function ChatApp({ sid, receiver }) {
               return message;
             })
           );
+      } else if (type === "error") {
+        alert(JSON.parse(event.data).data);
+        location.href = "/"; // 重定向到登录页
       }
     };
 
@@ -168,7 +172,7 @@ function ChatApp({ sid, receiver }) {
           border-radius: 16px;
           background-color: var(--Blue-100, #d1e9ff);
           display: flex;
-          
+
           flex-direction: column;
           font-weight: 400;
           padding: 24px;

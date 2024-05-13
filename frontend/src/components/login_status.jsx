@@ -28,11 +28,11 @@ const UserOrLogin = () => {
   const { user, setUser, setClient, setExpert } = useAuth();
 
   const logoutAndClearUser = () => {
+    setUser(null);
+    setClient(null);
+    setExpert(null);
     logout()
       .then(() => {
-        setUser(null);
-        setClient(null);
-        setExpert(null);
         alert("登出成功！");
         location.href = "/";
       })

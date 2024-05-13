@@ -6,7 +6,6 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import RecommendedArticles from "../components/whattoreadnext";
 import "github-markdown-css/github-markdown.css";
-import ArticleEditor from "../components/article_editor";
 import ArticleDisplay from "../components/article_display";
 import { getCommentsByArticleId } from "../services/articleCommentService";
 import CommentList from "../components/comment_list";
@@ -23,7 +22,7 @@ const ArticlePage = () => {
     getCommentsByArticleId(id).then((comments) => {
       setComments(comments);
     });
-  }, []);
+  }, [id]);
   return (
     <BasicLayout>
       <Flex vertical align="center">

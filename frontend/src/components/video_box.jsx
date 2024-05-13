@@ -2,7 +2,10 @@ import React, { useEffect, useState, useRef } from "react";
 import "../css/loading.css";
 import VideoLoading from "./video_loading";
 
-export default function VideoBox({ currentUserVideoRef,isLoadingCurrentUser }) {
+export default function VideoBox({
+  currentUserVideoRef,
+  isLoadingCurrentUser,
+}) {
   const [showControls, setShowControls] = useState(false);
 
   const goFullScreen = (videoRef) => {
@@ -42,9 +45,9 @@ export default function VideoBox({ currentUserVideoRef,isLoadingCurrentUser }) {
         justifyContent: "center",
         alignItems: "center",
         marginTop: "20px",
-        marginLeft: "10px",
+        marginLeft: "40px",
         width: "700px",
-        height: "300px",
+        height: "373px",
         borderRadius: "15px",
         boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.2)",
         position: "relative",

@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Checkbox, Form, Input } from "antd";
-import { LockOutlined, MailOutlined, UserOutlined } from "@ant-design/icons";
+import {
+  LockOutlined,
+  MailOutlined,
+  UserOutlined,
+  CodeOutlined,
+} from "@ant-design/icons";
 import { Link } from "react-router-dom";
-import { register } from "../services/loginService";
+import { register, sendCode } from "../services/loginService";
 function RegisterPage() {
+  const [currentEmail, setCurrentEmail] = useState("");
+
   const containerStyle = {
     width: "50%",
     height: "90vh", // 调整容器高度，使其占据更多垂直空间
@@ -34,6 +41,7 @@ function RegisterPage() {
 
   const linkStyle = {
     textDecoration: "underline", // 添加下划线效果
+    color: "#1677ff", // 修改颜色为蓝色
     cursor: "pointer", // 修改鼠标样式为手型，表明可以点击
   };
 
@@ -77,6 +85,8 @@ function RegisterPage() {
             <Input
               prefix={<MailOutlined />}
               placeholder="Enter your email address"
+              value={currentEmail}
+              onChange={(e) => setCurrentEmail(e.target.value)}
               allowClear
             />
           </div>
@@ -84,8 +94,8 @@ function RegisterPage() {
         <Form.Item
           className="input-container"
           style={inputStyle}
-          id="code"
-          name="code"
+          id="verificationCode"
+          name="verificationCode"
           rules={[
             { required: true, message: "Please enter your verification code!" },
           ]}
@@ -93,10 +103,28 @@ function RegisterPage() {
           <div>
             <label style={labelStyle}>Verification Code</label>
             <Input
-              prefix={<MailOutlined />}
+              prefix={<CodeOutlined />}
               placeholder="Enter the verification code you've received"
               allowClear
             />
+          </div>
+        </Form.Item>
+        <Form.Item
+          className="input-container"
+          style={inputStyle}
+          rules={[{ required: true, message: "Please enter the email!" }]}
+        >
+          <div>
+            <Button
+              onClick={() => sendCode(currentEmail)}
+              style={{
+                width: "100%",
+                backgroundColor: "#1677ff",
+                color: "white",
+              }}
+            >
+              Get Your Verification Code
+            </Button>
           </div>
         </Form.Item>
         <Form.Item
@@ -169,29 +197,31 @@ function RegisterPage() {
             />
           </div>
         </Form.Item>
+        <div className="register-btn" style={inputStyle}>
+          <Button
+            type="primary"
+            htmlType="submit"
+            style={{ width: "100%", backgroundColor: "#295573" }}
+          >
+            Register Now!
+          </Button>
+        </div>
         <div className="input-container" style={{ ...inputStyle }}>
-          <div style={{ marginBottom: "10px" }}>
-            <Checkbox>
-              I want to request for an{" "}
-              <a href="/become_expert" style={linkStyle}>
-                EXPERT ACCOUNT
-              </a>{" "}
-              now
-            </Checkbox>
+          <div style={{ marginBottom: "10px", fontSize: "21px" }}>
+            Or want to request for an{" "}
+            <a href="/become_expert" style={linkStyle}>
+              EXPERT ACCOUNT
+            </a>{" "}
+            now?
           </div>
-          <div>
+          {/* <div>
             <Checkbox>
               I've read the{" "}
               <a href="/user_agreement" style={linkStyle}>
                 User Agreement and Privacy Policy
               </a>{" "}
             </Checkbox>
-          </div>
-        </div>
-        <div className="register-btn" style={inputStyle}>
-          <Button type="primary" htmlType="submit">
-            Register
-          </Button>
+          </div> */}
         </div>
       </div>
     </Form>
