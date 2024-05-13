@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from "react";
 import ConsultationHistoryCard from "./consultation_history_card";
-import { Link } from "react-router-dom";
-import { getOtherUserById } from "../services/userService";
-import { getRecommendedExperts } from "../services/expertService";
+import { Link, useParams } from "react-router-dom";
+import { getConsultation } from "../services/consultationService";
 
 export default function ConsultationHistoryList() {
+  const {receiverId}=useParams();
   const [experts, setExperts] = useState([]);
   useEffect(() => {
-    getRecommendedExperts().then((res) => {
-      setExperts(res);
+    getConsultation().then((consultations) => {
+      consultations.sort((a, b) => {
+        return new Date(b.time) - new Date(a.time);
+      });
+      setExperts(consultations.map((consultation) => consultation?.expert));
     });
-  }, []);
-
+  }, [receiverId]);//目前只能切换咨询时更新列表 应该做到发送消息时更新列表
 
   return (
     <div

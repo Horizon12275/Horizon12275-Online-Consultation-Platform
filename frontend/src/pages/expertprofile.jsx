@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Col, Flex, Row } from "antd";
-import { BasicLayout } from "../layouts";
+import { PrivateLayout, PublicLayout } from "../layouts";
 import { TagProvider } from "../context/tagcontext";
 import ExpertInfoCard from "../components/expert_infocard";
 import Rating from "../components/ratings";
@@ -36,7 +36,7 @@ const ExpertProfilePage = () => {
   }, []);
 
   return (
-    <BasicLayout>
+    <PublicLayout>
       <Row>
         <Col className=" flex-1 ">
           <Flex vertical gap="middle" className="mx-auto w-[1000px]">
@@ -53,7 +53,7 @@ const ExpertProfilePage = () => {
           <CommentListForExpertProfilePage comments={comments} />
         </Col>
       </Row>
-    </BasicLayout>
+    </PublicLayout>
   );
 };
 

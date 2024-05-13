@@ -11,4 +11,6 @@ public interface ConsultationRepository extends JpaRepository<Consultation, Inte
     Consultation getConsultationByClientIdAndExpertId(int senderId, int receiverId);
     List<Consultation> getConsultationsByClientId(Integer id);
     List<Consultation> getConsultationsByExpertId(Integer id);
+
+    boolean existsConsultationByClientIdAndExpertId(int cid, int eid);
 }

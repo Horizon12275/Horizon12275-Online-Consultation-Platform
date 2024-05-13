@@ -21,6 +21,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -82,6 +83,7 @@ public class MyUserDetailsService implements UserDetailsService {
         Client client = new Client();
         client.setUsername(request.getUsername());
         client.setUser(user);
+        client.setBalance(new BigDecimal(0));
         clientRepository.save(client);
         return Result.success(user);
     }

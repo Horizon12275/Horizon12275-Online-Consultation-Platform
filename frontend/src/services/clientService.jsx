@@ -44,3 +44,11 @@ export const getClientById = async (id) => {
   result = await get(url);
   return result;
 };
+
+export const addBalance = async () => {
+  const url = `${PREFIX}/fund`;
+  let result;
+
+  result = await get(url);
+  return result;
+}

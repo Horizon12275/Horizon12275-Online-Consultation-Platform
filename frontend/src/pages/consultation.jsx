@@ -4,7 +4,7 @@ import { getExpertById } from "../services/expertService"; // 导入专家相关
 import { Flex, Divider } from "antd";
 import ConsultationHistoryList from "../components/consultation_history_list";
 import RateButton from "../components/rate";
-import { BasicLayout } from "../layouts";
+import { PrivateLayout } from "../layouts";
 import CommentList from "../components/comment_list";
 import History from "../components/history.jsx";
 import AIPrompt from "../components/ai_prompt.jsx";
@@ -38,7 +38,7 @@ const ConsultPage = () => {
 
   return (
     user && (
-      <BasicLayout>
+      <PrivateLayout>
         <Flex>
           <div
             style={{
@@ -70,7 +70,7 @@ const ConsultPage = () => {
             <ChatApp sid={user.id} receiver={receiver} />
           </div>
         </Flex>
-      </BasicLayout>
+      </PrivateLayout>
     )
   );
 };

@@ -14,6 +14,13 @@ function Profile() {
     } else if (info.file.status === "error") {
     }
   };
+  const handleFund = () => {
+    if (user?.role === "user") {
+      setClient({ ...client, balance: client.balance + 100 });
+    } else {
+      setExpert({ ...expert, balance: expert.balance + 100 });
+    }
+  }
   return (
     <>
       <div className="div">
@@ -59,7 +66,7 @@ function Profile() {
             <span>Upload new avatar</span>
           </Upload>
 
-          <div className="div-19">Add funds to wallet</div>
+          <button onClick={handleFund} className="div-19">Add funds to wallet</button>
         </div>
       </div>
       <style jsx>{`

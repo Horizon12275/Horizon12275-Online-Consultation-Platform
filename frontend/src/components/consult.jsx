@@ -122,7 +122,6 @@ function ChatApp({ sid, receiver }) {
       })
       .catch((err) => {
         console.error(err);
-        alert(err);
       });
     return () => {
       ws.current?.close();
