@@ -25,18 +25,8 @@ const Sidebar = () => {
       icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/7578b42594aaecbb15294edfbb20e8d5b8238fa9789278c9437c13b583981681?apiKey=9e661a5e0ad74c878ca984d592b3752c&",
     },
     {
-      label: "Experts",
-      value: "/expert",
-      icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/fe1f7d779e1cb4aa26a49439af034934f03aa9024f8a3a83885b322d66ac46a2?apiKey=9e661a5e0ad74c878ca984d592b3752c&",
-    },
-    {
       label: "History",
       value: "/consultation/1",
-      icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/07d261bcd92e5b651bbf3ee474dd7d3fd577dd2a898811375f3cf1b699518c71?apiKey=9e661a5e0ad74c878ca984d592b3752c&",
-    },
-    {
-      label: "Articles",
-      value: "/article",
       icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/07d261bcd92e5b651bbf3ee474dd7d3fd577dd2a898811375f3cf1b699518c71?apiKey=9e661a5e0ad74c878ca984d592b3752c&",
     },
     {
@@ -45,14 +35,24 @@ const Sidebar = () => {
       icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/2b7c55e1879373d855dc8c7b241dfcb63ac54bddbf3dee01f1c40e58e55618ba?apiKey=9e661a5e0ad74c878ca984d592b3752c&",
     },
     {
-      label: "Be Expert",
-      value: "/become-expert",
-      icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/84841d85ef1193d6b8bee18151161336ed1a0282dff45b9e832ec2a3ccf9e6f9?apiKey=9e661a5e0ad74c878ca984d592b3752c&",
+      label: "Experts",
+      value: "/expert",
+      icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/fe1f7d779e1cb4aa26a49439af034934f03aa9024f8a3a83885b322d66ac46a2?apiKey=9e661a5e0ad74c878ca984d592b3752c&",
+    },
+    {
+      label: "Articles",
+      value: "/article",
+      icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/07d261bcd92e5b651bbf3ee474dd7d3fd577dd2a898811375f3cf1b699518c71?apiKey=9e661a5e0ad74c878ca984d592b3752c&",
     },
     {
       label: "Profile",
       value: "/user",
       icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/5889a1cc004cbe2696521a1d1a3fd9466e393044d2b77f1f0be3b2966c617977?apiKey=9e661a5e0ad74c878ca984d592b3752c&",
+    },
+    {
+      label: "Be Expert",
+      value: "/become-expert",
+      icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/84841d85ef1193d6b8bee18151161336ed1a0282dff45b9e832ec2a3ccf9e6f9?apiKey=9e661a5e0ad74c878ca984d592b3752c&",
     },
   ];
 
