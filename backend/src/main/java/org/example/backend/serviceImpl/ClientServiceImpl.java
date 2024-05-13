@@ -34,6 +34,7 @@ public class ClientServiceImpl implements ClientService {
         int uid = getUid();
         Client client = repository.getClientByUserId(uid);
         client.setBalance(client.getBalance().add(new BigDecimal(50)));
+        repository.save(client);
         return Result.success(client);
     }
 }

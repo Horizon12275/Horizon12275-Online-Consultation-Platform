@@ -1,9 +1,28 @@
-import * as React from "react";
 import { useAuth } from "../context/authContext";
-import { Image, Upload } from "antd";
+import { Image, Input, Modal, Upload } from "antd";
+import { addBalance } from "../services/clientService";
+import { useState } from "react";
 
 function Profile() {
   const { user, client, setClient, expert, setExpert } = useAuth();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const showModal = (e) => {
+    setIsModalOpen(true);
+  };
+  const handleOk = () => {
+    setIsModalOpen(false);
+    addConsultation(expert.id)
+      .then((res) => {
+        alert("Payment successful, you can start chatting now!");
+        location.href = `/consultation/${expert.id}`;
+      })
+      .catch((e) => {
+        alert(e);
+      });
+  };
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
   const handleChange = (info) => {
     if (info.file.status === "done") {
       if (info.file.response.code === 200) {
@@ -15,12 +34,21 @@ function Profile() {
     }
   };
   const handleFund = () => {
-    if (user?.role === "user") {
-      setClient({ ...client, balance: client.balance + 100 });
-    } else {
-      setExpert({ ...expert, balance: expert.balance + 100 });
+    const cdKey = document.getElementById("cd-key").value;
+    const trueKeys = ["123456", "654321", "111111"];
+    if (!trueKeys.includes(cdKey)) {
+      alert("Invalid redeem code");
+      return;
     }
-  }
+    addBalance()
+      .then((res) => {
+        setClient({ ...client, balance: res.balance });
+        alert("Add funds successfully!");
+        document.getElementById("cd-key").value = "";
+        setIsModalOpen(false);
+      })
+      .catch((e) => alert(e));
+  };
   return (
     <>
       <div className="div">
@@ -66,7 +94,18 @@ function Profile() {
             <span>Upload new avatar</span>
           </Upload>
 
-          <button onClick={handleFund} className="div-19">Add funds to wallet</button>
+          <button onClick={setIsModalOpen} className="div-19">
+            Add funds to wallet
+          </button>
+          <Modal
+            title="Consultation Confirmation"
+            open={isModalOpen}
+            onOk={handleFund}
+            onCancel={handleCancel}
+          >
+            <p>{`Please enter the redeem code to add funds to your wallet`}</p>
+            <Input id="cd-key" placeholder="Redeem Code" />
+          </Modal>
         </div>
       </div>
       <style jsx>{`

@@ -1,4 +1,4 @@
-import { BASEURL, get } from "./requestService";
+import { BASEURL, get, post } from "./requestService";
 const PREFIX = `${BASEURL}/api/client`;
 
 // export const searchExperts = async ({ keyword }) => {
@@ -49,6 +49,6 @@ export const addBalance = async () => {
   const url = `${PREFIX}/fund`;
   let result;
 
-  result = await get(url);
+  result = await post(url);
   return result;
 }

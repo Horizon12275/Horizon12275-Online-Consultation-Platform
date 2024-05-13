@@ -8,7 +8,6 @@ const ExpertInfoCard = ({ expert }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const showModal = (e) => {
     setIsModalOpen(true);
-    e.preventDefault();
   };
   const handleOk = () => {
     setIsModalOpen(false);

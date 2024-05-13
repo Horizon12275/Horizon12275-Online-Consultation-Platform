@@ -20,7 +20,7 @@ export function PrivateLayout({ children }) {
       })
       .catch((e) => {
         alert(e);
-        //location.href = "/login";
+        location.href = "/login";
       });
   }, []);
   return (

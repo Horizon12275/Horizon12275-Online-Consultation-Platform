@@ -28,7 +28,7 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http.authorizeHttpRequests((requests) ->{requests
                                 .requestMatchers("/api/article/add").hasRole("expert")//只有专家才能访问
-                                .requestMatchers("/api/client/**","/api/tweet/add").hasRole("client")//只有客户才能访问
+                                .requestMatchers("/api/client/fund","/api/tweet/add").hasRole("user")//只有客户才能访问
                                 .requestMatchers("/api/user/register/**",
                                                 "/image/**",
                                                 "/api/user/sendCode/**",

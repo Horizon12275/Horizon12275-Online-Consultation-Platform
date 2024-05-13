@@ -102,8 +102,9 @@ function FeedDisplay({ tweet }) {
   };
   const handleLike = (tweet) => {
     const tid = tweet.id;
-    try {
-      likeTweet(tid).then((res) => {
+
+    likeTweet(tid)
+      .then((res) => {
         if (tids.includes(tid)) {
           setTids(tids.filter((t) => t !== tid));
           tweet.likes = tweet.likes.filter((l) => l.user.id !== user.id);
@@ -111,10 +112,8 @@ function FeedDisplay({ tweet }) {
           setTids([...tids, tid]);
           tweet.likes.push({ user: { id: user.id } });
         }
-      });
-    } catch (e) {
-      alert(e);
-    }
+      })
+      .catch((e) => alert(e));
   };
   return (
     tweet && (
