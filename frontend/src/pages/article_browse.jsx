@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { BasicLayout } from "../layouts";
 import TagBar from "../components/tagbar";
 import SearchBar from "../components/searchbox";
-import { Flex, Row } from "antd";
+import { Col, Flex, Row } from "antd";
 import HomeArticle from "../components/homearticle";
 import { useSearchParams } from "react-router-dom";
 import { searchArticles } from "../services/articleService";
@@ -34,7 +34,11 @@ const ArticleBrowsePage = () => {
         </h1>
         <TagBar />
         <Row justify={"space-between"}>
-          <SearchBar />
+          <Col></Col>
+          <Col className="w-1/2"> 
+            <SearchBar />
+          </Col>
+          <Col></Col>
         </Row>
         <HomeArticle articles={articles} />
       </Flex>

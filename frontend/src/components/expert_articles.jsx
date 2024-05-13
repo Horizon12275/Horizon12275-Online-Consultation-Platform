@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function ArticleCard({ article }) {
+export function ArticleCard({ article }) {
   return (
     <article className="flex flex-col justify-between grow self-stretch p-3 w-full bg-white h-[240px]">
       <div className="flex flex-col items-start pr-20 max-md:pr-5 max-md:max-w-full">

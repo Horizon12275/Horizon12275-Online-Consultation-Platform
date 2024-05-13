@@ -118,7 +118,7 @@ const BecomeExpertPage = () => {
   return (
     <BasicLayout>
       {!submitted && (
-        <div className="items-start px-14 pt-9 rounded-xl max-md:px-5 bg-white">
+        <div className="items-start px-14 pt-9 rounded-xl max-md:px-5">
           <h1 className="self-stretch text-5xl font-semibold tracking-tighter text-center text-blue-400 max-md:max-w-full max-md:text-4xl">
             Register Your Expert Account!
           </h1>
@@ -127,7 +127,7 @@ const BecomeExpertPage = () => {
           </p>
 
         <Form
-          className="flex flex-col items-start px-14 pt-9 rounded-xl max-md:px-5 w-3/4 mx-auto bg-white"
+          className="flex flex-col items-start px-14 pt-9 rounded-xl max-md:px-5 w-3/4 mx-auto "
           onFinish={handleSubmit}
         >
           {inputFields.map((field, index) => (

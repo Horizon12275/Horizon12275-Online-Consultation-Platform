@@ -24,8 +24,13 @@ const ExpertChoosePage = () => {
           </h1>
           <TagBar />
           <Row justify={"space-between"}>
-            <SearchBar />
-            <RadioSort onSortChange={handleSortChange} />
+            <Col></Col>
+            <Col className="w-1/2"> 
+              <SearchBar />
+            </Col>
+            <Col> 
+              <RadioSort onSortChange={handleSortChange} />
+            </Col>
           </Row>
           <ExpertShowList sortBy={sortBy} />
         </Flex>

@@ -1,6 +1,7 @@
 import React from "react";
 import { List } from "antd";
-import HomeArticleCard from "./homearticle_card";
+//import HomeArticleCard from "./homearticle_card";
+import { ArticleCard } from "./expert_articles";
 
 export default function HomeArticle({ articles,length }) {
   return (
@@ -14,7 +15,7 @@ export default function HomeArticle({ articles,length }) {
       }}
       renderItem={(article) => (
         <List.Item>
-          <HomeArticleCard article={article} />
+          <ArticleCard article={article} />
         </List.Item>
       )}
     ></List>
