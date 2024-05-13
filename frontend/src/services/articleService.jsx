@@ -64,14 +64,14 @@ export const addArticle = async ({
   title,
   cover,
   tids,
-  descritions,
+  description,
 }) => {
   let formData = new FormData();
   formData.append("content", content);
   formData.append("file", cover);
   formData.append("title", title);
   formData.append("tids", tids);
-  formData.append("descritions", descritions);
+  formData.append("description", description);
   const url = `${PREFIX}/add`;
   let result;
 

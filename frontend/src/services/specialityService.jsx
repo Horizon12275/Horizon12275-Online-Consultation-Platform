@@ -1,7 +1,7 @@
 import { BASEURL, get } from "./requestService";
-const PREFIX = `${BASEURL}/api/tag`;
+const PREFIX = `${BASEURL}/api/speciality`;
 
-export async function getTags() {
+export async function getSpecialities() {
   const url = `${PREFIX}/list`;
   let result;
 

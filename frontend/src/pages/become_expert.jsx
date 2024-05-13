@@ -1,39 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Select, Space, Input, Result, Form } from "antd";
 import { BasicLayout } from "../layouts";
-import FileUpload from "../components/upload";
 import { applyExpert } from "../services/applyService";
+import { getSpecialities } from "../services/specialityService";
+import ImageUploader from "../components/image_upload";
+import { UploadOutlined } from "@ant-design/icons";
 const { TextArea } = Input;
 
-const studyOptions = [
-  {
-    value: "Undergraduate",
-    label: "Undergraduate",
-  },
-  {
-    value: "Junior",
-    label: "Junior",
-  },
-  {
-    value: "Senior",
-    label: "Senior",
-  },
-  {
-    value: "Master",
-    label: "Master",
-  },
-  {
-    value: "Doctor",
-    label: "Doctor",
-  },
-];
-
-function InputField({ label, placeholder, id, name, message }) {
+function InputField({ label, placeholder, id, name, rules }) {
   return (
     <Form.Item
       id={id}
       name={name}
-      rules={[{ required: true, message: message }]}
+      rules={rules}
       className="flex flex-col max-md:max-w-full"
     >
       <div>
@@ -41,7 +20,13 @@ function InputField({ label, placeholder, id, name, message }) {
           {label}
         </label>
         <br></br>
-        <Input type="text" size="large" placeholder={placeholder} allowClear style={{ width: '50vh' }} />
+        <Input
+          type="text"
+          size="large"
+          placeholder={placeholder}
+          allowClear
+          style={{ width: "50vh" }}
+        />
       </div>
     </Form.Item>
   );
@@ -53,62 +38,89 @@ const inputFields = [
     placeholder: "First name",
     id: "firstName",
     name: "firstName",
-    message: "Please input your first name!",
+    rules: [{ required: true, message: "Please input your first name!" }],
   },
   {
     label: "Last name",
     placeholder: "Last name",
     id: "lastName",
     name: "lastName",
-    message: "Please input your last name!",
+    rules: [{ required: true, message: "Please input your last name!" }],
   },
   {
     label: "Email",
     placeholder: "you@company.com",
     id: "email",
     name: "email",
-    message: "Please input your email!",
+    rules: [{ required: true, message: "Please input your email!" }],
   },
   {
     label: "Vertification Code",
     placeholder: "Enter the Vertification Code in your Email",
     id: "code",
-    name: "code",
-    message: "Please input vertification code!",
+    name: "vertificationCode",
+    rules: [
+      { required: true, message: "Please input your vertification code!" },
+    ],
   },
   {
     label: "Password",
     placeholder: "Enter your Password",
     id: "password",
     name: "password",
-    message: "Please input your password!",
+    rules: [{ required: true, message: "Please input your password!" }],
   },
   {
     label: "Confirm Your Password",
     placeholder: "Confirm your Password",
     id: "password2",
     name: "password2",
-    message: "Please confirm your password!",
+    rules: [
+      {
+        required: true,
+        message: "Please confirm your password!",
+      },
+      ({ getFieldValue }) => ({
+        validator(_, value) {
+          if (!value || getFieldValue("password") === value) {
+            return Promise.resolve();
+          }
+          return Promise.reject(
+            new Error("The two passwords that you entered do not match!")
+          );
+        },
+      }),
+    ],
   },
   {
-    label: "Field of Expertise",
-    placeholder: "field of expertise(only one !)",
-    id: "field",
-    name: "field",
-    message: "Please input your field of expertise!",
+    label: "Education Level",
+    placeholder: "Input your Education Level",
+    id: "education",
+    name: "education",
+    rules: [{ required: true, message: "Please input your education!" }],
   },
 ];
 
 const BecomeExpertPage = () => {
   const [submitted, setSubmitted] = useState(false);
-  const handleSubmit = (application) => {
+  const [specialties, setSpecialties] = useState([]);
+  const [images, setImages] = useState([]);
+  useEffect(() => {
+    getSpecialities().then((res) => {
+      setSpecialties(res);
+    });
+  }, []);
+  const filterOption = (input, option) =>
+    (option?.label ?? "").toLowerCase().includes(input.toLowerCase());
+  const handleSubmit = async (application) => {
+    application.certificate = images[0];
     try {
-      applyExpert(application);
+      await applyExpert(application);
+      setSubmitted(true);
     } catch (e) {
       console.log(e);
       alert(e);
     }
-    setSubmitted(true);
   };
 
   const handleReturn = () => {
@@ -126,67 +138,103 @@ const BecomeExpertPage = () => {
             We'd love to hear from you. Please fill out this form.
           </p>
 
-        <Form
-          className="flex flex-col items-start px-14 pt-9 rounded-xl max-md:px-5 w-3/4 mx-auto "
-          onFinish={handleSubmit}
-        >
-          {inputFields.map((field, index) => (
-            <div key={index} className="flex gap-5 self-stretch max-md:flex-wrap max-md:mt-10 mb-3 mx-auto">
-              <InputField {...field} />
-            </div>
-          ))}
-
+          <Form
+            className="flex flex-col items-start px-14 pt-9 rounded-xl max-md:px-5 w-3/4 mx-auto "
+            onFinish={handleSubmit}
+          >
+            {inputFields.map((field, index) => (
+              <div
+                key={index}
+                className="flex gap-5 self-stretch max-md:flex-wrap max-md:mt-10 mb-3 mx-auto"
+              >
+                <InputField {...field} />
+              </div>
+            ))}
             <label className="text-lg font-medium leading-5 text-slate-700 max-md:max-w-full mx-auto w-1/2">
-              Education Level
+              Field of Expertise
             </label>
             <Form.Item
-              id="education"
-              name="education"
-              initialValue={"Undergraduate"}
+              id="field"
+              name="field"
               className="mx-auto w-1/2"
+              rules={[
+                {
+                  required: true,
+                  message: "Please input your field of expertise!",
+                },
+              ]}
             >
-              <Select options={studyOptions} size="large" />
+              <Select
+                filterOption={filterOption}
+                mode="multiple"
+                options={specialties.map(({ id, content }) => {
+                  return { value: id, label: content };
+                })}
+                size="large"
+              />
             </Form.Item>
-
 
             <label className="text-lg font-medium leading-5 text-slate-700 max-md:max-w-full mx-auto w-1/2">
               Professional qualifications and certificates
             </label>
-            <Form.Item id="certificate" name="certificate" className="mx-auto w-1/2">
-              <FileUpload/>
+            <Form.Item
+              id="certificate"
+              name="certificate"
+              rules={[
+                {
+                  validator: (_, value) => {
+                    if (images.length > 0) {
+                      return Promise.resolve();
+                    }
+                    return Promise.reject("Please upload a cover image!");
+                  },
+                },
+              ]}
+              className="mx-auto w-1/2"
+            >
+              <ImageUploader
+                multiple={false}
+                children={
+                  <Button size="large" icon={<UploadOutlined />}>
+                    Click to Upload
+                  </Button>
+                }
+                selectedImages={images}
+                setSelectedImages={setImages}
+              />
             </Form.Item>
 
-          <label className="self-stretch font-medium text-lg leading-5 text-slate-700 max-md:max-w-full mx-auto w-3/4">
-            Self-introduction
-          </label>
-          <Form.Item
-            id="introduction"
-            name="introduction"
-            rules={[
-              { required: true, message: "Please input your introduction!" },
-            ]}
-            className="w-3/4 max-md:max-w-full mx-auto"
-          >
-            <TextArea
-              rows={4}
-              size="large"
-              placeholder="a brief introduction of yourself, including personal strengths, professional strengths, interests and research directions in the professional field, etc."
-            />
-          </Form.Item>
-
-          <div className="flex gap-3 self-stretch mt-5 text-base leading-6 text-slate-600 max-md:flex-wrap w-3/4 mx-auto">
-            <input
-              type="checkbox"
-              className="shrink-0 my-auto w-5 h-5 bg-white rounded-md border border-gray-300 border-solid"
-            />
-            <label className="flex-1 max-md:max-w-full">
-              You agree to our friendly privacy policy.
+            <label className="self-stretch font-medium text-lg leading-5 text-slate-700 max-md:max-w-full mx-auto w-3/4">
+              Self-introduction
             </label>
-          </div>
-          <button className="justify-center items-center self-stretch px-5 py-2.5 mt-10 text-base font-semibold leading-6 text-white bg-blue-400 rounded-lg border border-gray-400 border-solid shadow-sm max-md:max-w-full w-3/4 mx-auto">
-            Apply to become an expert
-          </button>
-        </Form>
+            <Form.Item
+              id="introduction"
+              name="introduction"
+              rules={[
+                { required: true, message: "Please input your introduction!" },
+              ]}
+              className="w-3/4 max-md:max-w-full mx-auto"
+            >
+              <TextArea
+                rows={4}
+                size="large"
+                placeholder="a brief introduction of yourself, including personal strengths, professional strengths, interests and research directions in the professional field, etc."
+              />
+            </Form.Item>
+
+            <div className="flex gap-3 self-stretch mt-5 text-base leading-6 text-slate-600 max-md:flex-wrap w-3/4 mx-auto">
+              <input
+                type="checkbox"
+                className="shrink-0 my-auto w-5 h-5 bg-white rounded-md border border-gray-300 border-solid"
+              />
+              <label className="flex-1 max-md:max-w-full">
+                You agree to our friendly privacy policy.
+              </label>
+            </div>
+            <button className="justify-center items-center self-stretch px-5 py-2.5 mt-10 text-base font-semibold leading-6 text-white bg-blue-400 rounded-lg border border-gray-400 border-solid shadow-sm max-md:max-w-full w-3/4 mx-auto">
+              Apply to become an expert
+            </button>
+          </Form>
         </div>
       )}
       {submitted && (

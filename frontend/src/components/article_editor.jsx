@@ -18,7 +18,6 @@ const ArticleEditor = () => {
     (option?.label ?? "").toLowerCase().includes(input.toLowerCase()); // 自定义搜索逻辑
   const handleSubmit = async (values) => {
     values.cover = cover[0];
-    console.log(values);
     try {
       await addArticle(values);
       alert("Article added successfully!");

@@ -50,12 +50,12 @@ export default function ExpertShowCard({ item }) {
               <ProfileInfo
                 name={item.name}
                 price={item.price}
-                specialty={item.specialties?.map((tag) => tag + " ")}
+                specialty={item.specialities?.map((item) => item.content + " ")}
                 rating={item.rating}
               />
             </div>
           </div>
-          <ProfileIntroduction introduction={item.introduction} />
+          <ProfileIntroduction introduction={item.aboutMe} />
         </div>
       </Link>
     </div>

@@ -15,7 +15,7 @@ function ArticleCard({ article }) {
         className="gap-0 w-[700px] aspect-[1.79] object-cover"
       />
       <div className="justify-center py-3 pr-3 pl-3 bg-white text-xl">
-        {article.description}
+        {article.title}
       </div>
     </Link>
   );

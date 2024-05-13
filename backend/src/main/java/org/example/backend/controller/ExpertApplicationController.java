@@ -4,6 +4,7 @@ import org.example.backend.entity.ExpertApplication;
 import org.example.backend.entity.Result;
 import org.example.backend.service.ExpertApplicationService;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -19,8 +20,8 @@ public class ExpertApplicationController {
         return service.getApplications();
     }
     @PostMapping("/add")
-    public Result<ExpertApplication> addApplication(@RequestBody ExpertApplication application) {
-        return service.addApplication(application);
+    public Result<ExpertApplication> addApplication(ExpertApplication application, @RequestParam MultipartFile file) {
+        return service.addApplication(application, file);
     }
     @DeleteMapping("/delete/{id}")
     public Result<ExpertApplication> deleteApplication(@PathVariable int id) {

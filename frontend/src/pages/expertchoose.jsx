@@ -51,7 +51,6 @@ const ExpertChoosePage = () => {
       });
   }, [keyword, page, pageSize, tag]);
   return (
-    <TagProvider>
       <BasicLayout>
         <Flex vertical gap="middle" className="mx-auto w-[1300px]">
           <h1 className="text-5xl tracking-tight text-black self-start mt-8">
@@ -70,7 +69,6 @@ const ExpertChoosePage = () => {
           <ExpertShowList sortBy={sortBy} experts={experts} />
         </Flex>
       </BasicLayout>
-    </TagProvider>
   );
 };
 

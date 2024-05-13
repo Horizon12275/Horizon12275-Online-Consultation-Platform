@@ -6,9 +6,9 @@ import { checkAuth } from "./services/loginService";
 const { Content } = Layout;
 
 export function BasicLayout({ children }) {
-  useEffect(() => {
-    checkAuth();
-  }, []);
+  // useEffect(() => {
+  //   checkAuth();
+  // }, []);
   return (
     <Layout hasSider style={{ minWidth: "1600px", minHeight: "800px" }}>
       <Sidebar />

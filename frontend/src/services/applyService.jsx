@@ -1,11 +1,31 @@
-import { BASEURL, Delete, get, post } from "./requestService";
+import { BASEURL, Delete, get, post, postFormData } from "./requestService";
 const PREFIX = `${BASEURL}/api/application`;
 
-export const applyExpert = async (application) => {
+export const applyExpert = async ({
+  email,
+  password,
+  vertificationCode,
+  education,
+  certificate,
+  firstName,
+  lastName,
+  field,
+  introduction
+}) => {
+  let formData = new FormData();
+  formData.append("email", email);
+  formData.append("password", password);
+  formData.append("vertificationCode", vertificationCode);
+  formData.append("education", education);
+  formData.append("file", certificate);
+  formData.append("firstName", firstName);
+  formData.append("lastName", lastName);
+  formData.append("field", JSON.stringify(field));
+  formData.append("introduction", introduction);
   const url = `${PREFIX}/add`;
   let result;
 
-  result = await post(url, application);
+  result = await postFormData(url, formData);
   return result;
 };
 
@@ -31,4 +51,4 @@ export const approveApplication = async (id) => {
 
   result = await post(url);
   return result;
-}
+};

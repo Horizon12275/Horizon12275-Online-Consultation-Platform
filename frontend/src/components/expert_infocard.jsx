@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const ExpertInfoCard = ({ expert }) => {
   // 渲染专家信息卡片
-  const specialties = ["Label", "Label", "Label"];
+
   return (
     <Row justify="space-between" align="middle" className="my-10">
       <Col>
@@ -30,17 +30,19 @@ const ExpertInfoCard = ({ expert }) => {
           </Link>
         </Row>
         <p className="my-4 text-2xl leading-8 text-black whitespace-normal min-h-40">
-          {expert.introduction}
+          {expert.aboutMe}
         </p>
         <Row justify="start" align="middle">
           <h2 className="my-auto text-2xl leading-7 text-black">擅长领域：</h2>
-          {specialties.map((tag, index) => (
-            <Tag.CheckableTag
-              key={index}
-              className="mx-4 px-5 py-1 rounded border-zinc-500 text-center"
-            >
-              {tag}
-            </Tag.CheckableTag>
+          {expert.specialities?.map((item, index) => (
+            <Link to={`/expert?tag=${item.id}`} key={index}>
+              <Tag.CheckableTag
+                key={index}
+                className="mx-4 px-5 py-1 rounded border-zinc-500 text-center"
+              >
+                {item.content}
+              </Tag.CheckableTag>
+            </Link>
           ))}
         </Row>
       </Flex>
