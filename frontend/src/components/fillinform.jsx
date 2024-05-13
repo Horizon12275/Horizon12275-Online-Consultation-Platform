@@ -34,30 +34,55 @@ function Textarea({ id, label, className, ...rest }) {
 }
 
 function FillForm() {
-  const {  setClient, setExpert } = useAuth();
+  const { user, client, expert, setClient, setExpert } = useAuth();
+  React.useEffect(() => {}, [client, expert]);
+  const [form] = Form.useForm();
+  const resetForm = () => {
+    //判断表单是否为空，如果为空则进行赋值
+   
+    if (Object.values(form.getFieldsValue()).every((v) => !v))
+      form.setFieldsValue({
+        firstName: client?.firstName || expert?.firstName,
+        lastName: client?.lastName || expert?.lastName,
+        region: client?.region || expert?.region,
+        email: user?.email,
+        aboutMe: client?.aboutMe || expert?.aboutMe,
+      });
+  };
+  React.useEffect(() => resetForm, [client, expert]);
   const handleSave = async (user) => {
     if (user.aboutMe?.length > 3000) {
       alert(`个人简介过长，当前字数${user.aboutMe.length}，请控制在3000字以内`);
       return;
     }
-    try {
-      await updateUser(user).then((res) => {
+    updateUser(user)
+      .then((res) => {
         if (res?.role === "user") setClient(res.client);
         else setExpert(res.expert);
         console.log(res);
         alert("修改成功！");
-      });
-    } catch (e) {
-      alert(e);
-    }
+      })
+      .catch((e) => alert(e));
+  };
+  const handleCancel = (e) => {
+    e.preventDefault();
+    form.setFieldsValue({
+      firstName: client?.firstName || expert?.firstName,
+      lastName: client?.lastName || expert?.lastName,
+      region: client?.region || expert?.region,
+      email: user?.email,
+      aboutMe: client?.aboutMe || expert?.aboutMe,
+    });
   };
   return (
-    <Form layout="vertical" onFinish={handleSave}>
+    <Form layout="vertical" onFinish={handleSave} form={form}>
       <div className="container">
         <header className="header">
           <h1 className="title">BASIC INFO</h1>
           <div className="actions">
-            <Button className="cancel-button">CANCEL</Button>
+            <Button className="cancel-button" onClick={handleCancel}>
+              CANCEL
+            </Button>
             <Button htmlType={"submit"} className="save-button">
               SAVE
             </Button>
@@ -75,7 +100,15 @@ function FillForm() {
         <Form.Item name="region">
           <Input id="region" label="Region" className="form-input" />
         </Form.Item>
-        <Input id="email" label="Email" type="email" className="form-input" />
+        <Form.Item name="email">
+          <Input
+            id="email"
+            label="Email"
+            type="email"
+            className="form-input"
+            disabled
+          />
+        </Form.Item>
         <Form.Item name="aboutMe">
           <Textarea id="aboutMe" label="ABOUT ME" className="form-textarea" />
         </Form.Item>

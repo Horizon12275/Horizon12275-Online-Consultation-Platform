@@ -6,8 +6,6 @@ import ConsultationHistoryList from "../components/consultation_history_list";
 import RateButton from "../components/rate";
 import { PrivateLayout } from "../layouts";
 import CommentList from "../components/comment_list";
-import History from "../components/history.jsx";
-import AIPrompt from "../components/ai_prompt.jsx";
 import ChatApp from "../components/consult.jsx";
 import CommentBox from "../components/comment_box.jsx";
 import { getCommentsByExpertId } from "../services/expertCommentService.jsx";
@@ -37,7 +35,7 @@ const ConsultPage = () => {
   }, [receiverId, user]);
 
   return (
-    user && (
+    
       <PrivateLayout>
         <Flex>
           <div
@@ -48,7 +46,7 @@ const ConsultPage = () => {
               height: "100vh",
             }}
           >
-            {user.role === "user" && (
+            {user?.role === "user" && (
               <>
                 <ConsultationHistoryList
                   style={{ position: "fixed", top: "30px", left: "300px" }}
@@ -67,11 +65,11 @@ const ConsultPage = () => {
               </>
             )}
 
-            <ChatApp sid={user.id} receiver={receiver} />
+            <ChatApp sid={user?.id} receiver={receiver} />
           </div>
         </Flex>
       </PrivateLayout>
-    )
+    
   );
 };
 
