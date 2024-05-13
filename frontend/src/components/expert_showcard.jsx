@@ -43,7 +43,7 @@ export default function ExpertShowCard({ item }) {
   return (
     <div>
       <Link href={`/expert/${item.id}`}>
-        <div className="flex flex-col bg-white rounded-xl px-6 py-2 w-[400px] h-[330px] shadow-sm">
+        <div className="flex flex-col bg-white rounded-xl px-6 py-2 w-[400px] h-[330px] shadow">
           <div className="flex flex-col justify-center my-3">
             <div className="flex">
               <ProfileImage src={item.avatar} alt={item.name} />

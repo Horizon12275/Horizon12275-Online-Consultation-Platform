@@ -4,7 +4,7 @@ const SortButton = ({ label, isActive, onClick }) => (
   <div
     className={`px-4 cursor-pointer ${
       isActive ? "bg-zinc-300" : "bg-zinc-200"
-    }  rounded-md flex items-center`}
+    }  flex items-center shadow`}
     onClick={onClick}
   >
     {label}
