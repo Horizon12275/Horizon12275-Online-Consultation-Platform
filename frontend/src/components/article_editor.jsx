@@ -35,7 +35,9 @@ const ArticleEditor = () => {
         justifyContent: "center",
       }}
     >
-      <h1 style={{ margin: "2vh" }}>Write Down Your Professional Idea!</h1>
+      <h1 style={{ margin: "2vh", color: "#60a5fa" }}>
+        Write Down Your Professional Idea!
+      </h1>
       <Form
         initialValues={{ remember: true }}
         onFinish={handleSubmit}
@@ -46,6 +48,9 @@ const ArticleEditor = () => {
           name="tids"
           rules={[{ required: true, message: "Please input your tags!" }]}
         >
+          <h3 style={{ marginBottom: "5px", color: "#60a5fa" }}>
+            Select Tags For Your Article:
+          </h3>
           <Select
             filterOption={filterOption}
             mode="multiple"
@@ -71,6 +76,9 @@ const ArticleEditor = () => {
           ]}
           className="flex justify-center"
         >
+          <h3 style={{ marginBottom: "5px", color: "#60a5fa" }}>
+            Upload Cover Image:
+          </h3>
           <ImageUploader
             multiple={false}
             children={
@@ -87,6 +95,7 @@ const ArticleEditor = () => {
           name="title"
           rules={[{ required: true, message: "Please input your title!" }]}
         >
+          <h3 style={{ marginBottom: "5px", color: "#60a5fa" }}>Title:</h3>
           <Input size="large" placeholder="Title" />
         </Form.Item>
         <Form.Item
@@ -96,6 +105,9 @@ const ArticleEditor = () => {
             { required: true, message: "Please input your description!" },
           ]}
         >
+          <h3 style={{ marginBottom: "5px", color: "#60a5fa" }}>
+            Description:
+          </h3>
           <Input.TextArea rows={6} placeholder="Description" />
         </Form.Item>
         <Form.Item
@@ -103,6 +115,7 @@ const ArticleEditor = () => {
           name="content"
           rules={[{ required: true, message: "Please input your content!" }]}
         >
+          <h3 style={{ marginBottom: "5px", color: "#60a5fa" }}>Content:</h3>
           <MdEditor value={value} onChange={setValue} />
         </Form.Item>
         <Button

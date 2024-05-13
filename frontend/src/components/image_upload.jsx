@@ -44,7 +44,7 @@ const ImageUploader = ({
     },
   ];
   return (
-    <div>
+    <div style={{ width: "100%" }}>
       <input
         type="file"
         onChange={handleImageSelect}
