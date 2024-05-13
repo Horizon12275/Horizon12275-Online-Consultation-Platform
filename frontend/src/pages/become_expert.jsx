@@ -280,7 +280,7 @@ const BecomeExpertPage = () => {
                 You agree to our friendly privacy policy.
               </label>
             </div> */}
-            <button className="justify-center items-center self-stretch px-5 py-2.5 mt-10 text-base font-semibold leading-6 text-white bg-blue-400 rounded-lg border border-gray-400 border-none shadow-sm max-md:max-w-full w-3/4 mx-auto">
+            <button className="cursor-pointer justify-center items-center self-stretch px-5 py-2.5 mt-10 text-base font-semibold leading-6 text-white bg-blue-400 rounded-lg border border-gray-400 border-none shadow-sm max-md:max-w-full w-3/4 mx-auto">
               Apply to Register An Expert Account
             </button>
           </Form>
