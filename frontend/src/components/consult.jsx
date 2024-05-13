@@ -93,6 +93,9 @@ function ChatApp({ sid, receiver }) {
               return message;
             })
           );
+      } else if (type === "error") {
+        alert(JSON.parse(event.data).data);
+        location.href = "/"; // 重定向到登录页
       }
     };
 

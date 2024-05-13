@@ -5,8 +5,6 @@ import { getOtherUserById } from "../services/userService";
 import { getRecommendedExperts } from "../services/expertService";
 
 export default function ConsultationHistoryList() {
-  const [n, setN] = useState(3);
-  const [expanded, setExpanded] = useState(false);
   const [experts, setExperts] = useState([]);
   useEffect(() => {
     getRecommendedExperts().then((res) => {
@@ -14,14 +12,6 @@ export default function ConsultationHistoryList() {
     });
   }, []);
 
-  const handleClick = () => {
-    setExpanded(!expanded);
-    if (n === 2) {
-      setN(6);
-    } else {
-      setN(2);
-    }
-  };
 
   return (
     <div
@@ -36,7 +26,7 @@ export default function ConsultationHistoryList() {
     >
       <h2>Consultation History:</h2>
 
-      {experts.slice(0, n).map((expert) => (
+      {experts.slice(0, 3).map((expert) => (
         <Link to={`/consultation/${expert.id}`} key={expert.id}>
           <React.Fragment key={expert.id}>
             <ConsultationHistoryCard expert={expert} />

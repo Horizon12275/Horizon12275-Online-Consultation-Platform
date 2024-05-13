@@ -22,6 +22,7 @@ public class Article {
     private String title;
     private String description;
     @Lob
+    @Column(columnDefinition = "TEXT")
     private String content;
     private String cover;
     private LocalDateTime time;
