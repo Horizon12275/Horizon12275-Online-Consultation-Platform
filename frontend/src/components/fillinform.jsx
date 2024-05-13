@@ -156,7 +156,7 @@ function FillForm() {
         .actions {
           display: flex;
           gap: 23px;
-          font-size: 19px;
+          font-size: 25px;
           white-space: nowrap;
           justify-content: space-between;
         }
@@ -178,12 +178,14 @@ function FillForm() {
           border: 2px solid rgba(46, 144, 250, 1);
           background-color: #fff;
           color: #000c;
+          font-size: 20px;
         }
 
         .save-button {
           background-color: var(--Blue-500, #2e90fa);
           color: #fff;
           border: none;
+          font-size: 20px;
         }
 
         @media (max-width: 991px) {
@@ -207,7 +209,7 @@ function FillForm() {
 
         .form-row {
           display: flex;
-          gap: 20px;
+          gap: 142px;
           margin-top: 35px;
         }
 

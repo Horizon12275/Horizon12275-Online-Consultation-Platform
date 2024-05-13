@@ -10,7 +10,7 @@ export const applyExpert = async ({
   firstName,
   lastName,
   field,
-  introduction
+  introduction,
 }) => {
   let formData = new FormData();
   formData.append("email", email);
@@ -51,4 +51,16 @@ export const approveApplication = async (id) => {
 
   result = await post(url);
   return result;
+};
+
+export const sendVertificationCodeExpert = async (email) => {
+  const url = `${PREFIX}/sendCode/${email}`;
+  let result;
+
+  try {
+    result = await get(url);
+    alert("验证码已发送，请查收！");
+  } catch (e) {
+    alert(e);
+  }
 };

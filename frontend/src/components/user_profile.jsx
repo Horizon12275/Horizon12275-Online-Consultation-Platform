@@ -38,7 +38,7 @@ function Profile() {
   };
   return (
     <>
-      <div className="div">
+      <div className="div" style={{ marginTop: "30px" }}>
         <div className="div-2">
           <Image
             src={client?.avatar || expert?.avatar}
@@ -262,6 +262,8 @@ function Profile() {
           width: fit-content;
           padding: 16px 52px;
           cursor: pointer;
+          font-size: 24px;
+          color: #fff;
         }
         @media (max-width: 991px) {
           .div-18 {
@@ -277,6 +279,10 @@ function Profile() {
           flex-grow: 1;
           width: fit-content;
           padding: 18px 52px;
+          cursor: pointer;
+          font-size: 24px;
+          border: none;
+          color: #fff;
         }
         @media (max-width: 991px) {
           .div-19 {

@@ -7,6 +7,7 @@ import HomeArticle from "../components/homearticle";
 import { useSearchParams } from "react-router-dom";
 import { categoryArticles, searchArticles } from "../services/articleService";
 import { useEffect } from "react";
+import { ArticleList } from "../components/expert_articles";
 
 const ArticleBrowsePage = () => {
   const [articles, setArticles] = useState([]);
@@ -55,12 +56,12 @@ const ArticleBrowsePage = () => {
         <TagBar />
         <Row justify={"space-between"}>
           <Col></Col>
-          <Col className="w-1/2"> 
+          <Col className="w-1/2">
             <SearchBar />
           </Col>
           <Col></Col>
         </Row>
-        <HomeArticle articles={articles} />
+        <ArticleList articles={articles} />
       </Flex>
     </PublicLayout>
   );

@@ -40,6 +40,7 @@ public class SecurityConfig {
                                                 "/api/expert/**",
                                                 "/api/speciality/**",
                                                 "/api/tag/**",
+                                                "/api/application/sendCode/**",
                                                 "/api/tweet/**")
                                 .permitAll()
                                 .anyRequest().authenticated();
