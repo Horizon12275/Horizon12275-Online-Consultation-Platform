@@ -11,6 +11,7 @@ import ConsultHead from "./consult_head";
 import toTime from "../utils/time";
 import ConsultHeadSmall from "./consult_headSmall";
 import MessageboxSmall from "./message_boxSmall";
+import { WSURL } from "../services/requestService";
 
 const ChatMessage = ({ message, isSender }) => (
   <div className={`chat-message ${isSender ? "sent" : "received"}`}>
@@ -66,7 +67,7 @@ function ChatAppSmall({ sid, receiver }) {
   const ws = useRef(null);
   const initWebSocket = (sid, rid) => {
     //sid是发送者id rid是接收者id 这里的id已经是后端获取的userId了
-    const socket = new WebSocket(`ws://localhost:8081/ws/${receiverId}`);
+    const socket = new WebSocket(`${WSURL}/${receiverId}`);
 
     socket.onopen = () => {
       console.log("Connected to WebSocket server");
