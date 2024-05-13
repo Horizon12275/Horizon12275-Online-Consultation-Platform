@@ -40,7 +40,7 @@ const ArticleHeader = ({ article }) => {
           />
         </div>
       </header>
-      <main className="flex justify-between pt-20 ml-3  font-bold w-[610px] bg-transparent relative">
+      <main className="flex justify-between pt-20 ml-3  font-bold w-[250px] bg-transparent relative">
         <img
           loading="lazy"
           src={article.author?.avatar}
@@ -54,7 +54,7 @@ const ArticleHeader = ({ article }) => {
             {article.author?.name}
           </div>
         </div>
-        <div className="flex flex-col self-start text-base">
+        {/* <div className="flex flex-col self-start text-base">
           <div className="tracking-tight text-neutral-900">
             {profileData.occupation}
           </div>
@@ -62,7 +62,7 @@ const ArticleHeader = ({ article }) => {
             <div className="text-neutral-900">{profileData.followers}</div>
             <div className="tracking-tight text-slate-500">Followers</div>
           </div>
-        </div>
+        </div> */}
         <div className="flex flex-col text-base">
           <div className="flex gap-2.5 text-slate-500">
             <IconText
@@ -70,16 +70,16 @@ const ArticleHeader = ({ article }) => {
               alt="Location icon"
               text={article.author?.region}
             />
-            <IconText
+            {/* <IconText
               src={profileData.calendarIcon}
               alt="Calendar icon"
               text={profileData.joinedDate}
-            />
+            /> */}
           </div>
-          <div className="flex gap-1 mt-3 whitespace-nowrap">
+          {/* <div className="flex gap-1 mt-3 whitespace-nowrap">
             <div className="text-neutral-900">{profileData.following}</div>
             <div className="tracking-tight text-slate-500">Following</div>
-          </div>
+          </div> */}
         </div>
       </main>
     </div>

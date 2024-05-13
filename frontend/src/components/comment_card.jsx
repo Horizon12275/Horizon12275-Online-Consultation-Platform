@@ -41,7 +41,7 @@ function ReactionButton({ count, isLiked, onCLick }) {
 
 export default function CommentCard({ comment, isLiked, handleLike }) {
   return (
-    <article className="flex gap-0 mt-3">
+    <article className="flex gap-0 mt-3" style={{ width: "100%" }}>
       <div className="flex flex-col justify-center items-start self-start pr-4">
         <Avatar
           src={comment.user.expert?.avatar || comment.user.client?.avatar}
@@ -53,8 +53,11 @@ export default function CommentCard({ comment, isLiked, handleLike }) {
           name={comment.user.expert?.name || comment.user.client?.username}
           timestamp={new Date(comment.time).toDateString()}
         />
-        <p className="justify-center text-sm leading-5 text-neutral-800">
-          {comment.content}
+        <p
+          className="justify-center text-sm leading-5 text-neutral-800"
+          style={{ maxWidth: "100%" }}
+        >
+          {comment.content}{" "}
         </p>
         <div className="flex gap-0 py-0.5 pr-20">
           <ReactionButton
