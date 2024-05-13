@@ -14,6 +14,7 @@ import { SearchProvider } from "../context/searchcontext";
 import ExpertRecommend from "../components/expert-recommend";
 import { getArticlesByExpertId } from "../services/articleService";
 import { getCommentsByExpertId } from "../services/expertCommentService";
+import CommentListForExpertProfilePage from "../components/comment_listForExpertProfilePage";
 
 const ExpertProfilePage = () => {
   let { id } = useParams();
@@ -35,27 +36,24 @@ const ExpertProfilePage = () => {
   }, []);
 
   return (
-        <BasicLayout>
-          <Row>
-            <Col className=" flex-1 ">
-              <Flex vertical gap="middle" className="mx-auto w-[1000px]">
-                <ExpertInfoCard expert={expert} />
-                <h1 className="text-xl font-extrabold leading-7 text-black max-w-[109px]">
-                  All Articles
-                </h1>
-                <ArticleList articles={articles} />
-                <ExpertRecommend />
-              </Flex>
-            </Col>
-            <Col className="w-[350px]">
-              <Rating />
-              <h2 className="text-xl font-extrabold leading-7 text-black max-w-[107px] mt-3">
-                Comments
-              </h2>
-              <CommentList comments={comments} />
-            </Col>
-          </Row>
-        </BasicLayout>
+    <BasicLayout>
+      <Row>
+        <Col className=" flex-1 ">
+          <Flex vertical gap="middle" className="mx-auto w-[1000px]">
+            <ExpertInfoCard expert={expert} />
+            <h1 className="text-xl font-extrabold leading-7 text-black max-w-[109px]">
+              All Articles
+            </h1>
+            <ArticleList articles={articles} />
+            <ExpertRecommend />
+          </Flex>
+        </Col>
+        <Col className="w-[350px]">
+          {/* <Rating /> */}
+          <CommentListForExpertProfilePage comments={comments} />
+        </Col>
+      </Row>
+    </BasicLayout>
   );
 };
 

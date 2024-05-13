@@ -19,13 +19,18 @@ const ExpertInfoCard = ({ expert }) => {
         <Row justify="space-between" align="middle">
           <h1 className="text-5xl tracking-tight text-black">{expert.name}</h1>
           <Link to={`/consultation/${expert.id}`}>
-            <button className="px-4 py-2.5 text-2xl font-semibold text-white bg-blue-200 rounded">
+            <button
+              style={{
+                width: "180px",
+                height: "70px",
+                fontSize: "26px",
+                color: "white",
+                backgroundColor: "#FFA39E",
+                borderRadius: "16px",
+                border: "none",
+              }}
+            >
               Chat Now!
-              <img
-                loading="lazy"
-                src="https://cdn.builder.io/api/v1/image/assets/TEMP/12c64b4eb1c8217bbde363e8ecd7cce3d58af649839a7536b6f9b3b1af89a1f3?apiKey=9e661a5e0ad74c878ca984d592b3752c&"
-                alt="Chat icon"
-              />
             </button>
           </Link>
         </Row>
@@ -33,7 +38,7 @@ const ExpertInfoCard = ({ expert }) => {
           {expert.aboutMe}
         </p>
         <Row justify="start" align="middle">
-          <h2 className="my-auto text-2xl leading-7 text-black">擅长领域：</h2>
+          <h2 className="my-auto text-2xl leading-7 text-black">Specialty:</h2>
           {expert.specialities?.map((item, index) => (
             <Link to={`/expert?tag=${item.id}`} key={index}>
               <Tag.CheckableTag
