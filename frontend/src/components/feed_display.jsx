@@ -132,7 +132,7 @@ function FeedDisplay({ tweet }) {
           <div className="flex flex-col py-1 max-md:max-w-full">
             <UserInfo
               name={tweet.poster?.username}
-              username="@johndue"
+              username=""
               timestamp={new Date(tweet.time).toDateString()}
             />
             <TweetContent text={tweet.content} />
