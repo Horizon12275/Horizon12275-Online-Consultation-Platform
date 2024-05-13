@@ -41,6 +41,7 @@ function RegisterPage() {
 
   const linkStyle = {
     textDecoration: "underline", // 添加下划线效果
+    color: "hsla(0, 69%, 49%, 0.79)", // 修改颜色为蓝色
     cursor: "pointer", // 修改鼠标样式为手型，表明可以点击
   };
 
@@ -118,7 +119,7 @@ function RegisterPage() {
               onClick={() => sendCode(currentEmail)}
               style={{
                 width: "100%",
-                backgroundColor: "#1677ff",
+                backgroundColor: "hsla(0, 69%, 49%, 0.79)",
                 color: "white",
               }}
             >
@@ -198,26 +199,24 @@ function RegisterPage() {
         </Form.Item>
         <div className="input-container" style={{ ...inputStyle }}>
           <div style={{ marginBottom: "10px" }}>
-            <Checkbox>
-              I want to request for an{" "}
-              <a href="/become_expert" style={linkStyle}>
-                EXPERT ACCOUNT
-              </a>{" "}
-              now
-            </Checkbox>
+            I want to request for an{" "}
+            <a href="/become_expert" style={linkStyle}>
+              EXPERT ACCOUNT
+            </a>{" "}
+            now
           </div>
-          <div>
+          {/* <div>
             <Checkbox>
               I've read the{" "}
               <a href="/user_agreement" style={linkStyle}>
                 User Agreement and Privacy Policy
               </a>{" "}
             </Checkbox>
-          </div>
+          </div> */}
         </div>
         <div className="register-btn" style={inputStyle}>
-          <Button type="primary" htmlType="submit">
-            Register
+          <Button type="primary" htmlType="submit" style={{ width: "100%" }}>
+            Register Now!
           </Button>
         </div>
       </div>
