@@ -2,24 +2,11 @@ import { useAuth } from "../context/authContext";
 import { Image, Input, Modal, Upload } from "antd";
 import { addBalance } from "../services/clientService";
 import { useState } from "react";
+import { BASEURL } from "../services/requestService";
 
 function Profile() {
   const { user, client, setClient, expert, setExpert } = useAuth();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const showModal = (e) => {
-    setIsModalOpen(true);
-  };
-  const handleOk = () => {
-    setIsModalOpen(false);
-    addConsultation(expert.id)
-      .then((res) => {
-        alert("Payment successful, you can start chatting now!");
-        location.href = `/consultation/${expert.id}`;
-      })
-      .catch((e) => {
-        alert(e);
-      });
-  };
   const handleCancel = () => {
     setIsModalOpen(false);
   };
@@ -86,7 +73,7 @@ function Profile() {
           <Upload
             showUploadList={false}
             name="avatar"
-            action={"http://101.132.129.104:8081/api/user/avatar"}
+            action={`${BASEURL}/api/user/avatar`}
             withCredentials
             onChange={handleChange}
             className="div-18"
