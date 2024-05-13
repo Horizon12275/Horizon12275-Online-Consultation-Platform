@@ -24,10 +24,17 @@ export default function ConsultationHistoryList() {
   };
 
   return (
-    <div style={{ width: "100%",display:'grid',gap:'2px',position:"absolute",top:'50px',left:'280px'}}>
-      <header className="text-2xl text-center text-black max-w-[84px] m-auto mt-3" style={{ width: "100%",display:'grid',gap:'5px',position:"absolute",top:'-40px',left:'130px'}}>
-        History:
-      </header>
+    <div
+      style={{
+        width: "100%",
+        display: "grid",
+        gap: "2px",
+        position: "absolute",
+        top: "50px",
+        left: "280px",
+      }}
+    >
+      <h2>Consultation History:</h2>
 
       {experts.slice(0, n).map((expert) => (
         <Link to={`/consultation/${expert.id}`} key={expert.id}>

@@ -11,6 +11,7 @@ import ConsultHead from "./consult_head";
 import toTime from "../utils/time";
 import ConsultHeadSmall from "./consult_headSmall";
 import MessageboxSmall from "./message_boxSmall";
+import { WSURL } from "../services/requestService";
 
 const ChatMessage = ({ message, isSender }) => (
   <div className={`chat-message ${isSender ? "sent" : "received"}`}>

@@ -32,19 +32,6 @@ function VideoButton() {
   );
 }
 
-function CallButton() {
-  return (
-    <button className="call-button">
-      <img
-        className="call-icon"
-        src="https://cdn.builder.io/api/v1/image/assets/TEMP/8c021edfc9b00b4b26bfa8ac69dab5ee7e915ca7310725b8e4ddfc4bb009bc60?apiKey=b565e599026f4ea2ba591e53566a67d8&"
-        alt="Call icon"
-      />
-      <span className="call-text">Call</span>
-    </button>
-  );
-}
-
 function ConsultHead({ receiver }) {
   //这里的receiver是专家或者用户的信息
   return (
@@ -57,7 +44,7 @@ function ConsultHead({ receiver }) {
             status={"Online"}
           />
           <Link to={`/videochat/${receiver.id}`}>
-              <VideoButton className="video-button" />
+            <VideoButton className="video-button" />
           </Link>
         </div>
 
@@ -65,9 +52,9 @@ function ConsultHead({ receiver }) {
           .user-card {
             display: flex;
             justify-content: space-between;
-            
+
             max-width: 1000px;
-           gap:20px;
+            gap: 20px;
             font-weight: 600;
             padding: 10px 10px;
             position: absolute;
@@ -130,7 +117,7 @@ function ConsultHead({ receiver }) {
           .call-button {
             display: flex;
             align-items: center;
-            gap:10px;
+            gap: 10px;
             padding: 10px 18px;
             background-color: #b2ddff;
             color: #1570ef;
@@ -139,12 +126,10 @@ function ConsultHead({ receiver }) {
             border: none;
             border-radius: 8px;
             cursor: pointer;
-             
-              margin-left: 630px;
-              
+            position: absolute;
+            top: 20px;
+            left: 785px;
           }
-
-          
 
           .call-icon {
             width: 24px;
@@ -154,7 +139,6 @@ function ConsultHead({ receiver }) {
           .call-text {
             margin: auto 0;
           }
-     
         `}</style>
       </>
     )
