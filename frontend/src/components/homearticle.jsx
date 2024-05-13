@@ -1,9 +1,6 @@
 import React from "react";
 import { List, Pagination } from "antd";
-import HomeArticleCard from "./homearticle_card";
 import { useSearchParams } from "react-router-dom";
-import { List } from "antd";
-//import HomeArticleCard from "./homearticle_card";
 import { ArticleCard } from "./expert_articles";
 
 export default function HomeArticle({ articles, length }) {
