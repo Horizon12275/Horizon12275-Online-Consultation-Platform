@@ -51,7 +51,7 @@ function Profile() {
           <Upload
             showUploadList={false}
             name="avatar"
-            action={"http://localhost:8080/api/user/avatar"}
+            action={"http://101.132.129.104:8081/api/user/avatar"}
             withCredentials
             onChange={handleChange}
             className="div-18"
