@@ -176,7 +176,7 @@ function FillForm() {
 
         .form-row {
           display: flex;
-          gap: 20px;
+          gap: 142px;
           margin-top: 35px;
         }
 
