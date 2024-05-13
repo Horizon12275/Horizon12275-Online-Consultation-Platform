@@ -26,13 +26,6 @@ const FeedEditor = ({ setTweets }) => {
       alt: "Image",
     },
     {
-      children: (
-        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/655f4514f4fdaf7779139ba1b2d7717c8c824c697d315cd030e3675443da1402?apiKey=9e661a5e0ad74c878ca984d592b3752c&" />
-      ),
-      alt: "GIF",
-    },
-
-    {
       children: <EmojiDropdown value={value} setValue={setValue} />,
       alt: "Emoji",
     },
