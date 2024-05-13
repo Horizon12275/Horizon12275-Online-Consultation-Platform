@@ -227,7 +227,7 @@ function Profile() {
           justify-content: center;
           flex-grow: 1;
           width: fit-content;
-          padding: 16px 52px;
+          padding: 16px 34px;
           cursor: pointer;
         }
         @media (max-width: 991px) {
@@ -255,6 +255,7 @@ function Profile() {
           width: fit-content;
           padding: 18px 52px;
           font-size: 20px;
+          color: #fff;
           
         }
         @media (max-width: 991px) {
