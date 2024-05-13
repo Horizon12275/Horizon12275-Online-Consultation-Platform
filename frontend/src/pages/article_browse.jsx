@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { BasicLayout } from "../layouts";
+import { PrivateLayout, PublicLayout } from "../layouts";
 import TagBar from "../components/tagbar";
 import SearchBar from "../components/searchbox";
 import { Col, Flex, Row } from "antd";
@@ -47,7 +47,7 @@ const ArticleBrowsePage = () => {
       });
   }, [keyword, page, pageSize, tag]);
   return (
-    <BasicLayout>
+    <PublicLayout>
       <Flex vertical gap="middle" className="mx-auto w-[1300px]">
         <h1 className="text-5xl tracking-tight text-black self-start mt-8">
           Find Articles!
@@ -62,7 +62,7 @@ const ArticleBrowsePage = () => {
         </Row>
         <HomeArticle articles={articles} />
       </Flex>
-    </BasicLayout>
+    </PublicLayout>
   );
 };
 

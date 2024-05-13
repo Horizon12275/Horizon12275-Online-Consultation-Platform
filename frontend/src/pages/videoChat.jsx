@@ -1,4 +1,4 @@
-import { BasicLayout } from "../layouts";
+import { PrivateLayout } from "../layouts";
 import VideosDisplay from "../components/videos_display";
 import React, { useEffect, useState } from "react";
 import { useAuth } from "../context/authContext";
@@ -24,10 +24,10 @@ function VideoChatPage() {
     }
   }, [receiverId, user]);
   return (
-    <BasicLayout>
+    <PrivateLayout>
       <VideosDisplay />
       <ChatAppSmall sid={user?.id} receiver={receiver} />
-    </BasicLayout>
+    </PrivateLayout>
   );
 }
 export default VideoChatPage;

@@ -1,9 +1,28 @@
 //专家个人主页的信息卡片
-import { Row, Col, Tag, Flex } from "antd";
+import { Row, Col, Tag, Flex, Modal } from "antd";
 import { Link } from "react-router-dom";
+import { addConsultation } from "../services/consultationService";
+import { useState } from "react";
 
 const ExpertInfoCard = ({ expert }) => {
-  // 渲染专家信息卡片
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const showModal = (e) => {
+    setIsModalOpen(true);
+  };
+  const handleOk = () => {
+    setIsModalOpen(false);
+    addConsultation(expert.id)
+      .then((res) => {
+        alert("Payment successful, you can start chatting now!");
+        location.href = `/consultation/${expert.id}`;
+      })
+      .catch((e) => {
+        alert(e);
+      });
+  };
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
 
   return (
     <Row justify="space-between" align="middle" className="my-10">
@@ -18,21 +37,28 @@ const ExpertInfoCard = ({ expert }) => {
       <Flex vertical flex={"1"} justify={"space-between"} className="h-[300px]">
         <Row justify="space-between" align="middle">
           <h1 className="text-5xl tracking-tight text-black">{expert.name}</h1>
-          <Link to={`/consultation/${expert.id}`}>
-            <button
-              style={{
-                width: "180px",
-                height: "70px",
-                fontSize: "26px",
-                color: "white",
-                backgroundColor: "#FFA39E",
-                borderRadius: "16px",
-                border: "none",
-              }}
-            >
-              Chat Now!
-            </button>
-          </Link>
+          <button
+            style={{
+              width: "180px",
+              height: "70px",
+              fontSize: "26px",
+              color: "white",
+              backgroundColor: "#FFA39E",
+              borderRadius: "16px",
+              border: "none",
+            }}
+            onClick={showModal}
+          >
+            Chat Now!
+          </button>
+          <Modal
+            title="Consultation Confirmation"
+            open={isModalOpen}
+            onOk={handleOk}
+            onCancel={handleCancel}
+          >
+            <p>{`You are going to consult ${expert.name},it will cost you $${expert.price},are you sure?`}</p>
+          </Modal>
         </Row>
         <p className="my-4 text-2xl leading-8 text-black whitespace-normal min-h-40">
           {expert.aboutMe}

@@ -12,8 +12,8 @@ const CommentListForExpertProfilePage = ({ comments }) => {
   const handleLike = (res) => {
     const comment = res.comment;
     const cid = comment.id;
-    try {
-      likeComment(cid).then((res) => {
+    likeComment(cid)
+      .then((res) => {
         if (cids.includes(cid)) {
           setCids(cids.filter((c) => c !== cid));
           comment.likes.pop();
@@ -21,10 +21,10 @@ const CommentListForExpertProfilePage = ({ comments }) => {
           setCids([...cids, cid]);
           comment.likes.push({});
         }
+      })
+      .catch((e) => {
+        alert(e);
       });
-    } catch (e) {
-      alert(e);
-    }
   };
   return (
     <section

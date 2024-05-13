@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Button, Select, Space, Input, Result, Form } from "antd";
-import { BasicLayout } from "../layouts";
+import { PrivateLayout, PublicLayout } from "../layouts";
 import { applyExpert } from "../services/applyService";
 import { getSpecialities } from "../services/specialityService";
 import ImageUploader from "../components/image_upload";
@@ -133,7 +133,7 @@ const BecomeExpertPage = () => {
   };
 
   return (
-    <BasicLayout>
+    <PublicLayout>
       {!submitted && (
         <div className="items-start px-14 pt-9 rounded-xl max-md:px-5">
           <h1 className="self-stretch text-5xl font-semibold tracking-tighter text-center text-blue-400 max-md:max-w-full max-md:text-4xl">
@@ -298,7 +298,7 @@ const BecomeExpertPage = () => {
           ]}
         />
       )}
-    </BasicLayout>
+    </PublicLayout>
   );
 };
 

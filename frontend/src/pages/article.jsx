@@ -1,5 +1,5 @@
 import { Divider, Flex } from "antd";
-import { BasicLayout } from "../layouts";
+import { PrivateLayout, PublicLayout } from "../layouts";
 import ArticleHeader from "../components/article_header";
 import { getArticleById } from "../services/articleService";
 import { useParams } from "react-router-dom";
@@ -24,7 +24,7 @@ const ArticlePage = () => {
     });
   }, [id]);
   return (
-    <BasicLayout>
+    <PublicLayout>
       <Flex vertical align="center">
         <ArticleHeader article={article} />
         <ArticleDisplay article={article} />
@@ -33,7 +33,7 @@ const ArticlePage = () => {
         <CommentBox id={id} type={"article"} setComments={setComments} />
         <RecommendedArticles />
       </Flex>
-    </BasicLayout>
+    </PublicLayout>
   );
 };
 

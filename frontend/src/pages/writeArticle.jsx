@@ -1,11 +1,11 @@
 import React from "react";
 import ArticleEditor from "../components/article_editor";
-import { BasicLayout } from "../layouts";
+import { PrivateLayout } from "../layouts";
 
 export default function WriteArticlePage() {
   return (
-    <BasicLayout>
+    <PrivateLayout>
       <ArticleEditor />
-    </BasicLayout>
+    </PrivateLayout>
   );
 }

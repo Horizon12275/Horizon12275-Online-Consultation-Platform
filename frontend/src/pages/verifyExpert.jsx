@@ -6,6 +6,7 @@ import {
   getApplications,
 } from "../services/applyService";
 import { getSpecialities } from "../services/specialityService";
+import { PrivateLayout } from "../layouts";
 
 const { Column } = Table;
 
@@ -63,7 +64,7 @@ const VerifyExpertPage = () => {
   }, []);
 
   return (
-    <div>
+    <PrivateLayout>
       <Table
         dataSource={applications.map((item) => ({
           ...item,
@@ -167,7 +168,7 @@ const VerifyExpertPage = () => {
           Disapprove Selected
         </Button>
       </Row>
-    </div>
+    </PrivateLayout>
   );
 };
 

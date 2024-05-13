@@ -56,48 +56,50 @@ const FeedEditor = ({ setTweets }) => {
       });
   };
   return (
-    <Flex vertical className=" h-[300] m-auto">
-      <Row>
-        <Col>
-          <img
-            loading="lazy"
-            src={client?.avatar}
-            alt="Profile picture"
-            className="shrink-0 aspect-square w-[49px] m-3 rounded-full "
-          />
-        </Col>
-        <Col>
-          <Input.TextArea
-            value={value}
-            onChange={(e) => setValue(e.target.value)}
-            placeholder="What's on your mind?"
-            rows={6}
-            className=" m-3 w-[800px] h-[200px] bg-transparent border-none text-xl font-bold leading-10 text-slate-500 resize-none focus:ring-0 focus:outline-none focus:border-none focus:border-transparent focus:ring-transparent focus:bg-transparent focus:shadow-none hover:bg-transparent"
-          />
-        </Col>
-      </Row>
-      <Row justify={"space-between"}>
-        <nav className="flex gap-4 justify-between px-5 my-auto">
-          {socialIcons.map((icon, index) => (
-            <div
-              key={index}
-              children={icon.children}
-              onClick={icon.handleClick}
-              className="shrink-0 w-6 aspect-square"
+    client && (
+      <Flex vertical className=" h-[300] m-auto">
+        <Row>
+          <Col>
+            <img
+              loading="lazy"
+              src={client?.avatar}
+              alt="Profile picture"
+              className="shrink-0 aspect-square w-[49px] m-3 rounded-full "
             />
-          ))}
-        </nav>
-        <button
-          disabled={value.trim() === ""}
-          onClick={handleClick}
-          className=" justify-center px-5 py-2.5 text-base font-bold leading-5 
+          </Col>
+          <Col>
+            <Input.TextArea
+              value={value}
+              onChange={(e) => setValue(e.target.value)}
+              placeholder="What's on your mind?"
+              rows={6}
+              className=" m-3 w-[800px] h-[200px] bg-transparent border-none text-xl font-bold leading-10 text-slate-500 resize-none focus:ring-0 focus:outline-none focus:border-none focus:border-transparent focus:ring-transparent focus:bg-transparent focus:shadow-none hover:bg-transparent"
+            />
+          </Col>
+        </Row>
+        <Row justify={"space-between"}>
+          <nav className="flex gap-4 justify-between px-5 my-auto">
+            {socialIcons.map((icon, index) => (
+              <div
+                key={index}
+                children={icon.children}
+                onClick={icon.handleClick}
+                className="shrink-0 w-6 aspect-square"
+              />
+            ))}
+          </nav>
+          <button
+            disabled={value.trim() === ""}
+            onClick={handleClick}
+            className=" justify-center px-5 py-2.5 text-base font-bold leading-5 
           text-center text-white whitespace-nowrap bg-sky-500 rounded-full 
           disabled:opacity-50 disabled:cursor-not-allowed border-none"
-        >
-          Publish
-        </button>
-      </Row>
-    </Flex>
+          >
+            Publish
+          </button>
+        </Row>
+      </Flex>
+    )
   );
 };
 

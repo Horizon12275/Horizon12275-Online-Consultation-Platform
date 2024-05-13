@@ -27,7 +27,20 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http.authorizeHttpRequests((requests) ->{requests
-                                .requestMatchers("/api/user/register/**","/image/**","/api/user/sendCode/**","**","/api/application/sendCode/**")
+                                .requestMatchers("/api/article/add").hasRole("expert")//只有专家才能访问
+                                .requestMatchers("/api/client/fund","/api/tweet/add").hasRole("user")//只有客户才能访问
+                                .requestMatchers("/api/user/register/**",
+                                                "/image/**",
+                                                "/api/user/sendCode/**",
+                                                "/api/application/add",
+                                                "/api/article/**",
+                                                "/api/comment/article/list/**",
+                                                "/api/comment/expert/list/**",
+                                                "/api/comment/tweet/list/**",
+                                                "/api/expert/**",
+                                                "/api/speciality/**",
+                                                "/api/tag/**",
+                                                "/api/tweet/**")
                                 .permitAll()
                                 .anyRequest().authenticated();
                         }
