@@ -136,9 +136,9 @@ function LoginPage() {
           }}
         >
           <Checkbox>Remember me</Checkbox>
-          <a href="/forgot-password" style={linkStyle}>
+          {/* <a href="/forgot-password" style={linkStyle}>
             Forget Password?
-          </a>
+          </a> */}
         </div>
         <div className="login-btn" style={inputStyle}>
           <Button type="primary" htmlType="submit" style={{ width: "100%" }}>
