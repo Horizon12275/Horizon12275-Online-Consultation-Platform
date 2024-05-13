@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export function ArticleCard({ article }) {
   return (
-    <article className="flex flex-col justify-between grow self-stretch p-3 w-full bg-white h-[240px]">
+    <Link to={`/article/${article.id}`} className="flex flex-col justify-between grow self-stretch p-3 w-full bg-white h-[240px]">
       <div className="flex flex-col items-start pr-20 max-md:pr-5 max-md:max-w-full">
         <div className="justify-center py-0.5 text-xs text-stone-300">
           {new Date(article.time).toLocaleDateString()}
@@ -22,8 +22,7 @@ export function ArticleCard({ article }) {
           <div className="flex gap-1">
             <div className="flex justify-center items-center ">
               <img
-                loading="lazy"
-                src={article.cover}
+                src={article.author.avatar}
                 alt={"Author profile picture"}
                 className="w-5 aspect-square object-cover fill-black rounded-full"
               />
@@ -56,7 +55,7 @@ export function ArticleCard({ article }) {
           </div>
         </div>
       </div>
-    </article>
+    </Link>
   );
 }
 
