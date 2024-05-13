@@ -2,6 +2,9 @@ import React from "react";
 import { List, Pagination } from "antd";
 import HomeArticleCard from "./homearticle_card";
 import { useSearchParams } from "react-router-dom";
+import { List } from "antd";
+//import HomeArticleCard from "./homearticle_card";
+import { ArticleCard } from "./expert_articles";
 
 export default function HomeArticle({ articles, length }) {
   //这个子组件的回调是修改page和pageSize 其他都不变
@@ -23,7 +26,7 @@ export default function HomeArticle({ articles, length }) {
       }}
       renderItem={(article) => (
         <List.Item>
-          <HomeArticleCard article={article} />
+          <ArticleCard article={article} />
         </List.Item>
       )}
     >

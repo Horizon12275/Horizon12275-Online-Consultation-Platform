@@ -59,13 +59,14 @@ const studyOptions = [
 function InputField({ label, placeholder }) {
     return (
       <div className="flex flex-col max-md:max-w-full">
-        <label className="text-sm font-medium leading-5 text-slate-700 max-md:max-w-full">
+        <label className="text-xl font-medium leading-5 text-slate-700 max-md:max-w-full mb-3" >
           {label}
         </label>
         <Input
           type="text"
           size='large'
           placeholder={placeholder}
+          style={{ width: 300, fontSize: 20 }}
         />
       </div>
     );
@@ -131,31 +132,32 @@ const BecomeExpertPage = () => {
                 <InputField key={index} {...field} />
               ))}
 
-              <label className="mt-11 text-sm font-medium leading-5 text-slate-700 max-md:mt-10 max-md:max-w-full">
-                Phone number
-              </label>
-              <Space.Compact>
-                <Select defaultValue="+86" options={options} size='large'/>
-                <Input placeholder="12345678910" />
-              </Space.Compact>
+                <label className="mt-11 text-xl font-medium leading-5 text-slate-700 max-md:mt-10 mb-3 max-md:max-w-full">
+                  Phone number
+                </label>
+                <Space.Compact>
+                  <Select defaultValue="+86" options={options} size='large'/>
+                  <Input placeholder="12345678910" style={{ width: 300, fontSize: 20 }}/>
+                </Space.Compact>
 
-              <label className="mt-10 text-base leading-6 text-slate-700">
-                Level of study
-              </label>
-              <Select defaultValue="Undergraduate" options={studyOptions} size='large'/>
+                <label className="mt-10 text-xl font-medium leading-6 mb-3 text-slate-700">
+                  Level of study
+                </label>
+                <Select defaultValue="Undergraduate" options={studyOptions} size='large'/>
 
-              <label className="mt-10 text-base leading-6 text-slate-700">
-                Professional qualifications and certificates
-              </label>
-              <FileUpload/>
+                <label className="mt-10 text-xl font-medium leading-6 mb-3 text-slate-700">
+                  Professional qualifications and certificates
+                </label>
+                <FileUpload/>
 
-              <label className="self-stretch mt-10 text-sm font-medium leading-5 text-slate-700 max-md:max-w-full">
-                Self-introduction
-              </label>
-              <TextArea 
-                rows={4} size='large'
-                placeholder="a brief introduction of yourself, including personal strengths, professional strengths, interests and research directions in the professional field, etc."
-              />
+                <label className="self-stretch mt-10 text-xl font-medium mb-3 leading-5 text-slate-700 max-md:max-w-full">
+                  Self-introduction
+                </label>
+                <TextArea 
+                  rows={4} size='large'
+                  style={{ fontSize: 20 }}
+                  placeholder="a brief introduction of yourself, including personal strengths, professional strengths, interests and research directions in the professional field, etc."
+                />
 
               <div className="flex gap-4 self-stretch mt-10 text-base leading-6 text-slate-600 max-md:flex-wrap">
                 <input
