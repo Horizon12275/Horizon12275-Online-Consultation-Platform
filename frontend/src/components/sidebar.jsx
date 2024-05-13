@@ -7,7 +7,7 @@ import {
   SolutionOutlined,
   UserOutlined,
   LoginOutlined,
-  BookOutlined
+  BookOutlined,
 } from "@ant-design/icons";
 import { Flex, Layout, Menu } from "antd";
 import { Link } from "react-router-dom";
@@ -97,7 +97,7 @@ const Sidebar = () => {
               {menuItems.map((item, index) => (
                 <li
                   key={index}
-                  className={` flex gap-5 px-2.5 ${
+                  className={` flex gap-5 px-2.5 hover:bg-gray-200 ${
                     index === 0 ? "py-4 leading-[117%]" : "py-3.5"
                   } ${index === 3 || index === 5 ? "items-start" : ""}`}
                 >

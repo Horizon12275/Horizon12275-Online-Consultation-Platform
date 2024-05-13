@@ -34,7 +34,7 @@ function Textarea({ id, label, className, ...rest }) {
 }
 
 function FillForm() {
-  const {  setClient, setExpert } = useAuth();
+  const { setClient, setExpert } = useAuth();
   const handleSave = async (user) => {
     if (user.aboutMe?.length > 3000) {
       alert(`个人简介过长，当前字数${user.aboutMe.length}，请控制在3000字以内`);
@@ -123,7 +123,7 @@ function FillForm() {
         .actions {
           display: flex;
           gap: 23px;
-          font-size: 19px;
+          font-size: 25px;
           white-space: nowrap;
           justify-content: space-between;
         }
@@ -145,12 +145,14 @@ function FillForm() {
           border: 2px solid rgba(46, 144, 250, 1);
           background-color: #fff;
           color: #000c;
+          font-size: 20px;
         }
 
         .save-button {
           background-color: var(--Blue-500, #2e90fa);
           color: #fff;
           border: none;
+          font-size: 20px;
         }
 
         @media (max-width: 991px) {
