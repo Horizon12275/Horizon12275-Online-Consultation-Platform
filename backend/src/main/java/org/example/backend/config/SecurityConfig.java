@@ -36,6 +36,7 @@ public class SecurityConfig {
                                                 "/api/article/**",
                                                 "/api/comment/article/list/**",
                                                 "/api/comment/expert/list/**",
+                                                "/api/comment/expert/recommend/**",
                                                 "/api/comment/tweet/list/**",
                                                 "/api/expert/**",
                                                 "/api/speciality/**",

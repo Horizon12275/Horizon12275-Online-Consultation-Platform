@@ -9,6 +9,14 @@ export const getCommentsByExpertId = async (eid) => {
   return result;
 };
 
+export const getRecommendedExpertComments = async () => {
+  const url = `${PREFIX}/recommend/5`;
+  let result;
+
+  result = await get(url);
+  return result;
+};
+
 export const addExpertComment = async ({ eid, content }) => {
   const url = `${PREFIX}/add/${eid}`;
   let result;

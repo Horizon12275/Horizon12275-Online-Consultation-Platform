@@ -24,7 +24,9 @@ const SpecialityCard = ({ expert }) => {
           className="gap-0 text-neutral-400"
           style={{ fontSize: "20px", padding: "5px" }}
         >
-          {"Speciality: "}
+          {`Speciality: ${expert.specialities?.map(
+            (speciality) => speciality.content+" "
+          )} `}
         </div>
         <Link
           to={`/expert/${expert.id}/consultation`}
