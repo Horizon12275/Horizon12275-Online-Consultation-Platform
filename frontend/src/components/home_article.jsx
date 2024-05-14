@@ -3,24 +3,24 @@ import { Link } from "react-router-dom";
 import { getRecommendedArticles } from "../services/articleService";
 import { ArticleList } from "./expert_articles";
 
-function ArticleCard({ article }) {
-  return (
-    <Link
-      to={`/article/${article.id}`}
-      className="flex flex-col mr-8 grow shrink-0 gap-0 text-base font-medium text-black rounded basis-0 w-fit"
-    >
-      <img
-        loading="lazy"
-        src={article.cover}
-        alt={article.title}
-        className="gap-0 w-[700px] aspect-[1.79] object-cover"
-      />
-      <div className="justify-center py-3 pr-3 pl-3 bg-white text-xl">
-        {article.title}
-      </div>
-    </Link>
-  );
-}
+// function ArticleCard({ article }) {
+//   return (
+//     <Link
+//       to={`/article/${article.id}`}
+//       className="flex flex-col mr-8 grow shrink-0 gap-0 text-base font-medium text-black rounded basis-0 w-fit"
+//     >
+//       <img
+//         loading="lazy"
+//         src={article.cover}
+//         alt={article.title}
+//         className="gap-0 w-[700px] aspect-[1.79] object-cover"
+//       />
+//       <div className="justify-center py-3 pr-3 pl-3 bg-white text-xl">
+//         {article.title}
+//       </div>
+//     </Link>
+//   );
+// }
 
 function ShowArticle() {
   const [articles, setArticles] = useState([]);

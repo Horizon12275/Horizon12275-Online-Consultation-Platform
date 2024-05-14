@@ -1,3 +1,4 @@
+import { Flex } from "antd";
 import React from "react";
 import { Link } from "react-router-dom";
 
@@ -64,7 +65,7 @@ export function ArticleCard({ article }) {
 
 export const ArticleList = ({ articles }) => {
   return (
-    <Link style={{ display: "flex", justifyContent: "space-between" }}>
+    <Flex justify={"space-between"}>
       <div className="rounded w-[100%]">
         {articles.map((article, index) => (
           <div
@@ -72,9 +73,7 @@ export const ArticleList = ({ articles }) => {
             className="flex max-md:flex-col max-md:gap-0 mt-4 h-[240px]"
           >
             <div className="flex flex-col flex-1 ">
-              <Link to={`/article/${article.id}`}>
-                <ArticleCard article={article} />
-              </Link>
+              <ArticleCard article={article} />
             </div>
             <img
               loading="lazy"
@@ -85,6 +84,6 @@ export const ArticleList = ({ articles }) => {
           </div>
         ))}
       </div>
-    </Link>
+    </Flex>
   );
 };

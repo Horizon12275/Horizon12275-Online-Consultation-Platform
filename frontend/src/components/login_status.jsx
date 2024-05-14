@@ -12,20 +12,8 @@ function Button({ children, className }) {
   );
 }
 
-function GoogleSignInButton() {
-  return (
-    <button className="flex  justify-center px-4 py-2.5 mt-6 text-base leading-6 bg-white rounded-lg border border-blue-400 border-solid shadow-sm text-slate-700">
-      <img
-        src="https://cdn.builder.io/api/v1/image/assets/TEMP/164d58cdc72bb1777d56826375ab206ad40eabe72ff8d01872511dc35952e729?apiKey=9e661a5e0ad74c878ca984d592b3752c&"
-        alt="Google logo"
-        className="shrink-0 w-6 aspect-square mr-1"
-      />
-      <span>Sign in with Google</span>
-    </button>
-  );
-}
 const UserOrLogin = () => {
-  const { user, setUser, setClient, setExpert } = useAuth();
+  const { user, setUser, client, expert, setClient, setExpert } = useAuth();
 
   const logoutAndClearUser = () => {
     setUser(null);
@@ -42,18 +30,23 @@ const UserOrLogin = () => {
   };
   return (
     <div className="flex flex-col text-sm font-semibold leading-5 w-[200px] self-center my-3">
-      <article
-        className="flex gap-0 mt-3 items-center"
-        style={{ width: "100%" }}
-      >
-        <div className="flex flex-col justify-center items-start self-start pr-4">
-          <img
-            className="rounded-full"
-            style={{ width: "40px", aspectRatio: "1/1" }}
-          ></img>
-        </div>
-        <div className="flex flex-col">name</div>
-      </article>
+      {user && (
+        <article
+          className="flex gap-0 mt-3 items-center"
+          style={{ width: "100%" }}
+        >
+          <div className="flex flex-col justify-center items-start self-start pr-4">
+            <img
+              className="rounded-full"
+              style={{ width: "40px", aspectRatio: "1/1" }}
+              src={client?.avatar || expert?.avatar}
+            ></img>
+          </div>
+          <div className="flex flex-col">
+            {client?.username || expert?.name}
+          </div>
+        </article>
+      )}
       <Link to={"/"}></Link>
       {user ? (
         <div onClick={logoutAndClearUser}>
