@@ -102,10 +102,10 @@ function LoginPage() {
           rules={[{ required: true, message: "请输入您的用户名!" }]}
         >
           <div>
-            <label style={labelStyle}>Username</label>
+            <label style={labelStyle}>Email</label>
             <Input
-              prefix={<UserOutlined />}
-              placeholder="Username"
+              prefix={<MailOutlined />}
+              placeholder="Email"
               allowClear
             />
           </div>
