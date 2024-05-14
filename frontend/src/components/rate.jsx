@@ -9,7 +9,7 @@ const RateButton = () => {
       gap="middle"
       vertical
       align="center"
-      style={{ position:'absolute',left:'420px',top:'330px',width:'180px'}}
+      style={{ position:'absolute',left:'370px',top:'350px',width:'180px'}}
     >
       <header className="text-2xl text-center text-black max-w-[84px] m-auto ">
         Rating:

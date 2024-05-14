@@ -1,12 +1,13 @@
 import React, { useState } from "react";
-import { BasicLayout } from "../layouts";
+import { PrivateLayout, PublicLayout } from "../layouts";
 import TagBar from "../components/tagbar";
 import SearchBar from "../components/searchbox";
-import { Flex, Row } from "antd";
+import { Col, Flex, Row } from "antd";
 import HomeArticle from "../components/homearticle";
 import { useSearchParams } from "react-router-dom";
-import { searchArticles } from "../services/articleService";
+import { categoryArticles, searchArticles } from "../services/articleService";
 import { useEffect } from "react";
+import { ArticleList } from "../components/expert_articles";
 
 const ArticleBrowsePage = () => {
   const [articles, setArticles] = useState([]);
@@ -17,28 +18,52 @@ const ArticleBrowsePage = () => {
   const pageSize = searchParams.get("pageSize") || 12; //默认为12 对应block布局
   const tag = searchParams.get("tag") || "";
   useEffect(() => {
-    if (keyword) {
+    if (keyword)
       searchArticles({
         keyword: keyword,
+        page: page,
+        pageSize: pageSize,
       }).then((res) => {
-        setArticles(res.books);
-        //setLength(res.total);
+        setArticles(res.articles);
+        setLength(res.total);
       });
-    }
+    else if (tag)
+      categoryArticles({
+        keyword: "",
+        page: page,
+        pageSize: pageSize,
+        tag: tag,
+      }).then((res) => {
+        setArticles(res.articles);
+        setLength(res.total);
+      });
+    else
+      searchArticles({
+        keyword: "",
+        page: page,
+        pageSize: pageSize,
+      }).then((res) => {
+        setArticles(res.articles);
+        setLength(res.total);
+      });
   }, [keyword, page, pageSize, tag]);
   return (
-    <BasicLayout>
+    <PublicLayout>
       <Flex vertical gap="middle" className="mx-auto w-[1300px]">
         <h1 className="text-5xl tracking-tight text-black self-start mt-8">
           Find Articles!
         </h1>
         <TagBar />
         <Row justify={"space-between"}>
-          <SearchBar />
+          <Col></Col>
+          <Col className="w-1/2">
+            <SearchBar />
+          </Col>
+          <Col></Col>
         </Row>
-        <HomeArticle articles={articles} />
+        <ArticleList articles={articles} />
       </Flex>
-    </BasicLayout>
+    </PublicLayout>
   );
 };
 

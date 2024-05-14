@@ -32,31 +32,27 @@ const ArticleHeader = ({ article }) => {
   return (
     <div className="flex flex-col w-[100%]">
       <header className="flex flex-col justify-center w-full bg-white max-md:max-w-full relative">
-        <div className="flex overflow-hidden relative flex-col items-start px-3 pt-20 w-full min-h-[193px] max-md:pr-5 max-md:max-w-full ">
-          <img
-            loading="lazy"
-            src={profileData.profileImage}
-            alt={profileData.name}
-            className="object-cover absolute inset-0"
-          />
-        </div>
-      </header>
-      <main className="flex justify-between pt-20 ml-3  font-bold w-[610px] bg-transparent relative">
         <img
           loading="lazy"
-          src={profileData.avatarImage}
-          alt={profileData.name}
+          src={article.cover}
+          className="object-cover inset-0 flex overflow-hidden relative flex-col items-start  w-full h-[300px] max-md:pr-5 max-md:max-w-full "
+        />
+      </header>
+      <main className="flex justify-between pt-20 ml-3  font-bold w-[250px] bg-transparent relative">
+        <img
+          loading="lazy"
+          src={article.author?.avatar}
           className="absolute -top-[75px] w-[150px] h-[150px] object-cover z-10 rounded-full shadow-xl"
         />
         <div className="flex flex-col my-auto">
           <h1 className="text-xl tracking-tight text-neutral-900">
-            {profileData.name}
+            {article.author?.name}
           </h1>
           <div className="mt-2.5 text-base tracking-tight text-slate-500">
-            {profileData.username}
+            {article.author?.specialities.map((speciality) => speciality.content + " ")}
           </div>
         </div>
-        <div className="flex flex-col self-start text-base">
+        {/* <div className="flex flex-col self-start text-base">
           <div className="tracking-tight text-neutral-900">
             {profileData.occupation}
           </div>
@@ -64,24 +60,24 @@ const ArticleHeader = ({ article }) => {
             <div className="text-neutral-900">{profileData.followers}</div>
             <div className="tracking-tight text-slate-500">Followers</div>
           </div>
-        </div>
+        </div> */}
         <div className="flex flex-col text-base">
           <div className="flex gap-2.5 text-slate-500">
             <IconText
               src={profileData.locationIcon}
               alt="Location icon"
-              text={profileData.location}
+              text={article.author?.region}
             />
-            <IconText
+            {/* <IconText
               src={profileData.calendarIcon}
               alt="Calendar icon"
               text={profileData.joinedDate}
-            />
+            /> */}
           </div>
-          <div className="flex gap-1 mt-3 whitespace-nowrap">
+          {/* <div className="flex gap-1 mt-3 whitespace-nowrap">
             <div className="text-neutral-900">{profileData.following}</div>
             <div className="tracking-tight text-slate-500">Following</div>
-          </div>
+          </div> */}
         </div>
       </main>
     </div>

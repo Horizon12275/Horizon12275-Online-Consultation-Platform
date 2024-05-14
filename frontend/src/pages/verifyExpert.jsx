@@ -1,56 +1,81 @@
-import React, { useState } from "react";
-import { Table, Button, Modal } from "antd";
+import React, { useEffect, useState } from "react";
+import { Table, Button, Modal, Row, Image } from "antd";
+import {
+  approveApplication,
+  deleteApplication,
+  getApplications,
+} from "../services/applyService";
+import { getSpecialities } from "../services/specialityService";
+import { PrivateLayout } from "../layouts";
 
 const { Column } = Table;
 
-const data = [
-  {
-    key: "1",
-    firstName: "John",
-    lastName: "Doe",
-    email: "john.doe@example.com",
-    fieldOfExpertise: "Engineering",
-    educationLevel: "Bachelor",
-    professionalQualifications: "Professional Engineer",
-    selfIntroduction: "I am a dedicated engineer with 10 years of experience.",
-  },
-  {
-    key: "2",
-    firstName: "John",
-    lastName: "Doe",
-    email: "john.doe@example.com",
-    fieldOfExpertise: "Engineering",
-    educationLevel: "Bachelor",
-    professionalQualifications: "Professional Engineer",
-    selfIntroduction: "I am a dedicated engineer with 10 years of experience.",
-  },
-  {
-    key: "3",
-    firstName: "John",
-    lastName: "Doe",
-    email: "john.doe@example.com",
-    fieldOfExpertise: "Engineering",
-    educationLevel: "Bachelor",
-    professionalQualifications: "Professional Engineer",
-    selfIntroduction: "I am a dedicated engineer with 10 years of experience.",
-  },
-  // Add more data as needed
-];
-
 const VerifyExpertPage = () => {
-  const [modalVisible, setModalVisible] = useState(false);
-  const [selectedExpert, setSelectedExpert] = useState(null);
-
-  const handleAction = (expert, action) => {
-    // Perform action here, e.g., approve or disapprove expert
-    console.log(`Action ${action} performed for expert: `, expert);
-    // Close modal after action
-    setModalVisible(false);
+  const [selected, setSelected] = useState([]);
+  const [applications, setApplications] = useState([]);
+  const [specialities, setSpecialities] = useState([]);
+  const handleDeleteItem = async (id) => {
+    await deleteApplication(id)
+      .then((res) => {
+        setApplications(applications.filter((item) => item.id !== id));
+        setSelected(selected.filter((item) => item !== id));
+        alert("Deleted Successfully");
+      })
+      .catch((e) => alert(e));
   };
+  const handleDeleteItems = async () => {
+    selected.forEach(async (id) => {
+      await deleteApplication(id)
+        .then((res) => {
+          setApplications(applications.filter((item) => item.id !== id));
+          setSelected(selected.filter((item) => item !== id));
+        })
+        .catch((e) => alert(e));
+    });
+    alert("Deleted Successfully");
+  };
+  const handleApproveItems = async () => {
+    selected.forEach(async (id) => {
+      await approveApplication(id)
+        .then((res) => {
+          setApplications(applications.filter((item) => item.id !== id));
+          setSelected(selected.filter((item) => item !== id));
+        })
+        .catch((e) => alert(e));
+    });
+    alert("Approved Successfully");
+  };
+  const handleApproveItem = async (id) => {
+    await approveApplication(id)
+      .then((res) => {
+        setApplications(applications.filter((item) => item.id !== id));
+        setSelected(selected.filter((item) => item !== id));
+        alert("Approved Successfully");
+      })
+      .catch((e) => alert(e));
+  };
+  useEffect(() => {
+    getApplications().then((res) => {
+      setApplications(res);
+    });
+    getSpecialities().then((res) => {
+      setSpecialities(res);
+    });
+  }, []);
 
   return (
-    <div>
-      <Table dataSource={data}>
+    <PrivateLayout>
+      <Table
+        dataSource={applications.map((item) => ({
+          ...item,
+          key: item.id,
+        }))}
+        rowSelection={{
+          onChange: (_, selected) => {
+            setSelected(selected.map((item) => item.id));
+          },
+        }}
+      >
         <Column
           title="Expert First Name"
           dataIndex="firstName"
@@ -60,57 +85,90 @@ const VerifyExpertPage = () => {
         <Column title="Email" dataIndex="email" key="email" />
         <Column
           title="Field of Expertise"
-          dataIndex="fieldOfExpertise"
+          dataIndex="field"
           key="fieldOfExpertise"
+          render={(field) => {
+            const items = JSON.parse(field);
+            console.log(items);
+            return (
+              <Row>
+                {items.map((id) => (
+                  <p key={id} style={{ margin: 5 }}>
+                    {`${specialities.find((s) => s.id === id)?.content}`}
+                  </p>
+                ))}
+              </Row>
+            );
+          }}
         />
         <Column
           title="Education Level"
-          dataIndex="educationLevel"
+          dataIndex="education"
           key="educationLevel"
         />
         <Column
           title="Professional Qualifications"
-          dataIndex="professionalQualifications"
+          dataIndex="certificate"
           key="professionalQualifications"
+          render={(image) => {
+            return (
+              <Image
+                src={image}
+                height={100}
+                alt="Professional Qualifications"
+                className=" object-cover"
+              />
+            );
+          }}
         />
         <Column
           title="Self-Introduction"
-          dataIndex="selfIntroduction"
+          dataIndex="introduction"
           key="selfIntroduction"
         />
         <Column
           title="Action"
           key="action"
-          render={(text, record) => (
-            <Button
-              onClick={() => {
-                setModalVisible(true);
-                setSelectedExpert(record);
-              }}
-            >
-              Perform Action
-            </Button>
+          render={(item) => (
+            console.log(item),
+            console.log(selected),
+            (
+              <Row>
+                <Button
+                  disabled={!selected.includes(item.id)}
+                  onClick={() => {
+                    handleDeleteItem(item.id);
+                  }}
+                >
+                  Disapprove
+                </Button>
+                <Button
+                  disabled={!selected.includes(item.id)}
+                  type="primary"
+                  onClick={() => {
+                    handleApproveItem(item.id);
+                  }}
+                >
+                  Approve
+                </Button>
+              </Row>
+            )
           )}
         />
       </Table>
-      <Modal
-        title={`Action for ${
-          selectedExpert
-            ? selectedExpert.firstName + " " + selectedExpert.lastName
-            : ""
-        }`}
-        visible={modalVisible}
-        onCancel={() => setModalVisible(false)}
-        footer={null}
-      >
-        <Button onClick={() => handleAction(selectedExpert, "approve")}>
-          Approve
+      <Row justify={"end"}>
+        <Button
+          disabled={!selected.length}
+          type="primary"
+          onClick={handleApproveItems}
+        >
+          Approve Selected
         </Button>
-        <Button onClick={() => handleAction(selectedExpert, "disapprove")}>
-          Disapprove
+        <Button disabled={!selected.length} onClick={handleDeleteItems}>
+          Disapprove Selected
         </Button>
-      </Modal>
-    </div>
+      </Row>
+    </PrivateLayout>
   );
 };
 

@@ -5,7 +5,6 @@ import HomePage from "./pages/home";
 import ErrorPage from "./pages/errorpage";
 import ExpertProfilePage from "./pages/expertprofile";
 import ConsultPage from "./pages/consultation";
-import HistoryPage from "./pages/history";
 import UserPage from "./pages/user";
 import "./css/global.css";
 import "./index.css";
@@ -22,6 +21,7 @@ import BecomeExpertPage from "./pages/become_expert.jsx";
 import WriteArticlePage from "./pages/writeArticle.jsx";
 import VerifyExpertPage from "./pages/verifyExpert.jsx";
 import { AuthProvider } from "./context/authContext.jsx";
+import Expert_profile from "./pages/expert_profile.jsx";
 
 const router = createBrowserRouter([
   {
@@ -55,7 +55,7 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
   {
-    path: "/consultation/:receiverId",
+    path: "/consultation",
     element: <ConsultPage />,
     errorElement: <ErrorPage />,
   },
@@ -72,11 +72,6 @@ const router = createBrowserRouter([
   {
     path: "/article/:id",
     element: <ArticlePage />,
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: "/history",
-    element: <HistoryPage />,
     errorElement: <ErrorPage />,
   },
   {
@@ -112,6 +107,11 @@ const router = createBrowserRouter([
   {
     path: "/verify-expert",
     element: <VerifyExpertPage />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/expert_profile",
+    element: <Expert_profile />,
     errorElement: <ErrorPage />,
   },
   {

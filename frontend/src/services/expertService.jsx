@@ -1,8 +1,20 @@
 import { BASEURL, get } from "./requestService";
 const PREFIX = `${BASEURL}/api/expert`;
 
-export const searchExperts = async ({ keyword }) => {
-  const url = `${PREFIX}/search?keyword=${keyword}&page=${1}&pageSize=${1}`;
+export const searchExperts = async ({ keyword, page, pageSize }) => {
+  const url = `${PREFIX}/search?keyword=${keyword}&page=${page}&pageSize=${pageSize}`;
+  let result;
+  try {
+    result = await get(url);
+    return result;
+  } catch (e) {
+    console.log(e);
+    alert(e);
+  }
+};
+
+export const categoryExperts = async ({ tag, page, pageSize }) => {
+  const url = `${PREFIX}/category?tag=${tag}&page=${page}&pageSize=${pageSize}`;
   let result;
   try {
     result = await get(url);

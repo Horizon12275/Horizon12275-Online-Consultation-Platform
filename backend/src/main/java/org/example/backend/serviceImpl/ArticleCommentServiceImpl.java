@@ -2,6 +2,7 @@ package org.example.backend.serviceImpl;
 
 import org.example.backend.entity.*;
 import org.example.backend.repository.ArticleCommentRepository;
+import org.example.backend.repository.CommentRepository;
 import org.example.backend.repository.UserRepository;
 import org.example.backend.service.ArticleCommentService;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -14,9 +15,11 @@ import java.util.List;
 public class ArticleCommentServiceImpl implements ArticleCommentService {
     private final ArticleCommentRepository repository;
     private final UserRepository userRepository;
-    public ArticleCommentServiceImpl(ArticleCommentRepository repository, UserRepository userRepository) {
+    private final CommentRepository commentRepository;
+    public ArticleCommentServiceImpl(ArticleCommentRepository repository, UserRepository userRepository, CommentRepository commentRepository) {
         this.repository = repository;
         this.userRepository = userRepository;
+        this.commentRepository = commentRepository;
     }
     public int getUid() {//从数据库里查询id
         String username = ((UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
@@ -28,14 +31,16 @@ public class ArticleCommentServiceImpl implements ArticleCommentService {
     }
     public Result<ArticleComment> addArticleComment(int aid, String content) {
         int uid = getUid();
+        Comment comment = new Comment();
+        commentRepository.save(comment);
         ArticleComment articleComment = new ArticleComment();
         articleComment.setArticle(new Article());
         articleComment.getArticle().setId(aid);
-        User user = userRepository.findById(uid).orElse(null);
-        articleComment.setUser(user);
+        articleComment.setUser(new User());
+        articleComment.getUser().setId(uid);
+        articleComment.setComment(comment);
         articleComment.setContent(content);
         articleComment.setTime(LocalDateTime.now());//获取当前时间
-        articleComment.setReplies(List.of());//设置回复为空 防止空指针异常
         repository.save(articleComment);
         return Result.success(articleComment);
     }
@@ -49,21 +54,21 @@ public class ArticleCommentServiceImpl implements ArticleCommentService {
         }
         return Result.error(404,"评论不存在");
     }
-    public Result<ArticleReply> addArticleReply(int cid, String content) {
+    public Result<Reply> addArticleReply(int cid, String content) {
         int uid = getUid();
         ArticleComment articleComment = repository.findById(cid).orElse(null);
         if (articleComment == null) {
             return Result.error(404, "评论不存在");
         }
-        ArticleReply articleReply = new ArticleReply();
-        articleReply.setArticleComment(articleComment);
+        Reply reply = new Reply();
+        //reply.setcomment(articleComment);
         User user = userRepository.findById(uid).orElse(null);
         if (user == null) {
             return Result.error(404, "用户不存在");
         }
-        articleReply.setUser(user);
-        articleReply.setContent(content);
-        articleReply.setTime(LocalDateTime.now());
-        return Result.success(articleReply);
+        reply.setUser(user);
+        reply.setContent(content);
+        reply.setTime(LocalDateTime.now());
+        return Result.success(reply);
     }
 }

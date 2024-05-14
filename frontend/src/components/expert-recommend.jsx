@@ -1,18 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { getAllExperts } from "../services/expertService";
+import {
+  getAllExperts,
+  getRecommendedExperts,
+} from "../services/expertService";
 import ExpertShowCard from "./expert_showcard";
 
 const ExpertRecommend = ({ tag }) => {
   const [experts, setExperts] = useState([]);
   useEffect(() => {
-    getAllExperts().then((res) => {
+    getRecommendedExperts().then((res) => {
       setExperts(res);
     });
   }, []);
 
   return (
     <div>
-      <h1 className="text-xl font-extrabold leading-7 text-black max-w-[109px]">
+      <h1 className="text-xl font-extrabold leading-7 text-black mb-5">
         Recommended Experts
       </h1>
       <div className="flex gap-4">

@@ -1,148 +1,234 @@
 import * as React from "react";
 
-function StatItem({ value, label }) {
-    return (
-        <div className="stat-item">
-            <div className="stat-value">{value}</div>
-            <div className="stat-label">{label}</div>
-        </div>
-    );
-}
-
 function Profile() {
-    const stats = [
-        { value: 21, label: "Posts" },
-        { value: 238, label: "Comments" },
-        { value: 101, label: "Ratings" },
-    ];
-
     return (
         <>
+            <div className="div">
+                <div className="div-2">
+                    <img
+                        loading="lazy"
+                        srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/ef88502c207249b6976ec49ef9e9731d30629156ddf8be63182f0534c2c7b6b4?apiKey=b565e599026f4ea2ba591e53566a67d8&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/ef88502c207249b6976ec49ef9e9731d30629156ddf8be63182f0534c2c7b6b4?apiKey=b565e599026f4ea2ba591e53566a67d8&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/ef88502c207249b6976ec49ef9e9731d30629156ddf8be63182f0534c2c7b6b4?apiKey=b565e599026f4ea2ba591e53566a67d8&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/ef88502c207249b6976ec49ef9e9731d30629156ddf8be63182f0534c2c7b6b4?apiKey=b565e599026f4ea2ba591e53566a67d8&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/ef88502c207249b6976ec49ef9e9731d30629156ddf8be63182f0534c2c7b6b4?apiKey=b565e599026f4ea2ba591e53566a67d8&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/ef88502c207249b6976ec49ef9e9731d30629156ddf8be63182f0534c2c7b6b4?apiKey=b565e599026f4ea2ba591e53566a67d8&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/ef88502c207249b6976ec49ef9e9731d30629156ddf8be63182f0534c2c7b6b4?apiKey=b565e599026f4ea2ba591e53566a67d8&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/ef88502c207249b6976ec49ef9e9731d30629156ddf8be63182f0534c2c7b6b4?apiKey=b565e599026f4ea2ba591e53566a67d8&"
+                        className="img"
+                    />
+                    <img
+                        loading="lazy"
+                        srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/ef88502c207249b6976ec49ef9e9731d30629156ddf8be63182f0534c2c7b6b4?apiKey=b565e599026f4ea2ba591e53566a67d8&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/ef88502c207249b6976ec49ef9e9731d30629156ddf8be63182f0534c2c7b6b4?apiKey=b565e599026f4ea2ba591e53566a67d8&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/ef88502c207249b6976ec49ef9e9731d30629156ddf8be63182f0534c2c7b6b4?apiKey=b565e599026f4ea2ba591e53566a67d8&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/ef88502c207249b6976ec49ef9e9731d30629156ddf8be63182f0534c2c7b6b4?apiKey=b565e599026f4ea2ba591e53566a67d8&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/ef88502c207249b6976ec49ef9e9731d30629156ddf8be63182f0534c2c7b6b4?apiKey=b565e599026f4ea2ba591e53566a67d8&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/ef88502c207249b6976ec49ef9e9731d30629156ddf8be63182f0534c2c7b6b4?apiKey=b565e599026f4ea2ba591e53566a67d8&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/ef88502c207249b6976ec49ef9e9731d30629156ddf8be63182f0534c2c7b6b4?apiKey=b565e599026f4ea2ba591e53566a67d8&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/ef88502c207249b6976ec49ef9e9731d30629156ddf8be63182f0534c2c7b6b4?apiKey=b565e599026f4ea2ba591e53566a67d8&"
+                        className="img-2"
+                    />
+                </div>
+                <div className="div-3">Khusan Akhmedov</div>
+                <div className="div-4">Paris, France</div>
+                <div className="div-5">
+                    <div className="div-6">
+                        <div className="div-7">21</div>
+                        <div className="div-8">Posts</div>
+                    </div>
+                    <div className="div-9" />
+                    <div className="div-10">
+                        <div className="div-11">238</div>
+                        <div className="div-12">Comments</div>
+                    </div>
+                    <div className="div-13" />
+                    <div className="div-14">
+                        <div className="div-15">101</div>
+                        <div className="div-16">Ratings</div>
+                    </div>
+                </div>
+                <div className="div-17">
+                    <div className="div-18">Upload new avatar</div>
+                    <div className="div-19">Post A New Article</div>
+                </div>
+            </div>
             <style jsx>{`
-        .profile {
+        .div {
           display: flex;
+          max-width: 749px;
           flex-direction: column;
           align-items: center;
-          gap: 20px;
           padding: 0 20px;
-          max-width: 513px;
             position: absolute;
-          top: 5px;
-            left:350px
+            top:0px;
+            left:250px;
         }
-
-        @media (max-width: 513px) {
-          .profile {
-            flex-wrap: wrap;
-          }
-        }
-
-        .avatar-wrapper {
-          position: relative;
-          width: 33%;
-          aspect-ratio: 1.02;
+        .div-2 {
+          disply: flex;
+          flex-direction: column;
           overflow: hidden;
-          border: 5px solid rgba(21, 112, 239, 1);
+          border-color: rgba(21, 112, 239, 1);
+          border-style: solid;
+          border-width: 5px;
           border-radius: 50%;
+          position: relative;
+          display: flex;
+          aspect-ratio: 1.02;
+          width: 160px;
+          max-width: 100%;
+          justify-content: center;
         }
-
-        .avatar {
-          width: 100%;
+        .img {
+          position: absolute;
+          inset: 0;
           height: 100%;
+          width: 100%;
           object-fit: cover;
           object-position: center;
         }
-
-        .name {
-          font: 400 30px Carter One, -apple-system, Roboto, Helvetica, sans-serif;
-          color: #000;
-        }
-
-        .location {
-          font: 700 20px Caveat, sans-serif;
-          color: #6c6c6c;
-        }
-
-        .stats {
-          display: flex;
-          justify-content: space-between;
-          //gap: 15px;
+        .img-2 {
+          aspect-ratio: 1.02;
+          object-fit: auto;
+          object-position: center;
           width: 100%;
-          //margin-top: 5px;
+          border-color: rgba(21, 112, 239, 1);
+          border-style: solid;
+          border-width: 5px;
+          border-radius: 50%;
         }
-
+        .div-3 {
+          color: #000;
+          margin: 35px -5px 0 0;
+          font: 400 40px Carter One, -apple-system, Roboto, Helvetica,
+            sans-serif;
+        }
+        .div-4 {
+          color: #6c6c6c;
+          margin-top: 10px;
+          font: 700 35px Caveat, sans-serif;
+        }
+        .div-5 {
+          display: flex;
+          margin-top: 30px;
+          align-items: flex-start;
+          gap: 20px;
+          white-space: nowrap;
+          justify-content: space-between;
+        }
         @media (max-width: 991px) {
-          .stats {
+          .div-5 {
             flex-wrap: wrap;
-            //margin-top: 40px;
+            margin-top: 40px;
+            white-space: initial;
           }
         }
-
-        .stat-item {
+        .div-6 {
           display: flex;
           flex-direction: column;
-          gap: 0px;
+          margin: auto 0;
         }
-
-        .stat-value {
-          font: 400 32px Cardo, sans-serif;
-          color: #000;
-        }
-
-        .stat-label {
-          font: 700 22px Cardo, sans-serif;
-          color: #6c6c6c;
-          margin-top: 50px;
-        }
-
         @media (max-width: 991px) {
-          .stat-label {
-            //margin-top: 40px;
+          .div-6 {
+            white-space: initial;
           }
         }
-
-        .divider1 {
-          width: 2px;
-          height: 100px;
+        .div-7 {
+          color: #000;
+          font: 400 37px Cardo, sans-serif;
+        }
+        .div-8 {
+          color: #6c6c6c;
+          margin-top: 22px;
+          font: 700 28px Cardo, sans-serif;
+        }
+        .div-9 {
           background-color: #6c6c6c;
-          margin-top:10px;
+          align-self: start;
+          width: 2px;
+          height: 112px;
         }
-
-        .upload-button {
-          font: 400 24px Carter One, -apple-system, Roboto, Helvetica, sans-serif;
-          color: #fff;
-          background-color: rgba(46, 144, 250, 1);
-          border-radius: 10px;
-          padding: 20px 60px;
-          max-width: 100%;
-            margin-top: 20px;
-          width: 336px;
+        .div-10 {
+          display: flex;
+          flex-direction: column;
+          margin: auto 0;
         }
-
         @media (max-width: 991px) {
-          .upload-button {
+          .div-10 {
+            white-space: initial;
+          }
+        }
+        .div-11 {
+          color: #000;
+          align-self: center;
+          font: 400 37px Cardo, sans-serif;
+        }
+        .div-12 {
+          color: #6c6c6c;
+          margin-top: 21px;
+          font: 700 30px Cardo, sans-serif;
+        }
+        .div-13 {
+          background-color: #6c6c6c;
+          align-self: start;
+          width: 2px;
+          height: 113px;
+        }
+        .div-14 {
+          align-self: end;
+          display: flex;
+          flex-direction: column;
+          margin: auto 0;
+        }
+        @media (max-width: 991px) {
+          .div-14 {
+            white-space: initial;
+          }
+        }
+        .div-15 {
+          color: #000;
+          align-self: center;
+          font: 400 37px Cardo, sans-serif;
+        }
+        .div-16 {
+          color: #6c6c6c;
+          margin-top: 19px;
+          font: 700 30px Cardo, sans-serif;
+        }
+        .div-17 {
+          align-self: stretch;
+          display: flex;
+          margin-top: 25px;
+          width: 100%;
+          gap: 20px;
+          font-size: 24px;
+          color: #fff;
+          font-weight: 400;
+        }
+        @media (max-width: 991px) {
+          .div-17 {
+            max-width: 100%;
+            flex-wrap: wrap;
+          }
+        }
+        .div-18 {
+          font-family: Carter One, sans-serif;
+          border-radius: 10px;
+          background-color: rgba(46, 144, 250, 1);
+          justify-content: center;
+          flex-grow: 1;
+          width: fit-content;
+          padding: 16px 52px;
+        }
+        @media (max-width: 991px) {
+          .div-18 {
+            padding: 0 23px 0 20px;
+          }
+        }
+        .div-19 {
+          font-family: Carter One, sans-serif;
+          border-radius: 10px;
+          background-color: rgba(229, 62, 62, 1);
+          align-items: start;
+          justify-content: center;
+          flex-grow: 1;
+          width: fit-content;
+          padding: 18px 52px;
+        }
+        @media (max-width: 991px) {
+          .div-19 {
             padding: 0 20px;
           }
         }
       `}</style>
-
-            <div className="profile">
-                <div className="avatar-wrapper">
-                    <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/ef88502c207249b6976ec49ef9e9731d30629156ddf8be63182f0534c2c7b6b4?apiKey=b565e599026f4ea2ba591e53566a67d8&" alt="Profile avatar" className="avatar" />
-                </div>
-                <h1 className="name">Khusan Akhmedov</h1>
-                <p className="location">Paris, France</p>
-                <div className="stats">
-                    {stats.map((stat, index) => (
-                        <React.Fragment key={stat.label}>
-                            <StatItem {...stat} />
-                            {index < stats.length - 1 && <div className="divider1" />}
-                        </React.Fragment>
-                    ))}
-                </div>
-                <button className="upload-button">Upload new avatar</button>
-            </div>
         </>
     );
 }
 export default Profile
+

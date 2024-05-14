@@ -1,11 +1,11 @@
-import { BasicLayout } from "../layouts";
-import ChatApp from "../components/consult";
+import { PrivateLayout } from "../layouts";
 import VideosDisplay from "../components/videos_display";
 import React, { useEffect, useState } from "react";
 import { useAuth } from "../context/authContext";
 import { getExpertById } from "../services/expertService";
 import { getClientById } from "../services/clientService";
 import { useParams } from "react-router-dom";
+import ChatAppSmall from "../components/consultSmall";
 
 function VideoChatPage() {
   const { receiverId } = useParams();
@@ -24,10 +24,10 @@ function VideoChatPage() {
     }
   }, [receiverId, user]);
   return (
-    <BasicLayout>
+    <PrivateLayout>
       <VideosDisplay />
-      <ChatApp sid={user?.id} receiver={receiver} />
-    </BasicLayout>
+      <ChatAppSmall sid={user?.id} receiver={receiver} />
+    </PrivateLayout>
   );
 }
 export default VideoChatPage;
