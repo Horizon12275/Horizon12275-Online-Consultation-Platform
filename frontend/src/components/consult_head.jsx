@@ -29,7 +29,7 @@ function VideoButton() {
   );
 }
 
-function ConsultHead({ receiver }) {
+function ConsultHead({ receiver,rid }) {
   //这里的receiver是专家或者用户的信息
   return (
     receiver && (
@@ -40,7 +40,7 @@ function ConsultHead({ receiver }) {
             name={receiver.name || receiver.username} //这里的receiver.name是专家的名字，receiver.username是用户的名字
             status={"Online"}
           />
-          <Link to={`/videochat/${receiver.id}`}>
+          <Link to={`/videochat/${rid}`}>
             <VideoButton className="video-button" />
           </Link>
         </div>

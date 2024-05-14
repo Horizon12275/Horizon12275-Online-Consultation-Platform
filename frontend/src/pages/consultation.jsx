@@ -25,7 +25,11 @@ const ConsultPage = () => {
     console.log(receiverId);
     getConsultation().then((consultations) => {
       if (consultations.length === 0) {
-        alert("You have consulted no expert yet.");
+        alert(
+          user?.role === "user"
+            ? "You have no consulted expert yet!"
+            : "No user has consulted you yet!"
+        );
         location.href = "/";
       }
       //目前只能切换咨询时更新列表 应该做到发送消息时更新列表
@@ -33,16 +37,12 @@ const ConsultPage = () => {
         return new Date(b.time) - new Date(a.time);
       });
       setExperts(consultations.map((consultation) => consultation?.expert));
-      if (!receiverId) {
-        receiverId = consultations[0]?.expert?.id;
-        console.log(receiverId);
-      } else {
-       
-      }
+      if (!receiverId)
+        setSearchParams({ receiverId: consultations[0]?.expert?.id });
       if (user?.role === "user") {
         Promise.all([
-          getExpertById(searchParams.get("receiverId")),
-          getCommentsByExpertId(searchParams.get("receiverId")),
+          getExpertById(consultations[0]?.expert?.id),
+          getCommentsByExpertId(consultations[0]?.expert?.id),
         ]).then(([expert, comments]) => {
           setReceiver(expert);
           setComments(comments);

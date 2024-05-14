@@ -155,7 +155,7 @@ function ChatApp({ sid, receiver, receiverId }) {
 
   return (
     <>
-      <ConsultHead receiver={receiver} />
+      <ConsultHead receiver={receiver} rid={receiverId}/>
       <div className="chat-container">
         <div className="chat-header">Today</div>
         <ChatMessages messages={messages} rid={rid} />

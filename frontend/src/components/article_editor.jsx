@@ -43,14 +43,15 @@ const ArticleEditor = () => {
         onFinish={handleSubmit}
         style={{ margin: "2vh", minWidth: "60vw" }}
       >
+        {" "}
+        <h3 style={{ marginBottom: "5px", color: "#60a5fa" }}>
+          Select Tags For Your Article:
+        </h3>
         <Form.Item
           id="tids"
           name="tids"
           rules={[{ required: true, message: "Please input your tags!" }]}
         >
-          <h3 style={{ marginBottom: "5px", color: "#60a5fa" }}>
-            Select Tags For Your Article:
-          </h3>
           <Select
             filterOption={filterOption}
             mode="multiple"
@@ -61,6 +62,9 @@ const ArticleEditor = () => {
             })}
           />
         </Form.Item>
+        <h3 style={{ marginBottom: "5px", color: "#60a5fa" }}>
+          Upload Cover Image:
+        </h3>
         <Form.Item
           id="cover"
           name="cover"
@@ -74,11 +78,8 @@ const ArticleEditor = () => {
               },
             },
           ]}
-          className="flex justify-center"
+          className="flex"
         >
-          <h3 style={{ marginBottom: "5px", color: "#60a5fa" }}>
-            Upload Cover Image:
-          </h3>
           <ImageUploader
             multiple={false}
             children={
@@ -89,15 +90,16 @@ const ArticleEditor = () => {
             selectedImages={cover}
             setSelectedImages={setCover}
           />
-        </Form.Item>
+        </Form.Item>{" "}
+        <h3 style={{ marginBottom: "5px", color: "#60a5fa" }}>Title:</h3>
         <Form.Item
           id="title"
           name="title"
           rules={[{ required: true, message: "Please input your title!" }]}
         >
-          <h3 style={{ marginBottom: "5px", color: "#60a5fa" }}>Title:</h3>
           <Input size="large" placeholder="Title" />
         </Form.Item>
+        <h3 style={{ marginBottom: "5px", color: "#60a5fa" }}>Description:</h3>
         <Form.Item
           id="description"
           name="description"
@@ -105,17 +107,14 @@ const ArticleEditor = () => {
             { required: true, message: "Please input your description!" },
           ]}
         >
-          <h3 style={{ marginBottom: "5px", color: "#60a5fa" }}>
-            Description:
-          </h3>
           <Input.TextArea rows={6} placeholder="Description" />
         </Form.Item>
+        <h3 style={{ marginBottom: "5px", color: "#60a5fa" }}>Content:</h3>
         <Form.Item
           id="content"
           name="content"
           rules={[{ required: true, message: "Please input your content!" }]}
         >
-          <h3 style={{ marginBottom: "5px", color: "#60a5fa" }}>Content:</h3>
           <MdEditor value={value} onChange={setValue} />
         </Form.Item>
         <Button

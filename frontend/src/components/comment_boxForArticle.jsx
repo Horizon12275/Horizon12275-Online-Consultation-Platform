@@ -48,8 +48,6 @@ function CommentBoxForArticle({ id, type, setComments }) {
     if (value.trim() === "") return;
     addArticleComment({ aid: id, content: value })
       .then((res) => {
-        comment.comment.id = res.comment.id;
-        setValue("");
         const comment = {
           content: value,
           time: new Date().toLocaleString(),
@@ -60,6 +58,8 @@ function CommentBoxForArticle({ id, type, setComments }) {
             client: client,
           },
         };
+        comment.comment.id = res.comment.id;
+        setValue("");
         setComments((prev) => [...prev, comment]);
       })
       .catch((e) => alert(e));
