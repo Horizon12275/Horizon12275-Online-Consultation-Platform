@@ -17,7 +17,7 @@ export async function postTweet({ content, file }) {
   let formData = new FormData();
   formData.append("content", content);
   if (file) formData.append("file", file);
-  const url = `http://localhost:8080/api/tweet/add`;
+  const url = `${PREFIX}/add`;
   let result;
 
   result = await postFormData(url, formData);
