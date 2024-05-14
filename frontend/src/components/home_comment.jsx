@@ -1,5 +1,6 @@
 import { Carousel } from "antd";
 import * as React from "react";
+import { getRecommendedExpertComments } from "../services/expertCommentService";
 
 function Avatar({ src, alt, className }) {
   return (
@@ -53,26 +54,12 @@ function Testimonial({ backgroundImageSrc, testimonialText }) {
 
 function HomeComment() {
   const carouselRef = React.createRef();
-  const comments = [
-    {
-      backgroundImageSrc:
-        "https://cdn.builder.io/api/v1/image/assets/TEMP/90362126a0d293ab6e91bb283c43e510c93c4f09f54508c8e250a6134694be5b?apiKey=273a9e43b39c48c2a08ea907e27f337f&",
-      commentText: "Your hook goes here. Be catchy :)",
-      userImageSrc:
-        "https://cdn.builder.io/api/v1/image/assets/TEMP/220ad60f4bb49f180f95e661c36042bf2da0570b02ce2842b15028dc13331de1?apiKey=273a9e43b39c48c2a08ea907e27f337f&",
-      name: "Kévin Moënne-Loccoz",
-      username: "@kevin_mlz",
-    },
-    {
-      backgroundImageSrc:
-        "https://cdn.builder.io/api/v1/image/assets/TEMP/90362126a0d293ab6e91bb283c43e510c93c4f09f54508c8e250a6134694be5b?apiKey=273a9e43b39c48c2a08ea907e27f337f&",
-      commentText: "Your hook goes here. Be catchy :)",
-      userImageSrc:
-        "https://cdn.builder.io/api/v1/image/assets/TEMP/220ad60f4bb49f180f95e661c36042bf2da0570b02ce2842b15028dc13331de1?apiKey=273a9e43b39c48c2a08ea907e27f337f&",
-      name: "Kévin Moënne-Loccoz",
-      username: "@kevin_mlz",
-    },
-  ];
+  const [comments, setComments] = React.useState([]);
+  React.useEffect(() => {
+    getRecommendedExpertComments().then((res) => {
+      setComments(res);
+    });
+  }, []);
 
   return (
     <div className="flex justify-center">
@@ -93,16 +80,18 @@ function HomeComment() {
               className="flex flex-col gap-3 pt-8 pr-3.5 pb-1 pl-10 -mt-2.5 bg-white text-zinc-900 max-md:flex-wrap max-md:p w-[600px]"
               autoplay
             >
-              {comments.map((testimonial, index) => (
+              {comments.map((comment, index) => (
                 <React.Fragment key={index}>
                   <Testimonial
-                    backgroundImageSrc={testimonial.backgroundImageSrc}
-                    testimonialText={testimonial.commentText}
+                    backgroundImageSrc={
+                      "https://cdn.builder.io/api/v1/image/assets/TEMP/90362126a0d293ab6e91bb283c43e510c93c4f09f54508c8e250a6134694be5b?apiKey=273a9e43b39c48c2a08ea907e27f337f&"
+                    }
+                    testimonialText={comment.content}
                   />
                   <UserInfo
-                    imageSrc={testimonial.userImageSrc}
-                    name={testimonial.name}
-                    username={testimonial.username}
+                    imageSrc={comment.user.client?.avatar}
+                    name={comment.user.client?.username}
+                    username={comment.user.client?.username}
                   />
                 </React.Fragment>
               ))}
