@@ -46,40 +46,23 @@ function CommentBoxForArticle({ id, type, setComments }) {
   const [value, setValue] = useState("");
   const handleSubmit = () => {
     if (value.trim() === "") return;
-    const comment = {
-      content: value,
-      time: new Date().toLocaleString(),
-      comment: { id: 0, likes: [], repies: [] },
-      user: {
-        id: user.id,
-        expert: expert,
-        client: client,
-      },
-    };
-    if (type === "article")
-      addArticleComment({ aid: id, content: value })
-        .then((res) => {
-          comment.comment.id = res.comment.id;
-          setValue("");
-          setComments((prev) => [...prev, comment]);
-        })
-        .catch((e) => alert(e));
-    else if (type === "tweet")
-      addTweetComment({ tid: id, content: value })
-        .then((res) => {
-          comment.comment.id = res.comment.id;
-          setValue("");
-          setComments((prev) => [...prev, comment]);
-        })
-        .catch((e) => alert(e));
-    else if (type === "expert")
-      addExpertComment({ eid: id, content: value })
-        .then((res) => {
-          comment.comment.id = res.comment.id;
-          setValue("");
-          setComments((prev) => [...prev, comment]);
-        })
-        .catch((e) => alert(e));
+    addArticleComment({ aid: id, content: value })
+      .then((res) => {
+        comment.comment.id = res.comment.id;
+        setValue("");
+        const comment = {
+          content: value,
+          time: new Date().toLocaleString(),
+          comment: { id: 0, likes: [], repies: [] },
+          user: {
+            id: user?.id,
+            expert: expert,
+            client: client,
+          },
+        };
+        setComments((prev) => [...prev, comment]);
+      })
+      .catch((e) => alert(e));
   };
   return (
     <div
