@@ -42,6 +42,19 @@ const UserOrLogin = () => {
   };
   return (
     <div className="flex flex-col text-sm font-semibold leading-5 w-[200px] self-center my-3">
+      <article
+        className="flex gap-0 mt-3 items-center"
+        style={{ width: "100%" }}
+      >
+        <div className="flex flex-col justify-center items-start self-start pr-4">
+          <img
+            className="rounded-full"
+            style={{ width: "40px", aspectRatio: "1/1" }}
+          ></img>
+        </div>
+        <div className="flex flex-col">name</div>
+      </article>
+      <Link to={"/"}></Link>
       {user ? (
         <div onClick={logoutAndClearUser}>
           <Button className=" mt-7 text-white whitespace-nowrap bg-blue-400 border-sky-500">

@@ -39,10 +39,10 @@ function Profile() {
   return (
     <>
       <div className="div" style={{ marginTop: "30px" }}>
-        <div className="div-2">
+        <div className="div-2 shadow-lg">
           <Image
             src={client?.avatar || expert?.avatar}
-            className="aspect-square object-cover "
+            className="aspect-square object-cover"
           />
         </div>
         <div className="div-3">{client?.username || expert?.name}</div>
@@ -76,12 +76,12 @@ function Profile() {
             action={`${BASEURL}/api/user/avatar`}
             withCredentials
             onChange={handleChange}
-            className="div-18"
+            className="div-18 shadow-lg"
           >
             <span>Upload new avatar</span>
           </Upload>
 
-          <button onClick={setIsModalOpen} className="div-19">
+          <button onClick={setIsModalOpen} className="div-19 shadow-lg">
             Add funds to wallet
           </button>
           <Modal
@@ -255,7 +255,7 @@ function Profile() {
         }
         .div-18 {
           font-family: Carter One, sans-serif;
-          border-radius: 10px;
+          border-radius: 20px;
           background-color: rgba(46, 144, 250, 1);
           justify-content: center;
           flex-grow: 1;
@@ -272,7 +272,7 @@ function Profile() {
         }
         .div-19 {
           font-family: Carter One, sans-serif;
-          border-radius: 10px;
+          border-radius: 20px;
           background-color: rgba(229, 62, 62, 1);
           align-items: start;
           justify-content: center;
