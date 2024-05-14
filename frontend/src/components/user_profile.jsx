@@ -38,7 +38,7 @@ function Profile() {
   };
   return (
     <>
-      <div className="div" style={{ marginTop: "30px" }}>
+      <div className="div" style={{ marginTop: "30px", marginLeft: "40px" }}>
         <div className="div-2 shadow-lg">
           <Image
             src={client?.avatar || expert?.avatar}

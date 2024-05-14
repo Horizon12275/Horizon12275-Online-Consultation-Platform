@@ -50,19 +50,19 @@ const UserOrLogin = () => {
       <Link to={"/"}></Link>
       {user ? (
         <div onClick={logoutAndClearUser}>
-          <Button className=" mt-7 text-white whitespace-nowrap bg-blue-400 border-sky-500">
+          <Button className="mt-7 text-white whitespace-nowrap bg-blue-400 border-sky-500 hover:bg-blue-500 hover:border-sky-600">
             Logout
           </Button>
         </div>
       ) : (
         <Link to={"/login"}>
-          <Button className="text-white whitespace-nowrap bg-blue-400 border-sky-500">
+          <Button className="text-white whitespace-nowrap bg-blue-400 border-sky-500 hover:bg-blue-500 hover:border-sky-600">
             Login
           </Button>
         </Link>
       )}
       <Link to={"/register"}>
-        <Button className="mt-7 text-blue-400 bg-white border-blue-400">
+        <Button className="mt-7 text-blue-400 bg-white border-blue-400 hover:bg-blue-100 hover:border-blue-500">
           Sign Up
         </Button>
       </Link>

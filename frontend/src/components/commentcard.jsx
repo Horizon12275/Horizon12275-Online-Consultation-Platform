@@ -54,8 +54,8 @@ function Commentcard() {
           flex-direction: column;
           gap: 0px;
           justify-content: center;
-          margin-top: 560px;
-          margin-left: 60px;
+          margin-top: 590px;
+          margin-left: 100px;
           max-width: 650px;
         }
 

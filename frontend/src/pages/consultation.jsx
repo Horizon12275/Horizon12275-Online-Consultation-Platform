@@ -61,10 +61,9 @@ const ConsultPage = () => {
       <Flex>
         <div
           style={{
-            minHeight: "800px",
+            maxHeight: "770px",
             backgroundColor: "#f5f5f5",
             padding: "0 10px",
-            height: "100vh",
           }}
         >
           {user?.role === "user" && (

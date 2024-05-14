@@ -39,7 +39,7 @@ function FillForm() {
   const [form] = Form.useForm();
   const resetForm = () => {
     //判断表单是否为空，如果为空则进行赋值
-   
+
     if (Object.values(form.getFieldsValue()).every((v) => !v))
       form.setFieldsValue({
         firstName: client?.firstName || expert?.firstName,
@@ -112,7 +112,6 @@ function FillForm() {
         <Form.Item name="aboutMe">
           <Textarea id="aboutMe" label="ABOUT ME" className="form-textarea" />
         </Form.Item>
-        <div className="divider" />
       </div>
       <style jsx>{`
         .container {
@@ -121,7 +120,7 @@ function FillForm() {
           font-weight: 400;
           position: absolute;
           top: 40px;
-          left: 1000px;
+          left: 1040px;
           width: 550px;
         }
 
