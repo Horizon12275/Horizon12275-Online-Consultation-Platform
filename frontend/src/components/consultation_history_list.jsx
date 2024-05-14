@@ -1,19 +1,10 @@
 import React, { useEffect, useState } from "react";
 import ConsultationHistoryCard from "./consultation_history_card";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useSearchParams } from "react-router-dom";
 import { getConsultation } from "../services/consultationService";
 
-export default function ConsultationHistoryList() {
-  const {receiverId}=useParams();
-  const [experts, setExperts] = useState([]);
-  useEffect(() => {
-    getConsultation().then((consultations) => {
-      consultations.sort((a, b) => {
-        return new Date(b.time) - new Date(a.time);
-      });
-      setExperts(consultations.map((consultation) => consultation?.expert));
-    });
-  }, [receiverId]);//目前只能切换咨询时更新列表 应该做到发送消息时更新列表
+export default function ConsultationHistoryList({ experts }) {
+  const [searchParams, setSearchParams] = useSearchParams();
 
   return (
     <div
@@ -29,11 +20,17 @@ export default function ConsultationHistoryList() {
       <h2>Consultation History:</h2>
 
       {experts.slice(0, 3).map((expert) => (
-        <Link to={`/consultation/${expert.id}`} key={expert.id}>
+        <div
+        className="cursor-pointer"
+          key={expert.id}
+          onClick={() => {
+            setSearchParams({ receiverId: expert.id });
+          }}
+        >
           <React.Fragment key={expert.id}>
             <ConsultationHistoryCard expert={expert} />
           </React.Fragment>
-        </Link>
+        </div>
       ))}
 
       {/* <Row justify="left" style={{ marginTop: "0px" }}>
