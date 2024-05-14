@@ -4,11 +4,8 @@ import { Link } from "react-router-dom";
 
 const SpecialityCard = ({ expert }) => {
   return (
-    <div className="flex flex-col gap-0 rounded">
-      <Link
-        to={`/expert/${expert.id}`}
-        className="gap-0 mt-3 text-blue-300"
-      >
+    <div className="flex flex-col gap-0 rounded shadow-lg">
+      <Link to={`/expert/${expert.id}`} className="gap-0 mt-3 text-blue-300">
         <img
           loading="lazy"
           src={expert.avatar}
@@ -17,10 +14,22 @@ const SpecialityCard = ({ expert }) => {
         />
       </Link>
       <div className="flex flex-col gap-3 p-3 bg-white">
-        <div className="gap-0 text-black">{expert.name}</div>
+        <div
+          className="gap-0 text-black"
+          style={{ fontSize: "25px", padding: "5px" }}
+        >
+          {expert.name}
+        </div>
+        <div
+          className="gap-0 text-neutral-400"
+          style={{ fontSize: "20px", padding: "5px" }}
+        >
+          {"Speciality: "}
+        </div>
         <Link
           to={`/expert/${expert.id}/consultation`}
-          className="gap-0 mt-3 text-blue-300"
+          className="gap-0 text-blue-300"
+          style={{ fontSize: "15px", padding: "5px" }}
         >
           {"CONSULT NOW"}
         </Link>
@@ -28,7 +37,6 @@ const SpecialityCard = ({ expert }) => {
     </div>
   );
 };
-
 
 function ShowSpeciality() {
   const [experts, setExperts] = useState([]);
@@ -51,7 +59,8 @@ function ShowSpeciality() {
         </div>
         <Link
           to={"/expert"}
-          className="justify-center self-start px-8 py-4 text-base font-extrabold leading-5 text-center text-white bg-gray-900 rounded-full max-md:px-5"
+          className="justify-center self-start px-12 py-6 text-base font-extrabold leading-5 text-center text-white rounded-full max-md:px-5 shadow-lg"
+          style={{ background: "#2e90fa", fontSize: "25px" }}
         >
           View all specialities
         </Link>

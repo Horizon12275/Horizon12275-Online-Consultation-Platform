@@ -58,7 +58,7 @@ const SearchBar = ({ withSelect }) => {
   ];
 
   return (
-    <section className="flex flex-col justify-center bg-gray-200 rounded-3xl max-w-[800px]">
+    <section className="flex flex-col justify-center bg-gray-200 rounded-3xl max-w-[1100px]">
       <div className="flex gap-1 p-1 max-md:flex-wrap">
         {withSelect && (
           <>
