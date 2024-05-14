@@ -51,7 +51,8 @@ public class ArticleServiceImpl implements ArticleService {
         return Result.success(repository.getArticlesByAuthorId(eid));
     }
     public Result<List<Article>> getRecommendations(int nums){
-        return Result.success(repository.findAll().subList(0, nums));//返回前nums篇文章
+        List<Article> articles = repository.findAll();
+        return Result.success(articles.subList(0,Math.min(articles.size(),nums)));//返回前nums个文章
     }
     public Result<Article> addArticle(Article article, int[] tids, MultipartFile file){
         Expert expert = expertRepository.findExpertByUserId(getUid());

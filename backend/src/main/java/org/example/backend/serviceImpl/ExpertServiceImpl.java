@@ -51,7 +51,8 @@ public class ExpertServiceImpl implements ExpertService {
         }
     }
     public Result<List<Expert>> getRecommendedExperts(int nums){
-        return Result.success(repository.findAll().subList(0, nums));//返回前nums个专家
+        List<Expert> experts = repository.findAll();
+        return Result.success(experts.subList(0,Math.min(experts.size(),nums)));//返回前nums个专家
     }
     public Result<ExpertPageResponse> searchExperts(String keyword, int page, int pageSize){
         Pageable pageable = PageRequest.of(page - 1, pageSize);
