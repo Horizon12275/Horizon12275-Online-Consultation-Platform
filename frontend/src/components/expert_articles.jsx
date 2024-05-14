@@ -5,7 +5,7 @@ export function ArticleCard({ article }) {
   return (
     <Link
       to={`/article/${article.id}`}
-      className="flex flex-col justify-between grow self-stretch p-3 w-full bg-white h-[240px]"
+      className="flex flex-col justify-between grow self-stretch p-3 w-full bg-white h-[240px] shadow-lg"
     >
       <div className="flex flex-col items-start pr-20 max-md:pr-5 max-md:max-w-full">
         <div className="justify-center py-0.5 text-xs text-stone-300">
@@ -65,7 +65,7 @@ export function ArticleCard({ article }) {
 export const ArticleList = ({ articles }) => {
   return (
     <Link style={{ display: "flex", justifyContent: "space-between" }}>
-      <div className="rounded shadow-sm w-[100%]">
+      <div className="rounded w-[100%]">
         {articles.map((article, index) => (
           <div
             key={index}
@@ -80,7 +80,7 @@ export const ArticleList = ({ articles }) => {
               loading="lazy"
               src={article.cover}
               alt={article.title}
-              className="w-60  flex flex-col object-cover"
+              className="w-60  flex flex-col object-cover shadow-lg"
             />
           </div>
         ))}

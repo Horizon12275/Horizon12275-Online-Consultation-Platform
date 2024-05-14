@@ -18,7 +18,8 @@ function UserInfo({ imageSrc, name, username }) {
         loading="lazy"
         src={imageSrc}
         alt={name}
-        className="shrink-0 gap-0 aspect-square w-[54px]"
+        className="shrink-0 gap-0 aspect-square w-[75px] h-[75px]"
+        style={{ aspectRatio: "1/1" }}
       />
       <div className="flex flex-col gap-1.5 py-1 my-auto">
         <div className="gap-0 text-xl tracking-normal leading-6">{name}</div>
@@ -32,15 +33,21 @@ function UserInfo({ imageSrc, name, username }) {
 
 function Testimonial({ backgroundImageSrc, testimonialText }) {
   return (
-    <div className="overflow-hidden relative flex-col justify-center items-start px-9 pt-20 pb-20 w-full text-5xl font-medium tracking-tighter fill-gray-100 min-h-[308px] max-md:flex-wrap max-md:px-5 max-md:max-w-full">
-      <img
-        loading="lazy"
-        src={backgroundImageSrc}
-        alt=""
-        className="object-cover absolute inset-0 size-full"
-      />
-      {testimonialText}
-    </div>
+    <>
+      <div
+        className="relative flex-col justify-center items-start px-9 pt-20 pb-20 w-full text-5xl font-medium tracking-tighter fill-gray-100 min-h-[308px] max-md:flex-wrap max-md:px-5 max-md:max-w-full"
+        style={{ zIndex: "2" }}
+      >
+        <img
+          src={backgroundImageSrc}
+          className="object-cover absolute inset-0 width-500"
+          style={{ zIndex: "1" }}
+        />
+        <div style={{ zIndex: "3", fontSize: "25px", position: "absolute" }}>
+          {testimonialText}
+        </div>
+      </div>
+    </>
   );
 }
 
@@ -90,7 +97,7 @@ function HomeComment() {
                 <React.Fragment key={index}>
                   <Testimonial
                     backgroundImageSrc={testimonial.backgroundImageSrc}
-                    testimonialText={testimonial.testimonialText}
+                    testimonialText={testimonial.commentText}
                   />
                   <UserInfo
                     imageSrc={testimonial.userImageSrc}
