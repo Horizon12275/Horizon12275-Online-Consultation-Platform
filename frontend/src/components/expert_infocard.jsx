@@ -14,7 +14,7 @@ const ExpertInfoCard = ({ expert }) => {
     addConsultation(expert.id)
       .then((res) => {
         alert("Payment successful, you can start chatting now!");
-        location.href = `/consultation/${expert.id}`;
+        location.href = `/consultation?receiverId=${expert.id}`;
       })
       .catch((e) => {
         alert(e);

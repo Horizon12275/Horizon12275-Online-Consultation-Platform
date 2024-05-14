@@ -2,7 +2,7 @@
   {
     "id": 1,
     "about_me": "Hello, I'm Emma Johnson, a software engineer passionate about crafting elegant solutions to complex problems.",
-    "avatar": "http://101.132.129.104:5174/image/1.jpg",
+    "avatar": "http://localhost:8081/image/1.jpg",
     "education": "2008.9-2012.6, Stanford University, Bachelor's Degree in Computer Sciencen2012.9-2014.3, Stanford University, Master's Degree in Software Engineering",
     "first_name": "Emma",
     "last_name": "Johnson",
@@ -15,7 +15,7 @@
   {
     "id": 2,
     "about_me": "I'm Alex White, a medical doctor specializing in cardiology. I'm dedicated to providing top-notch healthcare services to my patients.",
-    "avatar": "http://101.132.129.104:5174/image/2.jpg",
+    "avatar": "http://localhost:8081/image/2.jpg",
     "education": "2005.9-2011.6, Johns Hopkins University, Doctor of Medicinen2011.9-2015.3, Johns Hopkins University, Cardiology Residency Program",
     "first_name": "Alex",
     "last_name": "White",
@@ -28,7 +28,7 @@
   {
     "id": 3,
     "about_me": "Greetings, I'm Sophia Clark, an expert in philosophy with a deep understanding of ethical dilemmas and moral reasoning.",
-    "avatar": "http://101.132.129.104:5174/image/3.jpg",
+    "avatar": "http://localhost:8081/image/3.jpg",
     "education": "2007.9-2011.6, Oxford University, Bachelor's Degree in Philosophyn2011.9-2013.3, Oxford University, Master's Degree in Ethics and Morality",
     "first_name": "Sophia",
     "last_name": "Clark",
@@ -41,7 +41,7 @@
   {
     "id": 4,
     "about_me": "Hi, I'm David Smith, a cybersecurity specialist committed to safeguarding digital assets and ensuring data protection.",
-    "avatar": "http://101.132.129.104:5174/image/4.jpg",
+    "avatar": "http://localhost:8081/image/4.jpg",
     "education": "2009.9-2013.6, MIT, Bachelor's Degree in Computer Engineeringn2013.9-2015.3, MIT, Master's Degree in Cybersecurity",
     "first_name": "David",
     "last_name": "Smith",
@@ -54,7 +54,7 @@
   {
     "id": 5,
     "about_me": "Salutations, I'm Lily Wang, a nutritionist dedicated to promoting healthy lifestyles and balanced dietary habits.",
-    "avatar": "http://101.132.129.104:5174/image/5.jpg",
+    "avatar": "http://localhost:8081/image/5.jpg",
     "education": "2010.9-2014.6, Cornell University, Bachelor's Degree in Nutritional Sciencesn2014.9-2016.3, Cornell University, Master's Degree in Dietetics",
     "first_name": "Lily",
     "last_name": "Wang",
@@ -67,7 +67,7 @@
   {
     "id": 6,
     "about_me": "Hey there, I'm Nathan Lee, an environmental scientist dedicated to researching sustainable solutions for a greener future.",
-    "avatar": "http://101.132.129.104:5174/image/6.jpg",
+    "avatar": "http://localhost:8081/image/6.jpg",
     "education": "2006.9-2010.6, UCLA, Bachelor's Degree in Environmental Sciencen2010.9-2012.3, UCLA, Master's Degree in Sustainable Development",
     "first_name": "Nathan",
     "last_name": "Lee",
@@ -80,7 +80,7 @@
   {
     "id": 7,
     "about_me": "Hello, I'm Olivia Brown, a design expert passionate about creating innovative and user-centric visual experiences.",
-    "avatar": "http://101.132.129.104:5174/image/7.jpg",
+    "avatar": "http://localhost:8081/image/7.jpg",
     "education": "2007.9-2011.6, Parsons School of Design, Bachelor's Degree in Graphic Designn2011.9-2013.3, Parsons School of Design, Master's Degree in Product Design",
     "first_name": "Olivia",
     "last_name": "Brown",
@@ -93,7 +93,7 @@
   {
     "id": 8,
     "about_me": "Greetings, I'm Ethan Miller, a finance expert with a keen eye for investment strategies and financial planning.",
-    "avatar": "http://101.132.129.104:5174/image/8.jpg",
+    "avatar": "http://localhost:8081/image/8.jpg",
     "education": "2009.9-2013.6, Wharton School at UPenn, Bachelor's Degree in Financen2013.9-2015.3, Wharton School at UPenn, Master's Degree in Financial Management",
     "first_name": "Ethan",
     "last_name": "Miller",
@@ -106,7 +106,7 @@
   {
     "id": 9,
     "about_me": "Hi there, I'm Grace Taylor, an experienced psychologist dedicated to promoting mental wellness and emotional resilience.",
-    "avatar": "http://101.132.129.104:5174/image/9.jpg",
+    "avatar": "http://localhost:8081/image/9.jpg",
     "education": "2008.9-2012.6, Stanford University, Bachelor's Degree in Psychologyn2012.9-2014.3, Stanford University, Master's Degree in Clinical Psychology",
     "first_name": "Grace",
     "last_name": "Taylor",
@@ -119,7 +119,7 @@
   {
     "id": 10,
     "about_me": "Salutations, I'm Jack Robinson, a marketing specialist dedicated to crafting strategic campaigns and enhancing brand presence.",
-    "avatar": "http://101.132.129.104:5174/image/10.jpg",
+    "avatar": "http://localhost:8081/image/10.jpg",
     "education": "2009.9-2013.6, NYU Stern School of Business, Bachelor's Degree in Marketingn2013.9-2015.3, NYU Stern School of Business, Master's Degree in Brand Management",
     "first_name": "Jack",
     "last_name": "Robinson",
@@ -132,7 +132,7 @@
   {
     "id": 11,
     "about_me": "Hey there, I'm Mia Chang, a legal expert specializing in corporate law and contractual negotiations.",
-    "avatar": "http://101.132.129.104:5174/image/11.jpg",
+    "avatar": "http://localhost:8081/image/11.jpg",
     "education": "2006.9-2010.6, Harvard Law School, Juris Doctor (JD)n2010.9-2012.3, Harvard Law School, Master of Laws (LLM)",
     "first_name": "Mia",
     "last_name": "Chang",
@@ -145,7 +145,7 @@
   {
     "id": 12,
     "about_me": "Greetings, I'm Lucas Garcia, a business consultant passionate about driving organizational growth and strategic planning.",
-    "avatar": "http://101.132.129.104:5174/image/12.jpg",
+    "avatar": "http://localhost:8081/image/12.jpg",
     "education": "2007.9-2011.6, INSEAD, Bachelor's Degree in Business Administrationn2011.9-2013.3, INSEAD, Master's Degree in Strategic Management",
     "first_name": "Lucas",
     "last_name": "Garcia",

@@ -73,7 +73,7 @@ function Profile() {
           <Upload
             showUploadList={false}
             name="avatar"
-            action={`${BASEURL}/api/user/avatar`}
+            action={`http://localhost:8080/api/user/avatar`}
             withCredentials
             onChange={handleChange}
             className="div-18 shadow-lg"

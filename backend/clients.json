@@ -2,7 +2,7 @@
   {
     "id": 1,
     "about_me": "Hi, I'm user1.",
-    "avatar": "http://101.132.129.104:5174/image/user1.jpg",
+    "avatar": "http://localhost:8080/image/user1.jpg",
     "balance": 0.0,
     "first_name": "Emily",
     "last_name": "Smith",
@@ -13,7 +13,7 @@
   {
     "id": 2,
     "about_me": "I'm user2, nice to meet you.",
-    "avatar": "http://101.132.129.104:5174/image/user2.jpg",
+    "avatar": "http://localhost:8080/image/user2.jpg",
     "balance": 0.0,
     "first_name": "Liam",
     "last_name": "Johnson",
@@ -24,7 +24,7 @@
   {
     "id": 3,
     "about_me": "User3 here, exploring the digital realm.",
-    "avatar": "http://101.132.129.104:5174/image/user3.jpg",
+    "avatar": "http://localhost:8080/image/user3.jpg",
     "balance": 0.0,
     "first_name": "Sophia",
     "last_name": "Williams",
@@ -35,7 +35,7 @@
   {
     "id": 4,
     "about_me": "User4, passionate about tech and creativity.",
-    "avatar": "http://101.132.129.104:5174/image/user4.jpg",
+    "avatar": "http://localhost:8080/image/user4.jpg",
     "balance": 0.0,
     "first_name": "Noah",
     "last_name": "Brown",
@@ -46,7 +46,7 @@
   {
     "id": 5,
     "about_me": "Hey, I'm user5, always up for a chat.",
-    "avatar": "http://101.132.129.104:5174/image/user5.jpg",
+    "avatar": "http://localhost:8080/image/user5.jpg",
     "balance": 0.0,
     "first_name": "Olivia",
     "last_name": "Jones",
@@ -57,7 +57,7 @@
   {
     "id": 6,
     "about_me": "User6, curious mind and a penchant for learning.",
-    "avatar": "http://101.132.129.104:5174/image/user6.jpg",
+    "avatar": "http://localhost:8080/image/user6.jpg",
     "balance": 0.0,
     "first_name": "Ethan",
     "last_name": "Garcia",
@@ -68,7 +68,7 @@
   {
     "id": 7,
     "about_me": "I'm user7, lover of all things innovative.",
-    "avatar": "http://101.132.129.104:5174/image/user7.jpg",
+    "avatar": "http://localhost:8080/image/user7.jpg",
     "balance": 0.0,
     "first_name": "Ava",
     "last_name": "Miller",
@@ -79,7 +79,7 @@
   {
     "id": 8,
     "about_me": "User8, embracing the digital age with gusto.",
-    "avatar": "http://101.132.129.104:5174/image/user8.jpg",
+    "avatar": "http://localhost:8080/image/user8.jpg",
     "balance": 0.0,
     "first_name": "Mason",
     "last_name": "Davis",
@@ -90,7 +90,7 @@
   {
     "id": 9,
     "about_me": "Hey there, I'm user9, ready for new adventures.",
-    "avatar": "http://101.132.129.104:5174/image/user9.jpg",
+    "avatar": "http://localhost:8080/image/user9.jpg",
     "balance": 0.0,
     "first_name": "Isabella",
     "last_name": "Rodriguez",
@@ -101,7 +101,7 @@
   {
     "id": 10,
     "about_me": "User10, tech enthusiast and problem solver.",
-    "avatar": "http://101.132.129.104:5174/image/user10.jpg",
+    "avatar": "http://localhost:8080/image/user10.jpg",
     "balance": 0.0,
     "first_name": "Lucas",
     "last_name": "Martinez",
@@ -112,7 +112,7 @@
   {
     "id": 11,
     "about_me": "I'm user11, seeking connections and knowledge.",
-    "avatar": "http://101.132.129.104:5174/image/user11.jpg",
+    "avatar": "http://localhost:8080/image/user11.jpg",
     "balance": 0.0,
     "first_name": "Mia",
     "last_name": "Hernandez",
@@ -123,7 +123,7 @@
   {
     "id": 12,
     "about_me": "User12, on a journey of discovery and growth.",
-    "avatar": "http://101.132.129.104:5174/image/user12.jpg",
+    "avatar": "http://localhost:8080/image/user12.jpg",
     "balance": 0.0,
     "first_name": "Alexander",
     "last_name": "Lopez",
@@ -134,7 +134,7 @@
   {
     "id": 13,
     "about_me": "Hi, I'm user13, excited to engage and learn.",
-    "avatar": "http://101.132.129.104:5174/image/user13.jpg",
+    "avatar": "http://localhost:8080/image/user13.jpg",
     "balance": 0.0,
     "first_name": "Charlotte",
     "last_name": "Gonzalez",
@@ -145,7 +145,7 @@
   {
     "id": 14,
     "about_me": "User14, fueled by curiosity and ambition.",
-    "avatar": "http://101.132.129.104:5174/image/user14.jpg",
+    "avatar": "http://localhost:8080/image/user14.jpg",
     "balance": 0.0,
     "first_name": "Benjamin",
     "last_name": "Wilson",
@@ -156,7 +156,7 @@
   {
     "id": 15,
     "about_me": "User15 here, ready to dive into the digital world.",
-    "avatar": "http://101.132.129.104:5174/image/user15.jpg",
+    "avatar": "http://localhost:8080/image/user15.jpg",
     "balance": 0.0,
     "first_name": "Amelia",
     "last_name": "Anderson",

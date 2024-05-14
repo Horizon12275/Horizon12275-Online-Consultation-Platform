@@ -49,7 +49,7 @@ const ArticleHeader = ({ article }) => {
             {article.author?.name}
           </h1>
           <div className="mt-2.5 text-base tracking-tight text-slate-500">
-            {article.author?.specialities.map((speciality) => speciality + " ")}
+            {article.author?.specialities.map((speciality) => speciality.content + " ")}
           </div>
         </div>
         {/* <div className="flex flex-col self-start text-base">
