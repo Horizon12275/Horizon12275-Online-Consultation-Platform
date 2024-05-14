@@ -82,6 +82,7 @@ function HomeComment() {
             src="https://cdn.builder.io/api/v1/image/assets/TEMP/4b9354d661b0ad4288e16015086e5962ca754cf2dfeb2d565d00da904a02d539?apiKey=273a9e43b39c48c2a08ea907e27f337f&"
             alt="User avatar"
             className="w-[49px] cursor-pointer"
+            style={{ borderRadius: "50%" }}
             onClick={() => carouselRef.current.prev()}
           />
           <div className="flex flex-col gap-0 self-stretch max-md:flex-wrap max-md:max-w-full">
@@ -112,6 +113,7 @@ function HomeComment() {
             src="https://cdn.builder.io/api/v1/image/assets/TEMP/40ccf8fbe2442bb9b1ed677a7d84cf4e50ad0d050cd25312aecb39f5b8f40c39?apiKey=273a9e43b39c48c2a08ea907e27f337f&"
             alt="User avatar"
             className="w-[49px] cursor-pointer"
+            style={{ borderRadius: "50%" }}
             onClick={() => carouselRef.current.next()}
           />
         </section>
