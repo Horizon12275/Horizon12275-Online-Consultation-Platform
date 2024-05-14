@@ -209,7 +209,7 @@ function RegisterPage() {
         <div className="input-container" style={{ ...inputStyle }}>
           <div style={{ marginBottom: "10px", fontSize: "21px" }}>
             Or want to request for an{" "}
-            <a href="/become_expert" style={linkStyle}>
+            <a href="/become-expert" style={linkStyle}>
               EXPERT ACCOUNT
             </a>{" "}
             now?

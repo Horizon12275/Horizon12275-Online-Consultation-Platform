@@ -10,7 +10,7 @@ const SpecialityCard = ({ expert }) => {
           loading="lazy"
           src={expert.avatar}
           alt=""
-          className="gap-0 w-[400px] aspect-[1.1.2] "
+          className="gap-0 w-[400px] aspect-[0.85] "
         />
       </Link>
       <div className="flex flex-col gap-3 p-3 bg-white">
@@ -29,7 +29,7 @@ const SpecialityCard = ({ expert }) => {
           )} `}
         </div>
         <Link
-          to={`/expert/${expert.id}/consultation`}
+          to={`/expert/${expert.id}`}
           className="gap-0 text-blue-300"
           style={{ fontSize: "15px", padding: "5px" }}
         >
