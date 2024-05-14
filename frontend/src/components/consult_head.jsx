@@ -1,7 +1,4 @@
-import { Link, useParams } from "react-router-dom";
-import { getExpertById } from "../services/expertService";
-import { useEffect, useState } from "react";
-import { getOtherUserById } from "../services/userService";
+import { Link } from "react-router-dom";
 
 function Avatar({ src, alt }) {
   return <img className="avatar" src={src} alt={alt} />;

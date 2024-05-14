@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
 import { getCids, likeComment } from "../services/commentLikeService";
 import CommentCard from "./comment_card";
+import { useAuth } from "../context/authContext";
 
 const CommentListForArticle = ({ comments }) => {
   const [cids, setCids] = useState([]);
+  const { user } = useAuth();
   useEffect(() => {
-    getCids().then((res) => {
-      setCids(res);
-    });
+    if (user)
+      getCids().then((res) => {
+        setCids(res);
+      });
   }, []);
   const handleLike = (res) => {
     const comment = res.comment;
