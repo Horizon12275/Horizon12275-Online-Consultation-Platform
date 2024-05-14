@@ -16,7 +16,7 @@ export default function HomePage() {
           height: "50px",
           position: "sticky",
           top: 10,
-          right: 0,
+          left: 123,
           zIndex: 999,
           padding: "0 20px",
           margin: "0 auto",
