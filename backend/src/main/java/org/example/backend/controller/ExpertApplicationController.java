@@ -75,13 +75,13 @@ public class ExpertApplicationController {
     }
     @PostMapping("/add")
     public Result<ExpertApplication> addApplication(ExpertApplication application, @RequestParam MultipartFile file) {
-        // 打印application实体的所有信息
-        System.out.println("Received Verification Code: " + application.getVerificationCode());
-        System.out.println("Received Email: " + application.getEmail());
-        System.out.println("Received Name: " + application.getPassword());
-        System.out.println("Received Name: " + application.getFirstName());
-        System.out.println("Received Name: " + application.getLastName());
-        System.out.println(verificationCodes.get(application.getVerificationCode()).equals(application.getEmail()));
+//        // 打印application实体的所有信息
+//        System.out.println("Received Verification Code: " + application.getVerificationCode());
+//        System.out.println("Received Email: " + application.getEmail());
+//        System.out.println("Received Name: " + application.getPassword());
+//        System.out.println("Received Name: " + application.getFirstName());
+//        System.out.println("Received Name: " + application.getLastName());
+//        System.out.println(verificationCodes.get(application.getVerificationCode()).equals(application.getEmail()));
 
         if (verificationCodes.containsKey(application.getVerificationCode()) && verificationCodes.get(application.getVerificationCode()).equals(application.getEmail())) {
             // 验证通过，可以注册，这里可以将userInfo保存到数据库中
