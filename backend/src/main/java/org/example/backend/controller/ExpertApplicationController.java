@@ -62,6 +62,10 @@ public class ExpertApplicationController {
         // 将验证码和邮箱存储到Map中
         verificationCodes.put(verificationCode, email);
 
+//        // 在控制台打印验证码和邮箱
+//        System.out.println("Stored Verification Code: " + verificationCode);
+//        System.out.println("Stored Email: " + email);
+
         return Result.success("验证码已发送至邮箱：" + email);
     }
 
@@ -71,6 +75,14 @@ public class ExpertApplicationController {
     }
     @PostMapping("/add")
     public Result<ExpertApplication> addApplication(ExpertApplication application, @RequestParam MultipartFile file) {
+        // 打印application实体的所有信息
+        System.out.println("Received Verification Code: " + application.getVerificationCode());
+        System.out.println("Received Email: " + application.getEmail());
+        System.out.println("Received Name: " + application.getPassword());
+        System.out.println("Received Name: " + application.getFirstName());
+        System.out.println("Received Name: " + application.getLastName());
+        System.out.println(verificationCodes.get(application.getVerificationCode()).equals(application.getEmail()));
+
         if (verificationCodes.containsKey(application.getVerificationCode()) && verificationCodes.get(application.getVerificationCode()).equals(application.getEmail())) {
             // 验证通过，可以注册，这里可以将userInfo保存到数据库中
             verificationCodes.remove(application.getVerificationCode()); // 移除已验证的验证码

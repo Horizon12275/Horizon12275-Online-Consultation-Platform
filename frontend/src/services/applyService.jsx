@@ -4,7 +4,7 @@ const PREFIX = `${BASEURL}/api/application`;
 export const applyExpert = async ({
   email,
   password,
-  vertificationCode,
+  verificationCode,
   education,
   certificate,
   firstName,
@@ -12,10 +12,22 @@ export const applyExpert = async ({
   field,
   introduction,
 }) => {
+  //在控制台打印出来看看，看看数据是否正确，打印具体详细信息
+  console.log({
+    email,
+    password,
+    verificationCode,
+    education,
+    certificate,
+    firstName,
+    lastName,
+    field,
+    introduction,
+  });
   let formData = new FormData();
   formData.append("email", email);
   formData.append("password", password);
-  formData.append("vertificationCode", vertificationCode);
+  formData.append("verificationCode", verificationCode);
   formData.append("education", education);
   formData.append("file", certificate);
   formData.append("firstName", firstName);

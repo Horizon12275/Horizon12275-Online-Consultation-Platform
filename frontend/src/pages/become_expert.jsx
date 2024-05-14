@@ -59,12 +59,12 @@ const inputFields = [
     rules: [{ required: true, message: "Please input your email!" }],
   },
   {
-    label: "Vertification Code",
-    placeholder: "Enter the Vertification Code in your Email",
-    id: "code",
-    name: "vertificationCode",
+    label: "Verification Code",
+    placeholder: "Enter the Verification Code in your Email",
+    id: "verificationCode",
+    name: "verificationCode",
     rules: [
-      { required: true, message: "Please input your vertification code!" },
+      { required: true, message: "Please input your verification code!" },
     ],
   },
   {
