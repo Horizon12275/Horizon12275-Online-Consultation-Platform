@@ -145,16 +145,16 @@ const BecomeExpertPage = () => {
           <button
             style={{
               position: "absolute",
-              top: "520px",
+              top: "527px",
               right: "390px",
               width: "100px",
               height: "35px",
               border: "none",
-              backgroundColor: "#a5aeb3",
               color: "white",
               borderRadius: "5px",
               cursor: "pointer",
             }}
+            className="bg-gray-400 text-white rounded-full cursor-pointer hover:bg-gray-500"
             onClick={() => {
               console.log(currentEmail);
               sendVertificationCodeExpert(currentEmail);
@@ -280,7 +280,7 @@ const BecomeExpertPage = () => {
                 You agree to our friendly privacy policy.
               </label>
             </div> */}
-            <button className="cursor-pointer justify-center items-center self-stretch px-5 py-2.5 mt-10 text-base font-semibold leading-6 text-white bg-blue-400 rounded-lg border border-gray-400 border-none shadow-sm max-md:max-w-full w-3/4 mx-auto">
+            <button className="cursor-pointer justify-center items-center self-stretch px-5 py-2.5 mt-10 text-base font-semibold leading-6 text-white bg-blue-400 hover:bg-blue-500 rounded-lg border border-gray-400 border-none shadow-sm max-md:max-w-full w-3/4 mx-auto">
               Apply to Register An Expert Account
             </button>
           </Form>

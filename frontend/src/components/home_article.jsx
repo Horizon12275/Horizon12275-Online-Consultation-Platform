@@ -43,7 +43,7 @@ function ShowArticle() {
       <ArticleList articles={articles} />
       <Link
         to={`/article`}
-        className=" self-center mr-20 px-20 py-7 font-extrabold leading-5 text-center text-white rounded-full shadow-lg"
+        className=" self-center mr-20 mt-4 px-20 py-7 font-extrabold leading-5 text-center text-white rounded-full shadow-lg"
         style={{ background: "#2e90fa", fontSize: "25px" }}
       >
         See more articles
