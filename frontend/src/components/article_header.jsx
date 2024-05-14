@@ -32,13 +32,11 @@ const ArticleHeader = ({ article }) => {
   return (
     <div className="flex flex-col w-[100%]">
       <header className="flex flex-col justify-center w-full bg-white max-md:max-w-full relative">
-        <div className="flex overflow-hidden relative flex-col items-start px-3 pt-20 w-full min-h-[300px] max-md:pr-5 max-md:max-w-full ">
-          <img
-            loading="lazy"
-            src={article.cover}
-            className="object-cover absolute inset-0"
-          />
-        </div>
+        <img
+          loading="lazy"
+          src={article.cover}
+          className="object-cover inset-0 flex overflow-hidden relative flex-col items-start  w-full h-[300px] max-md:pr-5 max-md:max-w-full "
+        />
       </header>
       <main className="flex justify-between pt-20 ml-3  font-bold w-[250px] bg-transparent relative">
         <img
@@ -51,7 +49,7 @@ const ArticleHeader = ({ article }) => {
             {article.author?.name}
           </h1>
           <div className="mt-2.5 text-base tracking-tight text-slate-500">
-            {article.author?.name}
+            {article.author?.specialities.map((speciality) => speciality + " ")}
           </div>
         </div>
         {/* <div className="flex flex-col self-start text-base">

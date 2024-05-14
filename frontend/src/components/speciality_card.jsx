@@ -10,7 +10,7 @@ const SpecialityCard = ({ expert }) => {
           loading="lazy"
           src={expert.avatar}
           alt=""
-          className="gap-0 w-[400px] aspect-[1.1] "
+          className="gap-0 w-[400px] aspect-[1.1] object-cover"
         />
       </Link>
       <div className="flex flex-col gap-3 p-3 bg-white">

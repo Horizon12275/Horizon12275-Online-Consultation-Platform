@@ -36,7 +36,9 @@ export function ArticleCard({ article }) {
         </div>
         <div className="flex gap-2.5">
           <div className="flex gap-1">
-            <div className="text-xs text-stone-300">{11}</div>
+            <div className="text-xs text-stone-300">
+              {article.articleComments?.length}
+            </div>
             <div className="flex justify-center items-center self-start">
               <img
                 loading="lazy"

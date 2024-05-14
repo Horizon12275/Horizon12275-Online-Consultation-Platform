@@ -56,9 +56,9 @@ const ChatMessages = ({ messages, rid }) => {
   );
 };
 
-function ChatApp({ sid, receiver }) {
+function ChatApp({ sid, receiver, receiverId }) {
   //sid是当前用户id（用于初始化ws） receiver是对方(专家或客户，用于渲染header)
-  const { receiverId } = useParams(); //获取接收者id 如果当前用户是专家则为用户id 如果当前用户是用户则为专家id 发送到后端转换成userId
+  //获取接收者id 如果当前用户是专家则为用户id 如果当前用户是用户则为专家id 发送到后端转换成userId
   const [rid, setRid] = useState();
   const [messages, setMessages] = useState([]);
   const [inputMessage, setInputMessage] = useState("");
@@ -110,19 +110,20 @@ function ChatApp({ sid, receiver }) {
 
   useEffect(() => {
     //ws?.close(); // 关闭先前的连接
-    getReceiverId(receiverId) //根据接收者id获取userId
-      .then((res) => {
-        setRid(res);
-        getHistory(res).then((history) => {
-          //根据获取的userId获取聊天记录
-          setMessages(history);
-          messages.sort((a, b) => a.sendTime - b.sendTime);
+    if (receiverId)
+      getReceiverId(receiverId) //根据接收者id获取userId
+        .then((res) => {
+          setRid(res);
+          getHistory(res).then((history) => {
+            //根据获取的userId获取聊天记录
+            setMessages(history);
+            messages.sort((a, b) => a.sendTime - b.sendTime);
+          });
+          initWebSocket(sid, res);
+        })
+        .catch((err) => {
+          console.error(err);
         });
-        initWebSocket(sid, res);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
     return () => {
       ws.current?.close();
     };
