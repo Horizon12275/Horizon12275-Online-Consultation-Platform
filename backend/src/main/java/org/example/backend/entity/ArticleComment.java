@@ -33,4 +33,8 @@ public class ArticleComment {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "aid")
     private Article article;
+
+    public ArticleComment(int i, String s) {
+
+    }
 }

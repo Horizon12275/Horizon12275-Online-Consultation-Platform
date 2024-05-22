@@ -1,0 +1,162 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=GBK"> 
+  <title>Coverage Report > ArticleController</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">org.example.backend.controller</a>
+</div>
+
+<h1>Coverage Summary for Class: ArticleController (org.example.backend.controller)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ArticleController</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    10%
+  </span>
+  <span class="absValue">
+    (1/10)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    18.2%
+  </span>
+  <span class="absValue">
+    (2/11)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package org.example.backend.controller;
+&nbsp;
+&nbsp;import org.example.backend.DTO.ArticlePageResponse;
+&nbsp;import org.example.backend.entity.Article;
+&nbsp;import org.example.backend.entity.Result;
+&nbsp;import org.example.backend.service.ArticleService;
+&nbsp;import org.springframework.security.access.prepost.PreAuthorize;
+&nbsp;import org.springframework.web.bind.annotation.*;
+&nbsp;import org.springframework.web.multipart.MultipartFile;
+&nbsp;
+&nbsp;import java.util.List;
+&nbsp;
+&nbsp;@RestController
+&nbsp;@RequestMapping(&quot;/api/article&quot;)
+&nbsp;public class ArticleController {
+&nbsp;    private final ArticleService service;
+<b class="fc">&nbsp;    public ArticleController(ArticleService service) {</b>
+<b class="fc">&nbsp;        this.service = service;</b>
+&nbsp;    }
+&nbsp;    @GetMapping(&quot;/list&quot;)
+&nbsp;    public Result&lt;List&lt;Article&gt;&gt; list() {
+<b class="nc">&nbsp;        return service.getArticles();</b>
+&nbsp;    }
+&nbsp;    @GetMapping(&quot;/list/{eid}&quot;)
+&nbsp;    public Result&lt;List&lt;Article&gt;&gt; getArticlesByEid(@PathVariable int eid) {
+<b class="nc">&nbsp;        return service.getArticlesByEid(eid);</b>
+&nbsp;    }
+&nbsp;    @GetMapping(&quot;/get/{id}&quot;)
+&nbsp;    public Result&lt;Article&gt; getArticleById(@PathVariable int id) {
+<b class="nc">&nbsp;        return service.getArticleById(id);</b>
+&nbsp;    }
+&nbsp;    @GetMapping(&quot;/recommend/{nums}&quot;)
+&nbsp;    public Result&lt;List&lt;Article&gt;&gt; getRecommendations(@PathVariable int nums) {
+<b class="nc">&nbsp;        return service.getRecommendations(nums);</b>
+&nbsp;    }
+&nbsp;    @PutMapping(&quot;/update/{id}&quot;)
+&nbsp;    @PreAuthorize(&quot;hasRole(&#39;expert&#39;)&quot;)
+&nbsp;    public Result&lt;Article&gt; updateArticle(@PathVariable int id, @RequestBody Article article) {
+<b class="nc">&nbsp;        return service.updateArticle(id, article);</b>
+&nbsp;    }
+&nbsp;    @DeleteMapping(&quot;/delete/{id}&quot;)
+&nbsp;    public Result&lt;Article&gt; deleteArticle(@PathVariable int id) {
+<b class="nc">&nbsp;        return service.deleteArticle(id);</b>
+&nbsp;    }
+&nbsp;    @PostMapping(&quot;/add&quot;)
+&nbsp;    public Result&lt;Article&gt; addArticle(Article article, @RequestParam int[] tids, @RequestParam MultipartFile file ) {
+<b class="nc">&nbsp;        return service.addArticle(article, tids, file);</b>
+&nbsp;    }
+&nbsp;    @GetMapping(&quot;/search&quot;)
+&nbsp;    public Result&lt;ArticlePageResponse&gt; searchArticles(@RequestParam(defaultValue = &quot;&quot;) String keyword, @RequestParam(defaultValue = &quot;1&quot;) int page, @RequestParam(defaultValue = &quot;10&quot;) int pageSize){
+<b class="nc">&nbsp;        return service.searchArticles(keyword, page, pageSize);</b>
+&nbsp;    }
+&nbsp;    @GetMapping(&quot;/category&quot;)
+&nbsp;    public Result&lt;ArticlePageResponse&gt; categorySearch(@RequestParam(defaultValue = &quot;&quot;) int tag, @RequestParam(defaultValue = &quot;1&quot;) int page, @RequestParam(defaultValue = &quot;10&quot;) int pageSize){
+<b class="nc">&nbsp;        return service.categorySearch(tag, page, pageSize);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-05-22 13:35</div>
+</div>
+</body>
+</html>

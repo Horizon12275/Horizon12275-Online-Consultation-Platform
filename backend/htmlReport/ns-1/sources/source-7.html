@@ -1,0 +1,234 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=GBK"> 
+  <title>Coverage Report > ExpertApplicationController</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">org.example.backend.controller</a>
+</div>
+
+<h1>Coverage Summary for Class: ExpertApplicationController (org.example.backend.controller)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ExpertApplicationController</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    12.5%
+  </span>
+  <span class="absValue">
+    (1/8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    10%
+  </span>
+  <span class="absValue">
+    (3/30)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package org.example.backend.controller;
+&nbsp;
+&nbsp;import jakarta.mail.internet.InternetAddress;
+&nbsp;import org.example.backend.entity.ExpertApplication;
+&nbsp;import org.example.backend.entity.Result;
+&nbsp;import org.example.backend.service.ExpertApplicationService;
+&nbsp;import org.springframework.beans.factory.annotation.Autowired;
+&nbsp;import org.springframework.mail.SimpleMailMessage;
+&nbsp;import org.springframework.mail.javamail.JavaMailSender;
+&nbsp;import org.springframework.web.bind.annotation.*;
+&nbsp;import org.springframework.web.multipart.MultipartFile;
+&nbsp;
+&nbsp;import java.util.HashMap;
+&nbsp;import java.util.List;
+&nbsp;import java.util.Map;
+&nbsp;import java.util.Random;
+&nbsp;
+&nbsp;@RestController
+&nbsp;@RequestMapping(&quot;/api/application&quot;)
+&nbsp;public class ExpertApplicationController {
+&nbsp;    // 存储验证码和对应的邮箱，用于后续验证
+<b class="fc">&nbsp;    private Map&lt;String, String&gt; verificationCodes = new HashMap&lt;&gt;();</b>
+&nbsp;
+&nbsp;    // 注入邮件发送器
+&nbsp;    @Autowired
+&nbsp;    private JavaMailSender sender;
+&nbsp;
+&nbsp;    private final ExpertApplicationService service;
+<b class="fc">&nbsp;    public ExpertApplicationController(ExpertApplicationService service) {</b>
+<b class="fc">&nbsp;        this.service = service;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    // 发送验证码
+&nbsp;    @GetMapping(&quot;/sendCode/{email}&quot;)
+&nbsp;    public Result&lt;String&gt; sendVerificationCode(@PathVariable String email) {
+&nbsp;        // 验证email地址是否有效
+&nbsp;        try {
+<b class="nc">&nbsp;            new InternetAddress(email).validate();</b>
+<b class="nc">&nbsp;        } catch (jakarta.mail.internet.AddressException e) {</b>
+&nbsp;            // 邮件地址不合法，处理异常或返回错误信息
+<b class="nc">&nbsp;            return Result.error(123,&quot;邮件地址不合法&quot;);</b>
+&nbsp;        }
+&nbsp;
+&nbsp;        // 生成随机验证码
+<b class="nc">&nbsp;        String verificationCode = generateVerificationCode();</b>
+&nbsp;
+&nbsp;        // 构建邮件内容，包括验证码和ASCII风格的banner
+<b class="nc">&nbsp;        String emailContent = &quot;亲爱的专家，您的验证码是：&quot; + verificationCode + &quot;\n\n&quot; +</b>
+&nbsp;                &quot;--------------------------------------------------\n\n&quot; +
+&nbsp;                &quot;感谢您使用OCP平台，祝您使用愉快！\n\n&quot; +
+&nbsp;                &quot;OCP平台团队&quot;;
+&nbsp;        // 发送邮件
+<b class="nc">&nbsp;        SimpleMailMessage message = new SimpleMailMessage();</b>
+&nbsp;        //邮件发送者，这里要与配置文件中的保持一致
+<b class="nc">&nbsp;        message.setFrom(&quot;2309996590@qq.com&quot;);</b>
+<b class="nc">&nbsp;        message.setTo(email);</b>
+<b class="nc">&nbsp;        message.setSubject(&quot;OCP平台验证码注册&quot;);</b>
+<b class="nc">&nbsp;        message.setText(emailContent);</b>
+<b class="nc">&nbsp;        sender.send(message);</b>
+&nbsp;
+&nbsp;        // 将验证码和邮箱存储到Map中
+<b class="nc">&nbsp;        verificationCodes.put(verificationCode, email);</b>
+&nbsp;
+&nbsp;//        // 在控制台打印验证码和邮箱
+&nbsp;//        System.out.println(&quot;Stored Verification Code: &quot; + verificationCode);
+&nbsp;//        System.out.println(&quot;Stored Email: &quot; + email);
+&nbsp;
+<b class="nc">&nbsp;        return Result.success(&quot;验证码已发送至邮箱：&quot; + email);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @GetMapping(&quot;/list&quot;)
+&nbsp;    public Result&lt;List&lt;ExpertApplication&gt;&gt; getApplications() {
+<b class="nc">&nbsp;        return service.getApplications();</b>
+&nbsp;    }
+&nbsp;    @PostMapping(&quot;/add&quot;)
+&nbsp;    public Result&lt;ExpertApplication&gt; addApplication(ExpertApplication application, @RequestParam MultipartFile file) {
+&nbsp;//        // 打印application实体的所有信息
+&nbsp;//        System.out.println(&quot;Received Verification Code: &quot; + application.getVerificationCode());
+&nbsp;//        System.out.println(&quot;Received Email: &quot; + application.getEmail());
+&nbsp;//        System.out.println(&quot;Received Name: &quot; + application.getPassword());
+&nbsp;//        System.out.println(&quot;Received Name: &quot; + application.getFirstName());
+&nbsp;//        System.out.println(&quot;Received Name: &quot; + application.getLastName());
+&nbsp;//        System.out.println(verificationCodes.get(application.getVerificationCode()).equals(application.getEmail()));
+&nbsp;
+<b class="nc">&nbsp;        if (verificationCodes.containsKey(application.getVerificationCode()) &amp;&amp; verificationCodes.get(application.getVerificationCode()).equals(application.getEmail())) {</b>
+&nbsp;            // 验证通过，可以注册，这里可以将userInfo保存到数据库中
+<b class="nc">&nbsp;            verificationCodes.remove(application.getVerificationCode()); // 移除已验证的验证码</b>
+&nbsp;        } else {
+<b class="nc">&nbsp;            return Result.error(123,&quot;验证码错误或已过期，请重新获取验证码！&quot;);</b>
+&nbsp;        }
+<b class="nc">&nbsp;        return service.addApplication(application, file);</b>
+&nbsp;    }
+&nbsp;    @DeleteMapping(&quot;/delete/{id}&quot;)
+&nbsp;    public Result&lt;ExpertApplication&gt; deleteApplication(@PathVariable int id) {
+<b class="nc">&nbsp;        return service.deleteApplication(id);</b>
+&nbsp;    }
+&nbsp;    @PutMapping(&quot;/update/{id}&quot;)
+&nbsp;    public Result&lt;ExpertApplication&gt; updateApplication(@RequestBody ExpertApplication application) {
+<b class="nc">&nbsp;        return service.updateApplication(application);</b>
+&nbsp;    }
+&nbsp;    @PostMapping(&quot;/approve/{id}&quot;)
+&nbsp;    public Result&lt;ExpertApplication&gt; approveApplication(@PathVariable int id) {
+<b class="nc">&nbsp;        return service.approveApplication(id);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    // 生成随机验证码
+&nbsp;    private String generateVerificationCode() {
+<b class="nc">&nbsp;        String characters = &quot;0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ&quot;;</b>
+<b class="nc">&nbsp;        StringBuilder sb = new StringBuilder();</b>
+<b class="nc">&nbsp;        Random random = new Random();</b>
+<b class="nc">&nbsp;        for (int i = 0; i &lt; 6; i++) {</b>
+<b class="nc">&nbsp;            sb.append(characters.charAt(random.nextInt(characters.length())));</b>
+&nbsp;        }
+<b class="nc">&nbsp;        return sb.toString();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-05-22 13:35</div>
+</div>
+</body>
+</html>

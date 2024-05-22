@@ -1,6 +1,8 @@
 package org.example.backend.MyWs;
 
 import jakarta.annotation.Resource;
+import jakarta.websocket.server.ServerContainer;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.socket.config.annotation.EnableWebSocket;
@@ -17,7 +19,9 @@ public class MyWsConfig {
      * 这个bean会自动注册使用了@ServerEndpoint注解声明的WebSocket Endpoint
      */
     @Bean
+    @ConditionalOnBean(ServerContainer.class)
     public ServerEndpointExporter serverEndpointExporter() {
         return new ServerEndpointExporter();
     }
+
 }

@@ -1,0 +1,152 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=GBK"> 
+  <title>Coverage Report > TweetController</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">org.example.backend.controller</a>
+</div>
+
+<h1>Coverage Summary for Class: TweetController (org.example.backend.controller)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">TweetController</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    14.3%
+  </span>
+  <span class="absValue">
+    (1/7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    25%
+  </span>
+  <span class="absValue">
+    (2/8)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package org.example.backend.controller;
+&nbsp;
+&nbsp;import org.example.backend.entity.Expert;
+&nbsp;import org.example.backend.entity.Result;
+&nbsp;import org.example.backend.entity.Tweet;
+&nbsp;import org.example.backend.service.ExpertService;
+&nbsp;import org.example.backend.service.TweetService;
+&nbsp;import org.springframework.security.access.prepost.PreAuthorize;
+&nbsp;import org.springframework.web.bind.annotation.*;
+&nbsp;import org.springframework.web.multipart.MultipartFile;
+&nbsp;
+&nbsp;import java.util.List;
+&nbsp;
+&nbsp;@RestController
+&nbsp;@RequestMapping(&quot;/api/tweet&quot;)
+&nbsp;public class TweetController {
+&nbsp;    private final TweetService service;
+<b class="fc">&nbsp;    public TweetController(TweetService service) {</b>
+<b class="fc">&nbsp;        this.service = service;</b>
+&nbsp;    }
+&nbsp;    @GetMapping(&quot;/list&quot;)
+&nbsp;    public Result&lt;List&lt;Tweet&gt;&gt; list() {
+<b class="nc">&nbsp;        return service.getTweets();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @GetMapping(&quot;/get/{id}&quot;)
+&nbsp;    public Result&lt;Tweet&gt; getTweetById(@PathVariable int id) {
+<b class="nc">&nbsp;        return service.getTweetById(id);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @PutMapping(&quot;/update/{id}&quot;)
+&nbsp;    public Result&lt;Tweet&gt; updateTweet(@PathVariable int id, @RequestBody Tweet tweet) {
+<b class="nc">&nbsp;        return service.updateTweet(id, tweet);</b>
+&nbsp;    }
+&nbsp;    @DeleteMapping(&quot;/delete/{id}&quot;)
+&nbsp;    public Result&lt;Tweet&gt; deleteTweet(@PathVariable int id) {
+<b class="nc">&nbsp;        return service.deleteTweet(id);</b>
+&nbsp;    }
+&nbsp;    @PostMapping(&quot;/add&quot;)
+&nbsp;    public Result&lt;Tweet&gt; addTweet(@RequestParam String content,@RequestParam(required = false) MultipartFile file) {
+<b class="nc">&nbsp;        return service.addTweet(content,file);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @GetMapping(&quot;/search&quot;)
+&nbsp;    public Result&lt;List&lt;Tweet&gt;&gt; searchTweets(@RequestParam String keyword) {
+<b class="nc">&nbsp;        return service.getTweetsByContentLike(keyword);</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-05-22 13:35</div>
+</div>
+</body>
+</html>
