@@ -1,7 +1,7 @@
 package org.example.backend.controller;
 
-import org.example.backend.MyWs.MyWsConfig;
 import org.example.backend.entity.Result;
+import org.example.backend.entity.Speciality;
 import org.example.backend.service.SpecialityService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,8 +13,12 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.hasSize;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -42,12 +46,37 @@ class SpecialityControllerTest {
     }
 
     @Test
-    void list() throws Exception {
+    void listWhenEmpty() throws Exception {
         when(specialityService.getSpecialities()).thenReturn(Result.success(Collections.emptyList()));
 
         mockMvc.perform(get("/api/speciality/list"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.data").isEmpty());
+
+        verify(specialityService, times(1)).getSpecialities();
+    }
+
+    @Test
+    void listWhenNotEmpty() throws Exception {
+        List<Speciality> specialities = Arrays.asList(new Speciality(), new Speciality());
+        when(specialityService.getSpecialities()).thenReturn(Result.success(specialities));
+
+        mockMvc.perform(get("/api/speciality/list"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.data", hasSize(2)));
+
+        verify(specialityService, times(1)).getSpecialities();
+    }
+
+
+    @Test
+    void listWhenException() throws Exception {
+        when(specialityService.getSpecialities()).thenThrow(new RuntimeException("Test exception"));
+
+        mockMvc.perform(get("/api/speciality/list"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.code", is(500)))
+                .andExpect(jsonPath("$.message", is("Test exception")));
 
         verify(specialityService, times(1)).getSpecialities();
     }
