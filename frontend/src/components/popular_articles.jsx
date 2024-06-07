@@ -4,19 +4,28 @@ import { getRecommendedArticles } from "../services/articleService";
 
 function PopularArticleItem({ article }) {
   return (
-    <Link to={`/article/${article.id}`}>
+    <>
       <div className="flex gap-4 px-4 py-2.5">
         <div className="flex flex-col">
-          <div className="flex gap-1 text-slate-500">
+          <Link
+            to={`/expert/${article.author?.id}`}
+            className="flex gap-1 text-slate-500"
+          >
             <div>{article.author?.name}</div>
-          </div>
-          <div className="mt-1.5 text-base tracking-wide text-neutral-900">
+          </Link>
+          <Link
+            to={`/article/${article.id}`}
+            className="mt-1.5 text-base tracking-wide text-neutral-900"
+          >
             {article.title}
-          </div>
+          </Link>
           <div className="flex gap-1 mt-1.5 tracking-tight">
             <div className="text-slate-500">Specialty Tag:</div>
             <div className="text-sky-500">
-              #{article.tags?.map((tag) => tag.content).join(" #")}
+              #
+              {article.tags?.map((tag) => (
+                <Link to={`/article?tag=${tag.id}`} key={tag.id}>{tag.content}</Link>
+              ))}
             </div>
           </div>
         </div>
@@ -27,7 +36,7 @@ function PopularArticleItem({ article }) {
         />
       </div>
       <div className="w-full bg-gray-200 min-h-[1px]" />
-    </Link>
+    </>
   );
 }
 

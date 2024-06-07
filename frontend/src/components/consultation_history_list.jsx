@@ -9,7 +9,7 @@ export default function ConsultationHistoryList({ experts }) {
   return (
     <div
       style={{
-        width: "100%",
+        width: "350px",
         display: "grid",
         gap: "2px",
         position: "absolute",
@@ -21,15 +21,13 @@ export default function ConsultationHistoryList({ experts }) {
 
       {experts.slice(0, 3).map((expert) => (
         <div
-        className="cursor-pointer"
+          className="cursor-pointer w-[100%]"
           key={expert.id}
           onClick={() => {
             setSearchParams({ receiverId: expert.id });
           }}
         >
-          <React.Fragment key={expert.id}>
-            <ConsultationHistoryCard expert={expert} />
-          </React.Fragment>
+          <ConsultationHistoryCard expert={expert} />
         </div>
       ))}
 

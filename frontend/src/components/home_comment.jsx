@@ -19,7 +19,7 @@ function UserInfo({ imageSrc, name, username }) {
         loading="lazy"
         src={imageSrc}
         alt={name}
-        className="shrink-0 gap-0 aspect-square w-[75px] h-[75px]"
+        className="shrink-0 gap-0 aspect-square w-[75px] h-[75px] rounded-full"
         style={{ aspectRatio: "1/1" }}
       />
       <div className="flex flex-col gap-1.5 py-1 my-auto">

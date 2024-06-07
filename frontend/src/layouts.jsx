@@ -7,14 +7,14 @@ import { useAuth } from "./context/authContext";
 const { Content } = Layout;
 
 export function PrivateLayout({ children }) {
-  const { setUser, setClient, setExpert } = useAuth();
+  const { user, setUser, setClient, setExpert } = useAuth();
   useEffect(() => {
     checkAuth()
       .then((res) => {
         setUser(res);
         if (res.role === "user") {
           setClient(res.client);
-        } else {
+        } else if (res.role === "expert") {
           setExpert(res.expert);
         }
       })
@@ -27,7 +27,7 @@ export function PrivateLayout({ children }) {
     <Layout hasSider style={{ minWidth: "1600px", minHeight: "800px" }}>
       <Sidebar />
       <Layout className="site-layout">
-        <Content style={{}}>{children}</Content>
+        <Content style={{ padding: "0 20px " }}>{user && children}</Content>
         <Footer />
       </Layout>
     </Layout>

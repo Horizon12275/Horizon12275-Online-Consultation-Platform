@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { TagProvider } from "../context/tagcontext";
 import { PrivateLayout, PublicLayout } from "../layouts";
 import TagBar from "../components/tagbar";
 import ExpertShowList from "../components/expert_showlist";

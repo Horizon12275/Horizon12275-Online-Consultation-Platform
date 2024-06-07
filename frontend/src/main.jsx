@@ -22,8 +22,12 @@ import WriteArticlePage from "./pages/writeArticle.jsx";
 import VerifyExpertPage from "./pages/verifyExpert.jsx";
 import { AuthProvider } from "./context/authContext.jsx";
 import Expert_profile from "./pages/expert_profile.jsx";
+import ScrollToTop from "./components/scrollToTop.jsx";
 
 const router = createBrowserRouter([
+  {
+    element: <ScrollToTop />,
+  },
   {
     path: "/",
     element: <HomePage />,

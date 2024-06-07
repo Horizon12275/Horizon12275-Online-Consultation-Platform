@@ -14,7 +14,7 @@ const FeedEditor = ({ setTweets }) => {
     {
       children: (
         <ImageUploader
-          multiple
+          multiple={false}
           selectedImages={selectedImages}
           setSelectedImages={setSelectedImages}
           children={
@@ -49,6 +49,7 @@ const FeedEditor = ({ setTweets }) => {
             image: res.image,
           },
         ]);
+        setSelectedImages([]);
         alert("Tweet posted successfully");
       })
       .catch((e) => {

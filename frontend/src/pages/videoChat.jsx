@@ -26,7 +26,7 @@ function VideoChatPage() {
   return (
     <PrivateLayout>
       <VideosDisplay />
-      <ChatAppSmall sid={user?.id} receiver={receiver} />
+      <ChatAppSmall sid={user?.id} receiver={receiver}  receiverId={receiverId} />
     </PrivateLayout>
   );
 }

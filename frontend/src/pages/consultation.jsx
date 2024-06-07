@@ -22,7 +22,6 @@ const ConsultPage = () => {
   const [experts, setExperts] = useState([]);
 
   useEffect(() => {
-    console.log(receiverId);
     getConsultation().then((consultations) => {
       if (consultations.length === 0) {
         alert(
@@ -53,6 +52,9 @@ const ConsultPage = () => {
           setReceiver(client);
         });
       }
+    }).catch((e) => {
+      alert(e);
+      location.href = "/";
     });
   }, [user, searchParams]);
 

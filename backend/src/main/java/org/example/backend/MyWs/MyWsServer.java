@@ -5,12 +5,11 @@ import jakarta.websocket.*;
 import jakarta.websocket.server.PathParam;
 import jakarta.websocket.server.ServerEndpoint;
 import lombok.extern.slf4j.Slf4j;
-import org.example.backend.entity.Client;
 import org.example.backend.entity.Consultation;
 import org.example.backend.entity.Message;
 
 import org.example.backend.entity.User;
-import org.example.backend.DTO.WsMessage;
+import org.example.backend.entity.WsMessage;
 import org.example.backend.repository.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -104,10 +103,11 @@ public class MyWsServer {
 
         log.info("接收到来自{}发给{}的消息:{}", senderId, receiverId, message);
         WsMessage<String> wsMessage = JSON.parseObject(message, WsMessage.class);
-        if (wsMessage.getType().equals("message")) {
+        if (wsMessage.getType().equals("message")||wsMessage.getType().equals("image")) {
             message = wsMessage.getData();
             Session receiverSession = sessionPool.get(receiverId);
             Message msg = new Message();
+            msg.setType(wsMessage.getType());
             msg.setContent(message);
             msg.setSender(new User());
             msg.getSender().setId(senderId);

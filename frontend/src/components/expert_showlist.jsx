@@ -31,22 +31,20 @@ const ExpertShowList = ({ sortBy, experts, length }) => {
             <ExpertShowCard item={expert} />
           </List.Item>
         )}
-      >
-        <Pagination
-          current={searchParams.get("page") || 1}
-          defaultPageSize={12}
-          pageSize={searchParams.get("pageSize") || 12}
-          onChange={handlePageChange}
-          showQuickJumper
-          showSizeChanger
-          pageSizeOptions={["12", "24", "48"]}
-          total={length}
-          showTotal={(total, range) =>
-            `${total} 项中的 ${range[0]}-${range[1]} 项 `
-          }
-          position="bottom"
-        />
-      </List>
+        pagination={{
+          current: searchParams.get("page") || 1,
+          defaultPageSize: 12,
+          pageSize: searchParams.get("pageSize") || 12,
+          onChange: handlePageChange,
+          showQuickJumper: true,
+          showSizeChanger: true,
+          pageSizeOptions: ["12", "24", "48"],
+          total: length,
+          showTotal: (total, range) =>
+            `${total} 项中的 ${range[0]}-${range[1]} 项 `,
+          position: "bottom",
+        }}
+      ></List>
     </Flex>
   );
 };
