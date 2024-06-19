@@ -28,7 +28,10 @@ export default function ConsultationHistoryList({ consultations }) {
               setSearchParams({ receiverId: consultation.expert.id });
             }}
           >
-            <ConsultationHistoryCard expert={consultation.expert} time={consultation.time}/>
+            <ConsultationHistoryCard
+              expert={consultation.expert}
+              time={consultation.time}
+            />
           </div>
         ))}
       {user?.role === "expert" &&
@@ -40,7 +43,10 @@ export default function ConsultationHistoryList({ consultations }) {
               setSearchParams({ receiverId: consultation.client.id });
             }}
           >
-            <ConsultationHistoryCard client={consultation.client} />
+            <ConsultationHistoryCard
+              client={consultation.client}
+              time={consultation.time}
+            />
           </div>
         ))}
     </div>

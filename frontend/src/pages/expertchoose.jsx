@@ -50,24 +50,24 @@ const ExpertChoosePage = () => {
       });
   }, [keyword, page, pageSize, tag]);
   return (
-      <PublicLayout>
-        <Flex vertical gap="middle" className="mx-auto w-[1300px]">
-          <h1 className="text-5xl tracking-tight text-black self-start mt-8">
-            Find Your Expert!
-          </h1>
-          <TagBar />
-          <Row justify={"space-between"}>
-            <Col></Col>
-            <Col className="w-1/2"> 
-              <SearchBar />
-            </Col>
-            <Col> 
-              <RadioSort onSortChange={handleSortChange} />
-            </Col>
-          </Row>
-          <ExpertShowList sortBy={sortBy} experts={experts} />
-        </Flex>
-      </PublicLayout>
+    <PublicLayout>
+      <Flex vertical gap="middle" className="mx-auto w-[1300px]">
+        <h1 className="text-5xl tracking-tight text-black self-start mt-8">
+          Find Your Expert!
+        </h1>
+        <TagBar />
+        <Row justify={"space-between"}>
+          <Col></Col>
+          <Col className="w-1/2">
+            <SearchBar />
+          </Col>
+          <Col>
+            <RadioSort onSortChange={handleSortChange} />
+          </Col>
+        </Row>
+        <ExpertShowList sortBy={sortBy} experts={experts} length={length} />
+      </Flex>
+    </PublicLayout>
   );
 };
 

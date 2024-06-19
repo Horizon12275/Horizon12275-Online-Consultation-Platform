@@ -15,7 +15,7 @@ public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(precision = 5,scale = 2)
+    @Column(precision = 7,scale = 2)
     private BigDecimal balance;
     private String firstName;
     private String lastName;
