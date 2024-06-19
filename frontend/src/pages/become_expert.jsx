@@ -145,8 +145,8 @@ const BecomeExpertPage = () => {
           <button
             style={{
               position: "absolute",
-              top: "527px",
-              right: "390px",
+              top: "520px",
+              right: "460px",
               width: "100px",
               height: "35px",
               border: "none",

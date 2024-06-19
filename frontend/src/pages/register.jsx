@@ -15,7 +15,7 @@ function RegisterPage() {
 
   const containerStyle = {
     width: "50%",
-    height: "90vh", // 调整容器高度，使其占据更多垂直空间
+    height: "100vh", // 调整容器高度，使其占据更多垂直空间
     position: "fixed",
     top: 0,
     right: 0, // 调整位置为左上角
@@ -48,7 +48,7 @@ function RegisterPage() {
   };
 
   return (
-    <Form initialValues={{ remember: true }} onFinish={register}>
+    <div>
       <img
         src="https://cdn.pixabay.com/photo/2020/12/18/00/43/medical-5840876_1280.png"
         alt="Login Image"
@@ -61,168 +61,179 @@ function RegisterPage() {
           objectFit: "cover",
         }}
       />
-      <div style={containerStyle}>
-        <div
-          className="title"
-          style={{ fontSize: "2em", marginBottom: "20px" }}
-        >
-          SIGN UP
-        </div>
-        <div className="subtitle" style={subtitleStyle}>
-          If you already have an account, you can{" "}
-          <a href="/login" style={linkStyle}>
-            LOGIN HERE
-          </a>
-          !
-        </div>
-        <Form.Item
-          className="input-container"
-          style={inputStyle}
-          id="email"
-          name="email"
-          rules={[{ required: true, message: "Please enter the email!" }]}
-        >
-          <div>
-            <label style={labelStyle}>Email</label>
-            <Input
-              prefix={<MailOutlined />}
-              placeholder="Enter your email address"
-              value={currentEmail}
-              onChange={(e) => setCurrentEmail(e.target.value)}
-              allowClear
-            />
+      <Form initialValues={{ remember: true }} onFinish={register}>
+        <div style={containerStyle}>
+          <img
+            src="/JustAskBlue.png"
+            alt="Logo"
+            style={{ marginBottom: "10px" }}
+          />
+          <div
+            className="title"
+            style={{ fontSize: "2em", marginBottom: "20px" }}
+          >
+            SIGN UP
           </div>
-        </Form.Item>
-        <Form.Item
-          className="input-container"
-          style={inputStyle}
-          id="verificationCode"
-          name="verificationCode"
-          rules={[
-            { required: true, message: "Please enter your verification code!" },
-          ]}
-        >
-          <div>
-            <label style={labelStyle}>Verification Code</label>
-            <Input
-              prefix={<CodeOutlined />}
-              placeholder="Enter the verification code you've received"
-              allowClear
-            />
+          <div className="subtitle" style={subtitleStyle}>
+            If you already have an account, you can{" "}
+            <a href="/login" style={linkStyle}>
+              LOGIN HERE
+            </a>
+            !
           </div>
-        </Form.Item>
-        <Form.Item
-          className="input-container"
-          style={inputStyle}
-          rules={[{ required: true, message: "Please enter the email!" }]}
-        >
-          <div>
+          <Form.Item
+            className="input-container"
+            style={inputStyle}
+            id="email"
+            name="email"
+            rules={[{ required: true, message: "Please enter the email!" }]}
+          >
+            <div>
+              <label style={labelStyle}>Email</label>
+              <Input
+                prefix={<MailOutlined />}
+                placeholder="Enter your email address"
+                value={currentEmail}
+                onChange={(e) => setCurrentEmail(e.target.value)}
+                allowClear
+              />
+            </div>
+          </Form.Item>
+          <Form.Item
+            className="input-container"
+            style={inputStyle}
+            id="verificationCode"
+            name="verificationCode"
+            rules={[
+              {
+                required: true,
+                message: "Please enter your verification code!",
+              },
+            ]}
+          >
+            <div>
+              <label style={labelStyle}>Verification Code</label>
+              <Input
+                prefix={<CodeOutlined />}
+                placeholder="Enter the verification code you've received"
+                allowClear
+              />
+            </div>
+          </Form.Item>
+          <Form.Item
+            className="input-container"
+            style={inputStyle}
+            rules={[{ required: true, message: "Please enter the email!" }]}
+          >
+            <div>
+              <Button
+                onClick={() => sendCode(currentEmail)}
+                style={{
+                  width: "100%",
+                  backgroundColor: "#1677ff",
+                  color: "white",
+                }}
+              >
+                Get Your Verification Code
+              </Button>
+            </div>
+          </Form.Item>
+          <Form.Item
+            className="input-container"
+            style={inputStyle}
+            id="username"
+            name="username"
+            rules={[{ required: true, message: "Please enter your username!" }]}
+          >
+            <div>
+              <label style={labelStyle}>Username</label>
+              <Input
+                prefix={<UserOutlined />}
+                placeholder="Enter your username"
+                allowClear
+              />
+            </div>
+          </Form.Item>
+          <Form.Item
+            className="input-container"
+            style={inputStyle}
+            id="password"
+            name="password"
+            rules={[
+              {
+                required: true,
+                message: "Please enter your password!",
+              },
+            ]}
+          >
+            <div>
+              <label style={labelStyle}>Password</label>
+              <Input.Password
+                prefix={<LockOutlined />}
+                type="password"
+                placeholder="Password"
+                allowClear
+                iconRender={(visible) =>
+                  visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
+                }
+              />
+            </div>
+          </Form.Item>
+          <Form.Item
+            className="input-container"
+            style={inputStyle}
+            id="confirm_password"
+            name="confirm_password"
+            rules={[
+              {
+                required: true,
+                message: "Please confirm your password!",
+              },
+              ({ getFieldValue }) => ({
+                validator(_, value) {
+                  if (!value || getFieldValue("password") === value) {
+                    return Promise.resolve();
+                  }
+                  return Promise.reject(
+                    new Error(
+                      "The two passwords that you entered do not match!"
+                    )
+                  );
+                },
+              }),
+            ]}
+          >
+            <div>
+              <label style={labelStyle}>Confirm Password</label>
+              <Input.Password
+                prefix={<LockOutlined />}
+                type="password"
+                placeholder="Confirm your Password"
+                allowClear
+                iconRender={(visible) =>
+                  visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
+                }
+              />
+            </div>
+          </Form.Item>
+          <div className="register-btn" style={inputStyle}>
             <Button
-              onClick={() => sendCode(currentEmail)}
-              style={{
-                width: "100%",
-                backgroundColor: "#1677ff",
-                color: "white",
-              }}
+              type="primary"
+              htmlType="submit"
+              style={{ width: "100%", backgroundColor: "#295573" }}
             >
-              Get Your Verification Code
+              Register Now!
             </Button>
           </div>
-        </Form.Item>
-        <Form.Item
-          className="input-container"
-          style={inputStyle}
-          id="username"
-          name="username"
-          rules={[{ required: true, message: "Please enter your username!" }]}
-        >
-          <div>
-            <label style={labelStyle}>Username</label>
-            <Input
-              prefix={<UserOutlined />}
-              placeholder="Enter your username"
-              allowClear
-            />
-          </div>
-        </Form.Item>
-        <Form.Item
-          className="input-container"
-          style={inputStyle}
-          id="password"
-          name="password"
-          rules={[
-            {
-              required: true,
-              message: "Please enter your password!",
-            },
-          ]}
-        >
-          <div>
-            <label style={labelStyle}>Password</label>
-            <Input.Password
-              prefix={<LockOutlined />}
-              type="password"
-              placeholder="Password"
-              allowClear
-              iconRender={(visible) =>
-                visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
-              }
-            />
-          </div>
-        </Form.Item>
-        <Form.Item
-          className="input-container"
-          style={inputStyle}
-          id="confirm_password"
-          name="confirm_password"
-          rules={[
-            {
-              required: true,
-              message: "Please confirm your password!",
-            },
-            ({ getFieldValue }) => ({
-              validator(_, value) {
-                if (!value || getFieldValue("password") === value) {
-                  return Promise.resolve();
-                }
-                return Promise.reject(
-                  new Error("The two passwords that you entered do not match!")
-                );
-              },
-            }),
-          ]}
-        >
-          <div>
-            <label style={labelStyle}>Confirm Password</label>
-            <Input.Password
-              prefix={<LockOutlined />}
-              type="password"
-              placeholder="Confirm your Password"
-              allowClear
-              iconRender={(visible) =>
-                visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
-              }
-            />
-          </div>
-        </Form.Item>
-        <div className="register-btn" style={inputStyle}>
-          <Button
-            type="primary"
-            htmlType="submit"
-            style={{ width: "100%", backgroundColor: "#295573" }}
-          >
-            Register Now!
-          </Button>
-        </div>
-        <div className="input-container" style={{ ...inputStyle }}>
-          <div style={{ marginBottom: "10px", fontSize: "21px" }}>
-            Or want to request for an{" "}
-            <a href="/become-expert" style={linkStyle}>
-              EXPERT ACCOUNT
-            </a>{" "}
-            now?
-          </div>
-          {/* <div>
+          <div className="input-container" style={{ ...inputStyle }}>
+            <div style={{ marginBottom: "10px", fontSize: "21px" }}>
+              Or want to request for an{" "}
+              <a href="/become-expert" style={linkStyle}>
+                EXPERT ACCOUNT
+              </a>{" "}
+              now?
+            </div>
+            {/* <div>
             <Checkbox>
               I've read the{" "}
               <a href="/user_agreement" style={linkStyle}>
@@ -230,9 +241,10 @@ function RegisterPage() {
               </a>{" "}
             </Checkbox>
           </div> */}
+          </div>
         </div>
-      </div>
-    </Form>
+      </Form>
+    </div>
   );
 }
 

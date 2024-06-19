@@ -20,6 +20,7 @@ public class Article {
     @GeneratedValue( strategy = GenerationType.IDENTITY)
     private int id;
     private String title;
+    @Column(name = "description", length = 2000)
     private String description;
     @Lob
     @Column(columnDefinition = "TEXT")

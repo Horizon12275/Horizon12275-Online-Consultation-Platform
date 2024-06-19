@@ -7,11 +7,14 @@ import rehypeRaw from "rehype-raw";
 
 const ArticleDisplay = ({ article }) => {
   return (
-    <Markdown
-      className="mt-4 prose po prose-zinc max-w-none dark:prose-invert w-[1000px]"
-      children={article.content}
-      rehypePlugins={[rehypeRaw]}
-    />
+    <>
+      <h1 className="text-4xl font-bold">{article.title}</h1>
+      <Markdown
+        className="mt-4 prose po prose-zinc max-w-none dark:prose-invert w-[1000px]"
+        children={article.content}
+        rehypePlugins={[rehypeRaw]}
+      />
+    </>
   );
 };
 
