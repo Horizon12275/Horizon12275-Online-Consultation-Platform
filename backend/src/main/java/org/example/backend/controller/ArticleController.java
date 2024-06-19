@@ -43,8 +43,8 @@ public class ArticleController {
         return service.deleteArticle(id);
     }
     @PostMapping("/add")
-    public Result<Article> addArticle(@RequestParam String content, @RequestParam int[] tids, @RequestParam MultipartFile file, @RequestParam String title) {
-        return service.addArticle(content, tids, title, file);
+    public Result<Article> addArticle(Article article, @RequestParam int[] tids, @RequestParam MultipartFile file ) {
+        return service.addArticle(article, tids, file);
     }
     @GetMapping("/search")
     public Result<ArticlePageResponse> searchArticles(@RequestParam(defaultValue = "") String keyword, @RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "10") int pageSize){

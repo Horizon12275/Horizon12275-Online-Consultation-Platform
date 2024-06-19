@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { TagProvider } from "../context/tagcontext";
-import { BasicLayout } from "../layouts";
+import { PrivateLayout, PublicLayout } from "../layouts";
 import TagBar from "../components/tagbar";
 import ExpertShowList from "../components/expert_showlist";
 import SearchBar from "../components/searchbox";
@@ -51,21 +50,24 @@ const ExpertChoosePage = () => {
       });
   }, [keyword, page, pageSize, tag]);
   return (
-    <TagProvider>
-      <BasicLayout>
+      <PublicLayout>
         <Flex vertical gap="middle" className="mx-auto w-[1300px]">
           <h1 className="text-5xl tracking-tight text-black self-start mt-8">
             Find Your Expert!
           </h1>
           <TagBar />
           <Row justify={"space-between"}>
-            <SearchBar />
-            <RadioSort onSortChange={handleSortChange} />
+            <Col></Col>
+            <Col className="w-1/2"> 
+              <SearchBar />
+            </Col>
+            <Col> 
+              <RadioSort onSortChange={handleSortChange} />
+            </Col>
           </Row>
           <ExpertShowList sortBy={sortBy} experts={experts} />
         </Flex>
-      </BasicLayout>
-    </TagProvider>
+      </PublicLayout>
   );
 };
 

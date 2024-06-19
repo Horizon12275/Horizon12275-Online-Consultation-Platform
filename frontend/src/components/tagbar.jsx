@@ -25,14 +25,14 @@ const TagBar = () => {
   };
 
   return (
-    <div className="flex flex-wrap gap-3 mt-10">
+    <div className="flex flex-wrap gap-3 mb-5">
       <Flex gap="10px 3px" wrap="wrap" align="center" className="mt-10">
         {tags.map((tag) => (
           <Tag.CheckableTag
             key={tag.id}
             checked={selected.includes(tag.id.toString())}
             onChange={(checked) => handleChange(tag.id.toString(), checked)}
-            className="px-3 py-1 rounded border-zinc-500 text-center "
+            className="px-4 py-2 rounded border-zinc-500 text-center shadow text-xs "
           >
             {tag.content}
           </Tag.CheckableTag>

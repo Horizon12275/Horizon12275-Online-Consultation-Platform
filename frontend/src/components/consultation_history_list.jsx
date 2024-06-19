@@ -1,40 +1,34 @@
 import React, { useEffect, useState } from "react";
 import ConsultationHistoryCard from "./consultation_history_card";
-import { Link } from "react-router-dom";
-import { getOtherUserById } from "../services/userService";
-import { getRecommendedExperts } from "../services/expertService";
+import { Link, useParams, useSearchParams } from "react-router-dom";
+import { getConsultation } from "../services/consultationService";
 
-export default function ConsultationHistoryList() {
-  const [n, setN] = useState(3);
-  const [expanded, setExpanded] = useState(false);
-  const [experts, setExperts] = useState([]);
-  useEffect(() => {
-    getRecommendedExperts().then((res) => {
-      setExperts(res);
-    });
-  }, []);
-
-  const handleClick = () => {
-    setExpanded(!expanded);
-    if (n === 2) {
-      setN(6);
-    } else {
-      setN(2);
-    }
-  };
+export default function ConsultationHistoryList({ experts }) {
+  const [searchParams, setSearchParams] = useSearchParams();
 
   return (
-    <div style={{ width: "100%",display:'grid',gap:'2px',position:"absolute",top:'50px',left:'280px'}}>
-      <header className="text-2xl text-center text-black max-w-[84px] m-auto mt-3" style={{ width: "100%",display:'grid',gap:'5px',position:"absolute",top:'-40px',left:'130px'}}>
-        History:
-      </header>
+    <div
+      style={{
+        width: "350px",
+        display: "grid",
+        gap: "2px",
+        position: "absolute",
+        top: "50px",
+        left: "280px",
+      }}
+    >
+      <h2>Consultation History:</h2>
 
-      {experts.slice(0, n).map((expert) => (
-        <Link to={`/consultation/${expert.id}`} key={expert.id}>
-          <React.Fragment key={expert.id}>
-            <ConsultationHistoryCard expert={expert} />
-          </React.Fragment>
-        </Link>
+      {experts.slice(0, 3).map((expert) => (
+        <div
+          className="cursor-pointer w-[100%]"
+          key={expert.id}
+          onClick={() => {
+            setSearchParams({ receiverId: expert.id });
+          }}
+        >
+          <ConsultationHistoryCard expert={expert} />
+        </div>
       ))}
 
       {/* <Row justify="left" style={{ marginTop: "0px" }}>

@@ -14,11 +14,16 @@ export async function logout() {
   return result;
 }
 
-export async function register({ username, password, email, code }) {
+export async function register({
+  username,
+  password,
+  email,
+  verificationCode,
+}) {
   const url = `${PREFIX}/register`;
   try {
     let result;
-    result = await post(url, { username, password, email });
+    result = await post(url, { username, password, email, verificationCode });
     alert("注册成功！");
     location.reload();
   } catch (e) {
@@ -28,13 +33,25 @@ export async function register({ username, password, email, code }) {
 }
 
 export async function checkAuth() {
-  const url = `${PREFIX}/check`;
+  const url = `${PREFIX}/get`;
+  let result;
+
+  result = await get(url);
+  return result;
+}
+
+export async function sendCode(email) {
+  if (!email) {
+    alert("请输入邮箱！");
+    return;
+  }
+  const url = `${PREFIX}/sendCode/${email}`;
+  console.log(email);
   let result;
   try {
     result = await get(url);
-    return result;
+    alert("验证码已发送，请查收！");
   } catch (e) {
-    location.href = "/login";
     alert(e);
   }
 }

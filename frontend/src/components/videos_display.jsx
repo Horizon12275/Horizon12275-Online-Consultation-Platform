@@ -5,6 +5,7 @@ import { getReceiverId, getUser } from "../services/userService";
 import "../css/loading.css";
 import VideoBox from "./video_box";
 import { useAuth } from "../context/authContext";
+import { PEERURL } from "../services/requestService";
 
 function CallButton({ onClick }) {
   return (
@@ -83,7 +84,7 @@ const VideosDisplay = () => {
 
     //创建peer实例
     const peer = new Peer(currentUserId, {
-      host: "101.132.129.104",
+      host: PEERURL,
       port: 9000,
       path: "/myapp",
     });

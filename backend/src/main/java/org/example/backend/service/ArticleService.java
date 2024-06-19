@@ -13,7 +13,7 @@ public interface ArticleService {
     public Result<List<Article>> getArticles();
     public Result<Article> getArticleById(int id);
     public Result<List<Article>> getRecommendations(int nums);
-    public Result<Article> addArticle(String content, int[] tids, String title, MultipartFile file);
+    public Result<Article> addArticle(Article article, int[] tids, MultipartFile file);
     public Result<Article> updateArticle(int id, Article article);
     public Result<Article> deleteArticle(int id);
     public Result<ArticlePageResponse> searchArticles(String keyword, int page, int pageSize);

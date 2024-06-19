@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from "react";
-import { Table, Button, Modal, Row, Image } from "antd";
+import { Table, Button, Modal, Row, Image, Space } from "antd";
 import {
   approveApplication,
   deleteApplication,
   getApplications,
 } from "../services/applyService";
+import { getSpecialities } from "../services/specialityService";
+import { PrivateLayout } from "../layouts";
 
 const { Column } = Table;
 
 const VerifyExpertPage = () => {
   const [selected, setSelected] = useState([]);
   const [applications, setApplications] = useState([]);
+  const [specialities, setSpecialities] = useState([]);
   const handleDeleteItem = async (id) => {
     await deleteApplication(id)
       .then((res) => {
@@ -46,7 +49,7 @@ const VerifyExpertPage = () => {
     await approveApplication(id)
       .then((res) => {
         setApplications(applications.filter((item) => item.id !== id));
-        setSelected(selectedItems.filter((item) => item !== id));
+        setSelected(selected.filter((item) => item !== id));
         alert("Approved Successfully");
       })
       .catch((e) => alert(e));
@@ -55,19 +58,21 @@ const VerifyExpertPage = () => {
     getApplications().then((res) => {
       setApplications(res);
     });
-    console.log(applications);
+    getSpecialities().then((res) => {
+      setSpecialities(res);
+    });
   }, []);
 
   return (
-    <div>
+    <PrivateLayout>
       <Table
         dataSource={applications.map((item) => ({
           ...item,
           key: item.id,
         }))}
         rowSelection={{
-          onChange: (_, selectedItems) => {
-            setSelected(selectedItems.map((item) => item.id));
+          onChange: (_, selected) => {
+            setSelected(selected.map((item) => item.id));
           },
         }}
       >
@@ -87,9 +92,9 @@ const VerifyExpertPage = () => {
             console.log(items);
             return (
               <Row>
-                {items.map((item) => (
-                  <p key={item.id} style={{ margin: 5 }}>
-                    {`${item.content}`}
+                {items.map((id) => (
+                  <p key={id} style={{ margin: 5 }}>
+                    {`${specialities.find((s) => s.id === id)?.content}`}
                   </p>
                 ))}
               </Row>
@@ -103,7 +108,7 @@ const VerifyExpertPage = () => {
         />
         <Column
           title="Professional Qualifications"
-          dataIndex="image"
+          dataIndex="certificate"
           key="professionalQualifications"
           render={(image) => {
             return (
@@ -118,7 +123,7 @@ const VerifyExpertPage = () => {
         />
         <Column
           title="Self-Introduction"
-          dataIndex="selfIntroduction"
+          dataIndex="introduction"
           key="selfIntroduction"
         />
         <Column
@@ -152,18 +157,20 @@ const VerifyExpertPage = () => {
         />
       </Table>
       <Row justify={"end"}>
-        <Button
-          disabled={!selected.length}
-          type="primary"
-          onClick={handleApproveItems}
-        >
-          Approve Selected
-        </Button>
-        <Button disabled={!selected.length} onClick={handleDeleteItems}>
-          Disapprove Selected
-        </Button>
+        <Space>
+          <Button
+            disabled={!selected.length}
+            type="primary"
+            onClick={handleApproveItems}
+          >
+            Approve Selected
+          </Button>
+          <Button disabled={!selected.length} onClick={handleDeleteItems}>
+            Disapprove Selected
+          </Button>
+        </Space>
       </Row>
-    </div>
+    </PrivateLayout>
   );
 };
 

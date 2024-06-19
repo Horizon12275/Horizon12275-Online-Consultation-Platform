@@ -51,17 +51,15 @@ public class ArticleServiceImpl implements ArticleService {
         return Result.success(repository.getArticlesByAuthorId(eid));
     }
     public Result<List<Article>> getRecommendations(int nums){
-        return Result.success(repository.findAll().subList(0, nums));//返回前nums篇文章
+        List<Article> articles = repository.findAll();
+        return Result.success(articles.subList(0,Math.min(articles.size(),nums)));//返回前nums个文章
     }
-    public Result<Article> addArticle(String content, int[] tids, String title, MultipartFile file){
+    public Result<Article> addArticle(Article article, int[] tids, MultipartFile file){
         Expert expert = expertRepository.findExpertByUserId(getUid());
         if(expert==null){
             return Result.error(403, "You are not a expert");
         }
-        Article article = new Article();
         article.setAuthor(expert);
-        article.setContent(content);
-        article.setTitle(title);
         article.setTime(LocalDateTime.now());
         if(!file.isEmpty())//如果有图片 上传图片
             try {

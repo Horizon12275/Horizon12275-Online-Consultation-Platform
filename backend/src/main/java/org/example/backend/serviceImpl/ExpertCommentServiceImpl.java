@@ -32,6 +32,13 @@ public class ExpertCommentServiceImpl implements ExpertCommentService {
         List<ExpertComment> expertComments = repository.getExpertCommentsByExpertId(eid);
         return Result.success(expertComments);
     }
+    public Result<List<ExpertComment>> getRecommendedExpertComments(int nums) {
+        List<ExpertComment> expertComments = repository.findAll();
+        expertComments.sort(
+                (a,b)->b.getComment().getLikes().size()-a.getComment().getLikes().size()//按点赞数排序
+        );
+        return Result.success(expertComments.subList(0,Math.min(expertComments.size(),nums)));//返回前nums个专家评论
+    }
     public Result<ExpertComment> addExpertComment(int aid, String content) {
         int uid = getUid();
         if(userRepository.findUserById(uid).getRole() != User.Role.user)

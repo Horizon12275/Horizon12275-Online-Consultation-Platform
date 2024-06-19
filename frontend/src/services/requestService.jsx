@@ -94,11 +94,16 @@ export async function put(url, data) {
   return await res.json().then(handleResponse);
 }
 
-// export const BASEURL = "http://101.132.129.104:8081";
+// On Local Settings Below
+// export const WSURL = "ws://localhost:8080/ws";
+// export const BASEURL = "http://localhost:8080";
+// export const PEERURL = "localhost";
 
-export const BASEURL = "http://101.132.129.104:8081";
+// On Sever Settings Below
+export const WSURL = "ws://localhost:8080/ws";
+export const BASEURL = "http://localhost:8080";
+export const PEERURL = "101.132.129.104";
 
-//export const BASEURL = "http://localhost:8081";
 export const PREFIX = `${BASEURL}/api`;
 //export const API_DOCS_URL = `${BASEURL}/api-docs`;
 export const DUMMY_RESPONSE = {

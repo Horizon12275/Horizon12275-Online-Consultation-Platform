@@ -32,10 +32,11 @@ const ImageUploader = ({
               (image) =>
                 image && (
                   <Image
+                    key={image.name}
                     src={URL.createObjectURL(image)}
                     alt="Selected"
-                    className="w-[300px] object-cover"
-                    width={500}
+                    height={200}
+                    width={300}
                   />
                 )
             )}
@@ -44,7 +45,7 @@ const ImageUploader = ({
     },
   ];
   return (
-    <div>
+    <div style={{ width: "100%" }}>
       <input
         type="file"
         onChange={handleImageSelect}
@@ -53,7 +54,10 @@ const ImageUploader = ({
         style={{ display: "none" }}
         ref={inputRef}
       />
-      <Dropdown menu={{ items }}>
+      <Dropdown
+        menu={{ style: { overflow: "auto", maxWidth: 600 }, items: items }}
+        placement="top"
+      >
         <span onClick={handleClick}>{children}</span>
       </Dropdown>
     </div>

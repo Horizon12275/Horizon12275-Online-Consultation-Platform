@@ -60,7 +60,8 @@ function TweetAction({ icon, count, color, handleClick }) {
 
 function TweetActions({ actions }) {
   return (
-    <div className="flex gap-0 py-1 pr-20 text-sm font-bold whitespace-nowrap text-slate-500 max-md:flex-wrap max-md:pr-5">
+    <div className="flex gap-0 py-1 pr-20 text-sm font-bold whitespace-nowrap text-slate-500 max-md:flex-wrap max-md:pr-5 mt-10">
+      <div className="mr-2">Like It :</div>
       {actions.map((action, index) => (
         <TweetAction
           key={index}
@@ -89,22 +90,9 @@ function FeedDisplay({ tweet }) {
   }, [user]);
   const actions = [
     {
-      icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/568db98d5656fd1f5d74c19096c2fae7bf742adfd6e74201fe20c68a474b0f3a?apiKey=9e661a5e0ad74c878ca984d592b3752c&",
-      count: "61",
-    },
-    {
-      icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/1086a74faca91ddf3df9114659c989cca4babb298e55a3a641b0848f4423dcb9?apiKey=9e661a5e0ad74c878ca984d592b3752c&",
-      count: "12",
-    },
-    {
-      icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/099a74efeea1059cfba72862a07ea0b1f284e841db6ac1e903b918a687999ff1?apiKey=9e661a5e0ad74c878ca984d592b3752c&",
-      count: "6.2K",
-      color: "text-rose-500",
-    },
-    {
       icon: tids.includes(tweet.id)
         ? "https://cdn.builder.io/api/v1/image/assets/TEMP/099a74efeea1059cfba72862a07ea0b1f284e841db6ac1e903b918a687999ff1?apiKey=9e661a5e0ad74c878ca984d592b3752c&"
-        : "https://cdn.builder.io/api/v1/image/assets/TEMP/568db98d5656fd1f5d74c19096c2fae7bf742adfd6e74201fe20c68a474b0f3a?apiKey=9e661a5e0ad74c878ca984d592b3752c&",
+        : "https://cdn.builder.io/api/v1/image/assets/TEMP/fa10d6ed0faeb00fb3dcbb006b723fd158e47f915cdce681e8e759ed8e0b7bcc?apiKey=f52c53764647463db8da4a641cad04a5&",
       count: tweet.likes.length,
       handleClick: () => handleLike(tweet),
     },
@@ -114,8 +102,9 @@ function FeedDisplay({ tweet }) {
   };
   const handleLike = (tweet) => {
     const tid = tweet.id;
-    try {
-      likeTweet(tid).then((res) => {
+
+    likeTweet(tid)
+      .then((res) => {
         if (tids.includes(tid)) {
           setTids(tids.filter((t) => t !== tid));
           tweet.likes = tweet.likes.filter((l) => l.user.id !== user.id);
@@ -123,10 +112,8 @@ function FeedDisplay({ tweet }) {
           setTids([...tids, tid]);
           tweet.likes.push({ user: { id: user.id } });
         }
-      });
-    } catch (e) {
-      alert(e);
-    }
+      })
+      .catch((e) => alert(e));
   };
   return (
     tweet && (
@@ -144,7 +131,7 @@ function FeedDisplay({ tweet }) {
           <div className="flex flex-col py-1 max-md:max-w-full">
             <UserInfo
               name={tweet.poster?.username}
-              username="@johndue"
+              username=""
               timestamp={new Date(tweet.time).toDateString()}
             />
             <TweetContent text={tweet.content} />

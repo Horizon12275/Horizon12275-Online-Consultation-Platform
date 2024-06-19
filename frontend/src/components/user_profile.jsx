@@ -1,9 +1,15 @@
-import * as React from "react";
 import { useAuth } from "../context/authContext";
-import { Image, Upload } from "antd";
+import { Image, Input, Modal, Upload } from "antd";
+import { addBalance } from "../services/clientService";
+import { useState } from "react";
+import { BASEURL } from "../services/requestService";
 
 function Profile() {
   const { user, client, setClient, expert, setExpert } = useAuth();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
   const handleChange = (info) => {
     if (info.file.status === "done") {
       if (info.file.response.code === 200) {
@@ -14,13 +20,29 @@ function Profile() {
     } else if (info.file.status === "error") {
     }
   };
+  const handleFund = () => {
+    const cdKey = document.getElementById("cd-key").value;
+    const trueKeys = ["123456", "654321", "111111"];
+    if (!trueKeys.includes(cdKey)) {
+      alert("Invalid redeem code");
+      return;
+    }
+    addBalance()
+      .then((res) => {
+        setClient({ ...client, balance: res.balance });
+        alert("Add funds successfully!");
+        document.getElementById("cd-key").value = "";
+        setIsModalOpen(false);
+      })
+      .catch((e) => alert(e));
+  };
   return (
     <>
-      <div className="div">
-        <div className="div-2">
+      <div className="div" style={{ marginTop: "30px", marginLeft: "40px" }}>
+        <div className="div-2 shadow-lg">
           <Image
             src={client?.avatar || expert?.avatar}
-            className="aspect-square object-cover "
+            className="aspect-square object-cover"
           />
         </div>
         <div className="div-3">{client?.username || expert?.name}</div>
@@ -51,15 +73,26 @@ function Profile() {
           <Upload
             showUploadList={false}
             name="avatar"
-            action={"http://localhost:8080/api/user/avatar"}
+            action={`http://localhost:8080/api/user/avatar`}
             withCredentials
             onChange={handleChange}
-            className="div-18"
+            className="div-18 shadow-lg"
           >
             <span>Upload new avatar</span>
           </Upload>
 
-          <div className="div-19">Add funds to wallet</div>
+          <button onClick={setIsModalOpen} className="div-19 shadow-lg">
+            Add funds to wallet
+          </button>
+          <Modal
+            title="Consultation Confirmation"
+            open={isModalOpen}
+            onOk={handleFund}
+            onCancel={handleCancel}
+          >
+            <p>{`Please enter the redeem code to add funds to your wallet`}</p>
+            <Input id="cd-key" placeholder="Redeem Code" />
+          </Modal>
         </div>
       </div>
       <style jsx>{`
@@ -222,13 +255,15 @@ function Profile() {
         }
         .div-18 {
           font-family: Carter One, sans-serif;
-          border-radius: 10px;
+          border-radius: 20px;
           background-color: rgba(46, 144, 250, 1);
           justify-content: center;
           flex-grow: 1;
           width: fit-content;
           padding: 16px 52px;
           cursor: pointer;
+          font-size: 24px;
+          color: #fff;
         }
         @media (max-width: 991px) {
           .div-18 {
@@ -237,13 +272,17 @@ function Profile() {
         }
         .div-19 {
           font-family: Carter One, sans-serif;
-          border-radius: 10px;
+          border-radius: 20px;
           background-color: rgba(229, 62, 62, 1);
           align-items: start;
           justify-content: center;
           flex-grow: 1;
           width: fit-content;
           padding: 18px 52px;
+          cursor: pointer;
+          font-size: 24px;
+          border: none;
+          color: #fff;
         }
         @media (max-width: 991px) {
           .div-19 {

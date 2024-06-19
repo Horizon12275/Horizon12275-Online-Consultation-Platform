@@ -11,6 +11,8 @@ public interface ExpertCommentService {
     public Result<List<ExpertComment>> getExpertCommentsByEid(int aid);
     public Result<ExpertComment> addExpertComment(int aid, String content);
     public Result<ExpertComment> deleteExpertComment(int id);
+
+    Result<List<ExpertComment>> getRecommendedExpertComments(int nums);
     //public Result<Reply> addExpertReply(int acid, String content);
 
 }

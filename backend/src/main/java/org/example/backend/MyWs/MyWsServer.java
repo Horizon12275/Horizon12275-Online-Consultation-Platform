@@ -5,15 +5,12 @@ import jakarta.websocket.*;
 import jakarta.websocket.server.PathParam;
 import jakarta.websocket.server.ServerEndpoint;
 import lombok.extern.slf4j.Slf4j;
-import org.example.backend.entity.Client;
+import org.example.backend.entity.Consultation;
 import org.example.backend.entity.Message;
 
 import org.example.backend.entity.User;
-import org.example.backend.DTO.WsMessage;
-import org.example.backend.repository.ClientRepository;
-import org.example.backend.repository.ExpertRepository;
-import org.example.backend.repository.MessageRepository;
-import org.example.backend.repository.UserRepository;
+import org.example.backend.entity.WsMessage;
+import org.example.backend.repository.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -51,6 +48,11 @@ public class MyWsServer {
     public void setMessageRepository(MessageRepository messageRepository) {
         MyWsServer.messageRepository = messageRepository;
     }
+    private static ConsultationRepository consultationRepository;
+    @Autowired
+    public void setConsultationRepository(ConsultationRepository consultationRepository) {
+        MyWsServer.consultationRepository = consultationRepository;
+    }
     private static final ConcurrentHashMap<Integer, Session> sessionPool = new ConcurrentHashMap<>();//用户id和session的映射
     private int getUid(Session session) {//根据session获取用户id
         return userRepository.findUserByEmail(session.getUserPrincipal().getName()).getId();
@@ -85,18 +87,27 @@ public class MyWsServer {
     @OnMessage
     public void onMessage(String message, @PathParam(value = "receiverId") int receiverId,Session session) throws IOException {
         //未来在这里加入鉴权逻辑 鉴定客户是否有资格咨询专家
-
-        if(getRole(session) == User.Role.expert) //如果当前用户是专家 则接收者是客户 把客户id转换为用户id
-            receiverId = clientRepository.findClientById(receiverId).getUser().getId();
-        else //如果当前用户是客户 则接收者是专家 把专家id转换为用户id
-            receiverId = expertRepository.findExpertById(receiverId).getUser().getId();
+        Consultation consultation = null;
         int senderId = getUid(session);
+        if (getRole(session) == User.Role.expert){ //如果当前用户是专家 则接收者是客户 把客户id转换为用户id
+            consultation = consultationRepository.getConsultationByClientIdAndExpertId(receiverId,expertRepository.findExpertByUserId(senderId).getId());
+            receiverId = clientRepository.findClientById(receiverId).getUser().getId();
+        }
+        else { //如果当前用户是客户 则接收者是专家 把专家id转换为用户id
+            consultation = consultationRepository.getConsultationByClientIdAndExpertId(clientRepository.getClientByUserId(senderId).getId(), receiverId);
+            receiverId = expertRepository.findExpertById(receiverId).getUser().getId();
+        }
+        if (consultation == null) {
+            session.getBasicRemote().sendText(JSON.toJSONString(new WsMessage<String>("error", "您没有资格咨询该专家！")));
+        }
+
         log.info("接收到来自{}发给{}的消息:{}", senderId, receiverId, message);
         WsMessage<String> wsMessage = JSON.parseObject(message, WsMessage.class);
-        if (wsMessage.getType().equals("message")) {
+        if (wsMessage.getType().equals("message")||wsMessage.getType().equals("image")) {
             message = wsMessage.getData();
             Session receiverSession = sessionPool.get(receiverId);
             Message msg = new Message();
+            msg.setType(wsMessage.getType());
             msg.setContent(message);
             msg.setSender(new User());
             msg.getSender().setId(senderId);
@@ -110,6 +121,8 @@ public class MyWsServer {
                 receiverSession.getBasicRemote().sendText(JSON.toJSONString(new WsMessage<Message>("message", msg)));//发送消息
             }
             messageRepository.save(msg);//保存消息
+            consultation.setTime(LocalDateTime.now());//更新最后一次咨询时间
+            consultationRepository.save(consultation);//保存咨询记录
         }
         else if(wsMessage.getType().equals("seen")) {//打开聊天框
             List<Message> messages = messageRepository.getMessagesBySenderIdAndReceiverIdAndSeenFalse(receiverId, senderId);

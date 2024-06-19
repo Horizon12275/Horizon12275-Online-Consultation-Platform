@@ -57,29 +57,39 @@ function CommentBox({ id, type, setComments }) {
       },
     };
     if (type === "article")
-      addArticleComment({ aid: id, content: value }).then((res) => {
-        comment.comment.id = res.comment.id;
-      });
+      addArticleComment({ aid: id, content: value })
+        .then((res) => {
+          comment.comment.id = res.comment.id;
+          setValue("");
+          setComments((prev) => [...prev, comment]);
+        })
+        .catch((e) => alert(e));
     else if (type === "tweet")
-      addTweetComment({ tid: id, content: value }).then((res) => {
-        comment.comment.id = res.comment.id;
-      });
+      addTweetComment({ tid: id, content: value })
+        .then((res) => {
+          comment.comment.id = res.comment.id;
+          setValue("");
+          setComments((prev) => [...prev, comment]);
+        })
+        .catch((e) => alert(e));
     else if (type === "expert")
-      addExpertComment({ eid: id, content: value }).then((res) => {
-        comment.comment.id = res.comment.id;
-      });
-    setValue("");
-    setComments((prev) => [...prev, comment]);
+      addExpertComment({ eid: id, content: value })
+        .then((res) => {
+          comment.comment.id = res.comment.id;
+          setValue("");
+          setComments((prev) => [...prev, comment]);
+        })
+        .catch((e) => alert(e));
   };
   return (
     <div
       style={{
         position: "absolute",
-        top: "630px",
+        top: "375px",
         left: "280px",
-        width: "500px",
+        width: "350px",
         // height:"100px",
-        backgroundColor: "white",
+        backgroundColor: "#f5f5f5",
         padding: "10px",
         // border: "1px solid black",
       }}

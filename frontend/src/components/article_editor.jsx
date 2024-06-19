@@ -18,7 +18,6 @@ const ArticleEditor = () => {
     (option?.label ?? "").toLowerCase().includes(input.toLowerCase()); // 自定义搜索逻辑
   const handleSubmit = async (values) => {
     values.cover = cover[0];
-    console.log(values);
     try {
       await addArticle(values);
       alert("Article added successfully!");
@@ -36,12 +35,18 @@ const ArticleEditor = () => {
         justifyContent: "center",
       }}
     >
-      <h1 style={{ margin: "2vh" }}>Write Down Your Professional Idea!</h1>
+      <h1 style={{ margin: "2vh", color: "#60a5fa" }}>
+        Write Down Your Professional Idea!
+      </h1>
       <Form
         initialValues={{ remember: true }}
         onFinish={handleSubmit}
         style={{ margin: "2vh", minWidth: "60vw" }}
       >
+        {" "}
+        <h3 style={{ marginBottom: "5px", color: "#60a5fa" }}>
+          Select Tags For Your Article:
+        </h3>
         <Form.Item
           id="tids"
           name="tids"
@@ -57,6 +62,9 @@ const ArticleEditor = () => {
             })}
           />
         </Form.Item>
+        <h3 style={{ marginBottom: "5px", color: "#60a5fa" }}>
+          Upload Cover Image:
+        </h3>
         <Form.Item
           id="cover"
           name="cover"
@@ -70,7 +78,7 @@ const ArticleEditor = () => {
               },
             },
           ]}
-          className="flex justify-center"
+          className="flex"
         >
           <ImageUploader
             multiple={false}
@@ -82,7 +90,8 @@ const ArticleEditor = () => {
             selectedImages={cover}
             setSelectedImages={setCover}
           />
-        </Form.Item>
+        </Form.Item>{" "}
+        <h3 style={{ marginBottom: "5px", color: "#60a5fa" }}>Title:</h3>
         <Form.Item
           id="title"
           name="title"
@@ -90,6 +99,7 @@ const ArticleEditor = () => {
         >
           <Input size="large" placeholder="Title" />
         </Form.Item>
+        <h3 style={{ marginBottom: "5px", color: "#60a5fa" }}>Description:</h3>
         <Form.Item
           id="description"
           name="description"
@@ -99,12 +109,14 @@ const ArticleEditor = () => {
         >
           <Input.TextArea rows={6} placeholder="Description" />
         </Form.Item>
+        <h3 style={{ marginBottom: "5px", color: "#60a5fa" }}>Content:</h3>
         <Form.Item
           id="content"
           name="content"
+          className=" max-w-[60vw]"
           rules={[{ required: true, message: "Please input your content!" }]}
         >
-          <MdEditor value={value} onChange={setValue} />
+          <MdEditor value={value} onChange={setValue}/>
         </Form.Item>
         <Button
           htmlType="submit"
