@@ -33,18 +33,31 @@ const ArticleHeader = ({ article }) => {
           className="object-cover inset-0 flex overflow-hidden relative flex-col items-start  w-full h-[300px] max-md:pr-5 max-md:max-w-full "
         />
       </header>
-      <main className="flex justify-between pt-20 ml-3  font-bold w-[250px] bg-transparent relative">
-        <img
-          loading="lazy"
-          src={article.author?.avatar}
-          className="absolute -top-[75px] w-[150px] h-[150px] object-cover z-10 rounded-full shadow-xl"
-        />
-        <div className="flex flex-col my-auto">
-          <Link to={`/expert/${article.author?.id}`} className="text-xl tracking-tight text-neutral-900">
+      <main
+        className="flex justify-between pt-20 ml-3  font-bold w-[250px] bg-transparent relative"
+        style={{ marginLeft: "40px" }}
+      >
+        <Link
+          to={`/expert/${article.author?.id}`}
+          className="text-xl tracking-tight text-neutral-900"
+        >
+          <img
+            loading="lazy"
+            src={article.author?.avatar}
+            className="absolute -top-[75px] w-[150px] h-[150px] object-cover z-10 rounded-full shadow-xl"
+          />
+        </Link>
+        <div className="flex flex-col my-auto" style={{ minWidth: "150px" }}>
+          <Link
+            to={`/expert/${article.author?.id}`}
+            className="text-xl tracking-tight text-neutral-900"
+          >
             {article.author?.name}
           </Link>
           <div className="mt-2.5 text-base tracking-tight text-slate-500">
-            {article.author?.specialities.map((speciality) => speciality.content + " ")}
+            {article.author?.specialities.map(
+              (speciality) => speciality.content + " "
+            )}
           </div>
         </div>
         {/* <div className="flex flex-col self-start text-base">

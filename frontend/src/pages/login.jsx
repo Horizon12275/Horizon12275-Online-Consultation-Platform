@@ -87,6 +87,11 @@ function LoginPage() {
         initialValues={{ remember: true }}
         onFinish={loginAndSetUser}
       >
+        <img
+          src="/JustAskBlue.png"
+          alt="Logo"
+          style={{ marginBottom: "50px" }}
+        />
         <div
           className="title"
           style={{ fontSize: "2em", marginBottom: "20px" }}

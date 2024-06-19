@@ -98,6 +98,13 @@ const Sidebar = () => {
     >
       <Flex vertical justify="space-between" className="h-full">
         <div className="flex flex-col justify-center pt-3 pb-5">
+          <a href="/">
+            <img
+              src="/JustAskBlue.png"
+              alt="Logo"
+              style={{ margin: "15px", height: "125px" }}
+            />
+          </a>
           <nav className="flex flex-col justify-center w-full text-2xl">
             <ul className="flex flex-col w-full">
               {menuItems.map(
