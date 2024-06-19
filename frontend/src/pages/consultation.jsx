@@ -18,7 +18,7 @@ const ConsultPage = () => {
   let receiverId = searchParams.get("receiverId"); // 从url中获取receiverId
   const [receiver, setReceiver] = useState({});
   const [comments, setComments] = useState([]);
-  const [experts, setExperts] = useState([]);
+  const [consultations, setConsultations] = useState([]);
 
   useEffect(() => {
     getConsultation()
@@ -35,7 +35,7 @@ const ConsultPage = () => {
         consultations.sort((a, b) => {
           return new Date(b.time) - new Date(a.time);
         });
-        setExperts(consultations.map((consultation) => consultation?.expert));
+        setConsultations(consultations);
         if (!receiverId)
           setSearchParams({ receiverId: consultations[0]?.expert?.id });
         if (user?.role === "user") {
@@ -72,7 +72,7 @@ const ConsultPage = () => {
             <>
               <ConsultationHistoryList
                 style={{ position: "fixed", top: "30px", left: "300px" }}
-                experts={experts}
+                consultations={consultations}
               />
               {/*<Divider style={{ margin: "10px 0" }} />*/}
               {/* <RateButton /> */}
@@ -91,7 +91,7 @@ const ConsultPage = () => {
             sid={user?.id}
             receiver={receiver}
             receiverId={receiverId}
-            setExperts={setExperts}
+            setConsultations={setConsultations}
           />
         </div>
       </Flex>

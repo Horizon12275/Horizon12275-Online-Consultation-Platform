@@ -70,7 +70,7 @@ const ChatMessages = ({ messages, rid }) => {
   );
 };
 
-function ChatApp({ sid, receiver, receiverId, setExperts}) {
+function ChatApp({ sid, receiver, receiverId, setConsultations }) {
   //sid是当前用户id（用于初始化ws） receiver是对方(专家或客户，用于渲染header)
   //获取接收者id 如果当前用户是专家则为用户id 如果当前用户是用户则为专家id 发送到后端转换成userId
   const [rid, setRid] = useState(); //receiverId对应的userId
@@ -99,6 +99,16 @@ function ChatApp({ sid, receiver, receiverId, setExperts}) {
           setMessages((prevMessages) => [...prevMessages, receivedMessage]); // 添加到现有消息
         if (receivedMessage.sender.id == rid)
           socket.send(JSON.stringify({ type: "seen", data: rid }));
+        setConsultations((prev) => {
+          //接收消息时更新专家列表 把当前专家移到最前面
+          const index = prev.findIndex(
+            (consultation) => consultation.expert.id == receiverId
+          );
+          const consutation = prev[index]; //当前专家
+          consutation.time = new Date().getTime(); //更新时间
+          prev.splice(index, 1); //删除当前专家
+          return [consutation, ...prev];
+        });
       } else if (type === "seen") {
         const uid = JSON.parse(event.data).data;
         if (uid == rid)
@@ -189,12 +199,15 @@ function ChatApp({ sid, receiver, receiverId, setExperts}) {
       ]);
       setInputMessage(""); // 清空输入
     }
-    setExperts((prevExperts) => {
+    setConsultations((prev) => {
       //发送消息时更新专家列表 把当前专家移到最前面
-      const index = prevExperts.findIndex((expert) => expert.id == receiverId);
-      const expert = prevExperts[index]; //当前专家
-      prevExperts.splice(index, 1); //删除当前专家
-      return [expert, ...prevExperts];
+      const index = prev.findIndex(
+        (consultation) => consultation.expert.id == receiverId
+      );
+      const consutation = prev[index]; //当前专家
+      consutation.time = new Date().getTime(); //更新时间
+      prev.splice(index, 1); //删除当前专家
+      return [consutation, ...prev];
     });
   };
 
