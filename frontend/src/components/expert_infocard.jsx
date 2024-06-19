@@ -47,6 +47,7 @@ const ExpertInfoCard = ({ expert }) => {
               borderRadius: "16px",
               border: "none",
             }}
+            className="cursor-pointer hover:bg-rose-500"
             onClick={showModal}
           >
             Chat Now!

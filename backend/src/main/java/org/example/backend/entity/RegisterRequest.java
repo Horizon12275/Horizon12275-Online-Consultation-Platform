@@ -1,4 +1,4 @@
-package org.example.backend.DTO;
+package org.example.backend.entity;
 
 
 import lombok.AllArgsConstructor;

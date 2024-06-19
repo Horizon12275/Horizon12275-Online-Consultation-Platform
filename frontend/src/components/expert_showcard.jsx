@@ -1,4 +1,4 @@
-import Link from "antd/es/typography/Link";
+import { Link } from "react-router-dom";
 
 function ProfileImage({ src, alt }) {
   return (
@@ -42,7 +42,7 @@ function ProfileIntroduction({ introduction }) {
 export default function ExpertShowCard({ item }) {
   return (
     <div>
-      <Link href={`/expert/${item.id}`}>
+      <Link to={`/expert/${item.id}`}>
         <div className="flex flex-col bg-white rounded-xl px-6 py-2 w-[400px] h-[330px] shadow">
           <div className="flex flex-col justify-center my-3">
             <div className="flex">
@@ -50,7 +50,11 @@ export default function ExpertShowCard({ item }) {
               <ProfileInfo
                 name={item.name}
                 price={item.price}
-                specialty={item.specialities?.map((item) => item.content + " ")}
+                specialty={item.specialities?.map((item) => (
+                  <Link to={`/expert?speciality=${item.id}`}>
+                    {item.content}
+                  </Link>
+                ))}
                 rating={item.rating}
               />
             </div>

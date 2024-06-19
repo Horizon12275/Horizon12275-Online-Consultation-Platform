@@ -2,8 +2,8 @@ package org.example.backend.controller;
 
 
 import jakarta.mail.internet.InternetAddress;
-import org.example.backend.DTO.RegisterRequest;
-import org.example.backend.DTO.UserProfile;
+import org.example.backend.entity.RegisterRequest;
+import org.example.backend.entity.UserProfile;
 import org.example.backend.entity.Result;
 import org.example.backend.entity.User;
 import org.example.backend.service.MyUserDetailsService;

@@ -1,12 +1,15 @@
-import { Input } from "antd";
+import { Input, Row } from "antd";
 import * as React from "react";
 import EmojiDropdown from "./emoji_dropdown";
+import ImageUploader from "./image_upload";
 
 function Messagebox({
   inputMessage,
   handleInputChange,
   sendMessage,
   setInputMessage,
+  selectedImages,
+  setSelectedImages,
 }) {
   return (
     <>
@@ -57,7 +60,17 @@ function Messagebox({
       `}</style>
 
       <div className="message-container">
-        <EmojiDropdown value={inputMessage} setValue={setInputMessage} />
+        <nav className="flex gap-4 justify-between px-5 my-auto">
+          <EmojiDropdown value={inputMessage} setValue={setInputMessage} />
+          <ImageUploader
+            multiple
+            selectedImages={selectedImages}
+            setSelectedImages={setSelectedImages}
+            children={
+              <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/295d4cbba18c8555324aa8193d53ca9d7005accc5bd91937a2bf67ced21afa67?apiKey=9e661a5e0ad74c878ca984d592b3752c&" />
+            }
+          />
+        </nav>
         <Input.TextArea
           className="message-text border-none "
           type="text"

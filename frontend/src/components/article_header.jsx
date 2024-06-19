@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function IconText({ src, alt, text }) {
   return (
     <div className="flex gap-1.5 justify-center py-px tracking-tight whitespace-nowrap">
@@ -13,13 +15,6 @@ function IconText({ src, alt, text }) {
 }
 const ArticleHeader = ({ article }) => {
   const profileData = {
-    name: "Davide Biscuso",
-    username: "@biscuttu",
-    occupation: "Product Designer",
-    followers: 72,
-    location: "London",
-    joinedDate: "Joined September 2011",
-    following: 569,
     profileImage:
       "https://cdn.builder.io/api/v1/image/assets/TEMP/5bd1dc5ecbab3571c2f6ff6296cef048563366432701991efb199a294bbd364f?apiKey=9e661a5e0ad74c878ca984d592b3752c&",
     avatarImage: article.cover,
@@ -45,9 +40,9 @@ const ArticleHeader = ({ article }) => {
           className="absolute -top-[75px] w-[150px] h-[150px] object-cover z-10 rounded-full shadow-xl"
         />
         <div className="flex flex-col my-auto">
-          <h1 className="text-xl tracking-tight text-neutral-900">
+          <Link to={`/expert/${article.author?.id}`} className="text-xl tracking-tight text-neutral-900">
             {article.author?.name}
-          </h1>
+          </Link>
           <div className="mt-2.5 text-base tracking-tight text-slate-500">
             {article.author?.specialities.map((speciality) => speciality.content + " ")}
           </div>

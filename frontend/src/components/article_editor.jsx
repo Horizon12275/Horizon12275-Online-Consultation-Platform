@@ -113,9 +113,10 @@ const ArticleEditor = () => {
         <Form.Item
           id="content"
           name="content"
+          className=" max-w-[60vw]"
           rules={[{ required: true, message: "Please input your content!" }]}
         >
-          <MdEditor value={value} onChange={setValue} />
+          <MdEditor value={value} onChange={setValue}/>
         </Form.Item>
         <Button
           htmlType="submit"

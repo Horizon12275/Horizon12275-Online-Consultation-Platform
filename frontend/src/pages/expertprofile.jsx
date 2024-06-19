@@ -3,13 +3,9 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Col, Flex, Row } from "antd";
 import { PrivateLayout, PublicLayout } from "../layouts";
-import { TagProvider } from "../context/tagcontext";
 import ExpertInfoCard from "../components/expert_infocard";
-import Rating from "../components/ratings";
-import CommentList from "../components/comment_list";
 import { getExpertById } from "../services/expertService";
 import { ArticleList } from "../components/expert_articles";
-import { SearchProvider } from "../context/searchcontext";
 // 导入专家相关的服务函数
 import ExpertRecommend from "../components/expert-recommend";
 import { getArticlesByExpertId } from "../services/articleService";
@@ -33,7 +29,7 @@ const ExpertProfilePage = () => {
       setComments(comments);
       setArticles(articles);
     });
-  }, []);
+  }, [id]);
 
   return (
     <PublicLayout>

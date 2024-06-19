@@ -179,7 +179,6 @@ const BecomeExpertPage = () => {
                       value={currentEmail}
                       onChange={(e) => {
                         setCurrentEmail(e.target.value);
-                        //console.log(currentEmail);
                       }}
                     />
                   </div>

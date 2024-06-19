@@ -16,6 +16,7 @@ public class Message {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int id;
+    private String type;//message,image
     private String content;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "sid")

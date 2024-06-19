@@ -41,6 +41,10 @@ export async function checkAuth() {
 }
 
 export async function sendCode(email) {
+  if (!email) {
+    alert("请输入邮箱！");
+    return;
+  }
   const url = `${PREFIX}/sendCode/${email}`;
   console.log(email);
   let result;

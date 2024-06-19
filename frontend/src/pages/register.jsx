@@ -5,6 +5,8 @@ import {
   MailOutlined,
   UserOutlined,
   CodeOutlined,
+  EyeTwoTone,
+  EyeInvisibleOutlined,
 } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import { register, sendCode } from "../services/loginService";
@@ -157,11 +159,14 @@ function RegisterPage() {
         >
           <div>
             <label style={labelStyle}>Password</label>
-            <Input
+            <Input.Password
               prefix={<LockOutlined />}
               type="password"
               placeholder="Password"
               allowClear
+              iconRender={(visible) =>
+                visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
+              }
             />
           </div>
         </Form.Item>
@@ -189,11 +194,14 @@ function RegisterPage() {
         >
           <div>
             <label style={labelStyle}>Confirm Password</label>
-            <Input
+            <Input.Password
               prefix={<LockOutlined />}
               type="password"
               placeholder="Confirm your Password"
               allowClear
+              iconRender={(visible) =>
+                visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
+              }
             />
           </div>
         </Form.Item>

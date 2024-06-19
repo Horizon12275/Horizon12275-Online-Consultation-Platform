@@ -61,7 +61,7 @@ const ArticleBrowsePage = () => {
           </Col>
           <Col></Col>
         </Row>
-        <ArticleList articles={articles} />
+        <ArticleList articles={articles} length={length} />
       </Flex>
     </PublicLayout>
   );

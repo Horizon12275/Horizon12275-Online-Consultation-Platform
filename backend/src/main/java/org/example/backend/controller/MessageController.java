@@ -3,12 +3,12 @@ package org.example.backend.controller;
 import org.example.backend.entity.Message;
 import org.example.backend.entity.Result;
 import org.example.backend.repository.MessageRepository;
+import org.example.backend.repository.UploadRepository;
 import org.example.backend.service.MyUserDetailsService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.Comparator;
 import java.util.List;
 
@@ -17,9 +17,11 @@ import java.util.List;
 public class MessageController {
     private final MessageRepository messageRepository;
     private final MyUserDetailsService myUserDetails;
-    public MessageController(MessageRepository messageRepository, MyUserDetailsService myUserDetails) {
+    private final UploadRepository uploadRepository;
+    public MessageController(MessageRepository messageRepository, MyUserDetailsService myUserDetails, UploadRepository uploadRepository) {
         this.messageRepository = messageRepository;
         this.myUserDetails = myUserDetails;
+        this.uploadRepository = uploadRepository;
     }
     @GetMapping("/history/{rid}")
     public Result<List<Message>> getHistoryMessages(@PathVariable int rid) {
@@ -28,5 +30,16 @@ public class MessageController {
         if(sid != rid) historyMessages.addAll(messageRepository.getMessagesBySenderIdAndReceiverId(rid, sid));//将双方的消息合并 并按时间排序
         historyMessages.sort(Comparator.comparing(Message::getSendTime));
         return Result.success(historyMessages);
+    }
+    @PostMapping("/image")
+    public Result<String> uploadImage(@RequestParam("file") MultipartFile file) {
+        String url;
+        try {
+            url = uploadRepository.uploadFile(file, "image");
+        }
+        catch (IOException e) {
+            return Result.error(500, e.getMessage());
+        }
+        return Result.success(url);
     }
 }

@@ -5,15 +5,25 @@ import {
   getReceiverId,
   getUser,
 } from "../services/userService";
-import { getHistory } from "../services/messageService";
+import { getHistory, postImage } from "../services/messageService";
 import Messagebox from "./message_box";
 import ConsultHead from "./consult_head";
 import toTime from "../utils/time";
-import { WSURL } from "../services/requestService";
+import { BASEURL, WSURL, postFormData } from "../services/requestService";
+import { Image } from "antd";
 
 const ChatMessage = ({ message, isSender }) => (
   <div className={`chat-message ${isSender ? "sent" : "received"}`}>
-    <div className="message-content">{message.content}</div>
+    {message.type === "message" && (
+      <div className="message-content">{message.content}</div>
+    )}
+    {message.type === "image" && (
+      <Image
+        src={message.content}
+        alt="Image"
+        className=" max-w-64 rounded-md"
+      />
+    )}
     <div className="message-meta">
       <div className="message-time">
         {`${toTime(new Date(message.sendTime))}`}
@@ -40,7 +50,9 @@ const scrollToBottom = () => {
 
 const ChatMessages = ({ messages, rid }) => {
   useEffect(() => {
-    scrollToBottom();
+    setTimeout(() => {
+      scrollToBottom();
+    }, 1000);
   }, [messages]);
   return (
     <div className="chat-messages overflow-y-auto">
@@ -62,6 +74,7 @@ function ChatApp({ sid, receiver, receiverId }) {
   const [rid, setRid] = useState();
   const [messages, setMessages] = useState([]);
   const [inputMessage, setInputMessage] = useState("");
+  const [selectedImages, setSelectedImages] = useState([]); // 用于上传图片
   const ws = useRef(null);
   const initWebSocket = (sid, rid) => {
     //sid是发送者id rid是接收者id 这里的id已经是后端获取的userId了
@@ -75,8 +88,8 @@ function ChatApp({ sid, receiver, receiverId }) {
 
     socket.onmessage = (event) => {
       const type = JSON.parse(event.data).type;
-      if (type === "message") {
-        const receivedMessage = JSON.parse(event.data).data;
+      if (type === "message" || type === "image") {
+        const receivedMessage = { ...JSON.parse(event.data).data, type: type };
         if (
           receivedMessage.receiver.id == sid &&
           receivedMessage.sender.id == rid
@@ -131,11 +144,40 @@ function ChatApp({ sid, receiver, receiverId }) {
 
   const sendMessage = (event) => {
     event.preventDefault(); //阻止换行
+    //先发送图片
+    if (selectedImages.length > 0) {
+      selectedImages.forEach(async (image) => {
+        const formData = new FormData();
+        formData.append("file", image);
+        await postImage(formData).then((res) => {
+          ws.current.send(
+            JSON.stringify({
+              type: "image",
+              data: res,
+            })
+          );
+          setMessages((prevMessages) => [
+            ...prevMessages,
+            {
+              type: "image",
+              content: res,
+              receiver: { id: rid },
+              sender: { id: sid },
+              sendTime: new Date().getTime(),
+              seen: false,
+            },
+          ]);
+        });
+      });
+      setSelectedImages([]);
+    }
+
     if (inputMessage.trim() !== "") {
       ws.current.send(JSON.stringify({ type: "message", data: inputMessage }));
-      setMessages([
-        ...messages,
+      setMessages((prevMessages) => [
+        ...prevMessages,
         {
+          type: "message",
           content: inputMessage,
           receiver: { id: rid },
           sender: { id: sid },
@@ -144,8 +186,6 @@ function ChatApp({ sid, receiver, receiverId }) {
         },
       ]);
       setInputMessage(""); // 清空输入
-    } else {
-      console.warn("Cannot send message: WebSocket not connected");
     }
   };
 
@@ -155,7 +195,7 @@ function ChatApp({ sid, receiver, receiverId }) {
 
   return (
     <>
-      <ConsultHead receiver={receiver} rid={receiverId}/>
+      <ConsultHead receiver={receiver} rid={receiverId} />
       <div className="chat-container">
         <div className="chat-header">Today</div>
         <ChatMessages messages={messages} rid={rid} />
@@ -165,6 +205,8 @@ function ChatApp({ sid, receiver, receiverId }) {
         handleInputChange={handleInputChange}
         sendMessage={sendMessage}
         setInputMessage={setInputMessage}
+        selectedImages={selectedImages}
+        setSelectedImages={setSelectedImages}
       />
       <style jsx>{`
         .chat-container {

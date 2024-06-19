@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { SearchProvider } from "../context/searchcontext";
-import { TagProvider } from "../context/tagcontext";
 import { PrivateLayout, PublicLayout } from "../layouts";
 import { Col, Row } from "antd";
 import FeedEditor from "../components/feed_editor";
