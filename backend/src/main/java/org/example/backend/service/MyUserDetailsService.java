@@ -1,11 +1,11 @@
 package org.example.backend.service;
 
-import org.example.backend.DTO.RegisterRequest;
+import org.example.backend.entity.RegisterRequest;
 import org.example.backend.entity.Client;
 import org.example.backend.entity.Expert;
 import org.example.backend.entity.Result;
 import org.example.backend.entity.User;
-import org.example.backend.DTO.UserProfile;
+import org.example.backend.entity.UserProfile;
 import org.example.backend.repository.ClientRepository;
 import org.example.backend.repository.ExpertRepository;
 import org.example.backend.repository.UploadRepository;
@@ -21,6 +21,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -82,6 +83,7 @@ public class MyUserDetailsService implements UserDetailsService {
         Client client = new Client();
         client.setUsername(request.getUsername());
         client.setUser(user);
+        client.setBalance(new BigDecimal(0));
         clientRepository.save(client);
         return Result.success(user);
     }

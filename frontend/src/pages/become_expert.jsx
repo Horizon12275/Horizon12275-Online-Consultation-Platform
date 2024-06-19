@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { Button, Select, Space, Input, Result, Form } from "antd";
-import { BasicLayout } from "../layouts";
+import { PrivateLayout, PublicLayout } from "../layouts";
 import { applyExpert } from "../services/applyService";
 import { getSpecialities } from "../services/specialityService";
 import ImageUploader from "../components/image_upload";
 import { UploadOutlined } from "@ant-design/icons";
+import { sendVertificationCodeExpert } from "../services/applyService";
+
 const { TextArea } = Input;
 
-function InputField({ label, placeholder, id, name, rules }) {
+function InputField({ label, placeholder, id, name, rules, value, onChange }) {
   return (
     <Form.Item
       id={id}
@@ -26,6 +28,8 @@ function InputField({ label, placeholder, id, name, rules }) {
           placeholder={placeholder}
           allowClear
           style={{ width: "50vh" }}
+          value={value}
+          onChange={onChange}
         />
       </div>
     </Form.Item>
@@ -55,12 +59,12 @@ const inputFields = [
     rules: [{ required: true, message: "Please input your email!" }],
   },
   {
-    label: "Vertification Code",
-    placeholder: "Enter the Vertification Code in your Email",
-    id: "code",
-    name: "vertificationCode",
+    label: "Verification Code",
+    placeholder: "Enter the Verification Code in your Email",
+    id: "verificationCode",
+    name: "verificationCode",
     rules: [
-      { required: true, message: "Please input your vertification code!" },
+      { required: true, message: "Please input your verification code!" },
     ],
   },
   {
@@ -102,6 +106,7 @@ const inputFields = [
 ];
 
 const BecomeExpertPage = () => {
+  const [currentEmail, setCurrentEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [specialties, setSpecialties] = useState([]);
   const [images, setImages] = useState([]);
@@ -128,7 +133,7 @@ const BecomeExpertPage = () => {
   };
 
   return (
-    <BasicLayout>
+    <PublicLayout>
       {!submitted && (
         <div className="items-start px-14 pt-9 rounded-xl max-md:px-5">
           <h1 className="self-stretch text-5xl font-semibold tracking-tighter text-center text-blue-400 max-md:max-w-full max-md:text-4xl">
@@ -137,19 +142,62 @@ const BecomeExpertPage = () => {
           <p className="self-center mt-12 text-xl leading-8 text-center text-slate-600 max-md:mt-10 max-md:max-w-full">
             We'd love to hear from you. Please fill out this form.
           </p>
-
+          <button
+            style={{
+              position: "absolute",
+              top: "527px",
+              right: "390px",
+              width: "100px",
+              height: "35px",
+              border: "none",
+              color: "white",
+              borderRadius: "5px",
+              cursor: "pointer",
+            }}
+            className="bg-gray-400 text-white rounded-full cursor-pointer hover:bg-gray-500"
+            onClick={() => {
+              console.log(currentEmail);
+              sendVertificationCodeExpert(currentEmail);
+            }}
+          >
+            Get Code!
+          </button>
           <Form
             className="flex flex-col items-start px-14 pt-9 rounded-xl max-md:px-5 w-3/4 mx-auto "
             onFinish={handleSubmit}
           >
-            {inputFields.map((field, index) => (
-              <div
-                key={index}
-                className="flex gap-5 self-stretch max-md:flex-wrap max-md:mt-10 mb-3 mx-auto"
-              >
-                <InputField {...field} />
-              </div>
-            ))}
+            {inputFields.map((field) => {
+              if (field.id === "email") {
+                return (
+                  <div className="flex gap-5 self-stretch max-md:flex-wrap max-md:mt-10 mb-3 mx-auto">
+                    <InputField
+                      key={field.id}
+                      label={field.label}
+                      name={field.name}
+                      rules={field.rules}
+                      placeholder={field.placeholder}
+                      value={currentEmail}
+                      onChange={(e) => {
+                        setCurrentEmail(e.target.value);
+                      }}
+                    />
+                  </div>
+                );
+              } else {
+                return (
+                  <div className="flex gap-5 self-stretch max-md:flex-wrap max-md:mt-10 mb-3 mx-auto">
+                    <InputField
+                      key={field.id}
+                      label={field.label}
+                      name={field.name}
+                      rules={field.rules}
+                      placeholder={field.placeholder}
+                    />
+                  </div>
+                );
+              }
+            })}
+
             <label className="text-lg font-medium leading-5 text-slate-700 max-md:max-w-full mx-auto w-1/2">
               Field of Expertise
             </label>
@@ -221,7 +269,7 @@ const BecomeExpertPage = () => {
                 placeholder="a brief introduction of yourself, including personal strengths, professional strengths, interests and research directions in the professional field, etc."
               />
             </Form.Item>
-
+            {/* 
             <div className="flex gap-3 self-stretch mt-5 text-base leading-6 text-slate-600 max-md:flex-wrap w-3/4 mx-auto">
               <input
                 type="checkbox"
@@ -230,9 +278,9 @@ const BecomeExpertPage = () => {
               <label className="flex-1 max-md:max-w-full">
                 You agree to our friendly privacy policy.
               </label>
-            </div>
-            <button className="justify-center items-center self-stretch px-5 py-2.5 mt-10 text-base font-semibold leading-6 text-white bg-blue-400 rounded-lg border border-gray-400 border-solid shadow-sm max-md:max-w-full w-3/4 mx-auto">
-              Apply to become an expert
+            </div> */}
+            <button className="cursor-pointer justify-center items-center self-stretch px-5 py-2.5 mt-10 text-base font-semibold leading-6 text-white bg-blue-400 hover:bg-blue-500 rounded-lg border border-gray-400 border-none shadow-sm max-md:max-w-full w-3/4 mx-auto">
+              Apply to Register An Expert Account
             </button>
           </Form>
         </div>
@@ -249,7 +297,7 @@ const BecomeExpertPage = () => {
           ]}
         />
       )}
-    </BasicLayout>
+    </PublicLayout>
   );
 };
 

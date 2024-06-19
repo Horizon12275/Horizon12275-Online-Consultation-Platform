@@ -29,7 +29,12 @@ const RecommendedArticles = () => {
                 alt={article.title}
               />
             </Link>
-            <p className="self-center mt-6 w-full">{article.title}</p>
+            <Link
+              to={`/article/${article.id}`}
+              className="self-center mt-6 w-full text-black"
+            >
+              {article.title}
+            </Link>
           </article>
         ))}
       </Row>

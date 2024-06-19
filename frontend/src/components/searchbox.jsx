@@ -58,7 +58,7 @@ const SearchBar = ({ withSelect }) => {
   ];
 
   return (
-    <section className="flex flex-col justify-center bg-gray-200 rounded-3xl max-w-[720px]">
+    <section className="flex flex-col justify-center bg-gray-200 rounded-3xl max-w-[1100px]">
       <div className="flex gap-1 p-1 max-md:flex-wrap">
         {withSelect && (
           <>
@@ -84,7 +84,7 @@ const SearchBar = ({ withSelect }) => {
           value={keyword}
           onChange={(e) => setKeyword(e.target.value)}
           onPressEnter={() => handleSearch(keyword)}
-          placeholder="输入关键词搜索"
+          placeholder="Search The Content You Want!"
           className="bg-transparent border-none focus:ring-0 focus:bg-transparent hover:bg-transparent"
         />
         <IconButton

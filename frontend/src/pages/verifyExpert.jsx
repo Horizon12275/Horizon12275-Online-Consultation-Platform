@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Table, Button, Modal, Row, Image } from "antd";
+import { Table, Button, Modal, Row, Image, Space } from "antd";
 import {
   approveApplication,
   deleteApplication,
   getApplications,
 } from "../services/applyService";
 import { getSpecialities } from "../services/specialityService";
+import { PrivateLayout } from "../layouts";
 
 const { Column } = Table;
 
@@ -63,7 +64,7 @@ const VerifyExpertPage = () => {
   }, []);
 
   return (
-    <div>
+    <PrivateLayout>
       <Table
         dataSource={applications.map((item) => ({
           ...item,
@@ -156,18 +157,20 @@ const VerifyExpertPage = () => {
         />
       </Table>
       <Row justify={"end"}>
-        <Button
-          disabled={!selected.length}
-          type="primary"
-          onClick={handleApproveItems}
-        >
-          Approve Selected
-        </Button>
-        <Button disabled={!selected.length} onClick={handleDeleteItems}>
-          Disapprove Selected
-        </Button>
+        <Space>
+          <Button
+            disabled={!selected.length}
+            type="primary"
+            onClick={handleApproveItems}
+          >
+            Approve Selected
+          </Button>
+          <Button disabled={!selected.length} onClick={handleDeleteItems}>
+            Disapprove Selected
+          </Button>
+        </Space>
       </Row>
-    </div>
+    </PrivateLayout>
   );
 };
 

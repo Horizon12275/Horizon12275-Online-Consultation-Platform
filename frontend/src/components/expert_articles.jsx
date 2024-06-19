@@ -1,11 +1,12 @@
+import { Flex, List } from "antd";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 
 export function ArticleCard({ article }) {
   return (
     <Link
       to={`/article/${article.id}`}
-      className="flex flex-col justify-between grow self-stretch p-3 w-full bg-white h-[240px]"
+      className="flex flex-col justify-between grow self-stretch p-3 w-full bg-white h-[240px] shadow-lg"
     >
       <div className="flex flex-col items-start pr-20 max-md:pr-5 max-md:max-w-full">
         <div className="justify-center py-0.5 text-xs text-stone-300">
@@ -35,7 +36,9 @@ export function ArticleCard({ article }) {
         </div>
         <div className="flex gap-2.5">
           <div className="flex gap-1">
-            <div className="text-xs text-stone-300">{11}</div>
+            <div className="text-xs text-stone-300">
+              {article.articleComments?.length}
+            </div>
             <div className="flex justify-center items-center self-start">
               <img
                 loading="lazy"
@@ -62,29 +65,51 @@ export function ArticleCard({ article }) {
   );
 }
 
-export const ArticleList = ({ articles }) => {
+export const ArticleList = ({ articles,length }) => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const handlePageChange = (page, pageSize) => {
+    setSearchParams({
+      page: page,
+      pageSize: pageSize,
+      keyword: searchParams.get("keyword") || "",
+      tag: searchParams.get("tag") || "",
+    });
+  };
   return (
-    <Link style={{ display: "flex", justifyContent: "space-between" }}>
-      <div className="rounded shadow-sm w-[100%]">
-        {articles.map((article, index) => (
-          <div
-            key={index}
-            className="flex max-md:flex-col max-md:gap-0 mt-4 h-[240px]"
-          >
-            <div className="flex flex-col flex-1 ">
-              <Link to={`/article/${article.id}`}>
+    <Flex justify={"center"}>
+      <List
+        dataSource={articles}
+        renderItem={(article, index) => (
+          <div className="w-[1000px]">
+            <div
+              key={index}
+              className="flex max-md:flex-col max-md:gap-0 mt-4 h-[240px] "
+            >
+              <div className="flex flex-col flex-1 ">
                 <ArticleCard article={article} />
-              </Link>
+              </div>
+              <img
+                src={article.cover}
+                alt={article.title}
+                className="w-60  flex flex-col object-cover shadow-lg"
+              />
             </div>
-            <img
-              loading="lazy"
-              src={article.cover}
-              alt={article.title}
-              className="w-60  flex flex-col object-cover"
-            />
           </div>
-        ))}
-      </div>
-    </Link>
+        )}
+        pagination={{
+          current: searchParams.get("page") || 1,
+          defaultPageSize: 12,
+          pageSize: searchParams.get("pageSize") || 12,
+          onChange: handlePageChange,
+          showQuickJumper: true,
+          showSizeChanger: true,
+          pageSizeOptions: ["12", "24", "48"],
+          total: length,
+          showTotal: (total, range) =>
+            `${total} 项中的 ${range[0]}-${range[1]} 项 `,
+          position: "bottom",
+        }}
+      ></List>
+    </Flex>
   );
 };

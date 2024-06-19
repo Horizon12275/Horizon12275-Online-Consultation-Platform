@@ -1,4 +1,4 @@
-import { BASEURL, get, post, postText } from "./requestService";
+import { BASEURL, get, post } from "./requestService";
 const PREFIX = `${BASEURL}/api/like/comment`;
 
 export const likeComment = async (cid) => {

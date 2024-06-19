@@ -1,22 +1,15 @@
 import React, { useEffect, useState } from "react";
 import ConsultationHistoryCard from "./consultation_history_card";
-import { Link } from "react-router-dom";
-import { getOtherUserById } from "../services/userService";
-import { getRecommendedExperts } from "../services/expertService";
+import { Link, useParams, useSearchParams } from "react-router-dom";
+import { getConsultation } from "../services/consultationService";
 
-export default function ConsultationHistoryList() {
-  const [experts, setExperts] = useState([]);
-  useEffect(() => {
-    getRecommendedExperts().then((res) => {
-      setExperts(res);
-    });
-  }, []);
-
+export default function ConsultationHistoryList({ experts }) {
+  const [searchParams, setSearchParams] = useSearchParams();
 
   return (
     <div
       style={{
-        width: "100%",
+        width: "350px",
         display: "grid",
         gap: "2px",
         position: "absolute",
@@ -27,11 +20,15 @@ export default function ConsultationHistoryList() {
       <h2>Consultation History:</h2>
 
       {experts.slice(0, 3).map((expert) => (
-        <Link to={`/consultation/${expert.id}`} key={expert.id}>
-          <React.Fragment key={expert.id}>
-            <ConsultationHistoryCard expert={expert} />
-          </React.Fragment>
-        </Link>
+        <div
+          className="cursor-pointer w-[100%]"
+          key={expert.id}
+          onClick={() => {
+            setSearchParams({ receiverId: expert.id });
+          }}
+        >
+          <ConsultationHistoryCard expert={expert} />
+        </div>
       ))}
 
       {/* <Row justify="left" style={{ marginTop: "0px" }}>

@@ -5,7 +5,6 @@ import HomePage from "./pages/home";
 import ErrorPage from "./pages/errorpage";
 import ExpertProfilePage from "./pages/expertprofile";
 import ConsultPage from "./pages/consultation";
-import HistoryPage from "./pages/history";
 import UserPage from "./pages/user";
 import "./css/global.css";
 import "./index.css";
@@ -23,8 +22,12 @@ import WriteArticlePage from "./pages/writeArticle.jsx";
 import VerifyExpertPage from "./pages/verifyExpert.jsx";
 import { AuthProvider } from "./context/authContext.jsx";
 import Expert_profile from "./pages/expert_profile.jsx";
+import ScrollToTop from "./components/scrollToTop.jsx";
 
 const router = createBrowserRouter([
+  {
+    element: <ScrollToTop />,
+  },
   {
     path: "/",
     element: <HomePage />,
@@ -56,7 +59,7 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
   {
-    path: "/consultation/:receiverId",
+    path: "/consultation",
     element: <ConsultPage />,
     errorElement: <ErrorPage />,
   },
@@ -73,11 +76,6 @@ const router = createBrowserRouter([
   {
     path: "/article/:id",
     element: <ArticlePage />,
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: "/history",
-    element: <HistoryPage />,
     errorElement: <ErrorPage />,
   },
   {
@@ -116,8 +114,8 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
   {
-    path:"/expert_profile",
-    element:<Expert_profile/>,
+    path: "/expert_profile",
+    element: <Expert_profile />,
     errorElement: <ErrorPage />,
   },
   {

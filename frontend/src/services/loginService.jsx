@@ -33,18 +33,18 @@ export async function register({
 }
 
 export async function checkAuth() {
-  const url = `${PREFIX}/check`;
+  const url = `${PREFIX}/get`;
   let result;
-  try {
-    result = await get(url);
-    return result;
-  } catch (e) {
-    location.href = "/login";
-    alert(e);
-  }
+
+  result = await get(url);
+  return result;
 }
 
 export async function sendCode(email) {
+  if (!email) {
+    alert("请输入邮箱！");
+    return;
+  }
   const url = `${PREFIX}/sendCode/${email}`;
   console.log(email);
   let result;

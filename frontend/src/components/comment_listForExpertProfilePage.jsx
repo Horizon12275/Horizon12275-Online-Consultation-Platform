@@ -1,19 +1,22 @@
 import { useEffect, useState } from "react";
 import { getCids, likeComment } from "../services/commentLikeService";
 import CommentCard from "./comment_card";
+import { useAuth } from "../context/authContext";
 
 const CommentListForExpertProfilePage = ({ comments }) => {
   const [cids, setCids] = useState([]);
+  const { user } = useAuth();
   useEffect(() => {
-    getCids().then((res) => {
-      setCids(res);
-    });
+    if (user)
+      getCids().then((res) => {
+        setCids(res);
+      });
   }, []);
   const handleLike = (res) => {
     const comment = res.comment;
     const cid = comment.id;
-    try {
-      likeComment(cid).then((res) => {
+    likeComment(cid)
+      .then((res) => {
         if (cids.includes(cid)) {
           setCids(cids.filter((c) => c !== cid));
           comment.likes.pop();
@@ -21,10 +24,10 @@ const CommentListForExpertProfilePage = ({ comments }) => {
           setCids([...cids, cid]);
           comment.likes.push({});
         }
+      })
+      .catch((e) => {
+        alert(e);
       });
-    } catch (e) {
-      alert(e);
-    }
   };
   return (
     <section

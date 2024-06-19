@@ -10,6 +10,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -46,6 +47,9 @@ public class ConsultationServiceImpl implements ConsultationService  {
         User user = userRepository.findUserById(uid);
         if(user.getRole()== User.Role.user) {//只有用户才能发起咨询
             int cid = clientRepository.getClientByUserId(uid).getId();
+            if(repository.existsConsultationByClientIdAndExpertId(cid, eid)) {//已经存在咨询
+                return Result.error(400, "You have already paid for this expert!");
+            }
             Consultation consultation = new Consultation();
             Client client = clientRepository.getClientByUserId(uid);
             Expert expert = expertRepository.findExpertById(eid);
@@ -53,8 +57,11 @@ public class ConsultationServiceImpl implements ConsultationService  {
                 return Result.error(400, "Insufficient balance!");
             }
             client.setBalance(client.getBalance().subtract(expert.getPrice()));//扣除余额
+            clientRepository.save(client);
             consultation.setClient(client);
             consultation.setExpert(expert);
+            consultation.setTime(LocalDateTime.now());
+            repository.save(consultation);
             return Result.success(consultation);
         }
         return Result.error(403, "You are not a client");
