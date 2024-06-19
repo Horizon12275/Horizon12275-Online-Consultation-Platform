@@ -1,7 +1,7 @@
 package org.example.backend.controller;
 
 import org.example.backend.entity.ArticleComment;
-import org.example.backend.entity.ArticleReply;
+import org.example.backend.entity.Reply;
 import org.example.backend.entity.Result;
 import org.example.backend.service.ArticleCommentService;
 import org.springframework.web.bind.annotation.*;
@@ -28,7 +28,7 @@ public class ArticleCommentController {
         return service.deleteArticleComment(id);
     }
     @PostMapping("/reply/{cid}")
-    public Result<ArticleReply> addReply(@PathVariable int cid, @RequestBody String content) {
+    public Result<Reply> addReply(@PathVariable int cid, @RequestBody String content) {
         return service.addArticleReply(cid, content);
     }
 }

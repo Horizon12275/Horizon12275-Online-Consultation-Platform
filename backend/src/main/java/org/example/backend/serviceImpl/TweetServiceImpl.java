@@ -55,7 +55,7 @@ public class TweetServiceImpl implements TweetService {
         tweet.setContent(content);
         tweet.setPoster(client);
         tweet.setTime(LocalDateTime.now());
-        if(!file.isEmpty())//如果有图片 上传图片
+        if(file != null&& !file.isEmpty())//如果有图片
             try {
                 String url = uploadRepository.uploadFile(file, "image");
                 tweet.setImage(url);

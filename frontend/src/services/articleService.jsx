@@ -1,9 +1,20 @@
-import { BASEURL, get } from "./requestService";
+import { BASEURL, get, postFormData } from "./requestService";
 const PREFIX = `${BASEURL}/api/article`;
-import Data from "../json/articles.json";
 
-export const searchArticles = async ({ keyword }) => {
-  const url = `${PREFIX}/search?keyword=${keyword}&page=${1}&pageSize=${1}`;
+export const searchArticles = async ({ keyword, page, pageSize }) => {
+  const url = `${PREFIX}/search?keyword=${keyword}&page=${page}&pageSize=${pageSize}`;
+  let result;
+  try {
+    result = await get(url);
+    return result;
+  } catch (e) {
+    console.log(e);
+    alert(e);
+  }
+};
+
+export const categoryArticles = async ({ tag, page, pageSize }) => {
+  const url = `${PREFIX}/category?tag=${tag}&page=${page}&pageSize=${pageSize}`;
   let result;
   try {
     result = await get(url);
@@ -15,7 +26,7 @@ export const searchArticles = async ({ keyword }) => {
 };
 
 export const getRecommendedArticles = async () => {
-  const url = `${PREFIX}/recommend/0`;
+  const url = `${PREFIX}/recommend/3`;
   let result;
 
   result = await get(url);
@@ -30,22 +41,40 @@ export async function getAllArticles() {
   return result;
 }
 
-
-
-export const findExpertArticlesById = async (receiverId) => {
-  // 筛选出属于该专家的所有文章
-  const expertArticles = Data.articles.filter(
-    (article) => article.author_id === parseInt(receiverId)
-  );
-
-  return expertArticles;
-};
-
 export const getArticleById = async (id) => {
   // 模拟从本地 JSON 文件获取书籍数据
   const url = `${PREFIX}/get/${id}`;
   let result;
 
   result = await get(url);
+  return result;
+};
+
+// 通过id获取专家的所有文章
+export const getArticlesByExpertId = async (id) => {
+  const url = `${PREFIX}/list/${id}`;
+  let result;
+
+  result = await get(url);
+  return result;
+};
+
+export const addArticle = async ({
+  content,
+  title,
+  cover,
+  tids,
+  description,
+}) => {
+  let formData = new FormData();
+  formData.append("content", content);
+  formData.append("file", cover);
+  formData.append("title", title);
+  formData.append("tids", tids);
+  formData.append("description", description);
+  const url = `${PREFIX}/add`;
+  let result;
+
+  result = await postFormData(url, formData);
   return result;
 };

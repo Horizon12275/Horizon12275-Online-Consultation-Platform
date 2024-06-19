@@ -1,17 +1,15 @@
 package org.example.backend.serviceImpl;
 
 
-import org.example.backend.entity.Expert;
-import org.example.backend.entity.ExpertApplication;
-import org.example.backend.entity.Result;
-import org.example.backend.entity.User;
-import org.example.backend.repository.ExpertApplicationRepository;
-import org.example.backend.repository.ExpertRepository;
-import org.example.backend.repository.UserRepository;
+import com.alibaba.fastjson2.JSON;
+import org.example.backend.entity.*;
+import org.example.backend.repository.*;
 import org.example.backend.service.ExpertApplicationService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 
@@ -20,12 +18,24 @@ public class ExpertApplicationServiceImpl implements ExpertApplicationService {
     private final ExpertApplicationRepository repository;
     private final UserRepository userRepository;
     private final ExpertRepository expertRepository;
-    public ExpertApplicationServiceImpl(ExpertApplicationRepository repository, UserRepository userRepository, ExpertRepository expertRepository) {
+    private final SpecialityRepository specialityRepository;
+    private final UploadRepository uploadRepository;
+    public ExpertApplicationServiceImpl(ExpertApplicationRepository repository, UserRepository userRepository, ExpertRepository expertRepository, SpecialityRepository specialityRepository, UploadRepository uploadRepository) {
         this.repository = repository;
         this.userRepository = userRepository;
         this.expertRepository = expertRepository;
+        this.specialityRepository = specialityRepository;
+        this.uploadRepository = uploadRepository;
     }
-    public Result<ExpertApplication> addApplication(ExpertApplication application) {
+    public Result<ExpertApplication> addApplication(ExpertApplication application, MultipartFile file) {
+        if(file != null&& !file.isEmpty())//如果有图片
+            try {
+                String url = uploadRepository.uploadFile(file, "image");
+                application.setCertificate(url);
+            }
+            catch (IOException e) {
+                return Result.error(500, e.getMessage());
+            }
         repository.save(application);
         return Result.success(application);
     }
@@ -63,16 +73,22 @@ public class ExpertApplicationServiceImpl implements ExpertApplicationService {
         user.setPassword(new BCryptPasswordEncoder().encode(application.getPassword()));
         user.setRole(User.Role.expert);
         user.setEnabled(true);
-        userRepository.save(user);
+
         Expert expert = new Expert();
-        expert.setUser(user);
         expert.setFirstName(application.getFirstName());
         expert.setLastName(application.getLastName());
-        expert.setAboutMe(application.getAboutMe());
-        expert.setAvatar(application.getAvatar());
         expert.setName(application.getFirstName() + " " + application.getLastName());
-        expert.setRegion(application.getRegion());
-        expert.setIntroduction(application.getIntroduction());
+        expert.setAboutMe(application.getIntroduction());
+        expert.setEducation(application.getEducation());
+
+        List<Integer> sids = JSON.parseArray(application.getField(), Integer.class);
+        List<Speciality> specialities = specialityRepository.findAllById(sids);//根据id查询专长
+
+        expert.setSpecialities(specialities);
+        expert.setEducation(application.getEducation());
+
+        userRepository.save(user);
+        expert.setUser(user);
         expertRepository.save(expert);
         repository.deleteById(id);
         return Result.success(application);

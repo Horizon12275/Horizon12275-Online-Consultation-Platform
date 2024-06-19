@@ -1,7 +1,4 @@
-import { Link, useParams } from "react-router-dom";
-import { getExpertById } from "../services/expertService";
-import { useEffect, useState } from "react";
-import { getOtherUserById } from "../services/userService";
+import { Link } from "react-router-dom";
 
 function Avatar({ src, alt }) {
   return <img className="avatar" src={src} alt={alt} />;
@@ -32,20 +29,7 @@ function VideoButton() {
   );
 }
 
-function CallButton() {
-  return (
-    <button className="call-button">
-      <img
-        className="call-icon"
-        src="https://cdn.builder.io/api/v1/image/assets/TEMP/8c021edfc9b00b4b26bfa8ac69dab5ee7e915ca7310725b8e4ddfc4bb009bc60?apiKey=b565e599026f4ea2ba591e53566a67d8&"
-        alt="Call icon"
-      />
-      <span className="call-text">Call</span>
-    </button>
-  );
-}
-
-function ConsultHead({ receiver }) {
+function ConsultHead({ receiver,rid }) {
   //这里的receiver是专家或者用户的信息
   return (
     receiver && (
@@ -56,8 +40,8 @@ function ConsultHead({ receiver }) {
             name={receiver.name || receiver.username} //这里的receiver.name是专家的名字，receiver.username是用户的名字
             status={"Online"}
           />
-          <Link to={`/videochat/${receiver.id}`}>
-            <VideoButton />
+          <Link to={`/videochat/${rid}`}>
+            <VideoButton className="video-button" />
           </Link>
         </div>
 
@@ -65,14 +49,14 @@ function ConsultHead({ receiver }) {
           .user-card {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            max-width: 2000px;
-            gap: 200px;
+
+            max-width: 1000px;
+            gap: 20px;
             font-weight: 600;
             padding: 10px 10px;
             position: absolute;
             top: 40px;
-            left: 870px;
+            left: 710px;
           }
 
           @media (max-width: 991px) {
@@ -130,8 +114,8 @@ function ConsultHead({ receiver }) {
           .call-button {
             display: flex;
             align-items: center;
-            gap: 8px;
-            padding: 10px 16px;
+            gap: 10px;
+            padding: 10px 18px;
             background-color: #b2ddff;
             color: #1570ef;
             font-size: 16px;
@@ -139,12 +123,9 @@ function ConsultHead({ receiver }) {
             border: none;
             border-radius: 8px;
             cursor: pointer;
-          }
-
-          @media (max-width: 991px) {
-            .call-button {
-              white-space: initial;
-            }
+            position: absolute;
+            top: 20px;
+            left: 785px;
           }
 
           .call-icon {

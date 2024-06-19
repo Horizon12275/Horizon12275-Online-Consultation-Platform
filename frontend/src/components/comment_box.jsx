@@ -42,43 +42,58 @@ function ShareButton({ handleClick }) {
 }
 
 function CommentBox({ id, type, setComments }) {
-  const { user, setUser } = useAuth();
+  const { user, client, expert } = useAuth();
   const [value, setValue] = useState("");
   const handleSubmit = () => {
-    if (value.trim() === "") {
-      return;
-    }
-    if (type === "article") addArticleComment({ aid: id, content: value });
-    else if (type === "tweet") addTweetComment({ tid: id, content: value });
-    else if (type === "expert") addExpertComment({ eid: id, content: value });
-    setValue("");
-    console.log(user);
-    setComments((prev) => [
-      ...prev,
-      {
-        id: prev.length + 1,
-        content: value,
-        time: new Date().toLocaleString(),
-        likes: 0,
-        user: {
-          id: user.id,
-          username: user.username,
-          avatar: user.avatar,
-        },
+    if (value.trim() === "") return;
+    const comment = {
+      content: value,
+      time: new Date().toLocaleString(),
+      comment: { id: 0, likes: [], repies: [] },
+      user: {
+        id: user.id,
+        expert: expert,
+        client: client,
       },
-    ]);
+    };
+    if (type === "article")
+      addArticleComment({ aid: id, content: value })
+        .then((res) => {
+          comment.comment.id = res.comment.id;
+          setValue("");
+          setComments((prev) => [...prev, comment]);
+        })
+        .catch((e) => alert(e));
+    else if (type === "tweet")
+      addTweetComment({ tid: id, content: value })
+        .then((res) => {
+          comment.comment.id = res.comment.id;
+          setValue("");
+          setComments((prev) => [...prev, comment]);
+        })
+        .catch((e) => alert(e));
+    else if (type === "expert")
+      addExpertComment({ eid: id, content: value })
+        .then((res) => {
+          comment.comment.id = res.comment.id;
+          setValue("");
+          setComments((prev) => [...prev, comment]);
+        })
+        .catch((e) => alert(e));
   };
   return (
-    <div  style={{
-      position: "absolute",
-      top: "630px",
-      left: "280px",
-      width:"500px",
-      // height:"100px",
-      backgroundColor: "white",
-      padding: "10px",
-      // border: "1px solid black",
-    }}>
+    <div
+      style={{
+        position: "absolute",
+        top: "375px",
+        left: "280px",
+        width: "350px",
+        // height:"100px",
+        backgroundColor: "#f5f5f5",
+        padding: "10px",
+        // border: "1px solid black",
+      }}
+    >
       <CommentInput
         value={value}
         onChange={(e) => {

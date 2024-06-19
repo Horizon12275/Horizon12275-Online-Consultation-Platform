@@ -1,9 +1,15 @@
 package org.example.backend.serviceImpl;
 
+import org.example.backend.DTO.ArticlePageResponse;
+import org.example.backend.DTO.ExpertPageResponse;
+import org.example.backend.DTO.ExpertPageResponse;
+import org.example.backend.entity.*;
 import org.example.backend.entity.Expert;
-import org.example.backend.entity.Result;
 import org.example.backend.repository.ExpertRepository;
 import org.example.backend.service.ExpertService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,9 +31,6 @@ public class ExpertServiceImpl implements ExpertService {
         }
         return Result.success(expert);
     }
-    public Result<List<Expert>> searchExperts(String keyword){
-        return Result.success(repository.getExpertsByNameLikeOrIntroductionLike("%"+keyword+"%", "%"+keyword+"%"));
-    }
     public Result<Expert> addExpert(Expert expert){
         return Result.success(repository.save(expert));
     }
@@ -48,6 +51,29 @@ public class ExpertServiceImpl implements ExpertService {
         }
     }
     public Result<List<Expert>> getRecommendedExperts(int nums){
-        return Result.success(repository.findAll().subList(0, nums));//返回前nums个专家
+        List<Expert> experts = repository.findAll();
+        return Result.success(experts.subList(0,Math.min(experts.size(),nums)));//返回前nums个专家
+    }
+    public Result<ExpertPageResponse> searchExperts(String keyword, int page, int pageSize){
+        Pageable pageable = PageRequest.of(page - 1, pageSize);
+        Page<Expert> experts = repository.getExpertsByNameLikeOrAboutMeLike("%" + keyword + "%" , "%" + keyword + "%", pageable);
+        ExpertPageResponse response = new ExpertPageResponse(
+                experts.getTotalElements(),
+                experts.getTotalPages(),
+                experts.getContent()
+        );
+        return Result.success(response);
+    }
+    public Result<ExpertPageResponse> categorySearch(int sid, int page, int pageSize){
+        Pageable pageable = PageRequest.of(page - 1, pageSize);
+        Speciality speciality = new Speciality();
+        speciality.setId(sid);
+        Page<Expert> articles = repository.findExpertsBySpecialitiesContains(speciality, pageable);
+        ExpertPageResponse response = new ExpertPageResponse(
+                articles.getTotalElements(),
+                articles.getTotalPages(),
+                articles.getContent()
+        );
+        return Result.success(response);
     }
 }

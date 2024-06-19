@@ -37,7 +37,7 @@ public class TweetController {
         return service.deleteTweet(id);
     }
     @PostMapping("/add")
-    public Result<Tweet> addTweet(@RequestParam("content") String content,@RequestParam("file") MultipartFile file) {
+    public Result<Tweet> addTweet(@RequestParam String content,@RequestParam(required = false) MultipartFile file) {
         return service.addTweet(content,file);
     }
 

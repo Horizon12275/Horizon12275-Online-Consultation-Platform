@@ -1,16 +1,14 @@
-import React from 'react'
-import { LeftOutlined } from '@ant-design/icons';
-import { BasicLayout } from '../layouts'
+import React from "react";
+import { PrivateLayout } from "../layouts";
 import Commentcard from "../components/commentcard.jsx";
 import FillForm from "../components/fillinform.jsx";
-import Profile from "../components/profile.jsx";
+import User from "../components/user_profile.jsx";
 export default function UserPage() {
-    return (
-        <BasicLayout>
-
-           <Commentcard/>
-            <FillForm/>
-           <Profile/>
-        </BasicLayout>
-    )
+  return (
+    <PrivateLayout>
+      <Commentcard />
+      <FillForm />
+      <User />
+    </PrivateLayout>
+  );
 }
