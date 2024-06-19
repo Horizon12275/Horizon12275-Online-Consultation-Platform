@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
-import { useParams, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { getExpertById } from "../services/expertService"; // 导入专家相关的服务函数
 import { Flex, Divider } from "antd";
 import ConsultationHistoryList from "../components/consultation_history_list";
-import RateButton from "../components/rate";
 import { PrivateLayout } from "../layouts";
 import CommentList from "../components/comment_list";
 import ChatApp from "../components/consult.jsx";
@@ -22,40 +21,41 @@ const ConsultPage = () => {
   const [experts, setExperts] = useState([]);
 
   useEffect(() => {
-    getConsultation().then((consultations) => {
-      if (consultations.length === 0) {
-        alert(
-          user?.role === "user"
-            ? "You have no consulted expert yet!"
-            : "No user has consulted you yet!"
-        );
-        location.href = "/";
-      }
-      //目前只能切换咨询时更新列表 应该做到发送消息时更新列表
-      consultations.sort((a, b) => {
-        return new Date(b.time) - new Date(a.time);
+    getConsultation()
+      .then((consultations) => {
+        if (consultations.length === 0) {
+          alert(
+            user?.role === "user"
+              ? "You have no consulted expert yet!"
+              : "No user has consulted you yet!"
+          );
+          location.href = "/";
+        }
+        //目前只能切换咨询时更新列表 应该做到发送消息时更新列表
+        consultations.sort((a, b) => {
+          return new Date(b.time) - new Date(a.time);
+        });
+        setExperts(consultations.map((consultation) => consultation?.expert));
+        if (!receiverId)
+          setSearchParams({ receiverId: consultations[0]?.expert?.id });
+        if (user?.role === "user") {
+          Promise.all([
+            getExpertById(receiverId),
+            getCommentsByExpertId(receiverId),
+          ]).then(([expert, comments]) => {
+            setReceiver(expert);
+            setComments(comments);
+          });
+        } else {
+          // 如果当前用户是专家，则获取用户信息
+          getClientById(receiverId).then((client) => {
+            setReceiver(client);
+          });
+        }
+      })
+      .catch((e) => {
+        console.error(e);
       });
-      setExperts(consultations.map((consultation) => consultation?.expert));
-      if (!receiverId)
-        setSearchParams({ receiverId: consultations[0]?.expert?.id });
-      if (user?.role === "user") {
-        Promise.all([
-          getExpertById(consultations[0]?.expert?.id),
-          getCommentsByExpertId(consultations[0]?.expert?.id),
-        ]).then(([expert, comments]) => {
-          setReceiver(expert);
-          setComments(comments);
-        });
-      } else {
-        // 如果当前用户是专家，则获取用户信息
-        getClientById(receiverId).then((client) => {
-          setReceiver(client);
-        });
-      }
-    }).catch((e) => {
-      alert(e);
-      location.href = "/";
-    });
   }, [user, searchParams]);
 
   return (
@@ -87,7 +87,12 @@ const ConsultPage = () => {
               {/*<AIPrompt />*/}
             </>
           )}
-          <ChatApp sid={user?.id} receiver={receiver} receiverId={receiverId} />
+          <ChatApp
+            sid={user?.id}
+            receiver={receiver}
+            receiverId={receiverId}
+            setExperts={setExperts}
+          />
         </div>
       </Flex>
     </PrivateLayout>

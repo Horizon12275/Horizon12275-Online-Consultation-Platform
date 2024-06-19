@@ -1,7 +1,19 @@
 server:
   port: 8080
+  ssl:
+    key-store: classpath:keystore.jks
+    key-store-password: 123456
+    key-password: 123456
+    key-alias: mykey
+    key-store-type: JKS
+  servlet:
+    session:
+      cookie:
+        same-site: none  #修复跨域问题 前端域名是http 后端是https 如果不显式设置 浏览器就不会发送cookie 也可以通过升级前端为https解决
+
 
 spring:
+
   datasource:
     url: jdbc:mysql://localhost:3306/ocp?createDatabaseIfNotExist=true
     username: root

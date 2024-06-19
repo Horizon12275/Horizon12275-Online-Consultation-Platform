@@ -26,7 +26,7 @@ import java.io.PrintWriter;
 public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        return http.authorizeHttpRequests((requests) ->{requests
+         http.authorizeHttpRequests((requests) ->{requests
                                 .requestMatchers("/api/article/add").hasRole("expert")//只有专家才能访问
                                 .requestMatchers("/api/client/fund","/api/tweet/add").hasRole("user")//只有客户才能访问
                                 .requestMatchers("/api/user/register/**",
@@ -50,13 +50,14 @@ public class SecurityConfig {
                         conf -> {
                             conf.loginProcessingUrl("/api/user/login");
                             conf.successHandler(this::handleProcess);
-                            conf.failureHandler(this::handleProcess);
+                            //conf.failureHandler(this::handleProcess);
                             conf.permitAll();
                         }
                 ).csrf(AbstractHttpConfigurer::disable)
                 .cors(
                         conf -> {
                             CorsConfiguration cors = new CorsConfiguration();
+
                             cors.addAllowedOrigin("http://localhost:5173");
                             cors.addAllowedOrigin("http://localhost:5174");
                             cors.addAllowedOrigin("http://101.132.129.104:5173");
@@ -81,8 +82,10 @@ public class SecurityConfig {
                             conf.logoutUrl("/api/user/logout");
                             conf.logoutSuccessHandler(this::handleProcess);
                         }
-                ).build();
+                );
+        return http.build();
     }
+
     @Bean
     public PasswordEncoder passwordEncoder(){//密码编码器
         return new BCryptPasswordEncoder();

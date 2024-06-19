@@ -55,23 +55,25 @@ const ChatMessages = ({ messages, rid }) => {
     }, 1000);
   }, [messages]);
   return (
-    <div className="chat-messages overflow-y-auto">
-      {messages.map((message) => (
-        <ChatMessage
-          key={message.sendTime} //这里应该用message.id 但是新的message没有id 待定
-          message={message}
-          isSender={message.receiver.id == rid}
-        />
-      ))}
-      <div id="bottom" />
-    </div>
+    rid && (
+      <div className="chat-messages overflow-y-auto">
+        {messages.map((message) => (
+          <ChatMessage
+            key={message.sendTime} //这里应该用message.id 但是新的message没有id 待定
+            message={message}
+            isSender={message.receiver.id == rid}
+          />
+        ))}
+        <div id="bottom" />
+      </div>
+    )
   );
 };
 
-function ChatApp({ sid, receiver, receiverId }) {
+function ChatApp({ sid, receiver, receiverId, setExperts}) {
   //sid是当前用户id（用于初始化ws） receiver是对方(专家或客户，用于渲染header)
   //获取接收者id 如果当前用户是专家则为用户id 如果当前用户是用户则为专家id 发送到后端转换成userId
-  const [rid, setRid] = useState();
+  const [rid, setRid] = useState(); //receiverId对应的userId
   const [messages, setMessages] = useState([]);
   const [inputMessage, setInputMessage] = useState("");
   const [selectedImages, setSelectedImages] = useState([]); // 用于上传图片
@@ -123,6 +125,7 @@ function ChatApp({ sid, receiver, receiverId }) {
 
   useEffect(() => {
     //ws?.close(); // 关闭先前的连接
+    setMessages([]); // 清空聊天记录
     if (receiverId)
       getReceiverId(receiverId) //根据接收者id获取userId
         .then((res) => {
@@ -171,7 +174,6 @@ function ChatApp({ sid, receiver, receiverId }) {
       });
       setSelectedImages([]);
     }
-
     if (inputMessage.trim() !== "") {
       ws.current.send(JSON.stringify({ type: "message", data: inputMessage }));
       setMessages((prevMessages) => [
@@ -187,6 +189,13 @@ function ChatApp({ sid, receiver, receiverId }) {
       ]);
       setInputMessage(""); // 清空输入
     }
+    setExperts((prevExperts) => {
+      //发送消息时更新专家列表 把当前专家移到最前面
+      const index = prevExperts.findIndex((expert) => expert.id == receiverId);
+      const expert = prevExperts[index]; //当前专家
+      prevExperts.splice(index, 1); //删除当前专家
+      return [expert, ...prevExperts];
+    });
   };
 
   const handleInputChange = (event) => {

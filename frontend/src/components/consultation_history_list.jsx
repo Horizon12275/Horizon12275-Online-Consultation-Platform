@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import ConsultationHistoryCard from "./consultation_history_card";
-import { Link, useParams, useSearchParams } from "react-router-dom";
-import { getConsultation } from "../services/consultationService";
+import { useSearchParams } from "react-router-dom";
 
 export default function ConsultationHistoryList({ experts }) {
   const [searchParams, setSearchParams] = useSearchParams();
