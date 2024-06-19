@@ -100,8 +100,8 @@ export async function put(url, data) {
 // export const PEERURL = "localhost";
 
 // On Sever Settings Below
-export const WSURL = "ws://localhost:8080/ws";
-export const BASEURL = "http://localhost:8080";
+export const WSURL = "wss://localhost:8080/ws";
+export const BASEURL = "https://localhost:8080";
 export const PEERURL = "101.132.129.104";
 
 export const PREFIX = `${BASEURL}/api`;

@@ -1,4 +1,6 @@
-export default function ConsultationHistoryCard({ expert }) {
+import toTime from "../utils/time";
+
+export default function ConsultationHistoryCard({ expert, time }) {
   return (
     <main className="flex flex-col justify-center max-w-[352px] mt-3">
       <article className="flex flex-col justify-center w-full rounded-xl">
@@ -14,7 +16,7 @@ export default function ConsultationHistoryCard({ expert }) {
               {expert.name}
             </h2>
             <time className="mt-1 text-sm tracking-wide leading-5">
-              Date: 2.2.2024
+              {toTime(time)}
             </time>
           </div>
         </section>

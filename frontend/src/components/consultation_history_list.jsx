@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import ConsultationHistoryCard from "./consultation_history_card";
-import { Link, useParams, useSearchParams } from "react-router-dom";
-import { getConsultation } from "../services/consultationService";
+import { useSearchParams } from "react-router-dom";
+import { useAuth } from "../context/authContext";
 
-export default function ConsultationHistoryList({ experts }) {
+export default function ConsultationHistoryList({ consultations }) {
   const [searchParams, setSearchParams] = useSearchParams();
+  const { user } = useAuth();
 
   return (
     <div
@@ -18,27 +19,30 @@ export default function ConsultationHistoryList({ experts }) {
       }}
     >
       <h2>Consultation History:</h2>
-
-      {experts.slice(0, 3).map((expert) => (
-        <div
-          className="cursor-pointer w-[100%]"
-          key={expert.id}
-          onClick={() => {
-            setSearchParams({ receiverId: expert.id });
-          }}
-        >
-          <ConsultationHistoryCard expert={expert} />
-        </div>
-      ))}
-
-      {/* <Row justify="left" style={{ marginTop: "0px" }}>
-        <Button onClick={handleClick} hoverable>
-          <Row align="middle">
-            <CommentOutlined style={{ marginRight: "10px" }} />
-            <h3>{expanded ? "收起聊天" : "全部聊天"}</h3>
-          </Row>
-        </Button>
-      </Row> */}
+      {user?.role === "user" &&
+        consultations.slice(0, 3).map((consultation) => (
+          <div
+            className="cursor-pointer w-[100%]"
+            key={consultation.expert.id}
+            onClick={() => {
+              setSearchParams({ receiverId: consultation.expert.id });
+            }}
+          >
+            <ConsultationHistoryCard expert={consultation.expert} time={consultation.time}/>
+          </div>
+        ))}
+      {user?.role === "expert" &&
+        consultations.slice(0, 3).map((consultation) => (
+          <div
+            className="cursor-pointer w-[100%]"
+            key={consultation.client.id}
+            onClick={() => {
+              setSearchParams({ receiverId: consultation.client.id });
+            }}
+          >
+            <ConsultationHistoryCard client={consultation.client} />
+          </div>
+        ))}
     </div>
   );
 }
