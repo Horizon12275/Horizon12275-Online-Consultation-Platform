@@ -50,7 +50,7 @@ public class SecurityConfig {
                         conf -> {
                             conf.loginProcessingUrl("/api/user/login");
                             conf.successHandler(this::handleProcess);
-                            //conf.failureHandler(this::handleProcess);
+                            conf.failureHandler(this::handleProcess);
                             conf.permitAll();
                         }
                 ).csrf(AbstractHttpConfigurer::disable)

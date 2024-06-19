@@ -37,7 +37,12 @@ const ConsultPage = () => {
         });
         setConsultations(consultations);
         if (!receiverId)
-          setSearchParams({ receiverId: consultations[0]?.expert?.id });
+          setSearchParams({
+            receiverId:
+              user.role === "user"
+                ? consultations[0]?.expert?.id
+                : consultations[0]?.client?.id,
+          });
         if (user?.role === "user") {
           Promise.all([
             getExpertById(receiverId),
@@ -68,12 +73,12 @@ const ConsultPage = () => {
             padding: "0 10px",
           }}
         >
+          <ConsultationHistoryList
+            style={{ position: "fixed", top: "30px", left: "300px" }}
+            consultations={consultations}
+          />
           {user?.role === "user" && (
             <>
-              <ConsultationHistoryList
-                style={{ position: "fixed", top: "30px", left: "300px" }}
-                consultations={consultations}
-              />
               {/*<Divider style={{ margin: "10px 0" }} />*/}
               {/* <RateButton /> */}
               <CommentList comments={comments} />

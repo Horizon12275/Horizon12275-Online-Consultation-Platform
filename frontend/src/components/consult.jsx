@@ -11,6 +11,7 @@ import ConsultHead from "./consult_head";
 import toTime from "../utils/time";
 import { BASEURL, WSURL, postFormData } from "../services/requestService";
 import { Image } from "antd";
+import { useAuth } from "../context/authContext";
 
 const ChatMessage = ({ message, isSender }) => (
   <div className={`chat-message ${isSender ? "sent" : "received"}`}>
@@ -73,6 +74,7 @@ const ChatMessages = ({ messages, rid }) => {
 function ChatApp({ sid, receiver, receiverId, setConsultations }) {
   //sid是当前用户id（用于初始化ws） receiver是对方(专家或客户，用于渲染header)
   //获取接收者id 如果当前用户是专家则为用户id 如果当前用户是用户则为专家id 发送到后端转换成userId
+  const { user } = useAuth();
   const [rid, setRid] = useState(); //receiverId对应的userId
   const [messages, setMessages] = useState([]);
   const [inputMessage, setInputMessage] = useState("");
@@ -202,7 +204,10 @@ function ChatApp({ sid, receiver, receiverId, setConsultations }) {
     setConsultations((prev) => {
       //发送消息时更新专家列表 把当前专家移到最前面
       const index = prev.findIndex(
-        (consultation) => consultation.expert.id == receiverId
+        (consultation) =>
+          (user.role === "user"
+            ? consultation.expert.id
+            : consultation.client.id) == receiverId
       );
       const consutation = prev[index]; //当前专家
       consutation.time = new Date().getTime(); //更新时间
