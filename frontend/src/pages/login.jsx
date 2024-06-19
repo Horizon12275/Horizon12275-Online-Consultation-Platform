@@ -20,14 +20,14 @@ function LoginPage() {
         if (res.role === "user") {
           setClient(res.client);
           alert("登录成功！");
-          history.back();
+          location.href = "/";
         } else if (res.role === "expert") {
           setExpert(res.expert);
           alert("登录成功！");
-          history.back();
+          location.href = "/";
         } else if (res.role === "admin") {
           alert("登录成功！欢迎管理员");
-          history.back();
+          location.href = "/";
         }
         setUser(res);
       });

@@ -20,32 +20,36 @@ const ExpertShowList = ({ sortBy, experts, length }) => {
   }
 
   return (
-    <Flex gap="middle" justify="space-around" align="center">
-      <List
-        grid={{
-          column: 3,
-        }}
-        dataSource={experts}
-        renderItem={(expert) => (
-          <List.Item>
-            <ExpertShowCard item={expert} />
-          </List.Item>
-        )}
-        pagination={{
-          current: searchParams.get("page") || 1,
-          defaultPageSize: 12,
-          pageSize: searchParams.get("pageSize") || 12,
-          onChange: handlePageChange,
-          showQuickJumper: true,
-          showSizeChanger: true,
-          pageSizeOptions: ["12", "24", "48"],
-          total: length,
-          showTotal: (total, range) =>
-            `${total} 项中的 ${range[0]}-${range[1]} 项 `,
-          position: "bottom",
-        }}
-      ></List>
-    </Flex>
+    <List
+      grid={{
+        xxl: 3,
+        xl: 3,
+        lg: 3,
+        md: 3,
+        sm: 3,
+        xs: 3,
+        gutter: 20,
+      }}
+      dataSource={experts}
+      renderItem={(expert) => (
+        <List.Item>
+          <ExpertShowCard item={expert} />
+        </List.Item>
+      )}
+      pagination={{
+        current: searchParams.get("page") || 1,
+        defaultPageSize: 12,
+        pageSize: searchParams.get("pageSize") || 12,
+        onChange: handlePageChange,
+        showQuickJumper: true,
+        showSizeChanger: true,
+        pageSizeOptions: ["12", "24", "48"],
+        total: length,
+        showTotal: (total, range) =>
+          `${total} 项中的 ${range[0]}-${range[1]} 项 `,
+        position: "bottom",
+      }}
+    ></List>
   );
 };
 

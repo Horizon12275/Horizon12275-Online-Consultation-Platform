@@ -25,7 +25,7 @@ export async function register({
     let result;
     result = await post(url, { username, password, email, verificationCode });
     alert("注册成功！");
-    location.reload();
+    location.href = "/login";
   } catch (e) {
     console.log(e);
     alert(e);
