@@ -15,7 +15,7 @@ function Profile() {
   };
   return (
     <>
-      <div className="div">
+      <div className="div" style={{ marginTop: "30px", marginLeft: "50px" }}>
         <div className="div-2 shadow-lg">
           <Image src={expert?.avatar} className="aspect-square object-cover" />
         </div>
@@ -48,11 +48,14 @@ function Profile() {
             action={`https://localhost:8080/api/user/avatar`}
             withCredentials
             onChange={handleChange}
-            className="div-18 shadow-lg text-white"
+            className="div-18 shadow-lg text-white  hover:scale-110 transition-transform duration-300 ease-in-out"
           >
             <span>Upload new avatar</span>
           </Upload>
-          <Link to={"/write-article"} className="div-19 text-white">
+          <Link
+            to={"/write-article"}
+            className="div-19 text-white hover:text-white hover:scale-110 transition-transform duration-300 ease-in-out"
+          >
             Post A New Article
           </Link>
         </div>
@@ -64,9 +67,6 @@ function Profile() {
           flex-direction: column;
           align-items: center;
           padding: 0 20px;
-          position: absolute;
-          top: 0px;
-          left: 250px;
           position: absolute;
           top: 0px;
           left: 250px;
@@ -220,12 +220,15 @@ function Profile() {
         }
         .div-18 {
           font-family: Carter One, sans-serif;
-          border-radius: 10px;
+          border-radius: 20px;
           background-color: rgba(46, 144, 250, 1);
           justify-content: center;
           flex-grow: 1;
           width: fit-content;
           padding: 16px 52px;
+          cursor: pointer;
+          font-size: 24px;
+          color: #fff;
         }
         @media (max-width: 991px) {
           .div-18 {
@@ -234,13 +237,17 @@ function Profile() {
         }
         .div-19 {
           font-family: Carter One, sans-serif;
-          border-radius: 10px;
+          border-radius: 20px;
           background-color: rgba(229, 62, 62, 1);
           align-items: start;
           justify-content: center;
           flex-grow: 1;
           width: fit-content;
           padding: 18px 52px;
+          cursor: pointer;
+          font-size: 24px;
+          border: none;
+          color: #fff;
         }
         @media (max-width: 991px) {
           .div-19 {
