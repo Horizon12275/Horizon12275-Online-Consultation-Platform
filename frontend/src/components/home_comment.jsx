@@ -24,9 +24,9 @@ function UserInfo({ imageSrc, name, username }) {
       />
       <div className="flex flex-col gap-1.5 py-1 my-auto">
         <div className="gap-0 text-xl tracking-normal leading-6">{name}</div>
-        <div className="gap-0 mt-3.5 text-lg tracking-normal leading-6">
+        {/* <div className="gap-0 mt-3.5 text-lg tracking-normal leading-6">
           {username}
-        </div>
+        </div> */}
       </div>
     </div>
   );
