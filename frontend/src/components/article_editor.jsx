@@ -19,8 +19,10 @@ const ArticleEditor = () => {
   const handleSubmit = async (values) => {
     values.cover = cover[0];
     try {
-      await addArticle(values);
-      alert("Article added successfully!");
+      await addArticle(values).then((res) => {
+        alert("Article added successfully!");
+        location.href = `/article/${res.id}`
+      });
     } catch (e) {
       console.log(e);
       alert(e);
@@ -116,7 +118,7 @@ const ArticleEditor = () => {
           className=" max-w-[60vw]"
           rules={[{ required: true, message: "Please input your content!" }]}
         >
-          <MdEditor value={value} onChange={setValue} language="en"/>
+          <MdEditor value={value} onChange={setValue} language="en" />
         </Form.Item>
         <Button
           htmlType="submit"
