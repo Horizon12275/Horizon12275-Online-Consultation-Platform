@@ -250,8 +250,5 @@ function Profile() {
       `}</style>
     </>
   );
-    </>
-  );
 }
-export default Profile;
 export default Profile;
