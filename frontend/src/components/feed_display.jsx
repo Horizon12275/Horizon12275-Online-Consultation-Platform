@@ -91,7 +91,7 @@ function FeedDisplay({ tweet }) {
   const actions = [
     {
       icon: tids.includes(tweet.id)
-        ? "https://cdn.builder.io/api/v1/image/assets/TEMP/099a74efeea1059cfba72862a07ea0b1f284e841db6ac1e903b918a687999ff1?apiKey=9e661a5e0ad74c878ca984d592b3752c&"
+        ? "/heartIcon.png"
         : "https://cdn.builder.io/api/v1/image/assets/TEMP/fa10d6ed0faeb00fb3dcbb006b723fd158e47f915cdce681e8e759ed8e0b7bcc?apiKey=f52c53764647463db8da4a641cad04a5&",
       count: tweet.likes.length,
       handleClick: () => handleLike(tweet),

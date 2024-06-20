@@ -1,7 +1,7 @@
 [
     {
       "id": 1,
-      "email": "horizon52183@outlook.com",
+      "email": "horizon52183",
       "enabled": 1,
       "password": "$2a$10$5uMMDo3lflhhGBtVtUJO2OAWkDXxFhBXHnnj/0E8o71jFnPJm6srK",
       "role": "user"
@@ -194,5 +194,12 @@
         "enabled": 1,
         "password": "$2a$10$5uMMDo3lflhhGBtVtUJO2OAWkDXxFhBXHnnj/0E8o71jFnPJm6srK",
         "role": "expert"
+    },
+    {
+        "id": 49,
+        "email": "admin",
+        "enabled": 1,
+        "password": "$2a$10$5uMMDo3lflhhGBtVtUJO2OAWkDXxFhBXHnnj/0E8o71jFnPJm6srK",
+        "role": "admin"
     }
 ]
