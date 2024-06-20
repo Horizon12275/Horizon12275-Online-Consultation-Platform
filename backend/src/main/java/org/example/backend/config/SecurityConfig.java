@@ -101,20 +101,20 @@ public class SecurityConfig {
             // 如果是认证异常，则判断具体是用户名密码错误还是未登录
             if (authException instanceof BadCredentialsException) {
                 // 用户名密码错误
-                writer.write(Result.error(401, "用户名或密码错误").asJsonString());
+                writer.write(Result.error(401, "Username or password error").asJsonString());
             } else {
                 // 未登录
-                writer.write(Result.error(401, "请先登录").asJsonString());
+                writer.write(Result.error(401, "Please login").asJsonString());
             }
         } else if (exceptionOrAuthentication instanceof AccessDeniedException) {
             // 权限不足
-            writer.write(Result.error(403, "您没有权限访问").asJsonString());
+            writer.write(Result.error(403, "You do not have permission").asJsonString());
         } else if (exceptionOrAuthentication instanceof Authentication) {
             // 身份验证成功
             writer.write(Result.success((Authentication) exceptionOrAuthentication).asJsonString());
         } else {
             // 其他情况，返回通用错误信息
-            writer.write(Result.error(500, "服务器内部错误").asJsonString());
+            writer.write(Result.error(500, "Unknown error").asJsonString());
         }
     }
     

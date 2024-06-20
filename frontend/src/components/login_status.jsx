@@ -21,7 +21,7 @@ const UserOrLogin = () => {
     setExpert(null);
     logout()
       .then(() => {
-        alert("登出成功！");
+        alert("Logout successfully");
         location.href = "/";
       })
       .catch((e) => {

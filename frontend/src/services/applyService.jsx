@@ -71,7 +71,7 @@ export const sendVertificationCodeExpert = async (email) => {
 
   try {
     result = await get(url);
-    alert("验证码已发送，请查收！");
+    alert("Verification code sent successfully");
   } catch (e) {
     alert(e);
   }

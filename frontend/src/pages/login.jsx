@@ -19,14 +19,14 @@ function LoginPage() {
       await getUser().then((res) => {
         if (res.role === "user") {
           setClient(res.client);
-          alert("登录成功！");
+          alert("Login successfully!");
           location.href = "/";
         } else if (res.role === "expert") {
           setExpert(res.expert);
-          alert("登录成功！");
+          alert("Login successfully!");
           location.href = "/";
         } else if (res.role === "admin") {
-          alert("登录成功！欢迎管理员");
+          alert("Login successfully,welcome admin!");
           location.href = "/";
         }
         setUser(res);

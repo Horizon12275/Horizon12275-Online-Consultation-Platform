@@ -24,7 +24,7 @@ export async function register({
   try {
     let result;
     result = await post(url, { username, password, email, verificationCode });
-    alert("注册成功！");
+    alert("Register successfully!");
     location.href = "/login";
   } catch (e) {
     console.log(e);
@@ -42,7 +42,7 @@ export async function checkAuth() {
 
 export async function sendCode(email) {
   if (!email) {
-    alert("请输入邮箱！");
+    alert("Please input email address first!");
     return;
   }
   const url = `${PREFIX}/sendCode/${email}`;
@@ -50,7 +50,7 @@ export async function sendCode(email) {
   let result;
   try {
     result = await get(url);
-    alert("验证码已发送，请查收！");
+    alert("Verification code sent successfully");
   } catch (e) {
     alert(e);
   }
