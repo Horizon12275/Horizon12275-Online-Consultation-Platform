@@ -29,12 +29,8 @@ function CancelButton({ onClick }) {
       className="call-button hover:scale-105 transition-transform duration-300 ease-in-out"
       onClick={onClick}
     >
-      <img
-        className="call-icon"
-        src="https://cdn.builder.io/api/v1/image/assets/TEMP/8c021edfc9b00b4b26bfa8ac69dab5ee7e915ca7310725b8e4ddfc4bb009bc60?apiKey=b565e599026f4ea2ba591e53566a67d8&"
-        alt="Cancel icon"
-      />
-      <span className="call-text">Cancel</span>
+      <img className="call-icon" src="/cancelIcon.png" alt="Cancel icon" />
+      <span className="call-text text-red-500">Cancel</span>
     </button>
   );
 }
@@ -45,11 +41,7 @@ function BackButton({ onClick }) {
       className="call-button hover:scale-105 transition-transform duration-300 ease-in-out"
       onClick={onClick}
     >
-      <img
-        className="call-icon"
-        src="https://cdn.builder.io/api/v1/image/assets/TEMP/8c021edfc9b00b4b26bfa8ac69dab5ee7e915ca7310725b8e4ddfc4bb009bc60?apiKey=b565e599026f4ea2ba591e53566a67d8&"
-        alt="Cancel icon"
-      />
+      <img className="call-icon" src="/backIcon.png" alt="Cancel icon" />
       <span className="call-text">Back</span>
     </button>
   );
@@ -215,7 +207,12 @@ const VideosDisplay = () => {
             bottom: "200px",
           }}
         >
-          <Link to={`/consultation?receiverId=${receiverId}`} style={{}}>
+          <Link
+            to={`/consultation?receiverId=${receiverId}`}
+            onClick={() => {
+              peerInstance.current.destroy();
+            }}
+          >
             <BackButton />
           </Link>
         </div>
