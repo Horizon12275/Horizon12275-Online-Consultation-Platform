@@ -52,7 +52,9 @@ function FillForm() {
   React.useEffect(() => resetForm, [client, expert]);
   const handleSave = async (user) => {
     if (user.aboutMe?.length > 3000) {
-      alert(`个人简介过长，当前字数${user.aboutMe.length}，请控制在3000字以内`);
+      alert(
+        `About me should be less than 3000 characters, now is ${user.aboutMe.length}`
+      );
       return;
     }
     updateUser(user)
@@ -60,7 +62,7 @@ function FillForm() {
         if (res?.role === "user") setClient(res.client);
         else setExpert(res.expert);
         console.log(res);
-        alert("修改成功！");
+        alert("Successfully saved");
       })
       .catch((e) => alert(e));
   };
