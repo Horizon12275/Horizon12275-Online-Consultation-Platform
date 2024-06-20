@@ -206,7 +206,7 @@ const VideosDisplay = () => {
             bottom: "200px",
           }}
         >
-          <Link to={"/consultation/" + receiverId}>
+          <Link to={`/consultation?receiverId=${receiverId}`} style={{}}>
             <BackButton />
           </Link>
         </div>

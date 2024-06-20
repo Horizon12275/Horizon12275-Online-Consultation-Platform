@@ -5,7 +5,7 @@ import { useState } from "react";
 import { BASEURL } from "../services/requestService";
 
 function Profile() {
-  const { user, client, setClient, expert, setExpert } = useAuth();
+  const { user, client, setClient } = useAuth();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const handleCancel = () => {
     setIsModalOpen(false);
@@ -13,9 +13,7 @@ function Profile() {
   const handleChange = (info) => {
     if (info.file.status === "done") {
       if (info.file.response.code === 200) {
-        if (user?.role === "user")
-          setClient({ ...client, avatar: info.file.response.data });
-        else setExpert({ ...expert, avatar: info.file.response.data });
+        setClient({ ...client, avatar: info.file.response.data });
       } else alert(info.file.response.message);
     } else if (info.file.status === "error") {
     }
@@ -40,13 +38,10 @@ function Profile() {
     <>
       <div className="div" style={{ marginTop: "30px", marginLeft: "40px" }}>
         <div className="div-2 shadow-lg">
-          <Image
-            src={client?.avatar || expert?.avatar}
-            className="aspect-square object-cover"
-          />
+          <Image src={client?.avatar} className="aspect-square object-cover" />
         </div>
-        <div className="div-3">{client?.username || expert?.name}</div>
-        <div className="div-4">{client?.region || expert?.region}</div>
+        <div className="div-3">{client?.username}</div>
+        <div className="div-4">{client?.region}</div>
         <div className="div-5">
           <div className="div-6">
             <div className="div-7">
@@ -73,10 +68,10 @@ function Profile() {
           <Upload
             showUploadList={false}
             name="avatar"
-            action={`http://localhost:8080/api/user/avatar`}
+            action={`https://localhost:8080/api/user/avatar`}
             withCredentials
             onChange={handleChange}
-            className="div-18 shadow-lg"
+            className="div-18 shadow-lg text-white"
           >
             <span>Upload new avatar</span>
           </Upload>
