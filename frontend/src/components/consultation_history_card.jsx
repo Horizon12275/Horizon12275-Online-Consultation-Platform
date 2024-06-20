@@ -2,7 +2,7 @@ import toTime from "../utils/time";
 
 export default function ConsultationHistoryCard({ expert, time, client }) {
   return (
-    <main className="flex flex-col justify-center max-w-[352px] mt-3">
+    <main className="flex flex-col justify-center max-w-[352px] mt-3 hover:scale-110 transition-transform duration-300 ease-in-out">
       <article className="flex flex-col justify-center w-full rounded-xl">
         <section className="flex gap-4 justify-center p-4 bg-blue-50 rounded-xl border border-sky-200 border-solid">
           <div className="flex flex-col justify-center my-auto text-base font-medium tracking-normal leading-6 text-center text-blue-50 whitespace-nowrap">

@@ -71,12 +71,15 @@ function Profile() {
             action={`https://localhost:8080/api/user/avatar`}
             withCredentials
             onChange={handleChange}
-            className="div-18 shadow-lg text-white"
+            className="div-18 shadow-lg hover:scale-110 transition-transform duration-300 ease-in-out"
           >
             <span>Upload new avatar</span>
           </Upload>
 
-          <button onClick={setIsModalOpen} className="div-19 shadow-lg">
+          <button
+            onClick={setIsModalOpen}
+            className="div-19 shadow-lg hover:scale-110 transition-transform duration-300 ease-in-out"
+          >
             Add funds to wallet
           </button>
           <Modal

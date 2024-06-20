@@ -25,7 +25,7 @@ const RecommendedArticles = () => {
               <img
                 loading="lazy"
                 src={article.cover}
-                className="w-full aspect-[1.72] object-cover"
+                className="w-full aspect-[1.72] object-cover hover:scale-110 transition-transform duration-300 ease-in-out"
                 alt={article.title}
               />
             </Link>

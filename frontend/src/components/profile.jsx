@@ -67,6 +67,9 @@ function Profile() {
           position: absolute;
           top: 0px;
           left: 250px;
+          position: absolute;
+          top: 0px;
+          left: 250px;
         }
         .div-2 {
           disply: flex;
@@ -247,5 +250,8 @@ function Profile() {
       `}</style>
     </>
   );
+    </>
+  );
 }
+export default Profile;
 export default Profile;

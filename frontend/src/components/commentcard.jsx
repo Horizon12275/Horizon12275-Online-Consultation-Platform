@@ -55,7 +55,7 @@ function Commentcard() {
           gap: 0px;
           justify-content: center;
           margin-top: 590px;
-          margin-left: 100px;
+          margin-left: 75px;
           max-width: 650px;
         }
 

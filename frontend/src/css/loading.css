@@ -55,6 +55,9 @@
   padding: 10px;
   box-sizing: border-box;
   transition: opacity 0.5s;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  z-index: 1000;
 }
 
 .controls button {
