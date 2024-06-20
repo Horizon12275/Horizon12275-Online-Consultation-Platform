@@ -18,7 +18,7 @@ function UserInfo({ name, status }) {
 
 function VideoButton() {
   return (
-    <button className="call-button">
+    <button className="call-button hover:scale-110 transition-transform duration-300 ease-in-out">
       <img
         className="call-icon"
         src="https://cdn.builder.io/api/v1/image/assets/TEMP/8c021edfc9b00b4b26bfa8ac69dab5ee7e915ca7310725b8e4ddfc4bb009bc60?apiKey=b565e599026f4ea2ba591e53566a67d8&"
@@ -29,7 +29,7 @@ function VideoButton() {
   );
 }
 
-function ConsultHead({ receiver,rid }) {
+function ConsultHead({ receiver, rid }) {
   //这里的receiver是专家或者用户的信息
   return (
     receiver && (

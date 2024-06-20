@@ -1,54 +1,58 @@
 import * as React from "react";
 
 function Profile() {
-    return (
-        <>
-            <div className="div">
-                <div className="div-2">
-                    <img
-                        loading="lazy"
-                        srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/ef88502c207249b6976ec49ef9e9731d30629156ddf8be63182f0534c2c7b6b4?apiKey=b565e599026f4ea2ba591e53566a67d8&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/ef88502c207249b6976ec49ef9e9731d30629156ddf8be63182f0534c2c7b6b4?apiKey=b565e599026f4ea2ba591e53566a67d8&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/ef88502c207249b6976ec49ef9e9731d30629156ddf8be63182f0534c2c7b6b4?apiKey=b565e599026f4ea2ba591e53566a67d8&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/ef88502c207249b6976ec49ef9e9731d30629156ddf8be63182f0534c2c7b6b4?apiKey=b565e599026f4ea2ba591e53566a67d8&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/ef88502c207249b6976ec49ef9e9731d30629156ddf8be63182f0534c2c7b6b4?apiKey=b565e599026f4ea2ba591e53566a67d8&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/ef88502c207249b6976ec49ef9e9731d30629156ddf8be63182f0534c2c7b6b4?apiKey=b565e599026f4ea2ba591e53566a67d8&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/ef88502c207249b6976ec49ef9e9731d30629156ddf8be63182f0534c2c7b6b4?apiKey=b565e599026f4ea2ba591e53566a67d8&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/ef88502c207249b6976ec49ef9e9731d30629156ddf8be63182f0534c2c7b6b4?apiKey=b565e599026f4ea2ba591e53566a67d8&"
-                        className="img"
-                    />
-                    <img
-                        loading="lazy"
-                        srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/ef88502c207249b6976ec49ef9e9731d30629156ddf8be63182f0534c2c7b6b4?apiKey=b565e599026f4ea2ba591e53566a67d8&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/ef88502c207249b6976ec49ef9e9731d30629156ddf8be63182f0534c2c7b6b4?apiKey=b565e599026f4ea2ba591e53566a67d8&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/ef88502c207249b6976ec49ef9e9731d30629156ddf8be63182f0534c2c7b6b4?apiKey=b565e599026f4ea2ba591e53566a67d8&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/ef88502c207249b6976ec49ef9e9731d30629156ddf8be63182f0534c2c7b6b4?apiKey=b565e599026f4ea2ba591e53566a67d8&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/ef88502c207249b6976ec49ef9e9731d30629156ddf8be63182f0534c2c7b6b4?apiKey=b565e599026f4ea2ba591e53566a67d8&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/ef88502c207249b6976ec49ef9e9731d30629156ddf8be63182f0534c2c7b6b4?apiKey=b565e599026f4ea2ba591e53566a67d8&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/ef88502c207249b6976ec49ef9e9731d30629156ddf8be63182f0534c2c7b6b4?apiKey=b565e599026f4ea2ba591e53566a67d8&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/ef88502c207249b6976ec49ef9e9731d30629156ddf8be63182f0534c2c7b6b4?apiKey=b565e599026f4ea2ba591e53566a67d8&"
-                        className="img-2"
-                    />
-                </div>
-                <div className="div-3">Khusan Akhmedov</div>
-                <div className="div-4">Paris, France</div>
-                <div className="div-5">
-                    <div className="div-6">
-                        <div className="div-7">21</div>
-                        <div className="div-8">Posts</div>
-                    </div>
-                    <div className="div-9" />
-                    <div className="div-10">
-                        <div className="div-11">238</div>
-                        <div className="div-12">Comments</div>
-                    </div>
-                    <div className="div-13" />
-                    <div className="div-14">
-                        <div className="div-15">101</div>
-                        <div className="div-16">Ratings</div>
-                    </div>
-                </div>
-                <div className="div-17">
-                    <div className="div-18">Upload new avatar</div>
-                    <div className="div-19">Post A New Article</div>
-                </div>
-            </div>
-            <style jsx>{`
+  return (
+    <>
+      <div className="div">
+        <div className="div-2">
+          <img
+            loading="lazy"
+            srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/ef88502c207249b6976ec49ef9e9731d30629156ddf8be63182f0534c2c7b6b4?apiKey=b565e599026f4ea2ba591e53566a67d8&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/ef88502c207249b6976ec49ef9e9731d30629156ddf8be63182f0534c2c7b6b4?apiKey=b565e599026f4ea2ba591e53566a67d8&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/ef88502c207249b6976ec49ef9e9731d30629156ddf8be63182f0534c2c7b6b4?apiKey=b565e599026f4ea2ba591e53566a67d8&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/ef88502c207249b6976ec49ef9e9731d30629156ddf8be63182f0534c2c7b6b4?apiKey=b565e599026f4ea2ba591e53566a67d8&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/ef88502c207249b6976ec49ef9e9731d30629156ddf8be63182f0534c2c7b6b4?apiKey=b565e599026f4ea2ba591e53566a67d8&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/ef88502c207249b6976ec49ef9e9731d30629156ddf8be63182f0534c2c7b6b4?apiKey=b565e599026f4ea2ba591e53566a67d8&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/ef88502c207249b6976ec49ef9e9731d30629156ddf8be63182f0534c2c7b6b4?apiKey=b565e599026f4ea2ba591e53566a67d8&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/ef88502c207249b6976ec49ef9e9731d30629156ddf8be63182f0534c2c7b6b4?apiKey=b565e599026f4ea2ba591e53566a67d8&"
+            className="img"
+          />
+          <img
+            loading="lazy"
+            srcSet="https://cdn.builder.io/api/v1/image/assets/TEMP/ef88502c207249b6976ec49ef9e9731d30629156ddf8be63182f0534c2c7b6b4?apiKey=b565e599026f4ea2ba591e53566a67d8&width=100 100w, https://cdn.builder.io/api/v1/image/assets/TEMP/ef88502c207249b6976ec49ef9e9731d30629156ddf8be63182f0534c2c7b6b4?apiKey=b565e599026f4ea2ba591e53566a67d8&width=200 200w, https://cdn.builder.io/api/v1/image/assets/TEMP/ef88502c207249b6976ec49ef9e9731d30629156ddf8be63182f0534c2c7b6b4?apiKey=b565e599026f4ea2ba591e53566a67d8&width=400 400w, https://cdn.builder.io/api/v1/image/assets/TEMP/ef88502c207249b6976ec49ef9e9731d30629156ddf8be63182f0534c2c7b6b4?apiKey=b565e599026f4ea2ba591e53566a67d8&width=800 800w, https://cdn.builder.io/api/v1/image/assets/TEMP/ef88502c207249b6976ec49ef9e9731d30629156ddf8be63182f0534c2c7b6b4?apiKey=b565e599026f4ea2ba591e53566a67d8&width=1200 1200w, https://cdn.builder.io/api/v1/image/assets/TEMP/ef88502c207249b6976ec49ef9e9731d30629156ddf8be63182f0534c2c7b6b4?apiKey=b565e599026f4ea2ba591e53566a67d8&width=1600 1600w, https://cdn.builder.io/api/v1/image/assets/TEMP/ef88502c207249b6976ec49ef9e9731d30629156ddf8be63182f0534c2c7b6b4?apiKey=b565e599026f4ea2ba591e53566a67d8&width=2000 2000w, https://cdn.builder.io/api/v1/image/assets/TEMP/ef88502c207249b6976ec49ef9e9731d30629156ddf8be63182f0534c2c7b6b4?apiKey=b565e599026f4ea2ba591e53566a67d8&"
+            className="img-2"
+          />
+        </div>
+        <div className="div-3">Khusan Akhmedov</div>
+        <div className="div-4">Paris, France</div>
+        <div className="div-5">
+          <div className="div-6">
+            <div className="div-7">21</div>
+            <div className="div-8">Posts</div>
+          </div>
+          <div className="div-9" />
+          <div className="div-10">
+            <div className="div-11">238</div>
+            <div className="div-12">Comments</div>
+          </div>
+          <div className="div-13" />
+          <div className="div-14">
+            <div className="div-15">101</div>
+            <div className="div-16">Ratings</div>
+          </div>
+        </div>
+        <div className="div-17">
+          <div className="div-18 hover:scale-110 transition-transform duration-300 ease-in-out">
+            Upload new avatar
+          </div>
+          <div className="div-19 hover:scale-110 transition-transform duration-300 ease-in-out">
+            Post A New Article
+          </div>
+        </div>
+      </div>
+      <style jsx>{`
         .div {
           display: flex;
           max-width: 749px;
           flex-direction: column;
           align-items: center;
           padding: 0 20px;
-            position: absolute;
-            top:0px;
-            left:250px;
+          position: absolute;
+          top: 0px;
+          left: 250px;
         }
         .div-2 {
           disply: flex;
@@ -227,8 +231,7 @@ function Profile() {
           }
         }
       `}</style>
-        </>
-    );
+    </>
+  );
 }
-export default Profile
-
+export default Profile;
