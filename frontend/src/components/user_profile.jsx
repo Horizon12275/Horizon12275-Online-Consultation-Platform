@@ -32,7 +32,9 @@ function Profile() {
         document.getElementById("cd-key").value = "";
         setIsModalOpen(false);
       })
-      .catch((e) => alert(e));
+      .catch((e) => {
+        alert(e);
+      });
   };
   return (
     <>

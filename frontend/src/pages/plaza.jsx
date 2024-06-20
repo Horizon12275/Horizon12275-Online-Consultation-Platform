@@ -10,6 +10,7 @@ const PlazaPage = () => {
   const [tweets, setTweets] = useState([]);
   useEffect(() => {
     getAllTweets().then((res) => {
+      res.sort((a, b) => new Date(b.time) - new Date(a.time));
       setTweets(res);
     });
   }, []);

@@ -39,7 +39,6 @@ const FeedEditor = ({ setTweets }) => {
       .then((res) => {
         setValue("");
         setTweets((prev) => [
-          ...prev,
           {
             id: res.id,
             poster: client,
@@ -48,6 +47,7 @@ const FeedEditor = ({ setTweets }) => {
             likes: [],
             image: res.image,
           },
+          ...prev,
         ]);
         setSelectedImages([]);
         alert("Tweet posted successfully");

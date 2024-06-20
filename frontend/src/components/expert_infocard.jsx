@@ -18,6 +18,8 @@ const ExpertInfoCard = ({ expert }) => {
       })
       .catch((e) => {
         alert(e);
+        console.log(e);
+        if (e == "Insufficient balance!") location.href = `/user`;
       });
   };
   const handleCancel = () => {
