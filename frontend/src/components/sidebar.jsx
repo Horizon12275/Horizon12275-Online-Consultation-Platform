@@ -47,7 +47,7 @@ const Sidebar = () => {
     },
     {
       label: "Profile",
-      value: "/user",
+      value: user?.role === "user" ? "/user" : "/expert_profile",
       icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/5889a1cc004cbe2696521a1d1a3fd9466e393044d2b77f1f0be3b2966c617977?apiKey=9e661a5e0ad74c878ca984d592b3752c&",
     },
     user?.role === "expert" && {
