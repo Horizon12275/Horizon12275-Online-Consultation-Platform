@@ -1,15 +1,8 @@
 import { useEffect, useRef, useState } from "react";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
-import {
-  getOtherUserById,
-  getReceiverId,
-  getUser,
-} from "../services/userService";
+import { getReceiverId } from "../services/userService";
 import { getHistory, postImage } from "../services/messageService";
-import Messagebox from "./message_box";
-import ConsultHead from "./consult_head";
 import toTime from "../utils/time";
-import { BASEURL, WSURL, postFormData } from "../services/requestService";
+import { WSURL } from "../services/requestService";
 import { Image } from "antd";
 import MessageboxSmall from "./message_boxSmall";
 import ConsultHeadSmall from "./consult_headSmall";

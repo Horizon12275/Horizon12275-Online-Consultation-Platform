@@ -1,15 +1,10 @@
 import { useEffect, useRef, useState } from "react";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
-import {
-  getOtherUserById,
-  getReceiverId,
-  getUser,
-} from "../services/userService";
+import { getReceiverId } from "../services/userService";
 import { getHistory, postImage } from "../services/messageService";
 import Messagebox from "./message_box";
 import ConsultHead from "./consult_head";
 import toTime from "../utils/time";
-import { BASEURL, WSURL, postFormData } from "../services/requestService";
+import { WSURL } from "../services/requestService";
 import { Image } from "antd";
 import { useAuth } from "../context/authContext";
 
@@ -94,6 +89,7 @@ function ChatApp({ sid, receiver, receiverId, setConsultations }) {
       const type = JSON.parse(event.data).type;
       if (type === "message" || type === "image") {
         const receivedMessage = { ...JSON.parse(event.data).data, type: type };
+        console.log(receivedMessage);
         if (
           receivedMessage.receiver.id == sid &&
           receivedMessage.sender.id == rid
@@ -101,16 +97,20 @@ function ChatApp({ sid, receiver, receiverId, setConsultations }) {
           setMessages((prevMessages) => [...prevMessages, receivedMessage]); // 添加到现有消息
         if (receivedMessage.sender.id == rid)
           socket.send(JSON.stringify({ type: "seen", data: rid }));
-        setConsultations((prev) => {
-          //接收消息时更新专家列表 把当前专家移到最前面
-          const index = prev.findIndex(
-            (consultation) => consultation.expert.id == receiverId
-          );
-          const consutation = prev[index]; //当前专家
-          consutation.time = new Date().getTime(); //更新时间
-          prev.splice(index, 1); //删除当前专家
-          return [consutation, ...prev];
-        });
+        // setConsultations((prev) => { //bug:接收到其他人的消息时 需要用其他人的expertid来找到consultation 但是messages里没有expertid
+        //   //接收消息时更新专家列表 把当前专家移到最前面
+        //   const index = prev.findIndex(
+        //     (consultation) =>
+        //       (user.role === "user"
+        //         ? consultation.expert.id
+        //         : consultation.client.id) == receiverId
+        //   );
+        //   const consultation = prev[index]; //当前专家
+        //   console.log(consultation);
+        //   consultation.time = new Date().getTime(); //更新时间
+        //   prev.splice(index, 1); //删除当前专家
+        //   return [consultation, ...prev];
+        // });
       } else if (type === "seen") {
         const uid = JSON.parse(event.data).data;
         if (uid == rid)

@@ -1,8 +1,6 @@
 import Markdown from "react-markdown";
-import SyntaxHighlighter from "react-syntax-highlighter/dist/esm/default-highlight";
 import "github-markdown-css";
 import "highlight.js/styles/atom-one-dark.css";
-import rehypeHighlight from "rehype-highlight";
 import rehypeRaw from "rehype-raw";
 
 const ArticleDisplay = ({ article }) => {

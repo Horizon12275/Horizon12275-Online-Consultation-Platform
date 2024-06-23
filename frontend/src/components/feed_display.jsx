@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "../context/authContext";
-import { LikeOutlined, LikeTwoTone } from "@ant-design/icons";
 import { getTids, likeTweet } from "../services/tweetLikeService";
 import { Image } from "antd";
 

@@ -1,5 +1,3 @@
-import { likeComment } from "../services/commentLikeService";
-
 function Avatar({ src, alt }) {
   return (
     <img src={src} alt={alt} className="w-10 aspect-square rounded-full" />

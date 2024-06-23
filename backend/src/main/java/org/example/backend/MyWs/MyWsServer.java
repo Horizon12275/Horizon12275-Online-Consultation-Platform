@@ -118,7 +118,7 @@ public class MyWsServer {
             msg.setSendTime(LocalDateTime.now());
             msg.setSeen(false);
             if (receiverSession != null) {//如果接收者在线 则发送消息
-                receiverSession.getBasicRemote().sendText(JSON.toJSONString(new WsMessage<Message>("message", msg)));//发送消息
+                receiverSession.getBasicRemote().sendText(JSON.toJSONString(new WsMessage<Message>(wsMessage.getType(), msg)));//发送消息
             }
             messageRepository.save(msg);//保存消息
             consultation.setTime(LocalDateTime.now());//更新最后一次咨询时间
