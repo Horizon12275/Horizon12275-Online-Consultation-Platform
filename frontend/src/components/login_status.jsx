@@ -33,7 +33,7 @@ const UserOrLogin = () => {
       {user && (
         <article
           className="flex gap-0 mt-3 items-center"
-          style={{ width: "100%" }}
+          style={{ width: "100%", marginLeft: "10px" }}
         >
           <div className="flex flex-col justify-center items-start self-start pr-4">
             <img

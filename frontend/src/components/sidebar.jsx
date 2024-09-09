@@ -43,7 +43,7 @@ const Sidebar = () => {
     {
       label: "Articles",
       value: "/article",
-      icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/07d261bcd92e5b651bbf3ee474dd7d3fd577dd2a898811375f3cf1b699518c71?apiKey=9e661a5e0ad74c878ca984d592b3752c&",
+      icon: "/articleIcon.png",
     },
     {
       label: "Profile",
@@ -51,14 +51,14 @@ const Sidebar = () => {
       icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/5889a1cc004cbe2696521a1d1a3fd9466e393044d2b77f1f0be3b2966c617977?apiKey=9e661a5e0ad74c878ca984d592b3752c&",
     },
     user?.role === "expert" && {
-      label: "Write Article",
+      label: "WriteArticle",
       value: "/write-article",
-      icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/07d261bcd92e5b651bbf3ee474dd7d3fd577dd2a898811375f3cf1b699518c71?apiKey=9e661a5e0ad74c878ca984d592b3752c&",
+      icon: "/writeArticleIcon.png",
     },
     user?.role === "admin" && {
       label: "Verify Expert",
       value: "/verify-expert",
-      icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/07d261bcd92e5b651bbf3ee474dd7d3fd577dd2a898811375f3cf1b699518c71?apiKey=9e661a5e0ad74c878ca984d592b3752c&",
+      icon: "/verifyExpertIcon.png",
     },
   ];
 
@@ -98,6 +98,13 @@ const Sidebar = () => {
     >
       <Flex vertical justify="space-between" className="h-full">
         <div className="flex flex-col justify-center pt-3 pb-5">
+          <a href="/">
+            <img
+              src="/JustAskBlue.png"
+              alt="Logo"
+              style={{ margin: "15px", height: "125px" }}
+            />
+          </a>
           <nav className="flex flex-col justify-center w-full text-2xl">
             <ul className="flex flex-col w-full">
               {menuItems.map(

@@ -9,7 +9,7 @@ server:
   servlet:
     session:
       cookie:
-        same-site: none  #修复跨域问题 前端域名是http 后端是https 如果不显式设置 浏览器就不会发送cookie 也可以通过升级前端为https解决
+        same-site: none  #修复跨站问题 前端域名是http 后端是https 如果不显式设置 浏览器就不会发送cookie 也可以通过升级前端为https解决
 
 
 spring:

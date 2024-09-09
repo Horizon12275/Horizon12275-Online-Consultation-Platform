@@ -31,17 +31,23 @@ function ProfileInfo({ name, price, specialty, rating }) {
 function ProfileIntroduction({ introduction }) {
   return (
     <div className="text-sm text-black">
-      <h3 className="font-semibold" style={{ color: "#4299e1" }}>
+      <h3
+        className="font-semibold"
+        style={{ color: "#4299e1", marginTop: "10px" }}
+      >
         Introduction:
       </h3>
-      {introduction}
+      <div style={{ marginTop: "15px" }}>{introduction}</div>
     </div>
   );
 }
 
 export default function ExpertShowCard({ item }) {
   return (
-    <div>
+    <div
+      style={{ maxWidth: "400px" }}
+      className="transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg"
+    >
       <Link to={`/expert/${item.id}`}>
         <div className="flex flex-col bg-white rounded-xl px-6 py-2 w-[400px] h-[330px] shadow">
           <div className="flex flex-col justify-center my-3">
@@ -51,7 +57,7 @@ export default function ExpertShowCard({ item }) {
                 name={item.name}
                 price={item.price}
                 specialty={item.specialities?.map((item) => (
-                  <Link to={`/expert?speciality=${item.id}`}>
+                  <Link to={`/expert?speciality=${item.id}`} key={item.id}>
                     {item.content}
                   </Link>
                 ))}

@@ -58,6 +58,8 @@ export default function VideoBox({
         style={{
           maxHeight: "100%",
           maxWidth: "100%",
+          minWidth: "500px",
+          zIndex: 100,
         }}
       />
       {isLoadingCurrentUser && <VideoLoading />}

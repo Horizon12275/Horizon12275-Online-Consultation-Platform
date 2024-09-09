@@ -87,11 +87,16 @@ function LoginPage() {
         initialValues={{ remember: true }}
         onFinish={loginAndSetUser}
       >
+        <img
+          src="/JustAskBlue.png"
+          alt="Logo"
+          style={{ marginBottom: "50px" }}
+        />
         <div
           className="title"
           style={{ fontSize: "2em", marginBottom: "20px" }}
         >
-          SIGN IN
+          LOGIN
         </div>
         <div className="subtitle" style={subtitleStyle}>
           If you don't have an account, you can{" "}

@@ -21,7 +21,7 @@ export function ArticleCard({ article }) {
           {article.description}
         </p>
       </div>
-      <div className="flex gap-2.5 justify-between mt-3 w-full max-md:flex-wrap max-md:max-w-full">
+      <div className="flex gap-2.5 justify-between  w-full max-md:flex-wrap max-md:max-w-full">
         <div className="flex flex-col justify-center">
           <div className="flex gap-1">
             <div className="flex justify-center items-center ">
@@ -65,7 +65,7 @@ export function ArticleCard({ article }) {
   );
 }
 
-export const ArticleList = ({ articles,length }) => {
+export const ArticleList = ({ articles, length }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const handlePageChange = (page, pageSize) => {
     setSearchParams({
@@ -80,7 +80,7 @@ export const ArticleList = ({ articles,length }) => {
       <List
         dataSource={articles}
         renderItem={(article, index) => (
-          <div className="w-[1000px]">
+          <div className="w-[1000px] transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg">
             <div
               key={index}
               className="flex max-md:flex-col max-md:gap-0 mt-4 h-[240px] "

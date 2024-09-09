@@ -1,5 +1,3 @@
-import * as React from "react";
-
 function AIPrompt() {
     const questions = [
         "What are design patterns?",

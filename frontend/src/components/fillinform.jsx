@@ -82,10 +82,16 @@ function FillForm() {
         <header className="header">
           <h1 className="title">BASIC INFO</h1>
           <div className="actions">
-            <Button className="cancel-button" onClick={handleCancel}>
+            <Button
+              className="cancel-button hover:scale-110 transition-transform duration-300 ease-in-out"
+              onClick={handleCancel}
+            >
               CANCEL
             </Button>
-            <Button htmlType={"submit"} className="save-button">
+            <Button
+              htmlType={"submit"}
+              className="save-button hover:scale-110 transition-transform duration-300 ease-in-out"
+            >
               SAVE
             </Button>
           </div>

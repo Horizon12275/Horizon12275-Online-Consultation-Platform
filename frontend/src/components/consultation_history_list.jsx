@@ -1,4 +1,3 @@
-import React from "react";
 import ConsultationHistoryCard from "./consultation_history_card";
 import { useSearchParams } from "react-router-dom";
 import { useAuth } from "../context/authContext";

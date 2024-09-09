@@ -1,5 +1,3 @@
-import { likeComment } from "../services/commentLikeService";
-
 function Avatar({ src, alt }) {
   return (
     <img src={src} alt={alt} className="w-10 aspect-square rounded-full" />
@@ -24,8 +22,8 @@ function ReactionButton({ count, isLiked, onCLick }) {
         <img
           src={
             isLiked
-              ? "https://cdn.builder.io/api/v1/image/assets/TEMP/70beedf7d104b344fcbb2242bb8bccf621c840fc6b928bb43e467b927e3c8649?apiKey=9e661a5e0ad74c878ca984d592b3752c&"
-              : "https://cdn.builder.io/api/v1/image/assets/TEMP/7779fcae421b948b4e4285d944f27ab8d485f3c154d45d011e90c7bc01161efe?apiKey=9e661a5e0ad74c878ca984d592b3752c&"
+              ? "/likeIcon.png"
+              : "https://cdn.builder.io/api/v1/image/assets/TEMP/70beedf7d104b344fcbb2242bb8bccf621c840fc6b928bb43e467b927e3c8649?apiKey=9e661a5e0ad74c878ca984d592b3752c&"
           }
           alt=""
           className="w-4 aspect-square cursor-pointer"

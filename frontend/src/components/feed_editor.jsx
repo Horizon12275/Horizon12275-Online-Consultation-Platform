@@ -94,7 +94,7 @@ const FeedEditor = ({ setTweets }) => {
             onClick={handleClick}
             className=" justify-center px-5 py-2.5 text-base font-bold leading-5 
           text-center text-white whitespace-nowrap bg-sky-500 rounded-full 
-          disabled:opacity-50 disabled:cursor-not-allowed border-none"
+          disabled:opacity-50 disabled:cursor-not-allowed border-none cursor-pointer hover:text-blue-900"
           >
             Publish
           </button>

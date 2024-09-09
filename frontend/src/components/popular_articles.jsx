@@ -24,7 +24,9 @@ function PopularArticleItem({ article }) {
             <div className="text-sky-500">
               #
               {article.tags?.map((tag) => (
-                <Link to={`/article?tag=${tag.id}`} key={tag.id}>{tag.content}</Link>
+                <Link to={`/article?tag=${tag.id}`} key={tag.id}>
+                  {tag.content}
+                </Link>
               ))}
             </div>
           </div>
@@ -49,7 +51,10 @@ export default function PopularArticle() {
   }, []);
 
   return (
-    <div className="flex flex-col justify-center text-sm font-bold max-w-[350px] m-auto">
+    <div
+      className="flex flex-col justify-center text-sm font-bold max-w-[350px] m-auto"
+      style={{ marginTop: "20px" }}
+    >
       <section className="flex flex-col w-full rounded-2xl bg-slate-50">
         <header className="flex flex-col pt-4 w-full text-xl tracking-wide text-neutral-900">
           <h2 className="self-start ml-4">POPULAR ARTICLES</h2>

@@ -45,11 +45,10 @@ const ExpertInfoCard = ({ expert }) => {
               height: "70px",
               fontSize: "26px",
               color: "white",
-              backgroundColor: "#FFA39E",
               borderRadius: "16px",
               border: "none",
             }}
-            className="cursor-pointer hover:bg-rose-500"
+            className="cursor-pointer bg-rose-400 hover:bg-rose-700 hover:scale-110 transition-transform duration-300 ease-in-out"
             onClick={showModal}
           >
             Chat Now!
